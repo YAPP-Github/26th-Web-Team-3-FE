@@ -6,3 +6,37 @@ export const buttonStyle = style({
   backgroundColor: "#8c92ff",
   fontSize: "24px",
 });
+
+export const primaryButton = style({
+  color: "white",
+  backgroundColor: "#1ea7fd",
+
+  ":hover": {
+    backgroundColor: "#1976d2",
+  },
+});
+
+export const secondaryButton = style({
+  color: "#333",
+  backgroundColor: "transparent",
+  boxShadow: "rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset",
+
+  ":hover": {
+    backgroundColor: "rgba(0, 0, 0, 0.05)",
+  },
+});
+
+export const smallButton = style({
+  fontSize: "12px",
+  padding: "10px 16px",
+});
+
+export const mediumButton = style({
+  fontSize: "14px",
+  padding: "11px 20px",
+});
+
+export const largeButton = style({
+  fontSize: "16px",
+  padding: "12px 24px",
+});
