@@ -1,0 +1,92 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+
+  "vcs": {
+    "enabled": false,
+    "clientKind": "git",
+    "useIgnoreFile": false
+  },
+  "files": {
+    "ignore": [
+      ".next",
+      "dist",
+      "build",
+      "node_modules",
+      "*.config.js",
+      "static"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "lineWidth": 80,
+    "indentWidth": 2,
+    "indentStyle": "space"
+  },
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "all": true,
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "off",
+        "useArrowFunction": "error"
+      },
+      "a11y": {
+        "useButtonType": "off",
+        "useFocusableInteractive": "warn",
+        "useSemanticElements": "off",
+        "noLabelWithoutControl": "off"
+      },
+      "style": {
+        "noNamespaceImport": "off",
+        "useSingleVarDeclarator": "off",
+        "noParameterAssign": "off",
+        "noNonNullAssertion": "off",
+        "useNamingConvention": "off",
+        "useFilenamingConvention": "off",
+        "useBlockStatements": "off",
+        "noDefaultExport": "off",
+        "noImplicitBoolean": "off",
+        "useExplicitLengthCheck": "off",
+        "useDefaultSwitchClause": "off",
+        "useSelfClosingElements": "off"
+      },
+      "suspicious": {
+        "noReactSpecificProps": "off",
+        "noArrayIndexKey": "off",
+        "noEmptyBlockStatements": "off",
+        "useAwait": "off",
+        "noCommentText": "error",
+        "noDuplicateJsxProps": "error",
+        "noConsole": "warn"
+      },
+      "correctness": {
+        "useExhaustiveDependencies": "off",
+        "noUnusedImports": "warn",
+        "noNodejsModules": "off",
+        "useImportExtensions": "off"
+      },
+      "performance": {
+        "noAccumulatingSpread": "off",
+        "noBarrelFile": "off",
+        "noReExportAll": "off",
+        "useTopLevelRegex": "off"
+      },
+      "nursery": {
+        "all": false
+      },
+      "security": {
+        "noDangerouslySetInnerHtmlWithChildren": "error"
+      }
+    }
+  },
+
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double"
+    },
+    "globals": ["React"]
+  }
+}
