@@ -1,0 +1,26 @@
+pre-commit:
+  parallel: true
+  commands:
+    biome-check:
+      glob: '*.{js,ts,jsx,tsx,json}'
+      run: pnpm biome check --write {staged_files}
+      stage_fixed: true
+    biome-format:
+      glob: '*.{js,ts,jsx,tsx,json}'
+      run: pnpm biome format --write {staged_files}
+      stage_fixed: true
+
+pre-push:
+  parallel: true
+  commands:
+    audit-check:
+      run: pnpm audit
+    type-check:
+      run: pnpm type-check
+    build-check:
+      run: pnpm build
+
+commit-msg:
+  commands:
+    lint-commit-msg:
+      run: pnpm commitlint --edit {1}

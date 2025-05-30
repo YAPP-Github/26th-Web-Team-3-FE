@@ -2,11 +2,14 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "type-check": "tsc --noEmit -p ./tsconfig.json",
+    "prepare": "lefthook install"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.77.2",
@@ -21,10 +24,14 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vanilla-extract/next-plugin": "^2.4.11",
+    "lefthook": "^1.11.13",
     "typescript": "^5"
   }
 }

@@ -1,6 +1,7 @@
+import Providers from "@/app/providers";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 // TODO: 추후 수정
 
@@ -27,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
