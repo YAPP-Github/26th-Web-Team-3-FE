@@ -1,10 +1,12 @@
 import * as styles from "./button.css";
 
-interface ButtonProps {}
+interface ButtonProps {
+  text: string;
+}
 
 // TODO: 추후 수정
-const Button = ({}: ButtonProps) => {
-  return <button className={styles.buttonStyle}>Button</button>;
+const Button = ({ text }: ButtonProps) => {
+  return <button className={styles.buttonStyle}>{text}</button>;
 };
 
 export default Button;
