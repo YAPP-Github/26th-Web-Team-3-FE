@@ -30,7 +30,6 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@storybook/addon-onboarding": "^9.0.1",
-    "@storybook/addon-styling-webpack": "^1.0.1",
     "@storybook/nextjs": "^9.0.1",
     "@types/node": "^20",
     "@types/react": "^19",
