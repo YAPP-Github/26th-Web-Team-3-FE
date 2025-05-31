@@ -1,5 +1,5 @@
 import { cn } from "@/shared/utils/cn";
-import * as styles from "./Button.css";
+import * as styles from "./button.css";
 
 export interface ButtonProps {
   primary?: boolean;
