@@ -9,7 +9,9 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit -p ./tsconfig.json",
-    "prepare": "lefthook install"
+    "prepare": "lefthook install",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.77.2",
@@ -27,11 +29,15 @@
     "@biomejs/biome": "^1.9.4",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
+    "@storybook/addon-onboarding": "^9.0.1",
+    "@storybook/nextjs": "^9.0.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vanilla-extract/next-plugin": "^2.4.11",
+    "@vanilla-extract/webpack-plugin": "^2.3.19",
     "lefthook": "^1.11.13",
+    "storybook": "^9.0.1",
     "typescript": "^5"
   }
 }
