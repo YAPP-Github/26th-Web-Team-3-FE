@@ -1,0 +1,66 @@
+name: Storybook Deployment
+run-name: ${{ github.actor }}의 스토리북 배포
+on:
+  pull_request:
+    branches:
+      - develop
+
+permissions:
+  contents: read
+  pull-requests: write
+  deployments: write
+
+jobs:
+  storybook-deploy:
+    runs-on: ubuntu-20.04
+    outputs:
+      storybook_url: ${{ steps.chromatic.outputs.storybookUrl }}
+      build_url: ${{ steps.chromatic.outputs.buildUrl }}
+      status: ${{ job.status }}
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}-storybook
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: dependency install
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: publish to chromatic
+        id: chromatic
+        uses: chromaui/action@v1
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          onlyChanged: true
+          autoAcceptChanges: true
+
+  comment-pr:
+    runs-on: ubuntu-latest
+    needs: [storybook-deploy]
+    if: always()
+    steps:
+      - name: comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          comment_tag: storybook-${{ github.event.number }}
+          message: |
+            ## 🚀 Storybook 배포 완료
+            
+            **📖 Storybook:** ${{ needs.storybook-deploy.outputs.storybook_url }}
+            **🔗 Chromatic Build:** ${{ needs.storybook-deploy.outputs.build_url }}
+            **✅ Status:** ${{ needs.storybook-deploy.outputs.status }}
+            
