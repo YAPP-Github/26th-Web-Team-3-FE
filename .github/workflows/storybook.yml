@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   storybook-deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     outputs:
       storybook_url: ${{ steps.chromatic.outputs.storybookUrl }}
       build_url: ${{ steps.chromatic.outputs.buildUrl }}
