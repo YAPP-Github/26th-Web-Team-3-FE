@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-
 import { fn } from "storybook/test";
-
 import Button from "./index";
 
 const meta = {
