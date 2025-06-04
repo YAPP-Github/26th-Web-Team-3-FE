@@ -58,7 +58,7 @@ jobs:
         with:
           comment_tag: storybook-${{ github.event.number }}
           message: |
-            ## 🚀 Storybook 배포 완료
+            ## 🚀 Storybook 배포 
             
             **📖 Storybook:** ${{ needs.storybook-deploy.outputs.storybook_url }}
             **🔗 Chromatic Build:** ${{ needs.storybook-deploy.outputs.build_url }}
