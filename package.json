@@ -12,7 +12,7 @@
     "prepare": "lefthook install",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_0f487681cdbec36"
+    "chromatic": "npx chromatic"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.77.2",
