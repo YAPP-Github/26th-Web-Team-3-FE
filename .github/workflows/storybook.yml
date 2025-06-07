@@ -53,7 +53,7 @@ jobs:
     if: always()
     steps:
       - name: comment PR
-        uses: thollander/actions-comment-pull-request@v2
+        uses: thollander/actions-comment-pull-request@v3
         with:
           comment_tag: storybook-${{ github.event.number }}
           message: |
