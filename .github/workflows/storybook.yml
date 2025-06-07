@@ -20,8 +20,6 @@ jobs:
     steps:
       - name: checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: setup pnpm
         uses: pnpm/action-setup@v4
@@ -44,7 +42,6 @@ jobs:
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          onlyChanged: true
           autoAcceptChanges: true
 
   comment-pr:
