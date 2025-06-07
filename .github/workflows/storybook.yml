@@ -43,6 +43,7 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
           autoAcceptChanges: true
+          onlyChanged: false
 
   comment-pr:
     runs-on: ubuntu-latest
