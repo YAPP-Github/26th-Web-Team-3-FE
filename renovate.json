@@ -15,12 +15,15 @@
       "groupSlug": "dev-deps",
       "automerge": true,
       "automergeType": "branch"
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "automerge": false
     }
   ],
   "lockFileMaintenance": {
     "enabled": true
   },
-  "automerge": true,
   "platformAutomerge": true,
   "schedule": ["before 4am on monday"]
 }
