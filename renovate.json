@@ -22,7 +22,9 @@
     }
   ],
   "lockFileMaintenance": {
-    "enabled": true
+    "enabled": true,
+    "automerge": true,
+    "automergeType": "branch"
   },
   "platformAutomerge": true,
   "schedule": ["before 4am on monday"]
