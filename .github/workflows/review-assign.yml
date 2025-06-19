@@ -5,6 +5,8 @@ name: auto-Assign Assignee
 on:
   pull_request:
     types: [opened, ready_for_review]
+  issues:
+    types: [opened]
 
 jobs:
   assign-author:
