@@ -55,7 +55,7 @@ jobs:
       - name: comment PR
         uses: thollander/actions-comment-pull-request@v3
         with:
-          comment_tag: storybook-${{ github.event.number }}
+          comment-tag: storybook-${{ github.event.number }}
           message: |
             ## 🚀 Storybook 배포 
             
