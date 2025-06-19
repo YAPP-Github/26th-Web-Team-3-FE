@@ -9,7 +9,7 @@ export const buttonStyle = style({
 
 export const primaryButton = style({
   color: "white",
-  backgroundColor: "#fff",
+  backgroundColor: "#2196f3",
 
   ":hover": {
     backgroundColor: "#1976d2",
