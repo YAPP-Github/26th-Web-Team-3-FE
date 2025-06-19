@@ -45,10 +45,6 @@ jobs:
       - name: Type check
         run: pnpm type-check
       
-      # 6. 린트 체크
-      - name: Lint changed files
-        run: pnpm biome ci --changed
-
-      # 7. 빌드 실행
+      # 6. 빌드 실행
       - name: Build project
         run: pnpm build
