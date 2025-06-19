@@ -47,7 +47,7 @@ jobs:
       
       # 6. 린트 체크
       - name: Lint changed files
-        run: pnpm biome ci --changed=true
+        run: pnpm biome ci --changed
 
       # 7. 빌드 실행
       - name: Build project

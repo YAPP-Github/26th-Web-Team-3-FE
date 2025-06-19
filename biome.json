@@ -4,8 +4,10 @@
   "vcs": {
     "enabled": false,
     "clientKind": "git",
-    "useIgnoreFile": false
+    "useIgnoreFile": false,
+    "defaultBranch": "develop"
   },
+
   "files": {
     "ignore": [
       ".next",
