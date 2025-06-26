@@ -15,7 +15,7 @@ jobs:
         node-version: lts/*
     - name: Install pnpm
       run: npm install -g pnpm
-    - name: Install dependencies  
+    - name: Install dependencies
       run: pnpm install --frozen-lockfile
     - name: Build Next.js app
       run: pnpm build
