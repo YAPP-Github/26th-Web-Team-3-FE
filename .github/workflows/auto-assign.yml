@@ -1,6 +1,6 @@
 # .github/workflows/auto-assign.yml
 
-name: auto-Assign Assignee
+name: auto-Assign
 
 on:
   pull_request:
@@ -9,9 +9,15 @@ on:
     types: [opened]
 
 jobs:
-  assign-author:
+  assign-author-pr:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: hkusu/review-assign-action@v1
         with:
           assignees: ${{ github.actor }}
+  assign-author-issue:
+    if: github.event_name == 'issues'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: technote-space/assign-author@v1
