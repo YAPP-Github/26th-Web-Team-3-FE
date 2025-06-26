@@ -12,7 +12,9 @@
     "prepare": "lefthook install",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic"
+    "chromatic": "npx chromatic",
+    "test": "playwright test",
+    "test:ui": "playwright test -c ./playwright.config.ts tests --ui"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.77.2",
@@ -30,6 +32,7 @@
     "@biomejs/biome": "^1.9.4",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
+    "@playwright/test": "^1.53.1",
     "@storybook/addon-onboarding": "^9.0.1",
     "@storybook/nextjs": "^9.0.1",
     "@types/node": "^22.0.0",
