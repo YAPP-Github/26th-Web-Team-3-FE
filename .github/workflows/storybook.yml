@@ -4,6 +4,9 @@ on:
   pull_request:
     branches:
       - develop
+    paths:
+      - 'shared/ui/**'
+
 
 permissions:
   contents: read
