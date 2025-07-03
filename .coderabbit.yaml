@@ -29,8 +29,7 @@ reviews:
     - '!*.lock'
     - '!package-lock.json'
     - '!yarn.lock'
-    - 'app/**'
-    - 'shared/**'
+
 
   auto_review:
     enabled: true 
