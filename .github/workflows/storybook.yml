@@ -5,7 +5,7 @@ on:
     branches:
       - develop
     paths:
-      - 'shared/ui/**'
+      - 'shared/**'
 
 
 permissions:
