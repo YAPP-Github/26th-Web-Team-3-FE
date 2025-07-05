@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: 'ko-KR'
+early_access: true
+
+# 리뷰 톤 및 스타일 지정
+tone_instructions: |
+  당신은 TypeScript, Next.js 전문가입니다.
+  한국어로 명확하고 건설적인 코드 리뷰를 제공하되,
+  중요한 문제가 아닌 한 간결하게 작성해주세요.
+  보안, 성능, 유지보수성에 중점을 두고 리뷰해주세요.
+
+reviews:
+  profile: 'assertive'   # 리뷰 스타일: assertive(엄격), chill(관대)
+  request_changes_workflow: false
+  high_level_summary: true   # PR 요약 생성
+  poem: false   # 시(POEM) 생성 비활성화
+  review_status: true   # 리뷰 상태 표시
+  assess_linked_issues: true   # 연결된 이슈 분석
+  related_prs: true   # 관련 PR 표시
+  sequence_diagrams: true    # 시퀀스 다이어그램 생성
+  changed_files_summary: true    # 변경된 파일 요약
+
+
+  path_filters:
+    - '!node_modules/**'
+    - '!dist/**'
+    - '!build/**'
+    - '!coverage/**'
+    - '!*.lock'
+
+  auto_review:
+    enabled: true
+    drafts: false
+
+# 채팅 설정
+chat:
+  auto_reply: true
+
+# 지식 베이스 설정
+knowledge_base:
+  web_search:
+    enabled: true
+
+# 코드 생성 설정
+finishing_touches:
+  docstrings:
+    enabled: true
+  unit_tests:
+    enabled: true
