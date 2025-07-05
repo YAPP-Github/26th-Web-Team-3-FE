@@ -10,15 +10,15 @@ tone_instructions: |
   보안, 성능, 유지보수성에 중점을 두고 리뷰해주세요.
 
 reviews:
-  profile: 'assertive' # 리뷰 스타일: assertive(엄격), chill(관대)
+  profile: 'assertive'   # 리뷰 스타일: assertive(엄격), chill(관대)
   request_changes_workflow: false
-  high_level_summary: true # PR 요약 생성
-  poem: false # 시(POEM) 생성 비활성화
-  review_status: true # 리뷰 상태 표시
-  assess_linked_issues: true # 연결된 이슈 분석
-  related_prs: true # 관련 PR 표시
-  sequence_diagrams: true # 시퀀스 다이어그램 생성
-  changed_files_summary: true # 변경된 파일 요약
+  high_level_summary: true   # PR 요약 생성
+  poem: false   # 시(POEM) 생성 비활성화
+  review_status: true   # 리뷰 상태 표시
+  assess_linked_issues: true   # 연결된 이슈 분석
+  related_prs: true   # 관련 PR 표시
+  sequence_diagrams: true    # 시퀀스 다이어그램 생성
+  changed_files_summary: true    # 변경된 파일 요약
 
 
   path_filters:
@@ -27,8 +27,7 @@ reviews:
     - '!build/**'
     - '!coverage/**'
     - '!*.lock'
-    - '!package-lock.json'
-    - '!yarn.lock'
+
 
 
   auto_review:
