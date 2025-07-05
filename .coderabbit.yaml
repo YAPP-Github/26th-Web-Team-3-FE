@@ -4,8 +4,8 @@ early_access: true
 
 # 리뷰 톤 및 스타일 지정
 tone_instructions: |
-  당신은 TypeScript, Next.js 전문가입니다. 
-  한국어로 명확하고 건설적인 코드 리뷰를 제공하되, 
+  당신은 TypeScript, Next.js 전문가입니다.
+  한국어로 명확하고 건설적인 코드 리뷰를 제공하되,
   중요한 문제가 아닌 한 간결하게 작성해주세요.
   보안, 성능, 유지보수성에 중점을 두고 리뷰해주세요.
 
@@ -45,10 +45,9 @@ knowledge_base:
     enabled: true 
 
 # 코드 생성 설정
-code_generation:
-  enabled: true 
+finishing_touches:
   docstrings:
     enabled: true
-    language: 'ko-KR' 
+    language: 'ko-KR'
   unit_tests:
     enabled: true
