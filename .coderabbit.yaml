@@ -28,25 +28,22 @@ reviews:
     - '!coverage/**'
     - '!*.lock'
 
-
-
   auto_review:
-    enabled: true 
+    enabled: true
     drafts: false
 
 # 채팅 설정
 chat:
-  auto_reply: true 
+  auto_reply: true
 
 # 지식 베이스 설정
 knowledge_base:
   web_search:
-    enabled: true 
+    enabled: true
 
 # 코드 생성 설정
 finishing_touches:
   docstrings:
     enabled: true
-    language: 'ko-KR'
   unit_tests:
     enabled: true
