@@ -11,8 +11,8 @@ export const colorTheme = createGlobalTheme(":root", {
     30: "rgba(255, 255, 255, 0.30)",
   },
   background: {
-    var1: "#17171C",
-    var2: "#27272C",
+    normal: "#17171C",
+    elevated: "#27272C",
   },
   point: {
     primary: "#CFA9DF",
