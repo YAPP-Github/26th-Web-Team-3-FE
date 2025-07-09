@@ -1,0 +1,98 @@
+import { createGlobalTheme } from "@vanilla-extract/css";
+import { colorTheme } from "./color.css";
+
+export const textTheme = createGlobalTheme(":root", {
+  titleH1: {
+    fontWeight: "600",
+    fontSize: "2.5rem",
+    lineHeight: "1.6em",
+    letterSpacing: "-0.03em",
+    color: colorTheme.white[100],
+  },
+  titleH1Lg: {
+    fontWeight: "600",
+    fontSize: "3rem",
+    lineHeight: "1.6em",
+    letterSpacing: "-0.03em",
+    color: colorTheme.white[100],
+  },
+  titleH2: {
+    fontWeight: "600",
+    fontSize: "2.4rem",
+    lineHeight: "1.6em",
+    letterSpacing: "-0.02em",
+    color: colorTheme.white[100],
+  },
+  titleH2Lg: {
+    fontWeight: "600",
+    fontSize: "2.6rem",
+    lineHeight: "1.6em",
+    letterSpacing: "-0.02em",
+    color: colorTheme.white[100],
+  },
+  titleH3: {
+    fontWeight: "700",
+    fontSize: "2rem",
+    lineHeight: "1.4em",
+    letterSpacing: "-0.02em",
+    color: colorTheme.white[100],
+  },
+  titleH3Lg: {
+    fontWeight: "700",
+    fontSize: "2.2rem",
+    lineHeight: "1.6em",
+    letterSpacing: "-0.02em",
+    color: colorTheme.white[100],
+  },
+  bodyB1: {
+    fontWeight: "500",
+    fontSize: "1.7rem",
+    lineHeight: "1.8em",
+    letterSpacing: "-0.02em",
+    color: colorTheme.white[100],
+  },
+  bodyB1Lg: {
+    fontWeight: "500",
+    fontSize: "1.8rem",
+    lineHeight: "1.8em",
+    letterSpacing: "-0.02em",
+    color: colorTheme.white[100],
+  },
+  bodyB2: {
+    fontWeight: "500",
+    fontSize: "1.5rem",
+    lineHeight: "1.5em",
+    letterSpacing: "-0.02em",
+    fontStyle: "italic",
+    color: colorTheme.white[100],
+  },
+  bodyB2Lg: {
+    fontWeight: "500",
+    fontSize: "1.5rem",
+    lineHeight: "1.6em",
+    letterSpacing: "-0.02em",
+    fontStyle: "italic",
+    color: colorTheme.white[100],
+  },
+  caption16: {
+    fontWeight: "500",
+    fontSize: "1.6rem",
+    lineHeight: "1.6em",
+    letterSpacing: "-0.02em",
+    color: "#666",
+  },
+  caption15: {
+    fontWeight: "500",
+    fontSize: "1.5rem",
+    lineHeight: "1.6em",
+    letterSpacing: "-0.02em",
+    color: colorTheme.white[100],
+  },
+  caption14: {
+    fontWeight: "500",
+    fontSize: "1.4rem",
+    lineHeight: "1.6em",
+    letterSpacing: "-0.02em",
+    color: colorTheme.white[100],
+  },
+});
