@@ -58,6 +58,6 @@ export const colorTheme = createGlobalTheme(":root", {
       "linear-gradient(rgba(28, 28, 33, 1) 34%,  rgba(39, 39, 44, 1) 34%, rgba(39, 39, 44, 1) 66%, rgba(28, 28, 33, 1) 100%)",
     blue_bg:
       "linear-gradient(rgba(23, 23, 28, 1) 0%, rgba(103, 84, 226, 1) 100%)",
-    header_bg: "linear-gradient(180deg, #17171C 100%, #17171C00 0%)",
+    header_bg: "linear-gradient(180deg, #17171C 0%, #17171C 100%)",
   },
 });

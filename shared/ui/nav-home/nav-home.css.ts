@@ -8,7 +8,6 @@ import { style } from "@vanilla-extract/css";
 
 export const navHomeStyle = style({
   display: "flex",
-  position: "fixed",
   justifyContent: "space-between",
   alignItems: "center",
   maxWidth: "var(--max-width)",
