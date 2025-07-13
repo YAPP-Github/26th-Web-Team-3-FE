@@ -7,7 +7,7 @@ const Home = () => {
       <header>
         <NavHome />
       </header>
-      <main>
+      <main style={{ marginTop: "6.4rem" }}>
         <h1>Home</h1>
       </main>
       <Link href="/about">About</Link>
