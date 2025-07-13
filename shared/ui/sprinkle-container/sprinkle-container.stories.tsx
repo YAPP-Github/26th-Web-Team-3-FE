@@ -23,7 +23,6 @@ const meta: Meta<typeof SprinkleContainer> = {
           backgroundColor: colorTheme.background.normal,
           width: "100vw",
           height: "100vh",
-          position: "relative",
         }}
       >
         <Story />
