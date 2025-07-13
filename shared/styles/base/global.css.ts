@@ -1,6 +1,37 @@
-import { globalStyle } from "@vanilla-extract/css";
-import "./reset.css";
+import { globalStyle, style } from "@vanilla-extract/css";
 
-globalStyle("html", {
+/* CSS Variables */
+globalStyle(":root", {
+  vars: {
+    "--min-width": "800px",
+    "--max-width": "1200px",
+  },
+});
+
+/* HTML & Body Styles */
+globalStyle("html, body", {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "100%",
+  margin: "0",
+  padding: "0",
+  scrollbarWidth: "none",
+  scrollBehavior: "smooth",
   fontSize: "62.5%",
+});
+
+/* Scrollbar Hide */
+globalStyle("::-webkit-scrollbar", {
+  display: "none",
+});
+
+export const rootStyle = style({
+  display: "flex",
+  flexDirection: "column",
+  width: "100%",
+  margin: "0 auto",
+  minHeight: "100dvh",
+  minWidth: "var(--min-width)",
+  maxWidth: "var(--max-width)",
 });
