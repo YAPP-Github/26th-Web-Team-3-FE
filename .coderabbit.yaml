@@ -10,7 +10,7 @@ tone_instructions: |
   보안, 성능, 유지보수성에 중점을 두고 리뷰해주세요.
 
 reviews:
-  profile: 'assertive'   # 리뷰 스타일: assertive(엄격), chill(관대)
+  profile: 'chill'   # 리뷰 스타일: assertive(엄격), chill(관대)
   request_changes_workflow: false
   high_level_summary: true   # PR 요약 생성
   poem: false   # 시(POEM) 생성 비활성화

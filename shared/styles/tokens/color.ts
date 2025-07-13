@@ -59,4 +59,4 @@ export const colorTheme = {
     header_bg:
       "linear-gradient(rgba(23, 23, 28, 1) 40%, rgba(23, 23, 28, 0) 100%)",
   },
-};
+} as const;
