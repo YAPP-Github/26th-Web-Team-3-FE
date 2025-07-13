@@ -2,22 +2,20 @@
 
 import SearchIcon from "@/shared/assets/svgs/search.svg";
 import { cn } from "@/shared/utils/cn";
+import Link from "next/link";
 
 import * as styles from "./nav-home.css";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const NavHome = () => {
-  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleMenuClick = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
-  const handleNavigation = (path: string) => {
+  const handleMenuClose = () => {
     setIsMenuOpen(false);
-    router.push(path);
   };
 
   return (
@@ -32,28 +30,19 @@ const NavHome = () => {
         <div className={styles.navWrapper}>
           <ul className={styles.navList}>
             <li>
-              <button
-                className={styles.buttonStyle}
-                onClick={() => handleNavigation("/explore")}
-              >
+              <Link href="/explore" className={styles.buttonStyle}>
                 탐색
-              </button>
+              </Link>
             </li>
             <li>
-              <button
-                className={styles.buttonStyle}
-                onClick={() => handleNavigation("/my")}
-              >
+              <Link href="/my" className={styles.buttonStyle}>
                 내 캡슐
-              </button>
+              </Link>
             </li>
             <li>
-              <button
-                className={styles.buttonStyle}
-                onClick={() => handleNavigation("/setting")}
-              >
+              <Link href="/setting" className={styles.buttonStyle}>
                 설정
-              </button>
+              </Link>
             </li>
           </ul>
           <button className={styles.searchButtonStyle}>
@@ -92,28 +81,31 @@ const NavHome = () => {
         )}
       >
         <li>
-          <button
+          <Link
+            href="/explore"
             className={styles.menuItem}
-            onClick={() => handleNavigation("/explore")}
+            onClick={handleMenuClose}
           >
             탐색
-          </button>
+          </Link>
         </li>
         <li>
-          <button
+          <Link
+            href="/my"
             className={styles.menuItem}
-            onClick={() => handleNavigation("/my")}
+            onClick={handleMenuClose}
           >
             내 캡슐
-          </button>
+          </Link>
         </li>
         <li>
-          <button
+          <Link
+            href="/setting"
             className={styles.menuItem}
-            onClick={() => handleNavigation("/setting")}
+            onClick={handleMenuClose}
           >
             설정
-          </button>
+          </Link>
         </li>
       </ul>
     </header>

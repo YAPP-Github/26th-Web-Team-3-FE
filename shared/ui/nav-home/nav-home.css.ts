@@ -143,10 +143,11 @@ export const menuContainerOpen = style({
 });
 
 export const navHomeStyleOpen = style({
-  background: colorTheme.black["90_bg"], // 또는 원하는 다른 색상
+  background: colorTheme.black["90_bg"],
 });
 
 export const menuItem = style({
+  display: "block",
   width: "100%",
   textAlign: "start",
   padding: "1.6rem 2rem",
