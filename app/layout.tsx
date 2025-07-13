@@ -8,7 +8,7 @@ import "@/shared/styles/base/global.css";
 import "@/shared/styles/base/reset.css";
 import { rootStyle } from "@/shared/styles/base/global.css";
 
-import SprinkleContainer from "@/shared/ui/sprinkle-container";
+import SprinkleContainer from "@/shared/ui/sprinkle-container/sprinkle-container";
 
 // TODO: 추후 수정
 export const metadata: Metadata = {

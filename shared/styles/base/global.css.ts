@@ -10,7 +10,6 @@ globalStyle(":root", {
 
 /* HTML & Body Styles */
 globalStyle("html, body", {
-  display: "flex",
   justifyContent: "center",
   alignItems: "center",
   width: "100%",
@@ -30,9 +29,9 @@ export const rootStyle = style({
   display: "flex",
   flexDirection: "column",
   width: "100%",
-  minHeight: "100dvh",
+  height: "100dvh",
   margin: "0 auto",
   maxWidth: "var(--max-width)",
-  backgroundColor: colorTheme.background.normal,
+  backgroundColor: colorTheme.black["90_bg"],
   color: colorTheme.white[100],
 });

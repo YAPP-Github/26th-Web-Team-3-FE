@@ -9,17 +9,25 @@ export const colorTheme = createGlobalTheme(":root", {
     50: "rgba(255, 255, 255, 0.50)",
     40: "rgba(255, 255, 255, 0.40)",
     30: "rgba(255, 255, 255, 0.30)",
+    15: "rgba(255, 255, 255, 0.15)",
+    5: "rgba(255, 255, 255, 0.05)",
+    2: "rgba(255, 255, 255, 0.02)",
   },
-  background: {
-    normal: "#17171C",
-    elevated: "#27272C",
+
+  black: {
+    100: "#070708",
+    "90_bg": "#17171C",
+    80: "#27272C",
   },
-  point: {
-    primary: "#CFA9DF",
-    secondary: "#9D41C4",
-    dark: "#32293D",
+
+  purple: {
+    90: "#32293D",
+    50: "#9D41C4",
+    10: "#CFA9DF",
   },
-  btn: {
-    disabled: "#343438",
+
+  semantic: {
+    green: "#42FFBA",
+    red: "#FF6E6E",
   },
 });

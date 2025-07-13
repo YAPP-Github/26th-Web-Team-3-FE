@@ -28,7 +28,7 @@ const SprinkleContainer = () => {
     <div className={styles.sprinkleContainer}>
       {Array.from({ length: density }).map((_, i) => {
         const speed = baseSpeed * speedVariance;
-        const delay = Math.random() * speed;
+        const delay = (i / density) * speed;
 
         return (
           <motion.div
@@ -44,8 +44,9 @@ const SprinkleContainer = () => {
               ease: "easeInOut",
             }}
             style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
+              // 랜덤 배치를 위한 임의의 상수
+              top: `${(i * 13.7) % 100}%`,
+              left: `${(i * 23.1) % 100}%`,
             }}
           />
         );
