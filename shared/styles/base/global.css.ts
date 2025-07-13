@@ -3,7 +3,6 @@ import { globalStyle, style } from "@vanilla-extract/css";
 /* CSS Variables */
 globalStyle(":root", {
   vars: {
-    "--min-width": "800px",
     "--max-width": "1200px",
   },
 });
@@ -32,6 +31,5 @@ export const rootStyle = style({
   width: "100%",
   margin: "0 auto",
   minHeight: "100dvh",
-  minWidth: "var(--min-width)",
   maxWidth: "var(--max-width)",
 });
