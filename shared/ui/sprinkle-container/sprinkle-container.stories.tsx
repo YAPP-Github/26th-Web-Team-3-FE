@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 import SprinkleContainer from "./sprinkle-container";
 
 const meta: Meta<typeof SprinkleContainer> = {
-  title: "Common/SprinkleContainer",
+  title: "UI/SprinkleContainer",
   component: SprinkleContainer,
   parameters: {
     layout: "centered",
