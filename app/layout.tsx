@@ -1,6 +1,5 @@
 import Providers from "@/app/providers";
 import { pretendard } from "@/shared/styles/base/font";
-
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
