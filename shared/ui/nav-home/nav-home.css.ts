@@ -147,6 +147,8 @@ export const navHomeStyleOpen = style({
 });
 
 export const menuItem = style({
+  width: "100%",
+  textAlign: "start",
   padding: "1.6rem 2rem",
   ...textTheme.caption16,
   color: colorTheme.white[100],
