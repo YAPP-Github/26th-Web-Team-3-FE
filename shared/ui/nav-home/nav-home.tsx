@@ -1,3 +1,4 @@
+import SearchIcon from "@/shared/assets/svgs/search.svg";
 import * as styles from "./nav-home.css";
 
 const NavHome = () => {
@@ -13,6 +14,11 @@ const NavHome = () => {
         </li>
         <li>
           <button className={styles.buttonStyle}>설정</button>
+        </li>
+        <li>
+          <button className={styles.searchButtonStyle}>
+            <SearchIcon width={"2rem"} height={"2rem"} />
+          </button>
         </li>
       </ul>
     </nav>
