@@ -107,6 +107,11 @@ const NavHome = () => {
             설정
           </Link>
         </li>
+        <li>
+          <button className={styles.searchButtonStyle}>
+            <SearchIcon width={"2rem"} height={"2rem"} />
+          </button>
+        </li>
       </ul>
     </header>
   );

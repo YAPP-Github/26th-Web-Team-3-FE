@@ -160,4 +160,5 @@ export const menuItem = style({
   ":hover": {
     backgroundColor: colorTheme.white[5],
   },
+  transition: "all 0.2s ease-in-out",
 });
