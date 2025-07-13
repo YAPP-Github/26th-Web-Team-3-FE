@@ -5,12 +5,13 @@ import { style } from "@vanilla-extract/css";
 
 export const navHomeStyle = style({
   display: "flex",
+  position: "fixed",
   justifyContent: "space-between",
   alignItems: "center",
   width: "100%",
   height: "6.4rem",
   padding: "1rem",
-  backgroundColor: colorTheme.white[100],
+  backgroundColor: colorTheme.gradient.header_bg,
   ...screenTheme.md({}),
   ...screenTheme.lg({}),
 });
