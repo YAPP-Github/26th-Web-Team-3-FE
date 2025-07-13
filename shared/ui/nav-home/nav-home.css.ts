@@ -41,6 +41,7 @@ export const navList = style({
 });
 
 export const buttonStyle = style({
+  display: "inline-flex",
   padding: "0.4rem 1rem",
   height: "4.2rem",
   borderRadius: "8px",
@@ -50,6 +51,8 @@ export const buttonStyle = style({
     color: colorTheme.purple[10],
   },
   transition: "all 0.2s ease-in-out",
+  alignItems: "center",
+  justifyContent: "center",
 });
 
 export const searchButtonStyle = style({
