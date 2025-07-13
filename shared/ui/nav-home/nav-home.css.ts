@@ -15,7 +15,7 @@ export const navHomeStyle = style({
   width: "100%",
   height: "6.4rem",
   padding: "1rem",
-  backgroundColor: colorTheme.gradient.header_bg,
+  background: colorTheme.gradient.header_bg,
   zIndex: zIndex.header.content,
 });
 
@@ -138,6 +138,10 @@ export const menuContainer = style({
 export const menuContainerOpen = style({
   maxHeight: "17.4rem",
   opacity: 1,
+});
+
+export const navHomeStyleOpen = style({
+  background: colorTheme.black["90_bg"], // 또는 원하는 다른 색상
 });
 
 export const menuItem = style({

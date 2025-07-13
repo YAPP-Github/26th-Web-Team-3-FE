@@ -1,6 +1,4 @@
-import { createGlobalTheme } from "@vanilla-extract/css";
-
-export const colorTheme = createGlobalTheme(":root", {
+export const colorTheme = {
   white: {
     100: "#FFFFFF",
     85: "rgba(255, 255, 255, 0.85)",
@@ -51,13 +49,14 @@ export const colorTheme = createGlobalTheme(":root", {
     card_yellow:
       "linear-gradient(90deg,rgba(0, 0, 0, 0.04) 60%, rgba(245, 243, 120, 0.16) 100%)",
     white_op:
-      "linear-gradient(rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.08) 34%, ,rgba(0, 0, 0, 0.08) 66%, rgba(0, 0, 0, 0.04) 100%)",
+      "linear-gradient(rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.08) 34%,rgba(0, 0, 0, 0.08) 66%, rgba(0, 0, 0, 0.04) 100%)",
     darkgray_op:
       "linear-gradient(rgba(38, 38, 42, 1) 0%, rgba(48, 48, 53, 1) 34%, rgba(48, 48, 53, 1) 66%, rgba(38, 38, 42, 1) 100%)",
     darkgray_bg:
       "linear-gradient(rgba(28, 28, 33, 1) 34%,  rgba(39, 39, 44, 1) 34%, rgba(39, 39, 44, 1) 66%, rgba(28, 28, 33, 1) 100%)",
     blue_bg:
       "linear-gradient(rgba(23, 23, 28, 1) 0%, rgba(103, 84, 226, 1) 100%)",
-    header_bg: "linear-gradient(180deg, #17171C 0%, #17171C 100%)",
+    header_bg:
+      "linear-gradient(rgba(23, 23, 28, 1) 40%, rgba(23, 23, 28, 0) 100%)",
   },
-});
+};

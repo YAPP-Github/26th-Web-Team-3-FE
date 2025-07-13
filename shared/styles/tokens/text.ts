@@ -1,5 +1,4 @@
-import { createGlobalTheme } from "@vanilla-extract/css";
-import { colorTheme } from "./color.css";
+import { colorTheme } from "./color";
 
 // 현재 쓰이는 breakpoint는 800px
 const screenBreakpoints = {
@@ -8,7 +7,7 @@ const screenBreakpoints = {
   lg: "(min-width: 1200px)",
 } as const;
 
-export const textTheme = createGlobalTheme(":root", {
+export const textTheme = {
   titleH1: {
     fontWeight: "600",
     lineHeight: "1.6em",
@@ -137,4 +136,4 @@ export const textTheme = createGlobalTheme(":root", {
     letterSpacing: "-0.02em",
     color: colorTheme.white[70],
   },
-});
+} as const;

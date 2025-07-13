@@ -1,4 +1,4 @@
-import { colorTheme } from "@/shared/styles/tokens/color.css";
+import { colorTheme } from "@/shared/styles/tokens/color";
 import { globalStyle, style } from "@vanilla-extract/css";
 
 /* CSS Variables */
@@ -33,6 +33,5 @@ export const rootStyle = style({
   margin: "0 auto",
   maxWidth: "var(--max-width)",
   backgroundColor: colorTheme.black["90_bg"],
-  //backgroundColor: "white",
   color: colorTheme.white[100],
 });

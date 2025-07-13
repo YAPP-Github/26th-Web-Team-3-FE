@@ -1,4 +1,4 @@
-import { colorTheme } from "@/shared/styles/tokens/color.css";
+import { colorTheme } from "@/shared/styles/tokens/color";
 import type { Meta, StoryObj } from "@storybook/nextjs";
 
 import SprinkleContainer from "./sprinkle-container";

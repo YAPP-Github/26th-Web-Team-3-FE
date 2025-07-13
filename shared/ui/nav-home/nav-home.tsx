@@ -15,7 +15,12 @@ const NavHome = () => {
 
   return (
     <>
-      <nav className={styles.navHomeStyle}>
+      <nav
+        className={cn(
+          styles.navHomeStyle,
+          isMenuOpen ? styles.navHomeStyleOpen : "",
+        )}
+      >
         <div>logo</div>
         <div className={styles.navWrapper}>
           <ul className={styles.navList}>
@@ -32,25 +37,26 @@ const NavHome = () => {
           <button className={styles.searchButtonStyle}>
             <SearchIcon width={"2rem"} height={"2rem"} />
           </button>
+
           {/* 메뉴버튼 클릭시 햄버거바 -> x버튼으로 rotate */}
           <button className={styles.menuButtonStyle} onClick={handleMenuClick}>
             <div className={styles.hamburgerIcon}>
               <div
                 className={cn(
                   styles.hamburgerLineTop,
-                  isMenuOpen ? styles.xIconTop : undefined,
+                  isMenuOpen ? styles.xIconTop : "",
                 )}
               ></div>
               <div
                 className={cn(
                   styles.hamburgerLineMiddle,
-                  isMenuOpen ? styles.xIconMiddle : undefined,
+                  isMenuOpen ? styles.xIconMiddle : "",
                 )}
               ></div>
               <div
                 className={cn(
                   styles.hamburgerLineBottom,
-                  isMenuOpen ? styles.xIconBottom : undefined,
+                  isMenuOpen ? styles.xIconBottom : "",
                 )}
               ></div>
             </div>
