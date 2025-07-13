@@ -4,9 +4,7 @@ import Link from "next/link";
 const Home = () => {
   return (
     <div style={{ height: "100%", width: "100%" }}>
-      <header>
-        <NavHome />
-      </header>
+      <NavHome />
       <main style={{ marginTop: "6.4rem" }}>
         <h1>Home</h1>
       </main>

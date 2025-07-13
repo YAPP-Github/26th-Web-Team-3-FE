@@ -20,7 +20,7 @@ const meta: Meta<typeof SprinkleContainer> = {
     (Story) => (
       <div
         style={{
-          backgroundColor: colorTheme.background.normal,
+          backgroundColor: colorTheme.black["90_bg"],
           width: "100vw",
           height: "100vh",
         }}

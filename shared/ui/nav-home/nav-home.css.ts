@@ -129,10 +129,12 @@ export const menuContainer = style({
   width: "100%",
   backgroundColor: colorTheme.black["90_bg"],
   zIndex: zIndex.header.content,
-  overflow: "hidden",
   transition: "max-height 0.2s ease-out, opacity 0.3s ease",
   maxHeight: 0,
   opacity: 0,
+  ...screenTheme.md({
+    display: "none",
+  }),
 });
 
 export const menuContainerOpen = style({
