@@ -1,4 +1,4 @@
-const screen = {
+export const screen = {
   sm: (css: React.CSSProperties) => {
     return {
       "@media": {
@@ -21,5 +21,3 @@ const screen = {
     };
   },
 } as const;
-
-export default screen;

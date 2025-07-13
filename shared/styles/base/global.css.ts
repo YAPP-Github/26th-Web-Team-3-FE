@@ -1,3 +1,4 @@
+import { colorTheme } from "@/shared/styles/tokens/color.css";
 import { globalStyle, style } from "@vanilla-extract/css";
 
 /* CSS Variables */
@@ -29,7 +30,9 @@ export const rootStyle = style({
   display: "flex",
   flexDirection: "column",
   width: "100%",
-  margin: "0 auto",
   minHeight: "100dvh",
+  margin: "0 auto",
   maxWidth: "var(--max-width)",
+  backgroundColor: colorTheme.background.normal,
+  color: colorTheme.white[100],
 });
