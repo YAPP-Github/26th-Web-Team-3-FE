@@ -1,12 +1,14 @@
 import Providers from "@/app/providers";
 import { pretendard } from "@/shared/styles/base/font";
-import Sprinkle from "@/shared/ui/sprinkle/sprinkle";
+
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 import "@/shared/styles/base/global.css";
 import "@/shared/styles/base/reset.css";
 import { rootStyle } from "@/shared/styles/base/global.css";
+
+import SprinkleContainer from "@/shared/ui/sprinkle-container/sprinkle-container";
 
 // TODO: 추후 수정
 export const metadata: Metadata = {
@@ -23,7 +25,7 @@ export default function RootLayout({
     <html lang="ko" className={pretendard.className}>
       <body className={rootStyle}>
         <Providers>{children}</Providers>
-        <Sprinkle />
+        <SprinkleContainer />
       </body>
     </html>
   );
