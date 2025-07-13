@@ -1,6 +1,4 @@
-import { colorTheme } from "@/shared/styles/tokens/color.css";
-import { screenTheme } from "@/shared/styles/tokens/screen.css";
-import { textTheme } from "@/shared/styles/tokens/text.css";
+import { colorTheme, textTheme, zIndex } from "@/shared/styles/tokens";
 import { style } from "@vanilla-extract/css";
 
 export const navHomeStyle = style({
@@ -12,8 +10,7 @@ export const navHomeStyle = style({
   height: "6.4rem",
   padding: "1rem",
   backgroundColor: colorTheme.gradient.header_bg,
-  ...screenTheme.md({}),
-  ...screenTheme.lg({}),
+  zIndex: zIndex.header.content,
 });
 
 export const buttonWrapper = style({

@@ -2,7 +2,7 @@ import { createGlobalTheme } from "@vanilla-extract/css";
 import { colorTheme } from "./color.css";
 
 // 현재 쓰이는 breakpoint는 800px
-export const screenBreakpoints = {
+const screenBreakpoints = {
   sm: "(min-width: 345px)",
   md: "(min-width: 800px)",
   lg: "(min-width: 1200px)",
