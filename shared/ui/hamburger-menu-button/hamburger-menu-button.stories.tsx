@@ -5,6 +5,15 @@ import HamburgerMenuButton from "./hamburger-menu-button";
 const meta: Meta<typeof HamburgerMenuButton> = {
   title: "UI/HamburgerMenuButton",
   component: HamburgerMenuButton,
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component:
+          "햄버거 메뉴 버튼이 클릭되면 세 개의 가로선이 X 아이콘으로 회전하는 애니메이션 효과를 보여줍니다.\n\n",
+      },
+    },
+  },
   tags: ["autodocs"],
   argTypes: {
     isMenuOpen: {
