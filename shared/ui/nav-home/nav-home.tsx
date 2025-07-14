@@ -10,12 +10,9 @@ import { useState } from "react";
 
 const NavHome = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const handleMenuClick = () => {
     setIsMenuOpen((prev) => !prev);
-  };
-
-  const handleMenuClose = () => {
-    setIsMenuOpen(false);
   };
 
   return (
@@ -86,7 +83,7 @@ const NavHome = () => {
           <Link
             href="/explore"
             className={styles.menuItem}
-            onClick={handleMenuClose}
+            onClick={handleMenuClick}
           >
             탐색
           </Link>
@@ -95,7 +92,7 @@ const NavHome = () => {
           <Link
             href="/my"
             className={styles.menuItem}
-            onClick={handleMenuClose}
+            onClick={handleMenuClick}
           >
             내 캡슐
           </Link>
@@ -104,7 +101,7 @@ const NavHome = () => {
           <Link
             href="/setting"
             className={styles.menuItem}
-            onClick={handleMenuClose}
+            onClick={handleMenuClick}
           >
             설정
           </Link>
