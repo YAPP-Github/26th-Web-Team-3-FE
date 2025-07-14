@@ -1,10 +1,12 @@
-import Link from "next/link";
+import NavHome from "@/shared/ui/nav-home/nav-home";
 
 const Home = () => {
   return (
     <div>
-      <h1>Home</h1>
-      <Link href="/about">About</Link>
+      <NavHome />
+      <main>
+        <h1>Home</h1>
+      </main>
     </div>
   );
 };
