@@ -2,9 +2,9 @@ import NavHome from "@/shared/ui/nav-home/nav-home";
 
 const Home = () => {
   return (
-    <div style={{ height: "100%", width: "100%" }}>
+    <div>
       <NavHome />
-      <main style={{ marginTop: "6.4rem" }}>
+      <main>
         <h1>Home</h1>
       </main>
     </div>

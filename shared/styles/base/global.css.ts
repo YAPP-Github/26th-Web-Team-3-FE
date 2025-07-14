@@ -35,3 +35,8 @@ export const rootStyle = style({
   backgroundColor: colorTheme.black["90_bg"],
   color: colorTheme.white[100],
 });
+
+export const globalLayout = style({
+  width: "100%",
+  height: "100%",
+});
