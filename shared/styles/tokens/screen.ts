@@ -1,5 +1,11 @@
 import type { CSSProperties } from "react";
 
+export const screenBreakpoints = {
+  sm: "(min-width: 345px)",
+  md: "(min-width: 800px)",
+  lg: "(min-width: 1200px)",
+} as const;
+
 export const screen = {
   sm: (css: CSSProperties) => ({
     "@media": {
@@ -18,10 +24,4 @@ export const screen = {
       "(min-width: 1200px)": css,
     },
   }),
-} as const;
-
-export const screenBreakpoints = {
-  sm: "(min-width: 345px)",
-  md: "(min-width: 800px)",
-  lg: "(min-width: 1200px)",
 } as const;

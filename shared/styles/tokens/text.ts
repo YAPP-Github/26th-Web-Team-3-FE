@@ -1,12 +1,6 @@
 import { colorTheme } from "./color";
 
-// 현재 쓰이는 breakpoint는 800px
-const screenBreakpoints = {
-  sm: "(min-width: 345px)",
-  md: "(min-width: 800px)",
-  lg: "(min-width: 1200px)",
-} as const;
-
+import { screenBreakpoints } from "./screen";
 export const textTheme = {
   titleH1: {
     fontWeight: "600",
