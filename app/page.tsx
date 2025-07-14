@@ -1,4 +1,4 @@
-import NavHome from "@/shared/ui/nav-home/nav-home";
+import NavHome from "@/shared/ui/navbar/navbar-main/navbar-main";
 
 const Home = () => {
   return (

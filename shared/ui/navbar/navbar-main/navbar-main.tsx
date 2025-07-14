@@ -5,10 +5,10 @@ import { cn } from "@/shared/utils/cn";
 import Link from "next/link";
 
 import { useState } from "react";
-import HamburgerMenuButton from "../hamburger-menu-button/hamburger-menu-button";
-import * as styles from "./nav-home.css";
+import HamburgerMenuButton from "../../hamburger-menu-button/hamburger-menu-button";
+import * as styles from "./navbar-main.css";
 
-const NavHome = () => {
+const NavbarMain = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleMenuClick = () => {
@@ -92,4 +92,4 @@ const NavHome = () => {
   );
 };
 
-export default NavHome;
+export default NavbarMain;
