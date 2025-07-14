@@ -75,7 +75,7 @@ const NavHome = () => {
         </div>
       </nav>
 
-      {/* 메뉴 목록 800px 이하 */}
+      {/* 800px 이하일때 메뉴 목록 표시 */}
       <ul
         className={cn(
           styles.menuContainer,

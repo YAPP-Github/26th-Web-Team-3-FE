@@ -6,7 +6,7 @@ import type { ReactNode } from "react";
 import "@/shared/styles/base/global.css";
 import "@/shared/styles/base/reset.css";
 import { globalLayout, rootStyle } from "@/shared/styles/base/global.css";
-
+import { themeClass } from "@/shared/styles/base/theme.css";
 import SprinkleContainer from "@/shared/ui/sprinkle-container/sprinkle-container";
 
 // TODO: 추후 수정
@@ -21,7 +21,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="ko" className={pretendard.className}>
+    <html lang="ko" className={`${pretendard.className} ${themeClass}`}>
       <body className={rootStyle}>
         <Providers>
           <div className={globalLayout}>{children}</div>

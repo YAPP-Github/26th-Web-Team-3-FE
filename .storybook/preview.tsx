@@ -1,4 +1,5 @@
 import type { Preview } from "@storybook/nextjs";
+import { themeClass } from "../shared/styles/base/theme.css";
 
 // Global styles import
 import "@/shared/styles/base/global.css";
@@ -13,6 +14,13 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [
+    (Story) => (
+      <div className={themeClass}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default preview;

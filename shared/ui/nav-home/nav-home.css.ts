@@ -1,9 +1,4 @@
-import {
-  colorTheme,
-  screenTheme,
-  textTheme,
-  zIndex,
-} from "@/shared/styles/tokens";
+import { screen, themeVars } from "@/shared/styles/base/theme.css";
 import { style } from "@vanilla-extract/css";
 
 export const navHomeStyle = style({
@@ -14,8 +9,8 @@ export const navHomeStyle = style({
   width: "100%",
   height: "6.4rem",
   padding: "1rem",
-  background: colorTheme.gradient.header_bg,
-  zIndex: zIndex.header.content,
+  background: themeVars.color.gradient.header_bg,
+  zIndex: themeVars.zIndex.header.content,
 });
 
 export const navWrapper = style({
@@ -23,7 +18,7 @@ export const navWrapper = style({
   alignItems: "center",
   justifyContent: "center",
   gap: "0.8rem",
-  ...screenTheme.md({
+  ...screen.md({
     gap: "1.6rem",
   }),
   padding: "0.4rem 0rem",
@@ -31,7 +26,7 @@ export const navWrapper = style({
 
 export const navList = style({
   display: "none",
-  ...screenTheme.md({
+  ...screen.md({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -44,10 +39,10 @@ export const buttonStyle = style({
   padding: "0.4rem 1rem",
   height: "4.2rem",
   borderRadius: "8px",
-  ...textTheme.caption15,
+  ...themeVars.text.caption15,
   ":hover": {
-    backgroundColor: colorTheme.white[5],
-    color: colorTheme.purple[10],
+    backgroundColor: themeVars.color.white[5],
+    color: themeVars.color.purple[10],
   },
   transition: "all 0.2s ease-in-out",
   alignItems: "center",
@@ -69,7 +64,7 @@ export const menuButtonStyle = style({
   alignItems: "center",
   justifyContent: "center",
   gap: "0.5rem",
-  ...screenTheme.md({
+  ...screen.md({
     display: "none",
   }),
 });
@@ -86,7 +81,7 @@ export const hamburgerLine = style({
   width: "100%",
   height: "2px",
   borderRadius: "10px",
-  backgroundColor: colorTheme.white[100],
+  backgroundColor: themeVars.color.white[100],
   transition: "all 0.2s ease-in-out",
 });
 
@@ -129,12 +124,12 @@ export const menuContainer = style({
   top: "6.4rem",
   left: "0",
   width: "100%",
-  backgroundColor: colorTheme.black["90_bg"],
-  zIndex: zIndex.header.content,
+  backgroundColor: themeVars.color.black["90_bg"],
+  zIndex: themeVars.zIndex.header.content,
   transition: "max-height 0.2s ease-out, opacity 0.3s ease",
   maxHeight: 0,
   opacity: 0,
-  ...screenTheme.md({
+  ...screen.md({
     display: "none",
   }),
 });
@@ -145,7 +140,7 @@ export const menuContainerOpen = style({
 });
 
 export const navHomeStyleOpen = style({
-  background: colorTheme.black["90_bg"],
+  background: themeVars.color.black["90_bg"],
 });
 
 export const menuItem = style({
@@ -153,11 +148,11 @@ export const menuItem = style({
   width: "100%",
   textAlign: "start",
   padding: "1.6rem 2rem",
-  ...textTheme.caption16,
-  color: colorTheme.white[100],
+  ...themeVars.text.caption16,
+  color: themeVars.color.white[100],
   cursor: "pointer",
   ":hover": {
-    backgroundColor: colorTheme.white[5],
+    backgroundColor: themeVars.color.white[5],
   },
   transition: "all 0.2s ease-in-out",
 });

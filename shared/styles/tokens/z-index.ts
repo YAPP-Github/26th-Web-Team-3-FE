@@ -1,4 +1,4 @@
-export const zIndex = {
+export const zIndexTheme = {
   header: {
     content: "99",
   },
