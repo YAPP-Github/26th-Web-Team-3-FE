@@ -19,7 +19,7 @@ const NavHome = () => {
   };
 
   return (
-    <header>
+    <>
       <nav
         className={cn(
           styles.navHomeStyle,
@@ -74,6 +74,8 @@ const NavHome = () => {
           </button>
         </div>
       </nav>
+
+      {/* 메뉴 목록 800px 이하 */}
       <ul
         className={cn(
           styles.menuContainer,
@@ -107,13 +109,8 @@ const NavHome = () => {
             설정
           </Link>
         </li>
-        <li>
-          <button className={styles.searchButtonStyle}>
-            <SearchIcon width={"2rem"} height={"2rem"} />
-          </button>
-        </li>
       </ul>
-    </header>
+    </>
   );
 };
 
