@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 
-export const screenTheme = {
+export const screen = {
   sm: (css: CSSProperties) => ({
     "@media": {
       "(min-width: 345px)": css,

@@ -1,4 +1,5 @@
-import { screen, themeVars } from "@/shared/styles/base/theme.css";
+import { themeVars } from "@/shared/styles/base/theme.css";
+import { screen } from "@/shared/styles/tokens/screen";
 import { style } from "@vanilla-extract/css";
 
 export const navHomeStyle = style({
