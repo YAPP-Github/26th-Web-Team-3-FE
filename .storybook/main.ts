@@ -10,15 +10,20 @@ const config: StorybookConfig = {
     name: "@storybook/nextjs",
     options: {},
   },
-  staticDirs: ["../public"],
+  staticDirs: [
+    "../public",
+    {
+      from: "../node_modules/pretendard/dist/web/static/woff2",
+      to: "/fonts",
+    },
+  ],
   webpackFinal: async (config) => {
     const { VanillaExtractPlugin } = await import(
       "@vanilla-extract/webpack-plugin"
     );
-
     config.plugins?.push(new VanillaExtractPlugin());
-
     return config;
   },
 };
+
 export default config;
