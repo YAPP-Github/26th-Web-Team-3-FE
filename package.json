@@ -37,6 +37,7 @@
     "@storybook/addon-docs": "^9.0.16",
     "@storybook/addon-onboarding": "^9.0.1",
     "@storybook/nextjs": "^9.0.1",
+    "@svgr/webpack": "^8.1.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
