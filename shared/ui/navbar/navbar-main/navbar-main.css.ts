@@ -40,7 +40,7 @@ export const buttonStyle = style({
   padding: "0.4rem 1rem",
   height: "4.2rem",
   borderRadius: "8px",
-  ...themeVars.text.caption15,
+  ...themeVars.text.F15,
   ":hover": {
     backgroundColor: themeVars.color.white[5],
     color: themeVars.color.purple[10],
@@ -87,7 +87,7 @@ export const menuItem = style({
   width: "100%",
   textAlign: "start",
   padding: "1.6rem 2rem",
-  ...themeVars.text.caption16,
+  ...themeVars.text.F16,
   color: themeVars.color.white[100],
   cursor: "pointer",
   ":hover": {
