@@ -23,7 +23,6 @@ const config: StorybookConfig = {
     );
     config.plugins?.push(new VanillaExtractPlugin());
 
-    // SVG 로더 추가 (Storybook용)
     const rules = config.module?.rules || [];
     const fileLoaderRule = rules.find(
       (rule) =>
