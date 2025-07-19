@@ -33,7 +33,7 @@ const ColorGrid = ({ colors, title }: ColorGridProps) => (
 
 export const Colors = () => (
   <div className={styles.colorContainer}>
-    <h1 className={styles.colorTitle}>🎨 YAPP Color Palette</h1>
+    <h1 className={styles.colorTitle}>🎨 Lettie Color Palette</h1>
 
     {Object.entries(colorTheme).map(([groupName, colors]) => (
       <ColorGrid

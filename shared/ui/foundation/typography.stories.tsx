@@ -33,7 +33,7 @@ const TypographyItem = ({
 
 export const Typography = () => (
   <div className={styles.typographyContainer}>
-    <h1 className={styles.typographyTitle}>🔤 YAPP Typography</h1>
+    <h1 className={styles.typographyTitle}>🔤 Lettie Typography</h1>
 
     {Object.entries(textTheme).map(([key, style]) => (
       <TypographyItem

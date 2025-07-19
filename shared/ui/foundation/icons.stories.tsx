@@ -101,7 +101,7 @@ const IconGrid = ({
 
 export const Icons = () => (
   <div className={styles.iconsContainer}>
-    <h1 className={styles.iconsTitle}>🎨 YAPP Icons & Assets</h1>
+    <h1 className={styles.iconsTitle}>🎨 Lettie Icons & Assets</h1>
 
     {Object.entries(iconGroups).map(([groupName, icons]) => (
       <IconGrid
