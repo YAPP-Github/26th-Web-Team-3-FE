@@ -1,6 +1,6 @@
 "use client";
 
-import SearchIcon from "@/shared/assets/svgs/search.svg";
+import SearchIcon from "@/shared/assets/icon/search.svg";
 import { PATH } from "@/shared/constants/path";
 import { cn } from "@/shared/utils/cn";
 import Link from "next/link";

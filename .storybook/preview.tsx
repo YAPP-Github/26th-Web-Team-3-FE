@@ -1,4 +1,5 @@
 import type { Preview } from "@storybook/nextjs";
+import "../.storybook/fonts.css";
 import { themeClass } from "../shared/styles/base/theme.css";
 
 // Global styles import
@@ -16,7 +17,7 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <div className={themeClass}>
+      <div className={themeClass} style={{ fontFamily: "Pretendard" }}>
         <Story />
       </div>
     ),
