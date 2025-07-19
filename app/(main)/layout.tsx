@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import NavHome from "@/shared/ui/nav-home/nav-home";
+import NavbarMain from "@/shared/ui/navbar/navbar-main/navbar-main";
 
 export default function MainLayout({
   children,
@@ -9,7 +9,7 @@ export default function MainLayout({
 }) {
   return (
     <div>
-      <NavHome />
+      <NavbarMain />
       {children}
     </div>
   );

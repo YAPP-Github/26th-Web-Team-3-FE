@@ -1,4 +1,4 @@
-const My = () => {
+const MyCapsule = () => {
   return (
     <div>
       <h1>my</h1>
@@ -6,4 +6,4 @@ const My = () => {
   );
 };
 
-export default My;
+export default MyCapsule;
