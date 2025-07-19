@@ -17,7 +17,7 @@ export const textTheme = {
 
   H2: {
     fontWeight: "600",
-    lineHeight: "1.6em",
+    lineHeight: "1.6rem",
     letterSpacing: "-0.02rem",
     color: colorTheme.white[100],
     fontSize: "2.4rem",
@@ -40,7 +40,7 @@ export const textTheme = {
     "@media": {
       [screenBreakpoints.md]: {
         fontSize: "2.2rem",
-        lineHeight: "1.6em",
+        lineHeight: "1.6rem",
       },
     },
   },
@@ -68,7 +68,7 @@ export const textTheme = {
     "@media": {
       [screenBreakpoints.md]: {
         fontSize: "1.5rem",
-        lineHeight: "1.6em",
+        lineHeight: "1.6rem",
       },
     },
   },
