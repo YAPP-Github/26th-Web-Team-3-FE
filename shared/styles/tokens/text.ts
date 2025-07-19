@@ -98,10 +98,18 @@ export const textTheme = {
   },
 
   F16B: {
-    fontWeight: "500",
+    fontWeight: "600",
     lineHeight: "1.6rem",
     letterSpacing: "-0.02rem",
     color: "#666666",
+    fontSize: "1.6rem",
+  },
+
+  F16: {
+    fontWeight: "500",
+    lineHeight: "1.6rem",
+    letterSpacing: "-0.02rem",
+    color: colorTheme.white[30],
     fontSize: "1.6rem",
   },
 
