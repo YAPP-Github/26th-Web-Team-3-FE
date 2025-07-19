@@ -2,10 +2,10 @@ import { colorTheme } from "./color";
 
 import { screenBreakpoints } from "./screen";
 export const textTheme = {
-  titleH1: {
+  H1: {
     fontWeight: "600",
-    lineHeight: "1.6em",
-    letterSpacing: "-0.03em",
+    lineHeight: "1.6rem",
+    letterSpacing: "-0.03rem",
     color: colorTheme.white[100],
     fontSize: "2.5rem",
     "@media": {
@@ -15,38 +15,42 @@ export const textTheme = {
     },
   },
 
-  titleH2: {
+  H2: {
     fontWeight: "600",
-    fontSize: "2.4rem",
-    lineHeight: "1.6em",
-    letterSpacing: "-0.02em",
+    lineHeight: "1.6rem",
+    letterSpacing: "-0.02rem",
     color: colorTheme.white[100],
+    fontSize: "2.4rem",
     "@media": {
       [screenBreakpoints.md]: {
         fontSize: "2.6rem",
       },
-    },
-  },
-
-  titleH3: {
-    fontWeight: "700",
-    fontSize: "2rem",
-    lineHeight: "1.4em",
-    letterSpacing: "-0.02em",
-    color: colorTheme.white[100],
-    "@media": {
-      [screenBreakpoints.md]: {
-        fontSize: "2.2rem",
+      [screenBreakpoints.lg]: {
+        fontSize: "3rem",
       },
     },
   },
 
-  bodyB1: {
-    fontWeight: "500",
-    fontSize: "1.7rem",
-    lineHeight: "1.8em",
-    letterSpacing: "-0.02em",
+  H3: {
+    fontWeight: "700",
+    lineHeight: "1.4rem",
+    letterSpacing: "-0.03rem",
     color: colorTheme.white[100],
+    fontSize: "2rem",
+    "@media": {
+      [screenBreakpoints.md]: {
+        fontSize: "2.2rem",
+        lineHeight: "1.6rem",
+      },
+    },
+  },
+
+  B1: {
+    fontWeight: "500",
+    lineHeight: "1.8rem",
+    letterSpacing: "-0.02rem",
+    color: colorTheme.white[100],
+    fontSize: "1.7rem",
     "@media": {
       [screenBreakpoints.md]: {
         fontSize: "1.8rem",
@@ -54,80 +58,82 @@ export const textTheme = {
     },
   },
 
-  bodyB2: {
+  B2: {
     fontWeight: "500",
-    fontSize: "1.4rem",
-    lineHeight: "1.5em",
-    letterSpacing: "-0.02em",
+    lineHeight: "1.5rem",
+    letterSpacing: "-0.02rem",
     fontStyle: "italic",
     color: colorTheme.white[100],
+    fontSize: "1.4rem",
     "@media": {
       [screenBreakpoints.md]: {
         fontSize: "1.5rem",
+        lineHeight: "1.6rem",
       },
     },
   },
 
-  caption22: {
+  F22: {
     fontWeight: "600",
+    lineHeight: "1.4rem",
+    letterSpacing: "-0.02rem",
+    color: colorTheme.white[85],
     fontSize: "2.2rem",
-    lineHeight: "1.4em",
-    letterSpacing: "-0.02em",
-    color: colorTheme.white[85],
   },
 
-  caption20: {
+  F20: {
     fontWeight: "600",
+    lineHeight: "1.6rem",
+    letterSpacing: "-0.02rem",
+    color: colorTheme.white[100],
     fontSize: "2rem",
-    lineHeight: "1.6em",
-    letterSpacing: "-0.02em",
-    color: colorTheme.white[100],
   },
 
-  caption17: {
+  F17: {
     fontWeight: "600",
+    lineHeight: "1.4rem",
+    letterSpacing: "-0.02rem",
+    color: colorTheme.white[85],
     fontSize: "1.7rem",
-    lineHeight: "1.4em",
-    letterSpacing: "-0.02em",
-    color: colorTheme.white[85],
   },
 
-  caption16B: {
+  F16B: {
     fontWeight: "600",
-    fontSize: "1.6rem",
-    lineHeight: "1.6em",
-    letterSpacing: "-0.02em",
+    lineHeight: "1.6rem",
+    letterSpacing: "-0.02rem",
     color: "#666666",
-  },
-
-  caption16: {
-    fontWeight: "500",
     fontSize: "1.6rem",
-    lineHeight: "1.6em",
-    letterSpacing: "-0.02em",
+  },
+
+  F16: {
+    fontWeight: "500",
+    lineHeight: "1.6rem",
+    letterSpacing: "-0.02rem",
     color: colorTheme.white[30],
+    fontSize: "1.6rem",
   },
 
-  caption15: {
+  F15: {
     fontWeight: "500",
-    fontSize: "1.5rem",
-    lineHeight: "1.6em",
-    letterSpacing: "-0.02em",
+    lineHeight: "1.6rem",
+    letterSpacing: "-0.02rem",
     color: colorTheme.white[85],
-  },
-  caption14: {
-    fontWeight: "500",
-    fontSize: "1.4rem",
-    lineHeight: "1.6em",
-    letterSpacing: "-0.02em",
-    color: colorTheme.white[100],
+    fontSize: "1.5rem",
   },
 
-  caption12: {
+  F14: {
     fontWeight: "500",
-    fontSize: "1.2rem",
-    lineHeight: "1.6em",
-    letterSpacing: "-0.02em",
+    lineHeight: "1.6rem",
+    letterSpacing: "-0.02rem",
+    color: colorTheme.white[100],
+    fontSize: "1.4rem",
+  },
+
+  F12: {
+    fontWeight: "500",
+    lineHeight: "1.6rem",
+    letterSpacing: "-0.02rem",
     color: colorTheme.white[70],
+    fontSize: "1.2rem",
   },
 } as const;
