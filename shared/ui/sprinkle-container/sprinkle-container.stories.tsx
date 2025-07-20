@@ -1,7 +1,7 @@
 import { colorTheme } from "@/shared/styles/tokens/color";
 import type { Meta, StoryObj } from "@storybook/nextjs";
 
-import SprinkleContainer from "./sprinkle-container";
+import SprinkleContainer from ".";
 
 const meta: Meta<typeof SprinkleContainer> = {
   title: "UI/SprinkleContainer",
