@@ -1,5 +1,5 @@
-import { style } from "@vanilla-extract/css";
 import { themeVars } from "@/shared/styles/base/theme.css";
+import { style } from "@vanilla-extract/css";
 
 export const layout = style({
   width: "32.4rem",
@@ -18,4 +18,12 @@ export const backButton = style({
 export const continueButton = style({
   width: "100%",
   color: themeVars.color.purple[10],
+});
+
+export const titleWrapper = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: "1rem",
+  marginBottom: "2.8rem",
 });

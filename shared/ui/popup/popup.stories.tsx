@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 
 import Popup from "@/shared/ui/popup";
 import PopupWarningCapsule from "@/shared/ui/popup/popup-warning-capsule";
+import PopupWarningLetter from "@/shared/ui/popup/popup-warning-letter";
 const meta: Meta<typeof Popup> = {
   title: "UI/Popup",
   component: Popup,
@@ -41,8 +42,8 @@ export const Default: Story = {
     <Popup>
       <Popup.Title>정말 캡슐을 떠나시겠어요?</Popup.Title>
       <Popup.Content>
-        나가면 다시 캡슐에 참여할 수 없으며, <br />
-        담은 편지가 사라지지 않아요.
+        <p>나가면 다시 캡슐에 참여할 수 없으며,</p>
+        <p>담은 편지가 사라지지 않아요.</p>
       </Popup.Content>
       <Popup.Actions>
         <button>돌아가기</button>
@@ -54,4 +55,8 @@ export const Default: Story = {
 
 export const WarningCapsule: Story = {
   render: () => <PopupWarningCapsule />,
+};
+
+export const WarningLetter: Story = {
+  render: () => <PopupWarningLetter />,
 };

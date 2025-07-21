@@ -7,12 +7,12 @@ interface PopupProps {
   className?: string;
 }
 
-const PopupTitle = ({ children }: PopupProps) => {
-  return <h2 className={styles.title}>{children}</h2>;
+const PopupTitle = ({ children, className }: PopupProps) => {
+  return <h2 className={cn(styles.title, className)}>{children}</h2>;
 };
 
-const PopupContent = ({ children }: PopupProps) => {
-  return <p className={styles.content}>{children}</p>;
+const PopupContent = ({ children, className }: PopupProps) => {
+  return <p className={cn(styles.content, className)}>{children}</p>;
 };
 
 const PopupActions = ({ children, className }: PopupProps) => {
