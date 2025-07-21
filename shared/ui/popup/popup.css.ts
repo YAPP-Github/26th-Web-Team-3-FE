@@ -22,6 +22,9 @@ export const content = style({
   ...themeVars.text.F14,
   color: themeVars.color.white[40],
   marginBottom: "2.8rem",
+  display: "flex",
+  flexDirection: "column",
+  gap: "0.4rem",
 });
 
 export const actions = style({
@@ -30,4 +33,5 @@ export const actions = style({
   justifyContent: "center",
   gap: "1rem",
   height: "4.8rem",
+  width: "100%",
 });
