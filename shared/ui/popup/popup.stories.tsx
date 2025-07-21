@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 
 import Popup from "@/shared/ui/popup";
 import PopupCancelCreation from "@/shared/ui/popup/popup-cancel-creation";
+import PopupConfirmLetter from "@/shared/ui/popup/popup-confirm-letter";
 import PopupExitLettie from "@/shared/ui/popup/popup-exit-lettie";
 import PopupWarningCapsule from "@/shared/ui/popup/popup-warning-capsule";
 import PopupWarningLetter from "@/shared/ui/popup/popup-warning-letter";
@@ -70,4 +71,8 @@ export const CancelCreation: Story = {
 
 export const ExitLettie: Story = {
   render: () => <PopupExitLettie />,
+};
+
+export const ConfirmLetter: Story = {
+  render: () => <PopupConfirmLetter openDate="2025. 06. 25" />,
 };

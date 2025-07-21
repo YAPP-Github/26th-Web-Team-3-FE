@@ -3,21 +3,23 @@ import { style } from "@vanilla-extract/css";
 
 export const layout = style({
   width: "32.4rem",
-  height: "18.15rem",
+  height: "38.95rem",
 });
 
 export const title = style({
-  ...themeVars.text.F20,
-  marginTop: "1rem",
-  marginBottom: "1.2rem",
+  display: "flex",
+  flexDirection: "column",
+  gap: "1.3rem",
+  marginTop: "0.4rem",
+  marginBottom: "1rem",
 });
 
-export const backButton = style({
+export const continueButton = style({
   width: "100%",
   color: themeVars.color.white[30],
 });
 
-export const continueButton = style({
+export const putButton = style({
   width: "100%",
   color: themeVars.color.purple[10],
 });
