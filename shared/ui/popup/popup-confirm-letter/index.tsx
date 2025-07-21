@@ -1,4 +1,3 @@
-import LettieCharacter from "@/shared/assets/character/X3.png";
 import Popup from "@/shared/ui/popup";
 import * as styles from "./popup-confirm-letter.css";
 
@@ -24,7 +23,7 @@ const PopupConfirmLetter = ({
         <Popup.Content>
           <p>{openDate} 에 열려요</p>
         </Popup.Content>
-        <img src={LettieCharacter.src} alt="Lettie character" />
+
         <Popup.Actions>
           <button className={styles.continueButton} onClick={close}>
             계속 쓰기
