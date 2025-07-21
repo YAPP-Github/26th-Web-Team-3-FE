@@ -2,8 +2,10 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 
 import Popup from "@/shared/ui/popup";
 import PopupCancelCreation from "@/shared/ui/popup/popup-cancel-creation";
+import PopupExitLettie from "@/shared/ui/popup/popup-exit-lettie";
 import PopupWarningCapsule from "@/shared/ui/popup/popup-warning-capsule";
 import PopupWarningLetter from "@/shared/ui/popup/popup-warning-letter";
+
 const meta: Meta<typeof Popup> = {
   title: "UI/Popup",
   component: Popup,
@@ -62,6 +64,10 @@ export const WarningLetter: Story = {
   render: () => <PopupWarningLetter />,
 };
 
-export const Exit: Story = {
+export const CancelCreation: Story = {
   render: () => <PopupCancelCreation />,
+};
+
+export const ExitLettie: Story = {
+  render: () => <PopupExitLettie />,
 };
