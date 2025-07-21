@@ -33,8 +33,8 @@ overlay.open(({ isOpen, close }) => (
     <Popup.Title>제목</Popup.Title>
     <Popup.Content>내용</Popup.Content>
     <Popup.Actions>
-      <button onClick={close}>닫기</button>
-      <button onClick={close}>확인</button>
+      <Popup.Button onClick={close}>닫기</Popup.Button>
+      <Popup.Button onClick={close}>확인</Popup.Button>
     </Popup.Actions>
   </Popup>
 ));
