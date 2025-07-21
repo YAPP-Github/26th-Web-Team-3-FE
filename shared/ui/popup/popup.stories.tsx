@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/nextjs";
-
+import { themeVars } from "@/shared/styles/base/theme.css";
 import Popup from "@/shared/ui/popup";
 import PopupCancelCreation from "@/shared/ui/popup/popup-cancel-creation";
 import PopupConfirmLetter from "@/shared/ui/popup/popup-confirm-letter";
 import PopupExitLettie from "@/shared/ui/popup/popup-exit-lettie";
+import PopupIntro from "@/shared/ui/popup/popup-intro";
 import PopupWarningCapsule from "@/shared/ui/popup/popup-warning-capsule";
 import PopupWarningLetter from "@/shared/ui/popup/popup-warning-letter";
-
+import type { Meta, StoryObj } from "@storybook/nextjs";
 const meta: Meta<typeof Popup> = {
   title: "UI/Popup",
   component: Popup,
@@ -75,4 +75,23 @@ export const ExitLettie: Story = {
 
 export const ConfirmLetter: Story = {
   render: () => <PopupConfirmLetter openDate="2025. 06. 25" />,
+};
+
+export const Intro: Story = {
+  render: () => <PopupIntro />,
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          backgroundColor: themeVars.color.black["90_bg"],
+          width: "800px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
 };
