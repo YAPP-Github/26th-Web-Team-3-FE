@@ -21,6 +21,7 @@ export const colorTheme = {
   purple: {
     90: "#32293D",
     50: "#9D41C4",
+    20: "#9377B5",
     10: "#CFA9DF",
   },
 
