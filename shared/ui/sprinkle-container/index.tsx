@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 import * as styles from "./sprinkle-container.css";
 
 /**
@@ -9,6 +10,18 @@ import * as styles from "./sprinkle-container.css";
 const density = 29; // 렌더링할 스프링클 점의 개수
 const baseSpeed = 1.5; // 기본 애니메이션 지속 시간 (초)
 const speedVariance = 1.4; // 속도 변화를 위한 배수
+
+/**
+ * 랜덤 위치를 생성하는 함수
+ * @param count 생성할 위치의 개수
+ * @returns 랜덤한 top, left 위치 배열
+ */
+const generateRandomPositions = (count: number) => {
+  return Array.from({ length: count }, () => ({
+    top: `${Math.random() * 100}%`,
+    left: `${Math.random() * 100}%`,
+  }));
+};
 
 /**
  * SprinkleContainer 컴포넌트
@@ -24,9 +37,23 @@ const speedVariance = 1.4; // 속도 변화를 위한 배수
  * ```
  */
 const SprinkleContainer = () => {
+  const [randomPositions, setRandomPositions] = useState<
+    { top: string; left: string }[]
+  >([]);
+
+  // 반드시 client에 마운트 된 후에만 생성
+  useEffect(() => {
+    setRandomPositions(generateRandomPositions(density));
+  }, []);
+
+  // 랜덤 위치가 생성되기 전에는 아무것도 렌더링하지 않음
+  if (randomPositions.length === 0) {
+    return null;
+  }
+
   return (
     <div className={styles.sprinkleContainer}>
-      {Array.from({ length: density }).map((_, i) => {
+      {randomPositions.map((pos, i) => {
         const speed = baseSpeed * speedVariance;
         const delay = (i / density) * speed;
 
@@ -44,9 +71,8 @@ const SprinkleContainer = () => {
               ease: "easeInOut",
             }}
             style={{
-              // 랜덤 배치를 위한 임의의 상수
-              top: `${(i * 13.7) % 100}%`,
-              left: `${(i * 23.1) % 100}%`,
+              top: pos.top,
+              left: pos.left,
             }}
           />
         );

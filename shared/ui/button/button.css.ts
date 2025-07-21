@@ -1,42 +1,57 @@
-import { style } from "@vanilla-extract/css";
+import { themeVars } from "@/shared/styles/base/theme.css";
+import { style, styleVariants } from "@vanilla-extract/css";
 
-// TODO: 추후 디자인에 맞게 변경, 스타일 예시 코드
-export const buttonStyle = style({
-  borderRadius: "10px",
-  backgroundColor: "#8c92ff",
-  fontSize: "24px",
+export const base = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "1.2rem",
+  borderRadius: "12px",
+  width: "100%",
+  height: "5.6rem",
+  ...themeVars.text.F16B,
 });
 
-export const primaryButton = style({
-  color: "white",
-  backgroundColor: "#2196f3",
-
-  ":hover": {
-    backgroundColor: "#1976d2",
-  },
-});
-
-export const secondaryButton = style({
-  color: "#333",
-  backgroundColor: "transparent",
-  boxShadow: "rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset",
-
-  ":hover": {
-    backgroundColor: "rgba(0, 0, 0, 0.05)",
-  },
-});
-
-export const smallButton = style({
-  fontSize: "12px",
-  padding: "10px 16px",
-});
-
-export const mediumButton = style({
-  fontSize: "14px",
-  padding: "11px 20px",
-});
-
-export const largeButton = style({
-  fontSize: "16px",
-  padding: "12px 24px",
+export const buttonVariants = styleVariants({
+  primary: [
+    base,
+    {
+      color: themeVars.color.white[100],
+      background: themeVars.color.gradient.point_purple,
+      selectors: {
+        "&:hover": {
+          background: themeVars.color.gradient.dark_purple,
+          color: themeVars.color.white[40],
+        },
+        "&:active": {
+          background: themeVars.color.gradient.dark_purple,
+          color: themeVars.color.white[40],
+        },
+        "&[disabled]": {
+          backgroundColor: themeVars.color.black[80],
+          background: themeVars.color.black[80],
+          color: themeVars.color.white[40],
+          cursor: "not-allowed",
+        },
+      },
+    },
+  ],
+  secondary: [
+    base,
+    {
+      color: themeVars.color.white[70],
+      backgroundColor: themeVars.color.white[5],
+      gap: "1.2rem",
+      selectors: {
+        "&:hover": {
+          backgroundColor: themeVars.color.white[2],
+          color: themeVars.color.white[40],
+        },
+        "&:active": {
+          backgroundColor: themeVars.color.white[2],
+          color: themeVars.color.white[40],
+        },
+      },
+    },
+  ],
 });

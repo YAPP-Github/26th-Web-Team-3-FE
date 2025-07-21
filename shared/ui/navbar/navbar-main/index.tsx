@@ -5,7 +5,7 @@ import { PATH } from "@/shared/constants/path";
 import { cn } from "@/shared/utils/cn";
 import Link from "next/link";
 import { useState } from "react";
-import HamburgerMenuButton from "../../hamburger-menu-button/hamburger-menu-button";
+import HamburgerMenuButton from "../../hamburger-menu-button";
 import * as styles from "./navbar-main.css";
 
 const NavbarMain = () => {

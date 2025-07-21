@@ -1,33 +1,29 @@
 import { cn } from "@/shared/utils/cn";
+import type { ComponentProps, ReactNode } from "react";
 import * as styles from "./button.css";
 
-export interface ButtonProps {
-  primary?: boolean;
-  backgroundColor?: string;
-  size?: "small" | "medium" | "large";
-  label: string;
-  onClick?: () => void;
+interface ButtonProps extends ComponentProps<"button"> {
+  variant: keyof typeof styles.buttonVariants;
+  icon?: ReactNode;
+  text: string;
+  className?: string;
 }
 
-// TODO: 추후 수정
 const Button = ({
-  primary = false,
-  size = "medium",
-  backgroundColor,
-  label,
+  variant = "primary",
+  icon,
+  text,
+  className,
   ...props
 }: ButtonProps) => {
-  const modeStyle = primary ? styles.primaryButton : styles.secondaryButton;
-  const sizeStyle = styles[`${size}Button` as keyof typeof styles];
-
   return (
     <button
       type="button"
-      className={cn(styles.buttonStyle, modeStyle, sizeStyle)}
-      style={backgroundColor ? { backgroundColor } : undefined}
+      className={cn(styles.buttonVariants[variant], className)}
       {...props}
     >
-      {label}
+      {icon}
+      {text}
     </button>
   );
 };

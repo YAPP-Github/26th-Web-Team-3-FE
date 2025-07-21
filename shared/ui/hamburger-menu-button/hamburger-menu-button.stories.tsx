@@ -1,6 +1,6 @@
 import { themeVars } from "@/shared/styles/base/theme.css";
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import HamburgerMenuButton from "./hamburger-menu-button";
+import HamburgerMenuButton from ".";
 
 const meta: Meta<typeof HamburgerMenuButton> = {
   title: "UI/HamburgerMenuButton",
