@@ -1,4 +1,5 @@
 import type { Preview } from "@storybook/nextjs";
+import { OverlayProvider } from "overlay-kit";
 import "../.storybook/fonts.css";
 import { themeClass, themeVars } from "../shared/styles/base/theme.css";
 
@@ -17,15 +18,17 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <div
-        className={themeClass}
-        style={{
-          fontFamily: "Pretendard",
-          backgroundColor: themeVars.color.black["90_bg"],
-        }}
-      >
-        <Story />
-      </div>
+      <OverlayProvider>
+        <div
+          className={themeClass}
+          style={{
+            fontFamily: "Pretendard",
+            backgroundColor: themeVars.color.black["90_bg"],
+          }}
+        >
+          <Story />
+        </div>
+      </OverlayProvider>
     ),
   ],
 };

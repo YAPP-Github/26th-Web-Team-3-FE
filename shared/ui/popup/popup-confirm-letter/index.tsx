@@ -1,5 +1,5 @@
+import LettieCharacter from "@/shared/assets/character/X3.png";
 import Popup from "@/shared/ui/popup";
-import LettieCharacter from "@shared/assets/character/X3.png";
 import * as styles from "./popup-confirm-letter.css";
 
 interface PopupConfirmLetterProps {

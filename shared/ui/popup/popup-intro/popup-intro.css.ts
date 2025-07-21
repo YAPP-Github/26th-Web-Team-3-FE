@@ -1,9 +1,15 @@
 import { themeVars } from "@/shared/styles/base/theme.css";
 import { style } from "@vanilla-extract/css";
+
+export const root = style({
+  backgroundColor: "transparent",
+});
+
 export const layout = style({
   width: "32.4rem",
   height: "54.1rem",
   position: "relative",
+  overflow: "hidden",
 });
 
 export const popupContainer = style({

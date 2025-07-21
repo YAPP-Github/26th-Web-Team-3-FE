@@ -14,7 +14,7 @@ const PopupTitle = ({ children, className }: PopupProps) => {
 };
 
 const PopupContent = ({ children, className }: PopupProps) => {
-  return <p className={cn(styles.content, className)}>{children}</p>;
+  return <div className={cn(styles.content, className)}>{children}</div>;
 };
 
 const PopupActions = ({ children, className }: PopupProps) => {

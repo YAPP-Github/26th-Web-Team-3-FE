@@ -1,7 +1,7 @@
 "use client";
 
 import NavbarMain from "@/shared/ui/navbar/navbar-main";
-import PopupReport from "@/shared/ui/popup/popup-report";
+import PopupWarningLetter from "@/shared/ui/popup/popup-warning-letter";
 import { overlay } from "overlay-kit";
 
 const Home = () => {
@@ -18,7 +18,7 @@ const Home = () => {
         <button
           onClick={() => {
             overlay.open(({ isOpen, close }) => {
-              return <PopupReport isOpen={isOpen} close={close} />;
+              return <PopupWarningLetter isOpen={isOpen} close={close} />;
             });
           }}
           style={{ color: "white", fontSize: "20px" }}
