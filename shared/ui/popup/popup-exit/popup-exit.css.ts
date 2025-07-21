@@ -3,11 +3,12 @@ import { style } from "@vanilla-extract/css";
 
 export const layout = style({
   width: "32.4rem",
-  height: "21.75rem",
+  height: "18.15rem",
 });
 
-export const iconWrapper = style({
-  marginBottom: "1.8rem",
+export const title = style({
+  ...themeVars.text.F20,
+  marginBottom: "1.2rem",
 });
 
 export const backButton = style({
@@ -18,12 +19,4 @@ export const backButton = style({
 export const continueButton = style({
   width: "100%",
   color: themeVars.color.purple[10],
-});
-
-export const titleWrapper = style({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  gap: "1rem",
-  marginBottom: "2.8rem",
 });
