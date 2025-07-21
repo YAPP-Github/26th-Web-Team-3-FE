@@ -30,7 +30,7 @@ const PopupRoot = ({ children, className, open, ...props }: PopupRootProps) => {
 
   return createPortal(
     <div className={themeClass}>
-      <div className={cn(styles.dim)} {...props}>
+      <div className={styles.dim} {...props}>
         <div
           className={cn(styles.root, className)}
           role="dialog"

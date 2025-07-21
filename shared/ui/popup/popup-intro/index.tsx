@@ -9,8 +9,6 @@ interface PopupIntroProps {
 }
 
 const PopupIntro = ({ isOpen, close }: PopupIntroProps) => {
-  if (!isOpen) return null;
-
   return (
     <Popup open={isOpen} className={styles.root}>
       <div className={styles.layout}>
