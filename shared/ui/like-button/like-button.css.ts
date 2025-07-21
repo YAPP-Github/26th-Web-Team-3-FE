@@ -6,7 +6,7 @@ const baseStyle = {
   width: "5rem",
   height: "5rem",
   padding: "1.4rem",
-  borderRadius: "100px",
+  borderRadius: "50%",
   selectors: {
     "&:hover": {
       color: themeVars.color.purple[20],
