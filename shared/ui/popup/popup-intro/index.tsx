@@ -1,4 +1,3 @@
-import LettieCharacter from "@/shared/assets/character/X3.png";
 import CloseIcon from "@/shared/assets/icon/close.svg";
 import Popup from "@/shared/ui/popup";
 import Image from "next/image";
@@ -19,7 +18,7 @@ const PopupIntro = ({ isOpen, close }: PopupIntroProps) => {
           <button type="button" className={styles.closeButton} onClick={close}>
             <CloseIcon />
           </button>
-          <Image src={LettieCharacter} alt="Lettie character" />
+          <Image src="" alt="Lettie character" />
           <div className={styles.captionWrapper}>
             <p>레티가 여러분을</p>
             <p>기다리고 있어요!</p>
