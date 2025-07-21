@@ -1,11 +1,6 @@
 import { themeVars } from "@/shared/styles/base/theme.css";
 import { style } from "@vanilla-extract/css";
 
-export const layout = style({
-  width: "32.4rem",
-  height: "23.15rem",
-});
-
 export const title = style({
   marginTop: "0.4rem",
 });
