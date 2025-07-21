@@ -1,13 +1,26 @@
-import PlusIcon from "@/shared/assets/icon/plus.svg";
+"use client";
 
+import PlusIcon from "@/shared/assets/icon/plus.svg";
+import { useInView } from "@/shared/hooks/useInView";
+import { cn } from "@/shared/utils/cn";
 import * as styles from "./add-capsule-button.css";
 
 const AddCapsuleButton = () => {
+  const { ref, isIntersecting } = useInView(0.2);
+
   return (
-    <button className={styles.buttonStyle}>
-      <PlusIcon />
-      만들기
-    </button>
+    <>
+      <div ref={ref} className={styles.refDiv} />
+      <button
+        className={cn(
+          styles.buttonStyle,
+          isIntersecting ? styles.expanded : styles.collapsed,
+        )}
+      >
+        <PlusIcon />
+        {isIntersecting && "만들기"}
+      </button>
+    </>
   );
 };
 
