@@ -19,12 +19,10 @@ const PopupWarningCapsule = ({ isOpen, close }: PopupWarningCapsuleProps) => {
         <p>담은 편지가 사라지지 않아요.</p>
       </Popup.Content>
       <Popup.Actions>
-        <button className={styles.backButton} onClick={close}>
-          돌아가기
-        </button>
-        <button className={styles.continueButton} onClick={close}>
+        <Popup.Button onClick={close}>돌아가기</Popup.Button>
+        <Popup.Button className={styles.continueButton} onClick={close}>
           계속 쓰기
-        </button>
+        </Popup.Button>
       </Popup.Actions>
     </Popup>
   );

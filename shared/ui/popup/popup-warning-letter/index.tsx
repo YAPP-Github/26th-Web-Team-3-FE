@@ -20,12 +20,10 @@ const PopupWarningLetter = ({ isOpen, close }: PopupWarningLetterProps) => {
         </div>
       </Popup.Title>
       <Popup.Actions>
-        <button className={styles.backButton} onClick={close}>
-          돌아가기
-        </button>
-        <button className={styles.continueButton} onClick={close}>
+        <Popup.Button onClick={close}>돌아가기</Popup.Button>
+        <Popup.Button className={styles.continueButton} onClick={close}>
           계속 쓰기
-        </button>
+        </Popup.Button>
       </Popup.Actions>
     </Popup>
   );

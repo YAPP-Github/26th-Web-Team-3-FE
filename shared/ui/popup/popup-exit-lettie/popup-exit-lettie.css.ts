@@ -42,18 +42,6 @@ export const captionContent = style({
   marginTop: "0.8rem",
 });
 
-export const actions = style({
-  width: "100%",
-  ...themeVars.text.F17,
-  color: themeVars.color.white[30],
-  borderRadius: "12px",
-  selectors: {
-    "&:hover": {
-      backgroundColor: themeVars.color.black[80],
-    },
-  },
-});
-
 export const inputText = style({
   display: "flex",
   alignItems: "center",

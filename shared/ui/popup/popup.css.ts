@@ -51,3 +51,14 @@ export const dim = style({
   background: "rgba(0, 0, 0, 0.7)",
   zIndex: themeVars.zIndex.popup.dim,
 });
+
+export const button = style({
+  width: "100%",
+  color: themeVars.color.white[30],
+  borderRadius: "12px",
+  selectors: {
+    "&:hover": {
+      backgroundColor: themeVars.color.black[80],
+    },
+  },
+});

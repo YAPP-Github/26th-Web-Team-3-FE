@@ -12,24 +12,6 @@ export const title = style({
   marginBottom: "1.2rem",
 });
 
-export const backButton = style({
-  width: "100%",
-  color: themeVars.color.white[30],
-  borderRadius: "12px",
-  selectors: {
-    "&:hover": {
-      backgroundColor: themeVars.color.black[80],
-    },
-  },
-});
-
 export const continueButton = style({
-  width: "100%",
   color: themeVars.color.purple[10],
-  borderRadius: "12px",
-  selectors: {
-    "&:hover": {
-      backgroundColor: themeVars.color.black[80],
-    },
-  },
 });

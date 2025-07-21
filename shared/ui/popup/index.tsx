@@ -1,6 +1,6 @@
 import { themeClass } from "@/shared/styles/base/theme.css";
 import { cn } from "@/shared/utils/cn";
-import type { ReactNode } from "react";
+import type { ComponentProps, ReactNode } from "react";
 import { createPortal } from "react-dom";
 import * as styles from "./popup.css";
 
@@ -19,6 +19,18 @@ const PopupContent = ({ children, className }: PopupProps) => {
 
 const PopupActions = ({ children, className }: PopupProps) => {
   return <div className={cn(styles.actions, className)}>{children}</div>;
+};
+
+const PopupButton = ({
+  children,
+  className,
+  ...props
+}: PopupProps & ComponentProps<"button">) => {
+  return (
+    <button className={cn(styles.button, className)} {...props}>
+      {children}
+    </button>
+  );
 };
 
 interface PopupRootProps extends PopupProps {
@@ -48,6 +60,7 @@ const Popup = Object.assign(PopupRoot, {
   Title: PopupTitle,
   Content: PopupContent,
   Actions: PopupActions,
+  Button: PopupButton,
 });
 
 export default Popup;

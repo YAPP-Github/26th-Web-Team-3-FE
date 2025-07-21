@@ -38,9 +38,9 @@ const PopupReport = ({ isOpen, close }: PopupReportProps) => {
         </button>
       </div>
       <Popup.Actions>
-        <button className={styles.closeButton} onClick={close}>
+        <Popup.Button className={styles.closeButton} onClick={close}>
           닫기
-        </button>
+        </Popup.Button>
       </Popup.Actions>
     </Popup>
   );

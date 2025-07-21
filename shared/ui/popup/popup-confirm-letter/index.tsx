@@ -26,12 +26,10 @@ const PopupConfirmLetter = ({
       </Popup.Content>
       <Image src={Lettie} alt="apng" width={200} height={200} />
       <Popup.Actions>
-        <button className={styles.continueButton} onClick={close}>
-          계속 쓰기
-        </button>
-        <button className={styles.putButton} onClick={close}>
+        <Popup.Button onClick={close}>계속 쓰기</Popup.Button>
+        <Popup.Button className={styles.putButton} onClick={close}>
           편지 담기
-        </button>
+        </Popup.Button>
       </Popup.Actions>
     </Popup>
   );

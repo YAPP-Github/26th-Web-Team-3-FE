@@ -14,12 +14,10 @@ const PopupCancelCreation = ({ isOpen, close }: PopupCancelCreationProps) => {
         <p>나가면 처음부터 다시 만들어야 해요 😢</p>
       </Popup.Content>
       <Popup.Actions>
-        <button className={styles.backButton} onClick={close}>
-          떠나기
-        </button>
-        <button className={styles.continueButton} onClick={close}>
-          남기기
-        </button>
+        <Popup.Button onClick={close}>떠나기</Popup.Button>
+        <Popup.Button className={styles.continueButton} onClick={close}>
+          남기
+        </Popup.Button>
       </Popup.Actions>
     </Popup>
   );

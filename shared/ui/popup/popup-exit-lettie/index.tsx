@@ -32,12 +32,8 @@ const PopupExitLettie = ({ isOpen, close }: PopupExitLettieProps) => {
         떠날게요.
       </div>
       <Popup.Actions>
-        <button className={styles.actions} onClick={close}>
-          취소
-        </button>
-        <button className={styles.actions} onClick={close}>
-          탈퇴하기
-        </button>
+        <Popup.Button onClick={close}>취소</Popup.Button>
+        <Popup.Button onClick={close}>탈퇴하기</Popup.Button>
       </Popup.Actions>
     </Popup>
   );
