@@ -1,6 +1,7 @@
 import CloseIcon from "@/shared/assets/icon/close.svg";
 
-import LettieCharacter from "../../../assets/pop-up/X3.png";
+import LettieCharacter from "@shared/assets/character/X3.png";
+
 import * as styles from "./popup-intro.css";
 
 const PopupIntro = () => {

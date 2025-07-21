@@ -1,3 +1,4 @@
+import path from "node:path";
 import type { StorybookConfig } from "@storybook/nextjs";
 
 const config: StorybookConfig = {
@@ -40,6 +41,12 @@ const config: StorybookConfig = {
       test: /\.svg$/,
       use: ["@svgr/webpack"],
     });
+
+    config.resolve = config.resolve || {};
+    config.resolve.alias = {
+      ...(config.resolve.alias || {}),
+      "@shared": path.resolve(__dirname, "../shared"),
+    };
 
     return config;
   },
