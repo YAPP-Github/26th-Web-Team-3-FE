@@ -1,5 +1,5 @@
 import NavbarMain from "@/shared/ui/navbar/navbar-main";
-import PopupWarningLetter from "@/shared/ui/popup/popup-warning-letter";
+import PopupWarningLetter from "@/shared/ui/popup/popup-warning-capsule";
 const Home = () => {
   return (
     <div>

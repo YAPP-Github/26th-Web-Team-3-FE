@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 
 import Popup from "@/shared/ui/popup";
-import PopupWarningLetter from "@/shared/ui/popup/popup-warning-letter";
+import PopupWarningCapsule from "@/shared/ui/popup/popup-warning-capsule";
 const meta: Meta<typeof Popup> = {
   title: "UI/Popup",
   component: Popup,
@@ -52,6 +52,6 @@ export const Default: Story = {
   ),
 };
 
-export const WarningLetter: Story = {
-  render: () => <PopupWarningLetter />,
+export const WarningCapsule: Story = {
+  render: () => <PopupWarningCapsule />,
 };
