@@ -99,5 +99,5 @@ export const Intro: Story = {
 };
 
 export const Report: Story = {
-  render: () => <PopupReport />,
+  render: () => <PopupReport isOpen={true} close={() => {}} />,
 };

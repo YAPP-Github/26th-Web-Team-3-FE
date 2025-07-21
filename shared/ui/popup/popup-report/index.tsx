@@ -5,14 +5,20 @@ import Popup from "@/shared/ui/popup";
 import { useState } from "react";
 import * as styles from "./popup-report.css";
 
-const PopupReport = () => {
+interface PopupReportProps {
+  isOpen: boolean;
+  close: () => void;
+}
+
+const PopupReport = ({ isOpen, close }: PopupReportProps) => {
   const [isCopied, setIsCopied] = useState(false);
-  const handleCopy = () => {
+  const handleClickCopyButton = () => {
     setIsCopied(true);
   };
+  if (!isOpen) return null;
   return (
     <div className={styles.layout}>
-      <Popup>
+      <Popup open={isOpen}>
         <Popup.Title className={styles.title}>
           불편한 경험을 하셨나요?
         </Popup.Title>
@@ -21,12 +27,18 @@ const PopupReport = () => {
         </Popup.Content>
         <div className={styles.captionContainer}>
           <p>lettie@gmail.com</p>
-          <button type="button" className={styles.copyButton}>
+          <button
+            type="button"
+            className={styles.copyButton}
+            onClick={handleClickCopyButton}
+          >
             {isCopied ? <CheckIcon /> : <CopyIcon />}
           </button>
         </div>
         <Popup.Actions>
-          <button className={styles.closeButton}>닫기</button>
+          <button className={styles.closeButton} onClick={close}>
+            닫기
+          </button>
         </Popup.Actions>
       </Popup>
     </div>

@@ -1,10 +1,17 @@
 import WarningIcon from "@/shared/assets/icon/warning.svg";
 import Popup from "@/shared/ui/popup";
 import * as styles from "./popup-warning-letter.css";
-const PopupWarningLetter = () => {
+
+interface PopupWarningLetterProps {
+  isOpen: boolean;
+  close: () => void;
+}
+
+const PopupWarningLetter = ({ isOpen, close }: PopupWarningLetterProps) => {
+  if (!isOpen) return null;
   return (
     <div className={styles.layout}>
-      <Popup>
+      <Popup open={isOpen}>
         <div className={styles.iconWrapper}>
           <WarningIcon width={24} height={24} />
         </div>
@@ -15,8 +22,12 @@ const PopupWarningLetter = () => {
           </div>
         </Popup.Title>
         <Popup.Actions>
-          <button className={styles.backButton}>돌아가기</button>
-          <button className={styles.continueButton}>계속 쓰기</button>
+          <button className={styles.backButton} onClick={close}>
+            돌아가기
+          </button>
+          <button className={styles.continueButton} onClick={close}>
+            계속 쓰기
+          </button>
         </Popup.Actions>
       </Popup>
     </div>

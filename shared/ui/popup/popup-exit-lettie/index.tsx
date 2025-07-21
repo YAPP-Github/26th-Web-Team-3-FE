@@ -1,10 +1,16 @@
 import Popup from "@/shared/ui/popup";
 import * as styles from "./popup-exit-lettie.css";
 
-const PopupExitLettie = () => {
+interface PopupExitLettieProps {
+  isOpen: boolean;
+  close: () => void;
+}
+
+const PopupExitLettie = ({ isOpen, close }: PopupExitLettieProps) => {
+  if (!isOpen) return null;
   return (
     <div className={styles.layout}>
-      <Popup>
+      <Popup open={isOpen}>
         <Popup.Title className={styles.title}>레티를 떠나시나요?</Popup.Title>
         <Popup.Content>떠나기 전에 꼭 확인해주세요!</Popup.Content>
         <div className={styles.captionContainer}>
@@ -28,8 +34,12 @@ const PopupExitLettie = () => {
           떠날게요.
         </div>
         <Popup.Actions>
-          <button className={styles.actions}>취소</button>
-          <button className={styles.actions}>탈퇴하기</button>
+          <button className={styles.actions} onClick={close}>
+            취소
+          </button>
+          <button className={styles.actions} onClick={close}>
+            탈퇴하기
+          </button>
         </Popup.Actions>
       </Popup>
     </div>

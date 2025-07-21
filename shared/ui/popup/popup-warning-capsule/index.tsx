@@ -2,10 +2,16 @@ import WarningIcon from "@/shared/assets/icon/warning.svg";
 import Popup from "@/shared/ui/popup";
 import * as styles from "./popup-warning-capsule.css";
 
-const PopupWarningCapsule = () => {
+interface PopupWarningCapsuleProps {
+  isOpen: boolean;
+  close: () => void;
+}
+
+const PopupWarningCapsule = ({ isOpen, close }: PopupWarningCapsuleProps) => {
+  if (!isOpen) return null;
   return (
     <div className={styles.layout}>
-      <Popup>
+      <Popup open={isOpen}>
         <div className={styles.iconWrapper}>
           <WarningIcon width={24} height={24} />
         </div>
@@ -15,8 +21,12 @@ const PopupWarningCapsule = () => {
           <p>담은 편지가 사라지지 않아요.</p>
         </Popup.Content>
         <Popup.Actions>
-          <button className={styles.backButton}>돌아가기</button>
-          <button className={styles.continueButton}>계속 쓰기</button>
+          <button className={styles.backButton} onClick={close}>
+            돌아가기
+          </button>
+          <button className={styles.continueButton} onClick={close}>
+            계속 쓰기
+          </button>
         </Popup.Actions>
       </Popup>
     </div>

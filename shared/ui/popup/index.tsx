@@ -1,5 +1,7 @@
+import { themeClass } from "@/shared/styles/base/theme.css";
 import { cn } from "@/shared/utils/cn";
 import type { ReactNode } from "react";
+import { createPortal } from "react-dom";
 import * as styles from "./popup.css";
 
 interface PopupProps {
@@ -19,8 +21,35 @@ const PopupActions = ({ children, className }: PopupProps) => {
   return <div className={cn(styles.actions, className)}>{children}</div>;
 };
 
-const PopupRoot = ({ children, className }: PopupProps) => {
-  return <div className={cn(styles.root, className)}>{children}</div>;
+interface PopupRootProps extends PopupProps {
+  themeClass?: string;
+  backDrop?: boolean;
+  open: boolean;
+}
+
+const PopupRoot = ({
+  children,
+  className,
+  backDrop = true,
+  open,
+  ...props
+}: PopupRootProps) => {
+  if (typeof window === "undefined" || !open) return null;
+
+  return createPortal(
+    <div className={themeClass}>
+      <div className={cn(styles.dim)} {...props}>
+        <div
+          className={cn(styles.root, className)}
+          role="dialog"
+          aria-modal="true"
+        >
+          {children}
+        </div>
+      </div>
+    </div>,
+    document.body,
+  );
 };
 
 const Popup = Object.assign(PopupRoot, {

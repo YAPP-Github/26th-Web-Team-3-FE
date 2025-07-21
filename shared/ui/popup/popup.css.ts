@@ -10,6 +10,12 @@ export const root = style({
   backgroundColor: themeVars.color.black["90_bg"],
   borderRadius: "20px",
   padding: "3.2rem 1.2rem 1.2rem 1.2rem",
+  zIndex: themeVars.zIndex.popup.content,
+  position: "fixed",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "32.4rem",
 });
 
 export const title = style({
@@ -34,4 +40,14 @@ export const actions = style({
   gap: "1rem",
   height: "4.8rem",
   width: "100%",
+});
+
+export const dim = style({
+  position: "fixed",
+  top: 0,
+  left: 0,
+  width: "100vw",
+  height: "100vh",
+  background: "rgba(0, 0, 0, 0.7)",
+  zIndex: themeVars.zIndex.popup.dim,
 });

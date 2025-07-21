@@ -4,12 +4,19 @@ import * as styles from "./popup-confirm-letter.css";
 
 interface PopupConfirmLetterProps {
   openDate: string;
+  isOpen: boolean;
+  close: () => void;
 }
 
-const PopupConfirmLetter = ({ openDate }: PopupConfirmLetterProps) => {
+const PopupConfirmLetter = ({
+  openDate,
+  isOpen,
+  close,
+}: PopupConfirmLetterProps) => {
+  if (!isOpen) return null;
   return (
     <div className={styles.layout}>
-      <Popup>
+      <Popup open={isOpen}>
         <Popup.Title className={styles.title}>
           <p>한 번 편지를 담으면</p>
           <p>꺼낼 수 없어요</p>
@@ -19,8 +26,12 @@ const PopupConfirmLetter = ({ openDate }: PopupConfirmLetterProps) => {
         </Popup.Content>
         <img src={LettieCharacter.src} alt="Lettie character" />
         <Popup.Actions>
-          <button className={styles.continueButton}>계속 쓰기</button>
-          <button className={styles.putButton}>편지 담기</button>
+          <button className={styles.continueButton} onClick={close}>
+            계속 쓰기
+          </button>
+          <button className={styles.putButton} onClick={close}>
+            편지 담기
+          </button>
         </Popup.Actions>
       </Popup>
     </div>

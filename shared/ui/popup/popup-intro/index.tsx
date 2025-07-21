@@ -4,11 +4,17 @@ import LettieCharacter from "@shared/assets/character/X3.png";
 
 import * as styles from "./popup-intro.css";
 
-const PopupIntro = () => {
+interface PopupIntroProps {
+  isOpen: boolean;
+  close: () => void;
+}
+
+const PopupIntro = ({ isOpen, close }: PopupIntroProps) => {
+  if (!isOpen) return null;
   return (
     <div className={styles.layout}>
       <div className={styles.popupContainer}>
-        <button type="button" className={styles.closeButton}>
+        <button type="button" className={styles.closeButton} onClick={close}>
           <CloseIcon />
         </button>
         <img src={LettieCharacter.src} alt="Lettie character" />
@@ -17,7 +23,7 @@ const PopupIntro = () => {
           <p>기다리고 있어요!</p>
         </div>
         <div className={styles.buttonWrapper}>
-          <button type="button" className={styles.buttonStyle}>
+          <button type="button" className={styles.buttonStyle} onClick={close}>
             레티가 뭘까?
           </button>
         </div>
