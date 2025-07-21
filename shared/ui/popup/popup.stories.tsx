@@ -4,8 +4,10 @@ import PopupCancelCreation from "@/shared/ui/popup/popup-cancel-creation";
 import PopupConfirmLetter from "@/shared/ui/popup/popup-confirm-letter";
 import PopupExitLettie from "@/shared/ui/popup/popup-exit-lettie";
 import PopupIntro from "@/shared/ui/popup/popup-intro";
+import PopupReport from "@/shared/ui/popup/popup-report";
 import PopupWarningCapsule from "@/shared/ui/popup/popup-warning-capsule";
 import PopupWarningLetter from "@/shared/ui/popup/popup-warning-letter";
+
 import type { Meta, StoryObj } from "@storybook/nextjs";
 const meta: Meta<typeof Popup> = {
   title: "UI/Popup",
@@ -94,4 +96,8 @@ export const Intro: Story = {
       </div>
     ),
   ],
+};
+
+export const Report: Story = {
+  render: () => <PopupReport />,
 };
