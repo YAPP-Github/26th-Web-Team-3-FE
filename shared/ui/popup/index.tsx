@@ -22,18 +22,10 @@ const PopupActions = ({ children, className }: PopupProps) => {
 };
 
 interface PopupRootProps extends PopupProps {
-  themeClass?: string;
-  backDrop?: boolean;
   open: boolean;
 }
 
-const PopupRoot = ({
-  children,
-  className,
-  backDrop = true,
-  open,
-  ...props
-}: PopupRootProps) => {
+const PopupRoot = ({ children, className, open, ...props }: PopupRootProps) => {
   if (typeof window === "undefined" || !open) return null;
 
   return createPortal(

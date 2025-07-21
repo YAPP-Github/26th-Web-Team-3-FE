@@ -1,5 +1,3 @@
-"use client";
-
 import NavbarMain from "@/shared/ui/navbar/navbar-main";
 
 const Home = () => {
