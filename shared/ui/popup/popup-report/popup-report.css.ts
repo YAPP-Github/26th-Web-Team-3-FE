@@ -13,6 +13,12 @@ export const title = style({
 export const closeButton = style({
   width: "100%",
   color: themeVars.color.purple[10],
+  borderRadius: "12px",
+  selectors: {
+    "&:hover": {
+      backgroundColor: themeVars.color.black[80],
+    },
+  },
 });
 
 export const copyButton = style({
