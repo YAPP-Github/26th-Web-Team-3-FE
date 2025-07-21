@@ -13,7 +13,7 @@ const Providers = ({ children }: ProvidersProps) => {
 
   useEffect(() => setIsClient(true), []);
 
-  if (!isClient) return { children };
+  if (!isClient) return <>{children}</>;
 
   return (
     <QueryProvider>
