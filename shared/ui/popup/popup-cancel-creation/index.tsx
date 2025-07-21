@@ -1,7 +1,7 @@
 import Popup from "@/shared/ui/popup";
-import * as styles from "./popup-exit.css";
+import * as styles from "./popup-cancel-creation.css";
 
-const PopupExit = () => {
+const PopupCancelCreation = () => {
   return (
     <div className={styles.layout}>
       <Popup>
@@ -18,4 +18,4 @@ const PopupExit = () => {
   );
 };
 
-export default PopupExit;
+export default PopupCancelCreation;
