@@ -13,7 +13,11 @@ interface PopupReportProps {
 const PopupReport = ({ isOpen, close }: PopupReportProps) => {
   const [isCopied, setIsCopied] = useState(false);
   const handleClickCopyButton = () => {
+    navigator.clipboard.writeText("lettie@gmail.com");
     setIsCopied(true);
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 2000);
   };
   return (
     <Popup open={isOpen}>
