@@ -29,7 +29,7 @@ const meta: Meta<typeof Popup> = {
 
 \`\`\`tsx
 overlay.open(({ isOpen, close }) => (
-  <Popup open={isOpen}>
+  <Popup open={isOpen} close={close}>
     <Popup.Title>제목</Popup.Title>
     <Popup.Content>내용</Popup.Content>
     <Popup.Actions>
