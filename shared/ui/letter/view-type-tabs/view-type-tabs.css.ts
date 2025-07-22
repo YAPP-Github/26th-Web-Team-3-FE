@@ -33,7 +33,7 @@ export const tabButton = recipe({
   },
 });
 
-export const icon = recipe({
+export const iconColor = recipe({
   variants: {
     isSelected: {
       true: {

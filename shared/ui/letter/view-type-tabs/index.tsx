@@ -5,39 +5,36 @@ import LayerIcon from "@/shared/assets/icon/layers.svg";
 import { cn } from "@/shared/utils/cn";
 
 import { ViewType } from "@/shared/types/types";
-import type { ComponentProps } from "react";
 import * as styles from "./view-type-tabs.css";
 
-interface ViewTypeTabsProps extends ComponentProps<"button"> {
+interface ViewTypeTabsProps {
   viewType: ViewType;
   handleClick: (viewType: ViewType) => void;
 }
 
-const ViewTypeTabs = ({
-  viewType,
-  handleClick,
-  ...props
-}: ViewTypeTabsProps) => {
+const ViewTypeTabs = ({ viewType, handleClick }: ViewTypeTabsProps) => {
   return (
     <div className={styles.viewTypeTabs}>
       <button
-        {...props}
         onClick={() => handleClick(ViewType.LAYERS)}
         className={cn(
           styles.tabButton({ isSelected: viewType === ViewType.LAYERS }),
-          styles.icon({ isSelected: viewType === ViewType.LAYERS }),
+          styles.iconColor({ isSelected: viewType === ViewType.LAYERS }),
         )}
+        type="button"
+        aria-label="Layers"
       >
         <LayerIcon />
         {viewType === ViewType.LAYERS && ViewType.LAYERS}
       </button>
       <button
-        {...props}
         onClick={() => handleClick(ViewType.GRID)}
         className={cn(
           styles.tabButton({ isSelected: viewType === ViewType.GRID }),
-          styles.icon({ isSelected: viewType === ViewType.GRID }),
+          styles.iconColor({ isSelected: viewType === ViewType.GRID }),
         )}
+        type="button"
+        aria-label="Grid"
       >
         <GridIcon />
         {viewType === ViewType.GRID && ViewType.GRID}
