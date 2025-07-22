@@ -1,5 +1,3 @@
-"use client";
-
 import HeartIcon from "@/shared/assets/icon/heart.svg";
 import type { ComponentProps } from "react";
 import * as styles from "./like-button.css";
