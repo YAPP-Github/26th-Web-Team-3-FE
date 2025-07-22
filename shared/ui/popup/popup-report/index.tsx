@@ -20,7 +20,7 @@ const PopupReport = ({ isOpen, close }: PopupReportProps) => {
     }, 2000);
   };
   return (
-    <Popup open={isOpen}>
+    <Popup open={isOpen} close={close}>
       <Popup.Title className={styles.title}>
         불편한 경험을 하셨나요?
       </Popup.Title>

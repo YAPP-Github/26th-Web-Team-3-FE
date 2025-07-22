@@ -9,7 +9,7 @@ interface PopupWarningCapsuleProps {
 
 const PopupWarningCapsule = ({ isOpen, close }: PopupWarningCapsuleProps) => {
   return (
-    <Popup open={isOpen}>
+    <Popup open={isOpen} close={close}>
       <div className={styles.iconWrapper}>
         <WarningIcon width={24} height={24} />
       </div>

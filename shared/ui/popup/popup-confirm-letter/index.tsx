@@ -16,7 +16,7 @@ const PopupConfirmLetter = ({
   close,
 }: PopupConfirmLetterProps) => {
   return (
-    <Popup open={isOpen}>
+    <Popup open={isOpen} close={close}>
       <Popup.Title className={styles.title}>
         <p>한 번 편지를 담으면</p>
         <p>꺼낼 수 없어요</p>

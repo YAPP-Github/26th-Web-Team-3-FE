@@ -8,7 +8,7 @@ interface PopupExitLettieProps {
 
 const PopupExitLettie = ({ isOpen, close }: PopupExitLettieProps) => {
   return (
-    <Popup open={isOpen}>
+    <Popup open={isOpen} close={close}>
       <Popup.Title className={styles.title}>레티를 떠나시나요?</Popup.Title>
       <Popup.Content>떠나기 전에 꼭 확인해주세요!</Popup.Content>
       <div className={styles.captionContainer}>

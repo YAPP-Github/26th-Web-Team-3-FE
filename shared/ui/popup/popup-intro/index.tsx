@@ -11,7 +11,7 @@ interface PopupIntroProps {
 
 const PopupIntro = ({ isOpen, close }: PopupIntroProps) => {
   return (
-    <Popup open={isOpen} className={styles.root}>
+    <Popup open={isOpen} className={styles.root} close={close}>
       <div className={styles.layout}>
         <div className={styles.popupContainer}>
           <button type="button" className={styles.closeButton} onClick={close}>

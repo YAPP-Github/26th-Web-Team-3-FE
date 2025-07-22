@@ -83,7 +83,7 @@ export const Default: Story = {
       }}
       onClick={() => {
         overlay.open(({ isOpen, close }) => (
-          <Popup open={isOpen}>
+          <Popup open={isOpen} close={close}>
             <Popup.Title>Title</Popup.Title>
             <Popup.Content>description</Popup.Content>
             <Popup.Actions>

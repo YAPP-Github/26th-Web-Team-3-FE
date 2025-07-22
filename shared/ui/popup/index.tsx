@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { themeClass } from "@/shared/styles/base/theme.css";
 import { cn } from "@/shared/utils/cn";
 import type { ComponentProps, ReactNode } from "react";
@@ -35,9 +37,29 @@ const PopupButton = ({
 
 interface PopupRootProps extends PopupProps {
   open: boolean;
+  close: () => void;
 }
 
-const PopupRoot = ({ children, className, open, ...props }: PopupRootProps) => {
+const PopupRoot = ({
+  children,
+  className,
+  open,
+  close,
+  ...props
+}: PopupRootProps) => {
+  useEffect(() => {
+    const handleEscKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && close) {
+        close();
+      }
+    };
+
+    if (open) {
+      document.addEventListener("keydown", handleEscKey);
+      return () => document.removeEventListener("keydown", handleEscKey);
+    }
+  }, [open, close]);
+
   if (typeof window === "undefined" || !open) return null;
 
   return createPortal(
