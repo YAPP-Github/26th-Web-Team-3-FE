@@ -38,13 +38,13 @@ type Story = StoryObj<typeof LikeButton>;
 
 export const Liked: Story = {
   args: {
-    isFavorited: true,
+    isLiked: true,
   },
 };
 
 export const UnLiked: Story = {
   args: {
-    isFavorited: false,
+    isLiked: false,
   },
 };
 export default meta;
