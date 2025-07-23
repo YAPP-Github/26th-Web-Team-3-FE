@@ -4,7 +4,7 @@ import GridIcon from "@/shared/assets/icon/grid.svg";
 import LayerIcon from "@/shared/assets/icon/layers.svg";
 import { cn } from "@/shared/utils/cn";
 
-import { ViewType } from "@/shared/ui/view-type-tabs";
+import { ViewType } from "@/shared/ui/view-type-tabs/view-type";
 import * as styles from "./view-type-tabs.css";
 
 interface ViewTypeTabsProps {
