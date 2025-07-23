@@ -9,7 +9,6 @@ import * as styles from "./info-toast.css";
 type InfoToastProps = {
   status: "success" | "locked";
   infoText: string;
-  onClick?: () => void;
 };
 
 const InfoToast = ({ status, infoText }: InfoToastProps) => {
