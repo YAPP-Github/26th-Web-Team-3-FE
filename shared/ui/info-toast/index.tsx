@@ -1,3 +1,5 @@
+"use client";
+
 import CheckIcon from "@/shared/assets/icon/check.svg";
 import LockIcon from "@/shared/assets/icon/lock.svg";
 import { cn } from "@/shared/utils/cn";
