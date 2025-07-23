@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 import InfoToast from "./index";
 
 const meta: Meta<typeof InfoToast> = {
-  title: "UI/StateInfoToast",
+  title: "UI/InfoToast",
   component: InfoToast,
   tags: ["autodocs"],
   parameters: {
