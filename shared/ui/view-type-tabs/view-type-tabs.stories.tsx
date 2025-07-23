@@ -1,4 +1,4 @@
-import { ViewType } from "@/shared/types/types";
+import { ViewType } from "@/shared/ui/view-type-tabs";
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import ViewTypeTabs from "./index";
 

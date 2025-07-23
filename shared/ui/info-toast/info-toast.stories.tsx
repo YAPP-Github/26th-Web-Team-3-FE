@@ -9,7 +9,8 @@ const meta: Meta<typeof InfoToast> = {
     layout: "centered",
     docs: {
       description: {
-        component: "AlertToast 컴포넌트입니다.",
+        component:
+          "타임캡슐 상세페이지 진입 시 타임캡슐 상태를 알려주는 InfoToast 컴포넌트입니다.",
       },
     },
   },
@@ -18,7 +19,7 @@ const meta: Meta<typeof InfoToast> = {
       <div
         style={{
           width: "800px",
-          height: "200px",
+          height: "300px",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -35,6 +36,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const TimeCapsule: Story = {
+  args: {
+    status: "success",
+    infoText: "타임캡슐에 편지가 담겼어요.",
+  },
   render: () => (
     <div>
       <InfoToast status="success" infoText="타임캡슐에 편지가 담겼어요." />
@@ -43,6 +48,10 @@ export const TimeCapsule: Story = {
 };
 
 export const OpenedTimeCapsule: Story = {
+  args: {
+    status: "success",
+    infoText: "타임캡슐이 열렸어요!",
+  },
   render: () => (
     <div>
       <InfoToast status="success" infoText="타임캡슐이 열렸어요!" />
@@ -51,6 +60,10 @@ export const OpenedTimeCapsule: Story = {
 };
 
 export const ClosedTimeCapsule: Story = {
+  args: {
+    status: "locked",
+    infoText: "편지 작성이 마감된 캡슐이에요!",
+  },
   render: () => (
     <div>
       <InfoToast status="locked" infoText="편지 작성이 마감된 캡슐이에요!" />
