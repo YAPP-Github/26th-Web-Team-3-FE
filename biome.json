@@ -68,7 +68,8 @@
         "useExhaustiveDependencies": "off",
         "noUnusedImports": "warn",
         "noNodejsModules": "off",
-        "useImportExtensions": "off"
+        "useImportExtensions": "off",
+        "noUndeclaredDependencies": "off"
       },
       "performance": {
         "noAccumulatingSpread": "off",
