@@ -9,7 +9,7 @@ declare module "*.png" {
 }
 
 declare module "*.svg" {
-  import type { SVGProps } from "react";
+  import type { SVGProps, FunctionComponent } from "react";
   const ReactComponent: FunctionComponent<
     SVGProps<SVGSVGElement> & { title?: string }
   >;

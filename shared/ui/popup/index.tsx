@@ -40,13 +40,7 @@ interface PopupRootProps extends PopupProps {
   close: () => void;
 }
 
-const PopupRoot = ({
-  children,
-  className,
-  open,
-  close,
-  ...props
-}: PopupRootProps) => {
+const PopupRoot = ({ children, className, open, close }: PopupRootProps) => {
   useEffect(() => {
     const handleEscKey = (event: KeyboardEvent) => {
       if (event.key === "Escape" && close) {
@@ -64,7 +58,7 @@ const PopupRoot = ({
 
   return createPortal(
     <div className={themeClass}>
-      <div className={styles.dim} {...props}>
+      <div className={styles.dim}>
         <div
           className={cn(styles.root, className)}
           role="dialog"
