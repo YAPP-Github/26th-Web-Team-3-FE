@@ -7,7 +7,6 @@ const meta: Meta<typeof AddCapsuleButton> = {
   parameters: {
     layout: "centered",
     docs: {
-      disable: true,
       description: {
         component: `
 AddCapsuleButton 컴포넌트는 캡슐을 추가하는 버튼입니다.

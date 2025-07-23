@@ -1,5 +1,6 @@
 import CheckIcon from "@/shared/assets/icon/check.svg";
 import LockIcon from "@/shared/assets/icon/lock.svg";
+import { cn } from "@/shared/utils/cn";
 
 import * as styles from "./info-toast.css";
 
@@ -7,11 +8,13 @@ import * as styles from "./info-toast.css";
 type InfoToastProps = {
   status: "success" | "locked";
   infoText: string;
+  isExiting?: boolean;
+  onClick?: () => void;
 };
 
-const InfoToast = ({ status, infoText }: InfoToastProps) => {
+const InfoToast = ({ status, infoText, isExiting }: InfoToastProps) => {
   return (
-    <div className={styles.container}>
+    <div className={cn(styles.container, isExiting ? styles.container : "")}>
       {status === "success" && <CheckIcon className={styles.checkIcon} />}
       {status === "locked" && <LockIcon />}
       {infoText}
