@@ -2,8 +2,7 @@ import { themeVars } from "@/shared/styles/base/theme.css";
 import { style } from "@vanilla-extract/css";
 
 export const dropdownWrapper = style({
-  position: "absolute",
-  zIndex: themeVars.zIndex.dropdown.content,
+  position: "relative",
   borderRadius: "15px",
 });
 
@@ -17,6 +16,7 @@ export const dropdownContent = style({
   right: 0,
   top: "100%",
   display: "flex",
+  width: "19.2rem",
   flexDirection: "column",
   backgroundColor: themeVars.color.black[70],
   padding: "0.6rem",
@@ -25,6 +25,7 @@ export const dropdownContent = style({
 
 export const dropdownItem = style({
   display: "flex",
+  width: "100%",
   padding: "1.6rem 2rem",
   whiteSpace: "nowrap",
   alignItems: "center",

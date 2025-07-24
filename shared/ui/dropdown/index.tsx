@@ -1,3 +1,5 @@
+"use client";
+
 import useClickOutside from "@/shared/hooks/use-click-outside";
 import { cn } from "@/shared/utils/cn";
 import {
@@ -93,11 +95,9 @@ interface DropdownContentProps {
 const DropdownContent = ({ children, className }: DropdownContentProps) => {
   const { open } = useDropdownContext();
 
-  return (
-    <ul className={cn(styles.dropdownContent, className)}>
-      {open && children}
-    </ul>
-  );
+  if (!open) return null;
+
+  return <ul className={cn(styles.dropdownContent, className)}>{children}</ul>;
 };
 
 // Dropdown의 메뉴 리스트 아이템 컴포넌트

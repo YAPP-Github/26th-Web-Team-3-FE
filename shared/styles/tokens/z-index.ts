@@ -6,7 +6,4 @@ export const zIndexTheme = {
     dim: "100",
     content: "101",
   },
-  dropdown: {
-    content: "99",
-  },
 } as const;
