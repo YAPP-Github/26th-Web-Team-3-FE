@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
+import { ViewType } from "../../types/view-type";
 import ViewTypeTabs from "./index";
-import { ViewType } from "./view-type";
 const meta: Meta<typeof ViewTypeTabs> = {
   component: ViewTypeTabs,
   title: "UI/ViewTypeTabs",
