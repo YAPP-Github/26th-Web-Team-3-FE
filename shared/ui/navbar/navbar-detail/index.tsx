@@ -1,15 +1,17 @@
 "use client";
 
 import BackIcon from "@/shared/assets/icon/left.svg";
+import { cn } from "@/shared/utils/cn";
 import { useRouter } from "next/navigation";
 import type { ReactElement } from "react";
 import * as styles from "./navbar-detail.css";
 
 interface NavbarDetailProps {
   renderRight?: () => ReactElement;
+  className?: string;
 }
 
-const NavbarDetail = ({ renderRight }: NavbarDetailProps) => {
+const NavbarDetail = ({ renderRight, className }: NavbarDetailProps) => {
   const router = useRouter();
   const renderRightElement = renderRight ? renderRight() : null;
 
@@ -22,7 +24,9 @@ const NavbarDetail = ({ renderRight }: NavbarDetailProps) => {
       >
         <BackIcon />
       </button>
-      <div className={styles.rightElement}>{renderRightElement}</div>
+      <div className={cn(styles.rightElement, className)}>
+        {renderRightElement}
+      </div>
     </div>
   );
 };

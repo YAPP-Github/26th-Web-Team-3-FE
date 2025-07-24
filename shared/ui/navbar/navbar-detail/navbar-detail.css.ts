@@ -17,5 +17,6 @@ export const backButton = style({
 
 export const rightElement = style({
   display: "flex",
+  ...themeVars.text.B1,
   color: themeVars.color.white[40],
 });
