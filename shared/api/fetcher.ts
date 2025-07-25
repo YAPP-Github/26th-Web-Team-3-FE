@@ -5,7 +5,7 @@ const defaultOption: Options = {
   timeout: 30_000,
 };
 
-const API_BASE_URL = process.env.API_BASE_URL;
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export const instance = ky.create({
   prefixUrl: API_BASE_URL,
