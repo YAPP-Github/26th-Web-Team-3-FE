@@ -19,7 +19,6 @@ const ViewTypeTabs = ({ viewType, handleClick }: ViewTypeTabsProps) => {
         onClick={() => handleClick(ViewType.LAYERS)}
         className={cn(
           styles.tabButton({ isSelected: viewType === ViewType.LAYERS }),
-          styles.iconColor({ isSelected: viewType === ViewType.LAYERS }),
         )}
         type="button"
         aria-label="Layers"
@@ -31,7 +30,6 @@ const ViewTypeTabs = ({ viewType, handleClick }: ViewTypeTabsProps) => {
         onClick={() => handleClick(ViewType.GRID)}
         className={cn(
           styles.tabButton({ isSelected: viewType === ViewType.GRID }),
-          styles.iconColor({ isSelected: viewType === ViewType.GRID }),
         )}
         type="button"
         aria-label="Grid"

@@ -25,21 +25,10 @@ export const tabButton = recipe({
     isSelected: {
       true: {
         background: themeVars.color.gradient.point_purple,
-      },
-      false: {
-        backgroundColor: "transparent",
-      },
-    },
-  },
-});
-
-export const iconColor = recipe({
-  variants: {
-    isSelected: {
-      true: {
         color: themeVars.color.white[100],
       },
       false: {
+        backgroundColor: "transparent",
         color: themeVars.color.white[30],
       },
     },

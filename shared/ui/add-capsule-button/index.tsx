@@ -1,7 +1,7 @@
 "use client";
 
 import PlusIcon from "@/shared/assets/icon/plus.svg";
-import { useInView } from "@/shared/hooks/useInView";
+import { useInView } from "@/shared/hooks/use-in-view";
 import { cn } from "@/shared/utils/cn";
 import * as styles from "./add-capsule-button.css";
 

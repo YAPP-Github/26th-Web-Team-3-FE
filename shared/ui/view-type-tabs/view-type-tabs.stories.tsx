@@ -1,10 +1,10 @@
-import { ViewType } from "@/shared/types/view-type";
-import type { Meta, StoryObj } from "@storybook/nextjs";
-import ViewTypeTabs from "./index";
 
+import type { Meta, StoryObj } from "@storybook/nextjs";
+import { ViewType } from "../../types/view-type";
+import ViewTypeTabs from "./index";
 const meta: Meta<typeof ViewTypeTabs> = {
   component: ViewTypeTabs,
-  title: "UI/Letter/ViewTypeTabs",
+  title: "UI/ViewTypeTabs",
   tags: ["autodocs"],
   args: {},
   argTypes: {},
