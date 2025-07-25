@@ -23,7 +23,7 @@ export async function parseResponse<T>(response: ResponsePromise) {
   return await response.json<T>();
 }
 
-export const fetcher = {
+export const apiClient = {
   get: <T>(pathname: string, options?: Options) =>
     parseResponse<T>(instance.get(pathname, options)),
   post: <T>(pathname: string, options?: Options) =>
