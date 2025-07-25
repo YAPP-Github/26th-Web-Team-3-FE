@@ -40,7 +40,7 @@ const DropdownRoot = ({ className, children }: DropdownRootProps) => {
   const handleToggleOpen = () => setOpen((prev) => !prev);
   const handleClose = () => setOpen(false);
 
-  const ref = useRef<HTMLInputElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   useClickOutside(ref, handleClose);
 
   const contextValue: DropdownContextProps = {
@@ -121,6 +121,8 @@ const DropdownItem = ({
         {...props}
         onClick={onClick}
         className={cn(styles.dropdownItem, className)}
+        role="menuitem"
+        aria-label={label}
       >
         {children}
         <p>{label}</p>
