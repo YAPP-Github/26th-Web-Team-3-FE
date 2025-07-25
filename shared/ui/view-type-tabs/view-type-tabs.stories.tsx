@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { ViewType } from "../../types/view-type";
 import ViewTypeTabs from "./index";
