@@ -4,7 +4,7 @@ import GridIcon from "@/shared/assets/icon/grid.svg";
 import LayerIcon from "@/shared/assets/icon/layers.svg";
 import { cn } from "@/shared/utils/cn";
 
-import { ViewType } from "@/shared/types/types";
+import { ViewType } from "@/shared/types/view-type";
 import * as styles from "./view-type-tabs.css";
 
 interface ViewTypeTabsProps {
@@ -19,7 +19,6 @@ const ViewTypeTabs = ({ viewType, handleClick }: ViewTypeTabsProps) => {
         onClick={() => handleClick(ViewType.LAYERS)}
         className={cn(
           styles.tabButton({ isSelected: viewType === ViewType.LAYERS }),
-          styles.iconColor({ isSelected: viewType === ViewType.LAYERS }),
         )}
         type="button"
         aria-label="Layers"
@@ -31,7 +30,6 @@ const ViewTypeTabs = ({ viewType, handleClick }: ViewTypeTabsProps) => {
         onClick={() => handleClick(ViewType.GRID)}
         className={cn(
           styles.tabButton({ isSelected: viewType === ViewType.GRID }),
-          styles.iconColor({ isSelected: viewType === ViewType.GRID }),
         )}
         type="button"
         aria-label="Grid"
