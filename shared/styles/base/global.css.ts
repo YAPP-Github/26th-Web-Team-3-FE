@@ -42,7 +42,7 @@ export const globalLayout = style({
   justifyContent: "center",
 });
 
-export const maxLayout = style({
+export const maxWidth = style({
   maxWidth: "800px",
 });
 

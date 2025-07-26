@@ -7,7 +7,6 @@ export const container = style({
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  gap: "2rem",
   width: "100%",
   paddingTop: "2.4rem",
   ...screen.md({

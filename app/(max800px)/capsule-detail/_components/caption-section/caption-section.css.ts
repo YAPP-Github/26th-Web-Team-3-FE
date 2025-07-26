@@ -6,12 +6,11 @@ export const container = style({
   display: "flex",
   flexDirection: "column",
   gap: "1.6rem",
-  margin: "1.2rem 1.6rem 1.2rem 1.2rem",
   ...screen.md({
     margin: "1.6rem",
   }),
   width: "100%",
-  backgroundColor: themeVars.color.gradient.white_op,
+  background: themeVars.color.gradient.darkgray_op,
   borderRadius: "16px",
   ...themeVars.text.B1,
   color: themeVars.color.white[85],

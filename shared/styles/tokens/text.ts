@@ -62,7 +62,6 @@ export const textTheme = {
     fontWeight: "500",
     lineHeight: "1.5em",
     letterSpacing: "-0.02em",
-    fontStyle: "italic",
     color: colorTheme.white[100],
     fontSize: "1.4rem",
     "@media": {
