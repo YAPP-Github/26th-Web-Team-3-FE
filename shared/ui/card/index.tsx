@@ -8,6 +8,7 @@ import Thumbnail_5 from "@/shared/assets/2D-illust/thumbnail_5.svg";
 import Thumbnail_6 from "@/shared/assets/2D-illust/thumbnail_6.svg";
 
 import { cn } from "@/shared/utils/cn";
+import type { ComponentProps } from "react";
 import Chip from "../chip";
 
 const gradientIcons = {
@@ -19,7 +20,7 @@ const gradientIcons = {
   gradient6: <Thumbnail_6 />,
 } as const;
 
-interface CardProps {
+interface CardProps extends ComponentProps<"div"> {
   dDay: number;
   title: string;
   peopleCount: number;
@@ -27,11 +28,20 @@ interface CardProps {
   variant: keyof typeof styles.cardVariants;
 }
 
-const Card = ({ dDay, title, peopleCount, count, variant }: CardProps) => {
+const Card = ({
+  dDay,
+  title,
+  peopleCount,
+  count,
+  variant,
+  className,
+}: CardProps) => {
   const icon = gradientIcons[variant];
 
   return (
-    <div className={cn(styles.cardBase, styles.cardVariants[variant])}>
+    <div
+      className={cn(styles.cardBase, styles.cardVariants[variant], className)}
+    >
       <div className={styles.cardContentWrapper}>
         {dDay === 0 ? (
           <Chip className={styles.chipClass} variant="purple">
