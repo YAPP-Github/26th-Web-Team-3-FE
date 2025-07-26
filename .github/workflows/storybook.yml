@@ -7,6 +7,7 @@ on:
     paths:
       - 'shared/**'
 
+
 permissions:
   contents: read
   pull-requests: write
@@ -34,14 +35,8 @@ jobs:
       - name: setup node.js
         uses: actions/setup-node@v4
         with:
-          node-version: latest
+          node-version: 20
           cache: 'pnpm'
-
-      # Node.js 메모리 증가
-      - name: increase node memory
-        run: |
-          export NODE_OPTIONS="--max_old_space_size=4096"
-          echo "NODE_OPTIONS=--max_old_space_size=4096" >> $GITHUB_ENV
 
       - name: install dependencies
         run: pnpm install --frozen-lockfile
