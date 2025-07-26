@@ -30,6 +30,24 @@ const ResponsiveFooter = ({ remainingTime }: Props) => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.buttonContainer}>
+        {isCopied ? (
+          <Button
+            variant="secondary"
+            text="링크 복사됨"
+            icon={<CheckIcon />}
+            onClick={handleClickShareButton}
+          />
+        ) : (
+          <Button
+            variant="secondary"
+            text="공유하기"
+            icon={<ShareIcon />}
+            onClick={handleClickShareButton}
+          />
+        )}
+        <Button variant="primary" text="편지 담기" />
+      </div>
       <div className={styles.captionContainer}>
         <p>작성 마감까지</p>
         <motion.div
@@ -48,24 +66,6 @@ const ResponsiveFooter = ({ remainingTime }: Props) => {
             <Chip>{`${remainingTime.minutes}분`}</Chip>
           </div>
         </motion.div>
-      </div>
-      <div className={styles.buttonContainer}>
-        {isCopied ? (
-          <Button
-            variant="secondary"
-            text="링크 복사됨"
-            icon={<CheckIcon />}
-            onClick={handleClickShareButton}
-          />
-        ) : (
-          <Button
-            variant="secondary"
-            text="공유하기"
-            icon={<ShareIcon />}
-            onClick={handleClickShareButton}
-          />
-        )}
-        <Button variant="primary" text="편지 담기" />
       </div>
     </div>
   );
