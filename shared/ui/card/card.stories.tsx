@@ -9,7 +9,7 @@ const meta: Meta<typeof Card> = {
     docs: {
       description: {
         component:
-          "프로젝트 정보를 표시하는 카드 컴포넌트입니다. gradient variant에 따라 자동으로 다른 아이콘이 표시됩니다.",
+          "타임캡슐 정보를 표시하는 카드 컴포넌트입니다. gradient variant에 따라 자동으로 다른 아이콘이 표시됩니다.",
       },
     },
   },
