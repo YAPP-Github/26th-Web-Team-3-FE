@@ -1,4 +1,5 @@
 import NavbarMain from "@/shared/ui/navbar/navbar-main";
+
 const Home = () => {
   return (
     <div>
