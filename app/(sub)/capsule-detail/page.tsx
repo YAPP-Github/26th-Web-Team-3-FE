@@ -1,4 +1,5 @@
 "use client";
+
 import MenuIcon from "@/shared/assets/icon/menu.svg";
 import Dropdown from "@/shared/ui/dropdown";
 import LikeButton from "@/shared/ui/like-button";
@@ -18,7 +19,7 @@ const fadeUpVariants = {
 
 const CapsuleDetailPage = () => {
   return (
-    <div>
+    <>
       <NavbarDetail
         renderRight={() => {
           return (
@@ -96,7 +97,7 @@ const CapsuleDetailPage = () => {
           minutes: 10,
         }}
       />
-    </div>
+    </>
   );
 };
 
