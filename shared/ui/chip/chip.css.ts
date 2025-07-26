@@ -30,11 +30,13 @@ export const chipSize = styleVariants({
     fontWeight: textTheme.F12.fontWeight,
     lineHeight: textTheme.F12.lineHeight,
     letterSpacing: textTheme.F12.letterSpacing,
+    height: "1.9rem",
   },
   default: {
     fontSize: textTheme.F14.fontSize,
     fontWeight: textTheme.F14.fontWeight,
     lineHeight: textTheme.F14.lineHeight,
     letterSpacing: textTheme.F14.letterSpacing,
+    height: "2.25rem",
   },
 });

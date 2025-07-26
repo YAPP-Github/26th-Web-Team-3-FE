@@ -43,13 +43,13 @@ export const colorTheme = {
     card_orange:
       "linear-gradient(rgba(0, 0, 0, 0.04) 60%, rgba(254, 158, 48, 0.16) 100%)",
     card_green:
-      "linear-gradient(90deg,rgba(0, 0, 0, 0.04) 60%, rgba(87, 196, 126, 0.16) 100%)",
+      "linear-gradient(rgba(0, 0, 0, 0.04) 60%, rgba(87, 196, 126, 0.16) 100%)",
     card_blue:
       "linear-gradient(rgba(0, 0, 0, 0.04) 60%, rgba(97, 72, 252, 0.16) 100%)",
     card_skyblue:
       "linear-gradient(rgba(0, 0, 0, 0.04) 60%, rgba(0, 187, 241, 0.16) 100%)",
     card_yellow:
-      "linear-gradient(90deg,rgba(0, 0, 0, 0.04) 60%, rgba(245, 243, 120, 0.16) 100%)",
+      "linear-gradient(rgba(0, 0, 0, 0.04) 60%, rgba(245, 243, 120, 0.16) 100%)",
     white_op:
       "linear-gradient(rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.08) 34%,rgba(0, 0, 0, 0.08) 66%, rgba(0, 0, 0, 0.04) 100%)",
     darkgray_op:
