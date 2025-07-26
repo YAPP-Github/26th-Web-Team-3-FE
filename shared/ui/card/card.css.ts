@@ -10,8 +10,6 @@ export const cardBase = style({
   borderRadius: "16px",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "space-between",
   overflow: "hidden",
   cursor: "pointer",
 
@@ -75,8 +73,8 @@ export const cardIconWrapper = style({
   height: "50%",
   padding: "2rem",
   display: "flex",
-  justifyContent: "right",
-  alignItems: "end",
+  justifyContent: "flex-end",
+  alignItems: "flex-end",
 });
 
 export const cardVariants = styleVariants({
@@ -106,7 +104,6 @@ export const cardTitle = style({
   wordBreak: "break-word",
   ...textTheme.F17,
   color: colorTheme.white[85],
-  margin: "0",
 
   "@media": {
     [screenBreakpoints.md]: {
