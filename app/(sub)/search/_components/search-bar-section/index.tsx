@@ -15,11 +15,7 @@ const SearchBarSection = () => {
           placeholder="찾는 캡슐을 검색해주세요"
         />
       </div>
-      <Link
-        href={PATH.HOME}
-        className={styles.closeButton}
-        onClick={() => router.back()}
-      >
+      <Link href={PATH.HOME} className={styles.closeButton}>
         닫기
       </Link>
     </div>
