@@ -6,6 +6,7 @@ export const wrapper = style({
   justifyContent: "center",
   width: "100%",
   marginTop: "2.5rem",
+  background: themeVars.color.gradient.header_bg,
 });
 
 export const searchBarContainer = style({
