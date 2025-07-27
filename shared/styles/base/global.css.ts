@@ -2,11 +2,11 @@ import { globalStyle, style } from "@vanilla-extract/css";
 import { themeVars } from "./theme.css";
 
 /* CSS Variables */
-globalStyle(":root", {
-  vars: {
-    "--max-width": "1200px",
-  },
-});
+// globalStyle(":root", {
+//   vars: {
+//     "--max-width": "800px",
+//   },
+// });
 
 /* HTML & Body Styles */
 globalStyle("html, body", {
@@ -31,12 +31,23 @@ export const rootStyle = style({
   width: "100%",
   height: "100dvh",
   margin: "0 auto",
-  maxWidth: "var(--max-width)",
   backgroundColor: themeVars.color.black["90_bg"],
   color: themeVars.color.white[100],
 });
 
 export const globalLayout = style({
+  display: "flex",
   width: "100%",
   height: "100%",
+  justifyContent: "center",
+});
+
+export const maxWidth = style({
+  maxWidth: "800px",
+  width: "100%",
+});
+
+export const mainLayout = style({
+  maxWidth: "1200px",
+  width: "100%",
 });

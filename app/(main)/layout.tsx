@@ -1,16 +1,14 @@
+import { mainLayout } from "@/shared/styles/base/global.css";
+import NavbarMain from "@/shared/ui/navbar/navbar-main";
 import type { ReactNode } from "react";
 
-import NavbarMain from "@/shared/ui/navbar/navbar-main";
-
-export default function MainLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
+const MainLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div>
+    <div className={mainLayout}>
       <NavbarMain />
       {children}
     </div>
   );
-}
+};
+
+export default MainLayout;
