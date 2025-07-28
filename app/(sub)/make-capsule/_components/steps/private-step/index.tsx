@@ -1,7 +1,7 @@
 import TitleCaption from "@/app/(sub)/make-capsule/_components/title-caption";
 import LettieImage from "@/shared/assets/character/lettie_animate.png";
 import Button from "@/shared/ui/button";
-import RevealSectionMotion from "@/shared/ui/motion/reveal-section-motion";
+import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import Image from "next/image";
 import * as styles from "./private-step.css";
 
@@ -12,7 +12,7 @@ interface Props {
 const PrivateStep = ({ handleNextStep }: Props) => {
   return (
     <div className={styles.container}>
-      <RevealSectionMotion>
+      <RevealMotion>
         <TitleCaption
           title={
             <span>
@@ -22,7 +22,7 @@ const PrivateStep = ({ handleNextStep }: Props) => {
             </span>
           }
         />
-      </RevealSectionMotion>
+      </RevealMotion>
       <Image
         src={LettieImage}
         alt="lettie"
@@ -31,7 +31,7 @@ const PrivateStep = ({ handleNextStep }: Props) => {
         className={styles.lettieImage}
       />
       <div className={styles.radioSection}>
-        <RevealSectionMotion delay={0.8}>
+        <RevealMotion delay={0.8}>
           <div className={styles.radioList}>
             <input type="radio" id="public" className={styles.radio} />
             <label htmlFor="public">
@@ -50,16 +50,16 @@ const PrivateStep = ({ handleNextStep }: Props) => {
               </p>
             </label>
           </div>
-        </RevealSectionMotion>
+        </RevealMotion>
       </div>
       <div className={styles.buttonContainer}>
-        <RevealSectionMotion delay={1.2}>
+        <RevealMotion delay={1.2}>
           <Button
             variant="primary"
             text="캡슐 만들기"
             onClick={() => handleNextStep("complete")}
           />
-        </RevealSectionMotion>
+        </RevealMotion>
       </div>
     </div>
   );

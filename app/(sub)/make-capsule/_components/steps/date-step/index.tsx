@@ -1,7 +1,7 @@
 import TitleCaption from "@/app/(sub)/make-capsule/_components/title-caption";
 import Lettie from "@/shared/assets/character/lettie_animate.png";
 import Button from "@/shared/ui/button";
-import RevealSectionMotion from "@/shared/ui/motion/reveal-section-motion";
+import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import Image from "next/image";
 import * as styles from "./date-step.css";
 
@@ -12,7 +12,7 @@ interface Props {
 const DateStep = ({ handleNextStep }: Props) => {
   return (
     <div className={styles.container}>
-      <RevealSectionMotion>
+      <RevealMotion>
         <TitleCaption
           title={
             <span>
@@ -22,7 +22,7 @@ const DateStep = ({ handleNextStep }: Props) => {
             </span>
           }
         />
-      </RevealSectionMotion>
+      </RevealMotion>
       <Image
         className={styles.lettieImage}
         src={Lettie}
@@ -31,7 +31,7 @@ const DateStep = ({ handleNextStep }: Props) => {
         height={340}
       />
       <div className={styles.inputSectionWrapper}>
-        <RevealSectionMotion delay={0.8}>
+        <RevealMotion delay={0.8}>
           <div className={styles.inputContainer}>
             <p className={styles.inputCaption}>타임캡슐 오픈일</p>
             <div className={styles.inputWrapper}>
@@ -49,17 +49,17 @@ const DateStep = ({ handleNextStep }: Props) => {
               <input type="date" id="date" className={styles.inputStyle} />
             </label>
           </div>
-        </RevealSectionMotion>
+        </RevealMotion>
       </div>
 
       <div className={styles.buttonContainer}>
-        <RevealSectionMotion delay={1.2}>
+        <RevealMotion delay={1.2}>
           <Button
             variant="primary"
             text="다음"
             onClick={() => handleNextStep("private")}
           />
-        </RevealSectionMotion>
+        </RevealMotion>
       </div>
     </div>
   );

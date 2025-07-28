@@ -3,7 +3,7 @@
 import TitleCaption from "@/app/(sub)/make-capsule/_components/title-caption";
 import Lettie from "@/shared/assets/character/lettie_animate.png";
 import Button from "@/shared/ui/button";
-import RevealSectionMotion from "@/shared/ui/motion/reveal-section-motion";
+import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import Image from "next/image";
 
 import * as styles from "./intro-step.css";
@@ -15,7 +15,7 @@ interface Props {
 const IntroStep = ({ handleNextStep }: Props) => {
   return (
     <main className={styles.container}>
-      <RevealSectionMotion>
+      <RevealMotion>
         <TitleCaption
           title={
             <span>
@@ -25,7 +25,7 @@ const IntroStep = ({ handleNextStep }: Props) => {
             </span>
           }
         />
-      </RevealSectionMotion>
+      </RevealMotion>
       <Image
         className={styles.lettieImage}
         src={Lettie}
@@ -33,7 +33,7 @@ const IntroStep = ({ handleNextStep }: Props) => {
         width={340}
         height={340}
       />
-      <RevealSectionMotion delay={0.8}>
+      <RevealMotion delay={0.8}>
         <input
           type="text"
           placeholder="타임캡슐 이름"
@@ -44,8 +44,8 @@ const IntroStep = ({ handleNextStep }: Props) => {
           placeholder="내 타임캡슐을 소개해보세요."
           className={styles.descriptionInput}
         />
-      </RevealSectionMotion>
-      <RevealSectionMotion delay={1.2}>
+      </RevealMotion>
+      <RevealMotion delay={1.2}>
         <div className={styles.buttonContainer}>
           <Button
             variant="primary"
@@ -53,7 +53,7 @@ const IntroStep = ({ handleNextStep }: Props) => {
             onClick={() => handleNextStep("date")}
           />
         </div>
-      </RevealSectionMotion>
+      </RevealMotion>
     </main>
   );
 };

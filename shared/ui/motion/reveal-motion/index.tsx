@@ -6,19 +6,19 @@ const fadeUpVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-interface RevealSectionMotionProps {
+interface Props {
   children: ReactNode;
   delay?: number;
   duration?: number;
   bounce?: number;
 }
 
-const RevealSectionMotion = ({
+const RevealMotion = ({
   children,
   delay = 0,
   duration = 1.5,
   bounce = 0.6,
-}: RevealSectionMotionProps) => (
+}: Props) => (
   <motion.div
     initial="hidden"
     animate="visible"
@@ -34,4 +34,4 @@ const RevealSectionMotion = ({
   </motion.div>
 );
 
-export default RevealSectionMotion;
+export default RevealMotion;
