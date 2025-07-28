@@ -4,7 +4,12 @@ import Button from "@/shared/ui/button";
 import RevealSectionMotion from "@/shared/ui/motion/reveal-section-motion";
 import Image from "next/image";
 import * as styles from "./private-step.css";
-const PrivateStep = () => {
+
+interface Props {
+  handleNextStep: (step: string) => void;
+}
+
+const PrivateStep = ({ handleNextStep }: Props) => {
   return (
     <div className={styles.container}>
       <RevealSectionMotion>
@@ -49,7 +54,11 @@ const PrivateStep = () => {
       </div>
       <div className={styles.buttonContainer}>
         <RevealSectionMotion delay={1.2}>
-          <Button variant="primary" text="캡슐 만들기" />
+          <Button
+            variant="primary"
+            text="캡슐 만들기"
+            onClick={() => handleNextStep("complete")}
+          />
         </RevealSectionMotion>
       </div>
     </div>

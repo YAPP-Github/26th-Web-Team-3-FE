@@ -5,7 +5,11 @@ import RevealSectionMotion from "@/shared/ui/motion/reveal-section-motion";
 import Image from "next/image";
 import * as styles from "./date-step.css";
 
-const DateStep = () => {
+interface Props {
+  handleNextStep: (step: string) => void;
+}
+
+const DateStep = ({ handleNextStep }: Props) => {
   return (
     <div className={styles.container}>
       <RevealSectionMotion>
@@ -50,7 +54,11 @@ const DateStep = () => {
 
       <div className={styles.buttonContainer}>
         <RevealSectionMotion delay={1.2}>
-          <Button variant="primary" text="다음" />
+          <Button
+            variant="primary"
+            text="다음"
+            onClick={() => handleNextStep("private")}
+          />
         </RevealSectionMotion>
       </div>
     </div>

@@ -8,7 +8,11 @@ import Image from "next/image";
 
 import * as styles from "./intro-step.css";
 
-const IntroStep = () => {
+interface Props {
+  handleNextStep: (step: string) => void;
+}
+
+const IntroStep = ({ handleNextStep }: Props) => {
   return (
     <main className={styles.container}>
       <RevealSectionMotion>
@@ -43,7 +47,11 @@ const IntroStep = () => {
       </RevealSectionMotion>
       <RevealSectionMotion delay={1.2}>
         <div className={styles.buttonContainer}>
-          <Button variant="primary" text="다음" />
+          <Button
+            variant="primary"
+            text="다음"
+            onClick={() => handleNextStep("date")}
+          />
         </div>
       </RevealSectionMotion>
     </main>
