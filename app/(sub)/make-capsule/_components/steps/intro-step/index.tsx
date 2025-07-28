@@ -15,6 +15,16 @@ const IntroStep = () => {
         width={340}
         height={340}
       />
+      <input
+        type="text"
+        placeholder="타임캡슐 이름"
+        className={styles.titleInput}
+      />
+      <input
+        type="text"
+        placeholder="내 타임캡슐을 소개해보세요."
+        className={styles.descriptionInput}
+      />
     </main>
   );
 };
