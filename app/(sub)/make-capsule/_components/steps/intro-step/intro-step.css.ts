@@ -8,7 +8,8 @@ export const container = style({
   alignItems: "center",
   justifyContent: "center",
   gap: "1.2rem",
-  paddingTop: "1.6rem",
+  width: "45rem",
+  padding: "1.6rem",
   ...screen.md({
     paddingTop: "3.6rem",
   }),
@@ -66,4 +67,12 @@ export const descriptionInput = style({
       border: `1px blur ${themeVars.color.white[100]}`,
     },
   },
+});
+
+export const buttonContainer = style({
+  display: "flex",
+  justifyContent: "center",
+  width: "41.8rem",
+  paddingTop: "0.8rem",
+  paddingBottom: "14.5rem",
 });

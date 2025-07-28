@@ -23,7 +23,9 @@ const MakeCapsule = () => {
           </button>
         )}
       />
-      <IntroStep />
+      <div className={styles.container}>
+        <IntroStep />
+      </div>
     </>
   );
 };

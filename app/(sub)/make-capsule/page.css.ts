@@ -6,3 +6,10 @@ export const closeButton = style({
   color: themeVars.color.white[40],
   padding: "0.7rem 1.4rem",
 });
+
+export const container = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+});
