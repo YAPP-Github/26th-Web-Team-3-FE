@@ -3,7 +3,7 @@
 import NavbarDetail from "@/shared/ui/navbar/navbar-detail";
 import PopupCancelCreation from "@/shared/ui/popup/popup-cancel-creation";
 import { overlay } from "overlay-kit";
-import DateStep from "./_components/steps/date-step";
+import PrivateStep from "./_components/steps/private-step";
 import * as styles from "./page.css";
 
 const MakeCapsule = () => {
@@ -25,7 +25,8 @@ const MakeCapsule = () => {
       />
       <div className={styles.container}>
         {/* <IntroStep /> */}
-        <DateStep />
+        {/* <DateStep /> */}
+        <PrivateStep />
       </div>
     </>
   );
