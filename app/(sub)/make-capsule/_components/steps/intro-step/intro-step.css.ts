@@ -53,6 +53,7 @@ export const descriptionInput = style({
   borderRadius: "12px",
   ...themeVars.text.F17,
   paddingLeft: "2rem",
+  marginTop: "1.2rem",
   color: themeVars.color.white[100],
   background: themeVars.color.gradient.darkgray_op,
   paddingBottom: "4rem",
