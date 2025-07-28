@@ -1,4 +1,4 @@
-import AddCapsuleButton from "@/shared/ui/add-capsule-button";
+import AddCapsuleButton from "@/app/(sub)/make-capsule/_components/add-capsule-button";
 
 const Explore = () => {
   return (
