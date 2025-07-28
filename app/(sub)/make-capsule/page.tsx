@@ -3,11 +3,12 @@
 import NavbarDetail from "@/shared/ui/navbar/navbar-detail";
 import PopupCancelCreation from "@/shared/ui/popup/popup-cancel-creation";
 import { overlay } from "overlay-kit";
-
+import IntroStep from "./_components/steps/intro-step";
 import * as styles from "./page.css";
+
 const MakeCapsule = () => {
   return (
-    <div>
+    <>
       <NavbarDetail
         renderRight={() => (
           <button
@@ -22,7 +23,8 @@ const MakeCapsule = () => {
           </button>
         )}
       />
-    </div>
+      <IntroStep />
+    </>
   );
 };
 
