@@ -12,7 +12,15 @@ const IntroStep = () => {
   return (
     <main className={styles.container}>
       <RevealSectionMotion>
-        <TitleCaption />
+        <TitleCaption
+          title={
+            <span>
+              타임캡슐의 이름을
+              <br />
+              정해주세요.
+            </span>
+          }
+        />
       </RevealSectionMotion>
       <Image
         className={styles.lettieImage}

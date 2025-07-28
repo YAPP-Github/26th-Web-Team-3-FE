@@ -1,12 +1,12 @@
+import type { ReactElement } from "react";
 import * as styles from "./title-caption.css";
 
-const TitleCaption = () => {
-  return (
-    <h1 className={styles.titleCaption}>
-      {`타임캡슐의 이름을
-정해주세요`}
-    </h1>
-  );
+interface Props {
+  title: ReactElement;
+}
+
+const TitleCaption = ({ title }: Props) => {
+  return <h1 className={styles.titleCaption}>{title}</h1>;
 };
 
 export default TitleCaption;

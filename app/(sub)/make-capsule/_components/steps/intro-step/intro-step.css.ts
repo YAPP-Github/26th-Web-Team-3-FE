@@ -74,6 +74,6 @@ export const buttonContainer = style({
   display: "flex",
   justifyContent: "center",
   width: "41.8rem",
-  paddingTop: "0.8rem",
+  paddingTop: "1.4rem",
   paddingBottom: "14.5rem",
 });

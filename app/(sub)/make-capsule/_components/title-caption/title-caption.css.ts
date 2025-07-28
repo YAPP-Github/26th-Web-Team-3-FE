@@ -3,6 +3,5 @@ import { style } from "@vanilla-extract/css";
 
 export const titleCaption = style({
   ...themeVars.text.H2,
-  whiteSpace: "pre-line",
   textAlign: "center",
 });
