@@ -75,5 +75,8 @@ export const buttonContainer = style({
   justifyContent: "center",
   width: "41.8rem",
   paddingTop: "1.4rem",
-  paddingBottom: "14.5rem",
+  paddingBottom: "11.7rem",
+  ...screen.md({
+    paddingBottom: "14.5rem",
+  }),
 });

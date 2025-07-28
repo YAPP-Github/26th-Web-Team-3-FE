@@ -76,5 +76,8 @@ export const inputStyle = style({
 export const buttonContainer = style({
   width: "100%",
   paddingTop: "4rem",
-  paddingBottom: "16.1rem",
+  paddingBottom: "13.2rem",
+  ...screen.md({
+    paddingBottom: "16.1rem",
+  }),
 });

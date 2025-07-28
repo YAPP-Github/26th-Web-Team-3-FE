@@ -3,6 +3,7 @@ import * as styles from "./title-caption.css";
 
 interface Props {
   title: ReactElement;
+  className?: string;
 }
 
 const TitleCaption = ({ title }: Props) => {

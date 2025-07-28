@@ -18,7 +18,6 @@ const PrivateStep = () => {
           }
         />
       </RevealSectionMotion>
-
       <Image
         src={LettieImage}
         alt="lettie"
