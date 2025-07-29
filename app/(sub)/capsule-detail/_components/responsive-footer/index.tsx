@@ -6,11 +6,11 @@ import ShareIcon from "@/shared/assets/icon/share.svg";
 import Button from "@/shared/ui/button";
 import Chip from "@/shared/ui/chip";
 
-
-import { overlay } from "overlay-kit";
 import WriteModal from "../write-modal";
 
 import ShakeYMotion from "@/shared/ui/motion/shakeY-motion";
+
+import { overlay } from "overlay-kit";
 
 import * as styles from "./responsive-footer.css";
 
