@@ -6,7 +6,7 @@ export const container = style({
   alignItems: "center",
   justifyContent: "space-between",
   padding: "1rem",
-  backgroundColor: themeVars.color.gradient.header_bg,
+  background: themeVars.color.gradient.header_bg,
   position: "fixed",
   top: 0,
   left: "50%",

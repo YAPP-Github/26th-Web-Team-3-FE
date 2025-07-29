@@ -30,8 +30,8 @@ const DateStep = ({ handleNextStep }: Props) => {
         width={340}
         height={340}
       />
-      <div className={styles.inputSectionWrapper}>
-        <RevealMotion delay={0.8}>
+      <RevealMotion delay={0.8}>
+        <div className={styles.inputSectionWrapper}>
           <div className={styles.inputContainer}>
             <p className={styles.inputCaption}>타임캡슐 오픈일</p>
             <div className={styles.inputWrapper}>
@@ -49,8 +49,8 @@ const DateStep = ({ handleNextStep }: Props) => {
               <input type="date" id="date" className={styles.inputStyle} />
             </label>
           </div>
-        </RevealMotion>
-      </div>
+        </div>
+      </RevealMotion>
 
       <div className={styles.buttonContainer}>
         <RevealMotion delay={1.2}>

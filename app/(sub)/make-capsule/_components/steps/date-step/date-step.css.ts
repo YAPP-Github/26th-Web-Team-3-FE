@@ -27,6 +27,9 @@ export const lettieImage = style({
 });
 
 export const inputSectionWrapper = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: "1.6rem",
   width: "100%",
 });
 
@@ -56,7 +59,7 @@ export const inputStyle = style({
   ...themeVars.text.F17,
   color: themeVars.color.white[30],
   backgroundColor: themeVars.color.white[5],
-  border: `1px blur ${themeVars.color.white[30]}`,
+  border: `1px ${themeVars.color.white[30]}`,
   borderRadius: "12px",
   width: "100%",
   height: "5rem",
