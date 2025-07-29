@@ -1,6 +1,6 @@
 import UpdownIcon from "@/shared/assets/icon/updown.svg";
-import Chip from "@/shared/ui/chip";
 import Dropdown from "@/shared/ui/dropdown";
+import TabButton from "@/shared/ui/tab-button";
 import * as styles from "./select-tab-section.css";
 
 interface Props {
@@ -25,14 +25,12 @@ const SelectTabSection = ({ onSelect, selectedTab }: Props) => {
       </Dropdown>
       <div className={styles.chipWrapper}>
         {tabOptions.map((option) => (
-          <Chip
+          <TabButton
             key={option}
-            variant="gray"
-            className={styles.chip({ selected: selectedTab === option })}
+            text={option}
+            selected={selectedTab === option}
             onClick={() => onSelect(option)}
-          >
-            {option}
-          </Chip>
+          />
         ))}
       </div>
     </div>

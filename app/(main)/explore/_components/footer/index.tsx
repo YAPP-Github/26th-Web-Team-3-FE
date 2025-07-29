@@ -1,5 +1,5 @@
 import { PATH } from "@/shared/constants/path";
-import Chip from "@/shared/ui/chip";
+import TabButton from "@/shared/ui/tab-button";
 import Link from "next/link";
 import * as styles from "./footer.css";
 
@@ -14,9 +14,7 @@ const Footer = () => {
           </p>
         </div>
         <Link href={PATH.MAKE_CAPSULE}>
-          <Chip variant="gray" className={styles.button}>
-            타임캡슐 만들기
-          </Chip>
+          <TabButton text="타임캡슐 만들기" />
         </Link>
       </footer>
     </div>

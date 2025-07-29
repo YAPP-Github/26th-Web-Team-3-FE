@@ -1,30 +1,17 @@
 import { themeVars } from "@/shared/styles/base/theme.css";
-import { screen } from "@/shared/styles/tokens/screen";
-import { style } from "@vanilla-extract/css";
 import { recipe } from "@vanilla-extract/recipes";
 
-export const chipContainer = style({
-  display: "flex",
-  gap: "1.2rem",
-  flexDirection: "row",
-  justifyContent: "center",
-  alignItems: "center",
-  position: "relative",
-});
-
-export const chipWrapper = style({
-  display: "flex",
-  gap: "1.2rem",
-  flexDirection: "row",
-  justifyContent: "center",
-});
-
-export const chip = recipe({
+export const tabButton = recipe({
   base: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     ...themeVars.text.F15,
     padding: "1.2rem",
     height: "3.6rem",
     cursor: "pointer",
+    borderRadius: "4px",
+    backgroundColor: themeVars.color.white[5],
     selectors: {
       "&:hover": {
         backgroundColor: themeVars.color.white[15],
@@ -45,16 +32,4 @@ export const chip = recipe({
       },
     },
   },
-});
-
-export const dropdown = style({
-  position: "absolute",
-  right: "0",
-  top: "100%",
-  transform: "translateY(-180%)",
-  marginRight: "1rem",
-  ...screen.md({
-    top: "100%",
-    transform: "translateY(-90%)",
-  }),
 });

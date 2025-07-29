@@ -6,6 +6,7 @@ import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import { useState } from "react";
 import CardContainer from "./_components/card-container";
 import Footer from "./_components/footer";
+
 const Explore = () => {
   const [selected, setSelected] = useState<string>("전체");
 
