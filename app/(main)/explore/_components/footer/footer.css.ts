@@ -26,13 +26,3 @@ export const footerDescription = style({
   ...themeVars.text.B2,
   color: themeVars.color.white[40],
 });
-
-export const button = style({
-  padding: "0.6rem 1rem",
-  height: "3.6rem",
-  selectors: {
-    "&:hover": {
-      backgroundColor: themeVars.color.white[15],
-    },
-  },
-});

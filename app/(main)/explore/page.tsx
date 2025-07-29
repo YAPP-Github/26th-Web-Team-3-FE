@@ -15,7 +15,7 @@ const Explore = () => {
   };
 
   return (
-    <div>
+    <>
       <RevealMotion>
         <TitleSection />
       </RevealMotion>
@@ -23,7 +23,7 @@ const Explore = () => {
       <AddCapsuleButton />
       <CardContainer />
       <Footer />
-    </div>
+    </>
   );
 };
 

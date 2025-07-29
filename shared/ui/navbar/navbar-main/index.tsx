@@ -1,6 +1,6 @@
 "use client";
-
 import SearchIcon from "@/shared/assets/icon/search.svg";
+import Logo from "@/shared/assets/logo/logo_symbol_wordmark.svg";
 import { PATH } from "@/shared/constants/path";
 import { cn } from "@/shared/utils/cn";
 import Link from "next/link";
@@ -23,7 +23,9 @@ const NavbarMain = () => {
           isMenuOpen ? styles.navHomeStyleOpen : styles.navHomeStyleClose,
         )}
       >
-        <div>logo</div>
+        <div>
+          <Logo />
+        </div>
         <div className={styles.navWrapper}>
           <ul className={styles.navList}>
             <li>
