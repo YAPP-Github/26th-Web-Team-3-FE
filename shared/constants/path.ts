@@ -6,6 +6,8 @@ export const PATH = {
 
   SETTING: "/setting",
 
+  SEARCH: "/search",
+
   // capsule
   MAKE_CAPSULE: "/make-capsule",
 } as const;
