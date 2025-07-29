@@ -1,18 +1,15 @@
+import { themeVars } from "@/shared/styles/base/theme.css";
 import { colorTheme } from "@/shared/styles/tokens/color";
-import { screenBreakpoints } from "@/shared/styles/tokens/screen";
-import { textTheme } from "@/shared/styles/tokens/text";
+import { screen } from "@/shared/styles/tokens/screen";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 export const cardBase = style({
-  minWidth: "16rem",
-  width: "100%",
   height: "24.5rem",
   borderRadius: "16px",
   display: "flex",
   flexDirection: "column",
   overflow: "hidden",
   cursor: "pointer",
-
   transition: "all 0.3s ease",
 
   ":hover": {
@@ -20,30 +17,18 @@ export const cardBase = style({
     transform: "scale(1) rotate(0deg) skew(0deg, 0deg) translate(0px, -15px)",
   },
 
-  "@media": {
-    [screenBreakpoints.md]: {
-      height: "30rem",
-      width: "27.7rem",
-      minWidth: "24rem",
-    },
-  },
+  ...screen.md({
+    height: "30rem",
+  }),
 });
 
 export const chipClass = style({
-  fontSize: textTheme.F12.fontSize,
-  fontWeight: textTheme.F12.fontWeight,
-  lineHeight: textTheme.F12.lineHeight,
-  letterSpacing: textTheme.F12.letterSpacing,
+  ...themeVars.text.F12,
   height: "1.9rem",
-  "@media": {
-    [screenBreakpoints.md]: {
-      fontSize: textTheme.F14.fontSize,
-      fontWeight: textTheme.F14.fontWeight,
-      lineHeight: textTheme.F14.lineHeight,
-      letterSpacing: textTheme.F14.letterSpacing,
-      height: "2.25rem",
-    },
-  },
+  ...screen.md({
+    ...themeVars.text.F14,
+    height: "2.25rem",
+  }),
 });
 
 export const cardContentWrapper = style({
@@ -54,12 +39,10 @@ export const cardContentWrapper = style({
   padding: "1.4rem",
   gap: "0.7rem",
 
-  "@media": {
-    [screenBreakpoints.md]: {
-      padding: "2rem",
-      gap: "0.8rem",
-    },
-  },
+  ...screen.md({
+    padding: "2rem",
+    gap: "0.8rem",
+  }),
 });
 
 export const cardIcon = style({
@@ -102,28 +85,24 @@ export const cardTitle = style({
   whiteSpace: "pre-wrap",
   wordWrap: "break-word",
   wordBreak: "break-word",
-  ...textTheme.F17,
+  ...themeVars.text.F17,
   color: colorTheme.white[85],
 
-  "@media": {
-    [screenBreakpoints.md]: {
-      ...textTheme.F22,
-    },
-  },
+  ...screen.md({
+    ...themeVars.text.F22,
+  }),
 });
 
 export const cardDescription = style({
   whiteSpace: "pre-wrap",
-  ...textTheme.F14,
+  ...themeVars.text.F14,
   color: colorTheme.white[60],
   gap: "0.4rem",
   display: "flex",
   flexDirection: "row",
 
-  "@media": {
-    [screenBreakpoints.md]: {
-      ...textTheme.F15,
-      color: colorTheme.white[50],
-    },
-  },
+  ...screen.md({
+    ...themeVars.text.F15,
+    color: colorTheme.white[50],
+  }),
 });
