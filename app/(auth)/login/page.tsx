@@ -23,11 +23,19 @@ const LoginPage = () => {
         <p className={styles.caption}>로그인하고 모든 기능을 사용해보세요!</p>
         <Image src={LettieImage} alt="Lettie" className={styles.lettieImage} />
         <div className={styles.buttonContainer}>
-          <button className={styles.button}>
+          <button
+            className={styles.button}
+            type="button"
+            aria-label="네이버 계정으로 계속하기"
+          >
             <NaverIcon />
             네이버 계정으로 계속하기
           </button>
-          <button className={styles.button}>
+          <button
+            className={styles.button}
+            type="button"
+            aria-label="구글 계정으로 계속하기"
+          >
             <GoogleIcon />
             구글 계정으로 계속하기
           </button>
