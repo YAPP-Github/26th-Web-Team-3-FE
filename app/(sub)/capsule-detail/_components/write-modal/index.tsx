@@ -13,19 +13,25 @@ import Modal from "../modal";
 import * as styles from "./write-modal.css";
 
 interface WriteModalProps {
-  isOpen: boolean;
-  onClose: () => void;
+  capsuleTitle: string;
   remainingTime: {
     days: number;
     hours: number;
     minutes: number;
   };
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-const WriteModal = ({ isOpen, onClose, remainingTime }: WriteModalProps) => {
+const WriteModal = ({
+  capsuleTitle,
+  remainingTime,
+  isOpen,
+  onClose,
+}: WriteModalProps) => {
   const [content, setContent] = useState("");
 
-  const handlePopupOpen = () => {
+  const handleSubmitLetter = () => {
     overlay.open(({ isOpen, close }) => (
       <PopupConfirmLetter
         openDate="2025. 06. 25"
@@ -35,7 +41,7 @@ const WriteModal = ({ isOpen, onClose, remainingTime }: WriteModalProps) => {
     ));
   };
 
-  const handlePopupClose = () => {
+  const handleCloseWithWarning = () => {
     overlay.open(({ isOpen, close }) => (
       <PopupWarningLetter isOpen={isOpen} close={close} />
     ));
@@ -64,10 +70,13 @@ const WriteModal = ({ isOpen, onClose, remainingTime }: WriteModalProps) => {
         </div>
 
         <div className={styles.header}>
-          <button className={styles.closeButton} onClick={handlePopupClose}>
+          <button
+            className={styles.closeButton}
+            onClick={handleCloseWithWarning}
+          >
             닫기
           </button>
-          <button className={styles.title} onClick={handlePopupOpen}>
+          <button className={styles.title} onClick={handleSubmitLetter}>
             편지담기
           </button>
         </div>
@@ -75,7 +84,7 @@ const WriteModal = ({ isOpen, onClose, remainingTime }: WriteModalProps) => {
         <div className={styles.content}>
           <RevealMotion delay={0.3}>
             <div className={styles.capsuleInfo}>
-              <h3 className={styles.capsuleTitle}>비 오는 날의 타임캡슐</h3>
+              <h3 className={styles.capsuleTitle}>{capsuleTitle}</h3>
               <div className={styles.timeInfo}>
                 <p className={styles.timeCaption}>마감까지</p>
                 <motion.div
