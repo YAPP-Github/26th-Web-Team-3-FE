@@ -6,8 +6,12 @@ interface Prop extends ComponentProps<"button"> {
   selected?: boolean;
 }
 
-const TabButton = ({ text, selected }: Prop) => {
-  return <button className={styles.tabButton({ selected })}>{text}</button>;
+const TabButton = ({ text, selected, ...props }: Prop) => {
+  return (
+    <button className={styles.tabButton({ selected })} {...props}>
+      {text}
+    </button>
+  );
 };
 
 export default TabButton;
