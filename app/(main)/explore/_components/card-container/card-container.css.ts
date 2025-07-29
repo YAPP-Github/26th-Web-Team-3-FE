@@ -1,21 +1,21 @@
-import { screen } from "@/shared/styles/tokens/screen";
 import { style } from "@vanilla-extract/css";
 
 export const cardContainer = style({
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(20rem, 1fr))",
   gap: "1rem",
   width: "100%",
   padding: "1rem",
   paddingTop: "2.3rem",
   margin: "0 auto",
-  ...screen.sm({
-    gridTemplateColumns: "repeat(2, 1fr)",
-  }),
-  ...screen.md({
-    gridTemplateColumns: "repeat(3, 1fr)",
-  }),
-  ...screen.lg({
-    gridTemplateColumns: "repeat(4, 1fr)",
-  }),
+  gridTemplateColumns: "repeat(2, 1fr)",
+
+  // 정확한 반응형 적용하기 위해 미디어 쿼리 직접 사용
+  "@media": {
+    "(min-width: 768px)": {
+      gridTemplateColumns: "repeat(3, 1fr)",
+    },
+    "(min-width: 1024px)": {
+      gridTemplateColumns: "repeat(4, 1fr)",
+    },
+  },
 });

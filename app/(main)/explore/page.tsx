@@ -5,7 +5,7 @@ import AddCapsuleButton from "@/app/(sub)/make-capsule/_components/add-capsule-b
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import { useState } from "react";
 import CardContainer from "./_components/card-container";
-
+import Footer from "./_components/footer";
 const Explore = () => {
   const [selected, setSelected] = useState<string>("전체");
 
@@ -21,6 +21,7 @@ const Explore = () => {
       <SelectTabSection onSelect={handleSelect} selectedTab={selected} />
       <AddCapsuleButton />
       <CardContainer />
+      <Footer />
     </div>
   );
 };
