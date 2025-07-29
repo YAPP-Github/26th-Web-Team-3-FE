@@ -1,6 +1,5 @@
 import { themeVars } from "@/shared/styles/base/theme.css";
 import Popup from "@/shared/ui/popup";
-import PopupCancelCreation from "@/shared/ui/popup/popup-cancel-creation";
 import PopupConfirmLetter from "@/shared/ui/popup/popup-confirm-letter";
 import PopupExitLettie from "@/shared/ui/popup/popup-exit-lettie";
 import PopupIntro from "@/shared/ui/popup/popup-intro";
@@ -168,31 +167,6 @@ export const WarningLetter: Story = {
     docs: {
       description: {
         story: "편지 관련 경고를 표시하는 팝업입니다.",
-      },
-    },
-  },
-};
-
-export const CancelCreation: Story = {
-  render: () => (
-    <button
-      style={{
-        padding: "10px 20px",
-        borderRadius: "12px",
-      }}
-      onClick={() => {
-        overlay.open(({ isOpen, close }) => (
-          <PopupCancelCreation isOpen={isOpen} close={close} />
-        ));
-      }}
-    >
-      Open Popup
-    </button>
-  ),
-  parameters: {
-    docs: {
-      description: {
-        story: "만들기를 중단하는 팝업입니다.",
       },
     },
   },
