@@ -42,9 +42,9 @@ const NavbarMain = () => {
               </Link>
             </li>
           </ul>
-          <button className={styles.searchButtonStyle}>
+          <Link href={PATH.SEARCH} className={styles.searchButtonStyle}>
             <SearchIcon width={"2rem"} height={"2rem"} />
-          </button>
+          </Link>
           <HamburgerMenuButton
             isMenuOpen={isMenuOpen}
             onClick={handleMenuClick}
