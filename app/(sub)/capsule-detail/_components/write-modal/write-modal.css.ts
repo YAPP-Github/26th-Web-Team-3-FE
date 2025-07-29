@@ -1,5 +1,5 @@
 import { themeVars } from "@/shared/styles/base/theme.css";
-import { screen, screenBreakpoints } from "@/shared/styles/tokens/screen";
+import { screen } from "@/shared/styles/tokens/screen";
 import { style } from "@vanilla-extract/css";
 
 export const container = style({
@@ -12,13 +12,11 @@ export const container = style({
 
   borderRadius: 0,
 
-  "@media": {
-    [screenBreakpoints.md]: {
-      width: "60rem",
-      maxWidth: "100vw",
-      height: "100vh",
-    },
-  },
+  ...screen.md({
+    width: "60rem",
+    maxWidth: "100vw",
+    height: "100vh",
+  }),
 });
 
 export const sprinkleWrapper = style({
@@ -29,11 +27,9 @@ export const sprinkleWrapper = style({
   bottom: 0,
   display: "block",
 
-  "@media": {
-    [screenBreakpoints.md]: {
-      display: "none",
-    },
-  },
+  ...screen.md({
+    display: "none",
+  }),
 });
 
 export const header = style({
