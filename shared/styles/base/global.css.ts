@@ -29,7 +29,7 @@ export const rootStyle = style({
   display: "flex",
   flexDirection: "column",
   width: "100%",
-  height: "100dvh",
+  height: "100svh",
   margin: "0 auto",
   backgroundColor: themeVars.color.black["90_bg"],
   color: themeVars.color.white[100],
