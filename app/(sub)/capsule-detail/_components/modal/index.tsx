@@ -3,7 +3,7 @@
 import type React from "react";
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
-import { modalStyles } from "./modal.css";
+import * as styles from "./modal.css";
 
 interface ModalProps {
   isOpen: boolean;
@@ -48,7 +48,7 @@ export default function Modal({
 
   return createPortal(
     <div
-      className={`${modalStyles.overlay} ${overlayClassName || ""}`}
+      className={`${styles.overlay} ${overlayClassName || ""}`}
       onClick={handleOverlayClick}
       onKeyDown={(event) => {
         if (
@@ -62,8 +62,8 @@ export default function Modal({
       role="dialog"
       aria-modal="true"
     >
-      <div className={`${modalStyles.content} ${contentClassName || ""}`}>
-        <div className={modalStyles.body}>{children}</div>
+      <div className={`${styles.content} ${contentClassName || ""}`}>
+        <div className={styles.body}>{children}</div>
       </div>
     </div>,
     document.body,
