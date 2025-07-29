@@ -2,6 +2,7 @@ import LettieImage from "@/shared/assets/character/lettie_animate.png";
 import GoogleIcon from "@/shared/assets/icon/google.svg";
 import NaverIcon from "@/shared/assets/icon/naver.svg";
 import LogoImage from "@/shared/assets/logo/logo_symbol_wordmark.svg";
+
 import { maxWidth } from "@/shared/styles/base/global.css";
 
 import Image from "next/image";

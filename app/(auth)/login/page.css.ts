@@ -2,6 +2,14 @@ import { themeVars } from "@/shared/styles/base/theme.css";
 import { screen } from "@/shared/styles/tokens/screen";
 import { style } from "@vanilla-extract/css";
 
+export const container = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  width: "100%",
+  justifyContent: "center",
+});
+
 export const header = style({
   display: "flex",
   justifyContent: "center",
@@ -14,7 +22,6 @@ export const contentsContainer = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  width: "100%",
   marginTop: "4.8rem",
   gap: "1rem",
 });
@@ -47,6 +54,7 @@ export const buttonContainer = style({
   width: "100%",
   gap: "1.6rem",
   marginBottom: "10.8rem",
+  padding: "1.6rem",
 });
 
 export const button = style({
