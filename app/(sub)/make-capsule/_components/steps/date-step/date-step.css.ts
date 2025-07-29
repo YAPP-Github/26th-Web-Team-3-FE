@@ -8,7 +8,8 @@ export const container = style({
   alignItems: "center",
   justifyContent: "center",
   gap: "1.2rem",
-  width: "45rem",
+  maxWidth: "48rem",
+  width: "100%",
   padding: "1.6rem",
   ...screen.md({
     paddingTop: "3.6rem",
@@ -30,7 +31,9 @@ export const inputSectionWrapper = style({
   display: "flex",
   flexDirection: "column",
   gap: "1.6rem",
-  width: "100%",
+  width: "48rem",
+  padding: "0 1.6rem",
+  maxWidth: "48rem",
 });
 
 export const inputContainer = style({
