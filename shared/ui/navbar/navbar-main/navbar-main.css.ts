@@ -9,7 +9,7 @@ export const navHomeStyle = style({
   maxWidth: "var(--max-width)",
   width: "100%",
   height: "6.4rem",
-  padding: "1rem",
+  padding: "1rem 1rem 1rem 2rem",
   background: themeVars.color.gradient.header_bg,
   zIndex: themeVars.zIndex.header.content,
 });
@@ -80,6 +80,11 @@ export const menuContainerOpen = style({
 
 export const navHomeStyleOpen = style({
   background: themeVars.color.black["90_bg"],
+});
+
+export const navHomeStyleClose = style({
+  cursor: "default",
+  zIndex: -1,
 });
 
 export const menuItem = style({
