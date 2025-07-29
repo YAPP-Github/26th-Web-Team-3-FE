@@ -33,6 +33,7 @@ const ResponsiveFooter = ({ remainingTime }: Props) => {
   const handleWriteButtonClick = () => {
     overlay.open(({ isOpen, close }) => (
       <WriteModal
+        capsuleTitle="비 오는 날의 타임캡슐"
         isOpen={isOpen}
         onClose={close}
         remainingTime={remainingTime}
