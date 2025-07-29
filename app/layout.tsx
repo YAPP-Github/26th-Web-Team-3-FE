@@ -13,6 +13,9 @@ import SprinkleContainer from "@/shared/ui/sprinkle-container";
 export const metadata: Metadata = {
   title: "Lettie",
   description: "그룹 타임캡슐 웹 플랫폼",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({

@@ -7,6 +7,8 @@ export const wrapper = style({
   width: "100%",
   marginTop: "2.5rem",
   background: themeVars.color.gradient.header_bg,
+  paddingLeft: "1.6rem",
+  paddingRight: "1.6rem",
 });
 
 export const searchBarContainer = style({
