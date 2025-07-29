@@ -82,6 +82,11 @@ export const navHomeStyleOpen = style({
   background: themeVars.color.black["90_bg"],
 });
 
+export const navHomeStyleClose = style({
+  cursor: "disabled",
+  zIndex: "-1",
+});
+
 export const menuItem = style({
   display: "block",
   width: "100%",

@@ -6,6 +6,7 @@ interface ChipProps extends PropsWithChildren {
   variant?: keyof typeof chipVariant;
   size?: keyof typeof chipSize;
   className?: string;
+  onClick?: () => void;
 }
 
 const Chip = ({
@@ -13,13 +14,15 @@ const Chip = ({
   variant = "purple",
   size = "default",
   className,
+  onClick,
 }: ChipProps) => {
   return (
-    <span
+    <button
       className={cn(chipBase, chipVariant[variant], chipSize[size], className)}
+      onClick={onClick}
     >
       {children}
-    </span>
+    </button>
   );
 };
 

@@ -20,7 +20,7 @@ const NavbarMain = () => {
       <nav
         className={cn(
           styles.navHomeStyle,
-          isMenuOpen ? styles.navHomeStyleOpen : "",
+          isMenuOpen ? styles.navHomeStyleOpen : styles.navHomeStyleClose,
         )}
       >
         <div>logo</div>
@@ -56,7 +56,7 @@ const NavbarMain = () => {
       <ul
         className={cn(
           styles.menuContainer,
-          isMenuOpen ? styles.menuContainerOpen : "",
+          isMenuOpen ? styles.menuContainerOpen : styles.navHomeStyleClose,
         )}
       >
         <li>
