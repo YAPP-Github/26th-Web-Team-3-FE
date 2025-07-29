@@ -12,6 +12,7 @@ export const container = style({
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
+  marginTop: "6.4rem",
 });
 
 export const titleCaption = style({

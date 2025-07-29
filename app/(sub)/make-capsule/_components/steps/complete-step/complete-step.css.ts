@@ -10,7 +10,7 @@ export const container = style({
   gap: "1.2rem",
   width: "45rem",
   padding: "1.6rem",
-  marginTop: "9.2rem",
+  marginTop: "0.8rem",
   ...screen.md({
     paddingTop: "3.6rem",
   }),

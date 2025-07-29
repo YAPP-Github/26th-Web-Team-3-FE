@@ -7,6 +7,12 @@ export const container = style({
   justifyContent: "space-between",
   padding: "1rem",
   backgroundColor: themeVars.color.gradient.header_bg,
+  position: "fixed",
+  top: 0,
+  left: "50%",
+  transform: "translateX(-50%)",
+  width: "100%",
+  maxWidth: "80rem",
 });
 
 export const backButton = style({
