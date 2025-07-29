@@ -5,10 +5,11 @@ import { style } from "@vanilla-extract/css";
 export const container = style({
   display: "flex",
   flexDirection: "column",
-  alignItems: "center",
+  alignItems: "stretch",
   justifyContent: "center",
   gap: "1.2rem",
-  width: "45rem",
+  width: "100%",
+  maxWidth: "45rem",
   padding: "1.6rem",
   ...screen.md({
     paddingTop: "3.6rem",
@@ -27,7 +28,7 @@ export const lettieImage = style({
 });
 
 export const titleInput = style({
-  width: "41.8rem",
+  width: "100%",
   height: "5rem",
   borderRadius: "12px",
   ...themeVars.text.F17,
@@ -48,7 +49,7 @@ export const titleInput = style({
 });
 
 export const descriptionInput = style({
-  width: "41.8rem",
+  width: "100%",
   height: "10rem",
   borderRadius: "12px",
   ...themeVars.text.F17,
@@ -73,9 +74,10 @@ export const descriptionInput = style({
 export const buttonContainer = style({
   display: "flex",
   justifyContent: "center",
-  width: "41.8rem",
+  width: "100%",
   paddingTop: "1.4rem",
   paddingBottom: "11.7rem",
+  alignSelf: "stretch",
   ...screen.md({
     paddingBottom: "14.5rem",
   }),
