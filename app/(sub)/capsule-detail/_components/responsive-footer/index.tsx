@@ -7,6 +7,8 @@ import ShareIcon from "@/shared/assets/icon/share.svg";
 import Button from "@/shared/ui/button";
 import Chip from "@/shared/ui/chip";
 
+import { overlay } from "overlay-kit";
+import WriteModal from "../write-modal";
 import * as styles from "./responsive-footer.css";
 
 interface Props {
@@ -28,6 +30,16 @@ const ResponsiveFooter = ({ remainingTime }: Props) => {
     }, 2000);
   };
 
+  const handleWriteButtonClick = () => {
+    overlay.open(({ isOpen, close }) => (
+      <WriteModal
+        isOpen={isOpen}
+        onClose={close}
+        remainingTime={remainingTime}
+      />
+    ));
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.buttonContainer}>
@@ -46,7 +58,11 @@ const ResponsiveFooter = ({ remainingTime }: Props) => {
             onClick={handleClickShareButton}
           />
         )}
-        <Button variant="primary" text="편지 담기" />
+        <Button
+          variant="primary"
+          text="편지 담기"
+          onClick={handleWriteButtonClick}
+        />
       </div>
       <div className={styles.captionContainer}>
         <p>작성 마감까지</p>
