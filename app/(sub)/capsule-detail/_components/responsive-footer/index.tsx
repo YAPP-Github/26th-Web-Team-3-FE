@@ -5,7 +5,12 @@ import CheckIcon from "@/shared/assets/icon/check.svg";
 import ShareIcon from "@/shared/assets/icon/share.svg";
 import Button from "@/shared/ui/button";
 import Chip from "@/shared/ui/chip";
+
+import WriteModal from "../write-modal";
+
 import ShakeYMotion from "@/shared/ui/motion/shakeY-motion";
+import { overlay } from "overlay-kit";
+
 import * as styles from "./responsive-footer.css";
 
 interface Props {
@@ -27,6 +32,17 @@ const ResponsiveFooter = ({ remainingTime }: Props) => {
     }, 2000);
   };
 
+  const handleWriteButtonClick = () => {
+    overlay.open(({ isOpen, close }) => (
+      <WriteModal
+        capsuleTitle="비 오는 날의 타임캡슐"
+        isOpen={isOpen}
+        onClose={close}
+        remainingTime={remainingTime}
+      />
+    ));
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.buttonContainer}>
@@ -45,7 +61,11 @@ const ResponsiveFooter = ({ remainingTime }: Props) => {
             onClick={handleClickShareButton}
           />
         )}
-        <Button variant="primary" text="편지 담기" />
+        <Button
+          variant="primary"
+          text="편지 담기"
+          onClick={handleWriteButtonClick}
+        />
       </div>
       <div className={styles.captionContainer}>
         <p>작성 마감까지</p>
