@@ -33,6 +33,7 @@ export const colorTheme = {
   },
 
   gradient: {
+    purple: "linear-gradient(0deg, #9965f6 0%, rgb(104, 55, 243) 100%)",
     point_purple:
       "linear-gradient(rgba(119, 0, 156, 1) 0%, rgba(105, 44, 201, 1) 100%)",
     dark_purple:
