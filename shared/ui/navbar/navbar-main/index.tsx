@@ -23,9 +23,9 @@ const NavbarMain = () => {
           isMenuOpen ? styles.navHomeStyleOpen : styles.navHomeStyleClose,
         )}
       >
-        <div>
+        <Link href={PATH.HOME}>
           <Logo />
-        </div>
+        </Link>
         <div className={styles.navWrapper}>
           <ul className={styles.navList}>
             <li>

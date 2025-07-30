@@ -3,10 +3,12 @@
 import Plus from "@/shared/assets/icon/plus.svg";
 import Chip from "@/shared/ui/chip";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
+
+import ShakeYMotion from "@/shared/ui/motion/shakeY-motion";
 import PopupConfirmLetter from "@/shared/ui/popup/popup-confirm-letter";
 import PopupWarningLetter from "@/shared/ui/popup/popup-warning-letter";
 import SprinkleContainer from "@/shared/ui/sprinkle-container";
-import { motion } from "motion/react";
+
 import { overlay } from "overlay-kit";
 import { useState } from "react";
 import Modal from "../modal";
@@ -87,22 +89,14 @@ const WriteModal = ({
               <h3 className={styles.capsuleTitle}>{capsuleTitle}</h3>
               <div className={styles.timeInfo}>
                 <p className={styles.timeCaption}>마감까지</p>
-                <motion.div
-                  initial={{ opacity: 1, y: 0 }}
-                  animate={{ opacity: 0.6, y: -3 }}
-                  transition={{
-                    duration: 0.8,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "easeInOut",
-                    repeatType: "mirror",
-                  }}
-                >
+
+                <ShakeYMotion>
                   <div className={styles.chipContainer}>
                     <Chip>{`${remainingTime.days}일`}</Chip>
                     <Chip>{`${remainingTime.hours}시간`}</Chip>
                     <Chip>{`${remainingTime.minutes}분`}</Chip>
                   </div>
-                </motion.div>
+                </ShakeYMotion>
               </div>
             </div>
           </RevealMotion>
