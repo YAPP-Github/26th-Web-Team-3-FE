@@ -1,7 +1,10 @@
+import UserGreetingSection from "./_components/user-greeting-section";
+import * as styles from "./page.css";
+
 const Setting = () => {
   return (
-    <div>
-      <h1>setting</h1>
+    <div className={styles.settingPage}>
+      <UserGreetingSection />
     </div>
   );
 };
