@@ -8,6 +8,7 @@ export const colorTheme = {
     40: "rgba(255, 255, 255, 0.40)",
     30: "rgba(255, 255, 255, 0.30)",
     15: "rgba(255, 255, 255, 0.15)",
+    7: "rgba(255, 255, 255, 0.07)",
     5: "rgba(255, 255, 255, 0.05)",
     2: "rgba(255, 255, 255, 0.02)",
   },
@@ -56,7 +57,9 @@ export const colorTheme = {
     darkgray_op:
       "linear-gradient(rgba(38, 38, 42, 1) 0%, rgba(48, 48, 53, 1) 34%, rgba(48, 48, 53, 1) 66%, rgba(38, 38, 42, 1) 100%)",
     darkgray_bg:
-      "linear-gradient(rgba(28, 28, 33, 1) 34%,  rgba(39, 39, 44, 1) 34%, rgba(39, 39, 44, 1) 66%, rgba(28, 28, 33, 1) 100%)",
+      "linear-gradient(rgba(28, 28, 33, 1) 34%, rgba(39, 39, 44, 1) 34%, rgba(39, 39, 44, 1) 66%, rgba(28, 28, 33, 1) 100%)",
+    darkgray_bg_horizontal:
+      "linear-gradient(270deg,#1b1b20,#27272c 34.234234234234236%,#27272b 66.21621621621621%,#1c1c21)",
     blue_bg:
       "linear-gradient(rgba(23, 23, 28, 1) 0%, rgba(103, 84, 226, 1) 100%)",
     header_bg:
