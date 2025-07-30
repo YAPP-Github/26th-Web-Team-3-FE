@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 
-import WriteModal from "@/app/(sub)/capsule-detail/_components/write-modal";
 import CheckIcon from "@/shared/assets/icon/check.svg";
 import ShareIcon from "@/shared/assets/icon/share.svg";
 import Button from "@/shared/ui/button";
