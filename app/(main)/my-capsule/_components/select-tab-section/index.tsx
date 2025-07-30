@@ -1,6 +1,6 @@
+import TabButton from "@/app/(main)/_components/tab-button";
 import UpdownIcon from "@/shared/assets/icon/updown.svg";
 import Dropdown from "@/shared/ui/dropdown";
-import TabButton from "@/shared/ui/tab-button";
 import * as styles from "./select-tab-section.css";
 
 interface Props {

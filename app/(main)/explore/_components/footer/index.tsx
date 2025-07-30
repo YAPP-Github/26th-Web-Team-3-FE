@@ -1,5 +1,5 @@
+import TabButton from "@/app/(main)/_components/tab-button";
 import { PATH } from "@/shared/constants/path";
-import TabButton from "@/shared/ui/tab-button";
 import Link from "next/link";
 import * as styles from "./footer.css";
 
