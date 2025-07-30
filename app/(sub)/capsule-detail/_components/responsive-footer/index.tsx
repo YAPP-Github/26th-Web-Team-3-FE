@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 
+import WriteModal from "@/app/(sub)/capsule-detail/_components/write-modal";
 import CheckIcon from "@/shared/assets/icon/check.svg";
 import ShareIcon from "@/shared/assets/icon/share.svg";
 import Button from "@/shared/ui/button";
@@ -9,7 +10,6 @@ import Chip from "@/shared/ui/chip";
 import WriteModal from "../write-modal";
 
 import ShakeYMotion from "@/shared/ui/motion/shakeY-motion";
-
 import { overlay } from "overlay-kit";
 
 import * as styles from "./responsive-footer.css";
