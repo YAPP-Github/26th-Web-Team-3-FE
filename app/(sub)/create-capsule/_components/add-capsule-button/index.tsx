@@ -16,7 +16,7 @@ const AddCapsuleButton = () => {
     <>
       <div ref={ref} className={styles.refDiv} />
       <Link
-        href={PATH.MAKE_CAPSULE}
+        href={PATH.CREATE_CAPSULE}
         className={cn(
           styles.buttonStyle,
           isIntersecting ? styles.expanded : styles.collapsed,

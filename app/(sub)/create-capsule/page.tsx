@@ -10,7 +10,7 @@ import IntroStep from "./_components/steps/intro-step";
 import PrivateStep from "./_components/steps/private-step";
 import * as styles from "./page.css";
 
-const MakeCapsule = () => {
+const CreateCapsule = () => {
   const { Funnel, Step, setStep } = useFunnel();
   const searchParams = useSearchParams();
   const currentStep = searchParams.get("step") || "intro";
@@ -57,4 +57,4 @@ const MakeCapsule = () => {
   );
 };
 
-export default MakeCapsule;
+export default CreateCapsule;

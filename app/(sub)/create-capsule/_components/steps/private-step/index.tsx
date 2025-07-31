@@ -1,4 +1,4 @@
-import TitleCaption from "@/app/(sub)/make-capsule/_components/title-caption";
+import TitleCaption from "@/app/(sub)/create-capsule/_components/title-caption";
 import LettieImage from "@/shared/assets/character/lettie_animate.png";
 import Button from "@/shared/ui/button";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";

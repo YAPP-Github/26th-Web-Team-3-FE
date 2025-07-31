@@ -13,7 +13,7 @@ const Footer = () => {
             타임캡슐을 만들고 사람들을 초대해보세요.
           </p>
         </div>
-        <Link href={PATH.MAKE_CAPSULE}>
+        <Link href={PATH.CREATE_CAPSULE}>
           <TabButton text="타임캡슐 만들기" />
         </Link>
       </footer>

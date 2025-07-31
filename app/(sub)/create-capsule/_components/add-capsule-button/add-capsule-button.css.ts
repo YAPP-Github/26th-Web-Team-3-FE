@@ -17,6 +17,7 @@ export const buttonStyle = style({
   transition: "width 0.3s, padding 0.3s, gap 0.3s",
   overflow: "hidden",
   whiteSpace: "nowrap",
+  zIndex: themeVars.zIndex.addCapsuleButton.content,
 });
 
 export const expanded = style({
