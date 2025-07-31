@@ -20,8 +20,8 @@ const authHttp = http.extend({
   hooks: {
     beforeRequest: [
       (request) => {
-        // Todo: 추후 토큰 저장소에서 가져오도록 수정
-        const token = MASTER_TOKEN;
+        // 임시: 로컬스토리지에서 수동으로 넣은 토큰 가져오기
+        const token = localStorage.getItem("accessToken");
         if (token) {
           request.headers.set("Authorization", `Bearer ${token}`);
         }
