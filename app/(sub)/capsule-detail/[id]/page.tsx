@@ -11,12 +11,16 @@ import InfoTitle from "../_components/info-title";
 import OpenInfoSection from "../_components/open-info-section";
 import ResponsiveFooter from "../_components/responsive-footer";
 
+import { capsuleQueryOptions } from "@/shared/api/queries/capsule";
+import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import * as styles from "./page.css";
 
 const CapsuleDetailPage = () => {
   const params = useParams();
   const id = params.id as string;
+
+  const { data } = useQuery(capsuleQueryOptions.capsuleDetail(id));
 
   return (
     <>
@@ -40,18 +44,18 @@ const CapsuleDetailPage = () => {
       />
       <RevealMotion>
         <InfoTitle
-          title="비 오는 날의 타임캡슐"
-          participantCount={8}
-          joinLettersCount={33}
+          title={data?.result.title || ""}
+          participantCount={data?.result.participantCount || 0}
+          joinLettersCount={data?.result.letterCount || 0}
         />
       </RevealMotion>
       <CapsuleImage />
       <div className={styles.container}>
         <RevealMotion delay={0.8}>
-          <CaptionSection description="오늘처럼 비 오는 날에만 꺼내보고 싶은 이야기, 혹은 아무에게도 말하지 못했던 감정이 있다면 이곳에 슬며시 적어주세요." />
+          <CaptionSection description={data?.result.subtitle || ""} />
         </RevealMotion>
         <RevealMotion delay={1.2}>
-          <OpenInfoSection openAt="2025-07-01-13:00" />
+          <OpenInfoSection openAt={data?.result.openAt || ""} />
         </RevealMotion>
       </div>
       <ResponsiveFooter

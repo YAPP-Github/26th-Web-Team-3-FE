@@ -1,21 +1,3 @@
-export interface CapsuleDetailRes {
-  result: {
-    id: number;
-    title: string;
-    subtitle: string;
-    openAt: string;
-    participantCount: number;
-    isLiked: boolean;
-    status: string;
-    remainingTime: {
-      days: number;
-      hours: number;
-      minutes: number;
-      seconds: number;
-    };
-  };
-}
-
 export interface CreateCapsuleReq {
   title: string;
   subtitle: string;
@@ -27,5 +9,27 @@ export interface CreateCapsuleReq {
 export interface CreateCapsuleRes {
   result: {
     id: number;
+  };
+}
+
+export interface CapsuleDetailRes {
+  result: {
+    id: number;
+    title: string;
+    subtitle: string;
+    openAt: string;
+    participantCount: number;
+    letterCount: number;
+    likeCount: number;
+    isLiked: boolean;
+    status: "WRITABLE";
+    remainingTime: {
+      days: number;
+      hours: number;
+      minutes: number;
+      openDate: string;
+    };
+    isMine: boolean;
+    inviteCode: string;
   };
 }
