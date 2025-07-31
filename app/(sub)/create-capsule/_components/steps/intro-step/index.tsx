@@ -1,10 +1,11 @@
 "use client";
 
-import TitleCaption from "@/app/(sub)/make-capsule/_components/title-caption";
+import TitleCaption from "@/app/(sub)/create-capsule/_components/title-caption";
 import Lettie from "@/shared/assets/character/lettie_animate.png";
 import Button from "@/shared/ui/button";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import Image from "next/image";
+import { useFormContext } from "react-hook-form";
 
 import * as styles from "./intro-step.css";
 
@@ -13,6 +14,17 @@ interface Props {
 }
 
 const IntroStep = ({ handleNextStep }: Props) => {
+  const { register, getValues } = useFormContext();
+
+  const handleClickNext = () => {
+    const title = getValues("title");
+    if (!title || !title.trim()) {
+      alert("타임캡슐 이름을 입력해주세요.");
+      return;
+    }
+    handleNextStep("date");
+  };
+
   return (
     <main className={styles.container}>
       <RevealMotion>
@@ -38,20 +50,19 @@ const IntroStep = ({ handleNextStep }: Props) => {
           type="text"
           placeholder="타임캡슐 이름"
           className={styles.titleInput}
+          {...register("title", { required: "타임캡슐 이름을 입력해주세요" })}
         />
+
         <input
           type="text"
           placeholder="내 타임캡슐을 소개해보세요."
           className={styles.descriptionInput}
+          {...register("subtitle")}
         />
       </RevealMotion>
       <RevealMotion delay={1.2}>
         <div className={styles.buttonContainer}>
-          <Button
-            variant="primary"
-            text="다음"
-            onClick={() => handleNextStep("date")}
-          />
+          <Button variant="primary" text="다음" onClick={handleClickNext} />
         </div>
       </RevealMotion>
     </main>

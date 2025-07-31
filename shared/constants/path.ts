@@ -9,5 +9,6 @@ export const PATH = {
   SEARCH: "/search",
 
   // capsule
-  MAKE_CAPSULE: "/make-capsule",
+  CREATE_CAPSULE: "/create-capsule",
+  CAPSULE_DETAIL: "/capsule-detail/:id",
 } as const;

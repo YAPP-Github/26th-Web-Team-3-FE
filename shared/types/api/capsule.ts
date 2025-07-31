@@ -1,3 +1,17 @@
+export interface CreateCapsuleReq {
+  title: string;
+  subtitle: string;
+  accessType: "PUBLIC" | "PRIVATE";
+  openAt: string;
+  closedAt: string;
+}
+
+export interface CreateCapsuleRes {
+  result: {
+    id: number;
+  };
+}
+
 export interface CapsuleDetailRes {
   result: {
     id: number;
@@ -5,13 +19,17 @@ export interface CapsuleDetailRes {
     subtitle: string;
     openAt: string;
     participantCount: number;
+    letterCount: number;
+    likeCount: number;
     isLiked: boolean;
-    status: string;
+    status: "WRITABLE";
     remainingTime: {
       days: number;
       hours: number;
       minutes: number;
-      seconds: number;
+      openDate: string;
     };
+    isMine: boolean;
+    inviteCode: string;
   };
 }
