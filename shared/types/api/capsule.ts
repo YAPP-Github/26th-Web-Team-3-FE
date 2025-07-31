@@ -15,3 +15,17 @@ export interface CapsuleDetailRes {
     };
   };
 }
+
+export interface CreateCapsuleReq {
+  title: string;
+  subtitle: string;
+  accessType: "PUBLIC" | "PRIVATE";
+  openAt: string;
+  closeAt: string;
+}
+
+export interface CreateCapsuleRes {
+  result: {
+    id: number;
+  };
+}

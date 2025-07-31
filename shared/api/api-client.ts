@@ -30,12 +30,10 @@ const authHttp = http.extend({
   },
 });
 
-// auth 옵션을 추가한 타입
 type ExtendedOptions = KyOptions & {
   auth?: boolean;
 };
 
-// 응답 파싱 함수
 async function parseResponse<T>(res: ResponsePromise): Promise<T> {
   return await res.json<T>();
 }
