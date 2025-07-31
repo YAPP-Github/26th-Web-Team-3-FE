@@ -1,15 +1,21 @@
+import { useFormContext } from "react-hook-form";
+
 import TitleCaption from "@/app/(sub)/create-capsule/_components/title-caption";
 import LettieImage from "@/shared/assets/character/lettie_animate.png";
 import Button from "@/shared/ui/button";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import Image from "next/image";
+import RadioOption from "./radio-option";
+
 import * as styles from "./private-step.css";
 
 interface Props {
   handleNextStep: (step: string) => void;
 }
 
-const PrivateStep = ({ handleNextStep }: Props) => {
+const PrivacyStep = ({ handleNextStep }: Props) => {
+  const { register } = useFormContext();
+
   return (
     <div className={styles.container}>
       <RevealMotion>
@@ -32,24 +38,18 @@ const PrivateStep = ({ handleNextStep }: Props) => {
       />
       <div className={styles.radioSection}>
         <RevealMotion delay={0.8}>
-          <div className={styles.radioList}>
-            <input type="radio" id="public" className={styles.radio} />
-            <label htmlFor="public">
-              <p className={styles.labelTitle}>모두에게 공개</p>
-              <p className={styles.labelDescription}>
-                누구나 타임캡슐에 편지를 남길 수 있어요.
-              </p>
-            </label>
-          </div>
-          <div className={styles.radioList}>
-            <input type="radio" id="private" className={styles.radio} />
-            <label htmlFor="private">
-              <p className={styles.labelTitle}>링크로 초대</p>
-              <p className={styles.labelDescription}>
-                링크를 통해서만 캡슐에 참여할 수 있어요.
-              </p>
-            </label>
-          </div>
+          <RadioOption
+            accessType="PUBLIC"
+            title="모두에게 공개"
+            description="누구나 타임캡슐에 편지를 남길 수 있어요."
+            {...register("accessType")}
+          />
+          <RadioOption
+            accessType="PRIVATE"
+            title="링크로 초대"
+            description="링크를 통해서만 캡슐에 참여할 수 있어요."
+            {...register("accessType")}
+          />
         </RevealMotion>
       </div>
       <div className={styles.buttonContainer}>
@@ -65,4 +65,4 @@ const PrivateStep = ({ handleNextStep }: Props) => {
   );
 };
 
-export default PrivateStep;
+export default PrivacyStep;

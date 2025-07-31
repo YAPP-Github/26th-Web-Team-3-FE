@@ -2,7 +2,6 @@ import LettieImage from "@/shared/assets/character/lettie_animate.png";
 import Button from "@/shared/ui/button";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import Image from "next/image";
-
 import * as styles from "./complete-step.css";
 
 const CompleteStep = () => {
@@ -19,8 +18,7 @@ const CompleteStep = () => {
       <Image src={LettieImage} alt="lettie" className={styles.lettieImage} />
       <div className={styles.buttonWrapper}>
         <RevealMotion delay={0.8}>
-          {/* Todo: 생성된 캡슐 디테일 페이지로 라우팅 추가 */}
-          <Button variant="primary" text="만든 캡슐 보러가기" />
+          <Button variant="primary" text="만든 캡슐 보러가기" type="submit" />
         </RevealMotion>
       </div>
     </div>

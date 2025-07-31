@@ -5,14 +5,19 @@ import Dropdown from "@/shared/ui/dropdown";
 import LikeButton from "@/shared/ui/like-button";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import NavbarDetail from "@/shared/ui/navbar/navbar-detail";
-import CapsuleImage from "./_components/capsule-image";
-import CaptionSection from "./_components/caption-section";
-import InfoTitle from "./_components/info-title";
-import OpenInfoSection from "./_components/open-info-section";
-import ResponsiveFooter from "./_components/responsive-footer";
+import CapsuleImage from "../_components/capsule-image";
+import CaptionSection from "../_components/caption-section";
+import InfoTitle from "../_components/info-title";
+import OpenInfoSection from "../_components/open-info-section";
+import ResponsiveFooter from "../_components/responsive-footer";
+
+import { useParams } from "next/navigation";
 import * as styles from "./page.css";
 
 const CapsuleDetailPage = () => {
+  const params = useParams();
+  const id = params.id as string;
+
   return (
     <>
       <NavbarDetail

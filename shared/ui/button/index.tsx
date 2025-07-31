@@ -14,13 +14,14 @@ const Button = ({
   icon,
   text,
   className,
+  type = "button",
   ...props
 }: ButtonProps) => {
   return (
     <button
-      type="button"
       className={cn(styles.buttonVariants[variant], className)}
       {...props}
+      type={type}
     >
       {icon}
       {text}

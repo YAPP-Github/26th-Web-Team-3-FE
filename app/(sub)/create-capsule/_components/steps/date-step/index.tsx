@@ -1,18 +1,23 @@
 "use client";
-
 import TitleCaption from "@/app/(sub)/create-capsule/_components/title-caption";
 import Lettie from "@/shared/assets/character/lettie_animate.png";
 import Button from "@/shared/ui/button";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import Image from "next/image";
 import CapsuleOpenAtInput from "./capsule-open-at-input";
-import * as styles from "./date-step.css";
 import LetterCloseAtInput from "./letter-close-at-input";
+
+import * as styles from "./date-step.css";
 interface Props {
   handleNextStep: (step: string) => void;
 }
 
 const DateStep = ({ handleNextStep }: Props) => {
+  const handleNextClick = () => {
+    // Todo: 선택되지 않은 항목이 있는지 확인
+    handleNextStep("privacy");
+  };
+
   return (
     <div className={styles.container}>
       <RevealMotion>
@@ -42,11 +47,7 @@ const DateStep = ({ handleNextStep }: Props) => {
 
       <div className={styles.buttonContainer}>
         <RevealMotion delay={1.2}>
-          <Button
-            variant="primary"
-            text="다음"
-            onClick={() => handleNextStep("private")}
-          />
+          <Button variant="primary" text="다음" onClick={handleNextClick} />
         </RevealMotion>
       </div>
     </div>

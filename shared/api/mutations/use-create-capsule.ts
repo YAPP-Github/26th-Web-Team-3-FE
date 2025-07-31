@@ -8,10 +8,14 @@ import { apiClient } from "../api-client";
 
 export const useCreateCapsule = () => {
   return useMutation({
-    mutationFn: async (data: CreateCapsuleReq): Promise<CreateCapsuleRes> =>
-      await apiClient.post<CreateCapsuleRes>(ENDPOINTS.CREATE_CAPSULE, {
+    mutationFn: async (data: CreateCapsuleReq): Promise<CreateCapsuleRes> => {
+      return await apiClient.post<CreateCapsuleRes>(ENDPOINTS.CREATE_CAPSULE, {
         json: data,
         auth: true,
-      }),
+      });
+    },
+    onError: (err) => {
+      console.error("에러 발생:", err);
+    },
   });
 };

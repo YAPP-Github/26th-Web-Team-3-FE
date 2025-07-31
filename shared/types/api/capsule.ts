@@ -21,7 +21,7 @@ export interface CreateCapsuleReq {
   subtitle: string;
   accessType: "PUBLIC" | "PRIVATE";
   openAt: string;
-  closeAt: string;
+  closedAt: string;
 }
 
 export interface CreateCapsuleRes {
