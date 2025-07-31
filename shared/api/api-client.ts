@@ -1,7 +1,6 @@
 import ky, { type Options as KyOptions, type ResponsePromise } from "ky";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-const MASTER_TOKEN = process.env.NEXT_PUBLIC_MASTER_TOKEN;
 
 const defaultOption = {
   prefixUrl: API_BASE_URL,

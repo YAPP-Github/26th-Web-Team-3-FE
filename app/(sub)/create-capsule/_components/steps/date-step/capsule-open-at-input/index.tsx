@@ -1,5 +1,6 @@
 "use client";
 
+import { createISOString } from "@/shared/utils/date";
 import { useRef } from "react";
 import { useFormContext } from "react-hook-form";
 import * as styles from "./capsule-open-at-input.css";
@@ -15,7 +16,7 @@ const CapsuleOpenAtInput = () => {
 
       const { date, time } = dateTimeRef.current;
       if (date && time) {
-        const combinedDateTime = new Date(`${date}T${time}:00`).toISOString();
+        const combinedDateTime = createISOString(date, `${time}:00`);
         setValue("openAt", combinedDateTime, { shouldValidate: true });
       }
     };

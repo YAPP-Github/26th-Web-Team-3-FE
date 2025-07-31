@@ -1,3 +1,5 @@
+"use client";
+
 import { useFormContext } from "react-hook-form";
 import * as styles from "./letter-close-at-input.css";
 

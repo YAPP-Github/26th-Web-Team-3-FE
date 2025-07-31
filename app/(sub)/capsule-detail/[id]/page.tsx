@@ -60,9 +60,9 @@ const CapsuleDetailPage = () => {
       </div>
       <ResponsiveFooter
         remainingTime={{
-          days: 2,
-          hours: 10,
-          minutes: 10,
+          days: data?.result.remainingTime.days || 0,
+          hours: data?.result.remainingTime.hours || 0,
+          minutes: data?.result.remainingTime.minutes || 0,
         }}
       />
     </>
