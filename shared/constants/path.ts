@@ -10,5 +10,5 @@ export const PATH = {
 
   // capsule
   CREATE_CAPSULE: "/create-capsule",
-  CAPSULE_DETAIL: "/capsule-detail/:id",
+  CAPSULE_DETAIL: "/capsule-detail",
 } as const;
