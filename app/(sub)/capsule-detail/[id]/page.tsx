@@ -28,7 +28,7 @@ const CapsuleDetailPage = () => {
         renderRight={() => {
           return (
             <>
-              <LikeButton isLiked={false} />
+              <LikeButton isLiked={data?.result.isLiked || false} />
               <Dropdown>
                 <Dropdown.Trigger>
                   <MenuIcon />

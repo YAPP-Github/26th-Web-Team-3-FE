@@ -10,7 +10,7 @@ export const container = style({
   width: "100%",
   paddingTop: "2.4rem",
   ...screen.md({
-    paddingTop: "4.6rem",
+    paddingTop: "9.6rem",
   }),
 });
 

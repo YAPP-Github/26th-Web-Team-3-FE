@@ -21,7 +21,7 @@ const CreateCapsule = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const currentStep = searchParams.get("step") || "intro";
-  const { mutate } = useCreateCapsule();
+  const { mutate: createCapsuleMutate } = useCreateCapsule();
 
   const form = useForm<CreateCapsuleReq>({
     defaultValues: {
@@ -38,10 +38,8 @@ const CreateCapsule = () => {
   };
 
   const onSubmit: SubmitHandler<CreateCapsuleReq> = (data) => {
-    console.log(data);
-    mutate(data, {
+    createCapsuleMutate(data, {
       onSuccess: (res) => {
-        console.log(res);
         router.push(
           PATH.CAPSULE_DETAIL.replace(":id", res.result.id.toString()),
         );
