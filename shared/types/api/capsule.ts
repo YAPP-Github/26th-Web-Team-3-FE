@@ -33,3 +33,25 @@ export interface CapsuleDetailRes {
     inviteCode: string;
   };
 }
+
+export interface PopularCapsuleRes {
+  result: CapsuleInfo[];
+}
+
+type CapsuleInfo = {
+  id: number;
+  title: string;
+  participantCount: number;
+  letterCount: number;
+  remainingStatus: {
+    type: "OPENED" | "WRITABLE";
+    remainingTime: {
+      days: number;
+      hours: number;
+      minutes: number;
+      openDate: string;
+    };
+    openDate: string;
+    message: string;
+  };
+};
