@@ -16,3 +16,25 @@ export const parseDateTime = (isoString: string) => {
 export const createISOString = (date: string, time = "00:00:00") => {
   return new Date(`${date}T${time}.000Z`).toISOString();
 };
+
+/**
+ * 날짜를 "YYYY-MM-DD" 형식으로 포맷
+ */
+
+export const formatOpenDate = (openDate: string) => {
+  if (!openDate) {
+    console.warn("openDate is undefined or null");
+    return {
+      year: 0,
+      month: "00",
+      day: "00",
+    };
+  }
+  const [year, month, day] = openDate.split("-");
+
+  return {
+    year: Number.parseInt(year, 10),
+    month: month.padStart(2, "0"),
+    day: day.padStart(2, "0"),
+  };
+};
