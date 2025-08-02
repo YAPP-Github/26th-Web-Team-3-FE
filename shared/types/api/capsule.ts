@@ -12,6 +12,8 @@ export interface CreateCapsuleRes {
   };
 }
 
+export type CapsuleStatus = "WRITABLE" | "WAITING_OPEN" | "OPENED";
+
 export interface CapsuleDetailRes {
   result: {
     id: number;
