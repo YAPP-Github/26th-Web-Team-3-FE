@@ -30,6 +30,18 @@ export const buttonContainer = style({
   }),
 });
 
+export const buttonSoloContainer = style({
+  display: "flex",
+  gap: "1rem",
+  width: "100%",
+  order: 1,
+  ...screen.md({
+    marginLeft: "auto",
+    width: "25%",
+    order: 2,
+  }),
+});
+
 export const captionContainer = style({
   ...themeVars.text.B2,
   color: themeVars.color.white[50],
