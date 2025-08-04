@@ -1,9 +1,9 @@
 "use client";
 
 import { capsuleQueryOptions } from "@/shared/api/queries/capsule";
+import { letterQueryOptions } from "@/shared/api/queries/letter";
 import Grid from "@/shared/assets/icon/grid.svg";
 import Layers from "@/shared/assets/icon/layers.svg";
-import { letterListData } from "@/shared/mock/letter";
 import Button from "@/shared/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
@@ -20,15 +20,16 @@ const CapsuleOpenPage = () => {
   const { data: capsuleData } = useQuery(
     capsuleQueryOptions.capsuleDetail(capsuleId),
   );
-  // const { data: letterData, isLoading } = useQuery(letterQueryOptions.letterList(capsuleId));
+  const { data: letterData, isLoading } = useQuery(
+    letterQueryOptions.letterList(capsuleId),
+  );
 
-  // if (isLoading) {
-  //   return <div>로딩 중...</div>;
-  // }
+  if (isLoading) {
+    return <div>로딩 중...</div>;
+  }
 
   const capsule = capsuleData?.result;
-  // const letters = letterData?.result?.letters || [];
-  const letters = letterListData.result.letters;
+  const letters = letterData?.result?.letters || [];
 
   return (
     <div className={styles.container}>
