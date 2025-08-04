@@ -28,9 +28,7 @@ export const capsuleQueryOptions = {
 };
 
 const getCapsuleDetail = (id: string) => {
-  return apiClient.get<CapsuleDetailRes>(
-    ENDPOINTS.CAPSULE_DETAIL.replace(":id", id),
-  );
+  return apiClient.get<CapsuleDetailRes>(ENDPOINTS.CAPSULE_DETAIL(id));
 };
 
 const getCapsuleLists = () => {

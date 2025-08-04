@@ -34,9 +34,7 @@ const CardContainer = () => {
           count={capsule.letterCount}
           variant={variants[index % 6]}
           onClick={() => {
-            router.push(
-              PATH.CAPSULE_DETAIL.replace(":id", capsule.id.toString()),
-            );
+            router.push(PATH.CAPSULE_DETAIL(capsule.id.toString()));
           }}
         />
       ))}
