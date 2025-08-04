@@ -34,29 +34,30 @@ export interface CapsuleDetailRes {
   };
 }
 
-export interface PopularCapsuleRes {
-  result: CapsuleInfo[];
+export interface CapsuleListsRes {
+  result: {
+    timeCapsules: TimeCapsules[];
+    totalCount: number;
+    totalPages: number;
+    pageNumber: number;
+    pageSize: number;
+  };
 }
 
-export type CapsuleInfo = {
+export type TimeCapsules = {
   id: number;
   title: string;
   participantCount: number;
   letterCount: number;
-  remainingStatus: WRITABLEStatus | OPENEDStatus;
-};
-
-type BaseStatus<Type extends string> = {
-  type: Type;
-  openDate: string | null;
-  message: string | null;
-  remainingTime: {
-    days: number;
-    hours: number;
-    minutes: number;
+  remainingStatus: {
+    type: "OPENED" | "WRITABLE" | "WAITING_OPEN";
+    remainingTime: {
+      days: number;
+      hours: number;
+      minutes: number;
+      openDate: string | null;
+    } | null;
     openDate: string | null;
-  } | null;
+    message: string | null;
+  };
 };
-
-export type WRITABLEStatus = BaseStatus<"WRITABLE" | "WAITING_OPEN">;
-export type OPENEDStatus = BaseStatus<"OPENED">;

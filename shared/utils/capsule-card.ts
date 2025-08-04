@@ -1,4 +1,4 @@
-import type { CapsuleInfo } from "@/shared/types/api/capsule";
+import type { TimeCapsules } from "@/shared/types/api/capsule";
 
 /**
  * 캡슐의 남은 시간을 기반으로, 탐색과 내캡슐 페이지의 카드에서 사용되는 상태 라벨을 생성합니다.
@@ -17,7 +17,7 @@ import type { CapsuleInfo } from "@/shared/types/api/capsule";
  * ```
  */
 export const cardStatusLabel = (
-  status: CapsuleInfo["remainingStatus"],
+  status: TimeCapsules["remainingStatus"],
 ): string => {
   if (status.type === "OPENED") {
     return status.message ?? "캡슐 오픈";

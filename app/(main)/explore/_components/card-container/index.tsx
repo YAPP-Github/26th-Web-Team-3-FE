@@ -17,15 +17,15 @@ const variants = [
 ] as const;
 
 const CardContainer = () => {
-  const { data: popularCapsules } = useQuery(
-    capsuleQueryOptions.popularCapsules(),
-  );
+  const { data: capsuleLists } = useQuery(capsuleQueryOptions.capsuleLists());
 
   const router = useRouter();
 
+  console.log(capsuleLists);
+
   return (
     <div className={styles.cardContainer}>
-      {popularCapsules?.result.map((capsule, index) => (
+      {capsuleLists?.result.timeCapsules.map((capsule, index) => (
         <Card
           key={capsule.id}
           openStatusLabel={cardStatusLabel(capsule.remainingStatus)}

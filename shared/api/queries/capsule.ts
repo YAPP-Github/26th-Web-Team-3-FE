@@ -3,14 +3,14 @@ import { queryOptions } from "@tanstack/react-query";
 import { ENDPOINTS } from "@/shared/constants/endpoints";
 import type {
   CapsuleDetailRes,
-  PopularCapsuleRes,
+  CapsuleListsRes,
 } from "@/shared/types/api/capsule";
 import { apiClient } from "../api-client";
 
 export const capsuleQueryKeys = {
   all: () => ["capsule"],
   detail: (id: string) => [...capsuleQueryKeys.all(), id],
-  popularCapsules: () => [...capsuleQueryKeys.all(), "popular"],
+  lists: () => [...capsuleQueryKeys.all(), "lists"],
 } as const;
 
 export const capsuleQueryOptions = {
@@ -20,10 +20,10 @@ export const capsuleQueryOptions = {
       queryFn: () => getCapsuleDetail(id),
       enabled: !!id,
     }),
-  popularCapsules: () =>
+  capsuleLists: () =>
     queryOptions({
-      queryKey: capsuleQueryKeys.popularCapsules(),
-      queryFn: () => getPopularCapsules(),
+      queryKey: capsuleQueryKeys.lists(),
+      queryFn: () => getCapsuleLists(),
     }),
 };
 
@@ -33,6 +33,6 @@ const getCapsuleDetail = (id: string) => {
   );
 };
 
-const getPopularCapsules = () => {
-  return apiClient.get<PopularCapsuleRes>(ENDPOINTS.POPULAR_CAPSULE);
+const getCapsuleLists = () => {
+  return apiClient.get<CapsuleListsRes>(ENDPOINTS.CAPSULE_LISTS);
 };
