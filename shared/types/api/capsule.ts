@@ -48,6 +48,7 @@ export interface CapsuleListsRes {
 
 export type TimeCapsules = {
   id: number;
+  inviteCode: string;
   title: string;
   participantCount: number;
   letterCount: number;
