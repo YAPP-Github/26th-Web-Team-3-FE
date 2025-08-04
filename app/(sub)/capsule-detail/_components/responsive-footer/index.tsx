@@ -13,6 +13,7 @@ import { overlay } from "overlay-kit";
 
 import type { CapsuleStatus } from "@/shared/types/api/capsule";
 import { formatOpenDate } from "@/shared/utils/date";
+import { useRouter } from "next/navigation";
 import * as styles from "./responsive-footer.css";
 
 interface Props {
@@ -34,6 +35,7 @@ const ResponsiveFooter = ({
   isMine,
 }: Props) => {
   const [isCopied, setIsCopied] = useState(false);
+  const router = useRouter();
 
   const handleClickShareButton = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -56,7 +58,7 @@ const ResponsiveFooter = ({
 
   const handleOpenCapsuleClick = () => {
     // TODO: 캡슐 열기 로직 구현
-    console.log("캡슐 열기", capsuleId);
+    router.push(`/capsule-detail/${capsuleId}/open`);
   };
 
   const renderButtons = () => {
