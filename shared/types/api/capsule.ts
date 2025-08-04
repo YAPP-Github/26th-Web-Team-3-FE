@@ -9,6 +9,7 @@ export interface CreateCapsuleReq {
 export interface CreateCapsuleRes {
   result: {
     id: number;
+    inviteCode: string;
   };
 }
 

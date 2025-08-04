@@ -8,5 +8,6 @@ export const PATH = {
 
   // capsule
   CREATE_CAPSULE: "/create-capsule",
-  CAPSULE_DETAIL: (id: string) => `/capsule-detail/${id}`,
+  CAPSULE_DETAIL: (inviteCode: string, id: string) =>
+    `/capsule-detail/${inviteCode}/${id}`,
 } as const;
