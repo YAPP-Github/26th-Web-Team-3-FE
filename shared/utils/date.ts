@@ -22,14 +22,6 @@ export const createISOString = (date: string, time = "00:00:00") => {
  */
 
 export const formatOpenDate = (openDate: string) => {
-  if (!openDate) {
-    console.warn("openDate is undefined or null");
-    return {
-      year: 0,
-      month: "00",
-      day: "00",
-    };
-  }
   const [year, month, day] = openDate.split("-");
 
   return {
