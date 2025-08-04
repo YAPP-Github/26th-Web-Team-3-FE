@@ -21,35 +21,38 @@ const gradientIcons = {
 } as const;
 
 interface CardProps extends ComponentProps<"div"> {
-  dDay: number;
+  openStatusLabel: string;
   title: string;
   peopleCount: number;
   count: number;
   variant: keyof typeof styles.cardVariants;
+  onClick?: () => void;
 }
 
 const Card = ({
-  dDay,
+  openStatusLabel,
   title,
   peopleCount,
   count,
   variant,
   className,
+  onClick,
 }: CardProps) => {
   const icon = gradientIcons[variant];
 
   return (
     <div
       className={cn(styles.cardBase, styles.cardVariants[variant], className)}
+      onClick={onClick}
     >
       <div className={styles.cardContentWrapper}>
-        {dDay === 0 ? (
+        {openStatusLabel === "오픈 완료" ? (
           <Chip className={styles.chipClass} variant="purple">
-            캡슐 오픈
+            {openStatusLabel}
           </Chip>
         ) : (
           <Chip className={styles.chipClass} variant="gray">
-            D-{dDay}
+            {openStatusLabel}
           </Chip>
         )}
         <span className={styles.cardTitle}>{title}</span>
