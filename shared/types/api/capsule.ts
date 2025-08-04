@@ -26,7 +26,7 @@ export interface CapsuleDetailRes {
     letterCount: number;
     likeCount: number;
     isLiked: boolean;
-    status: "WRITABLE" | "WAITING_OPEN" | "OPENED";
+    status: CapsuleStatus;
     remainingTime: {
       days: number;
       hours: number;
@@ -56,7 +56,7 @@ export type TimeCapsules = {
   participantCount: number;
   letterCount: number;
   remainingStatus: {
-    type: "OPENED" | "WRITABLE" | "WAITING_OPEN";
+    type: CapsuleStatus;
     remainingTime: {
       days: number;
       hours: number;
