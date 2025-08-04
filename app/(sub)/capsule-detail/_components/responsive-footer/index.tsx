@@ -1,4 +1,5 @@
 "use client";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 import CheckIcon from "@/shared/assets/icon/check.svg";
@@ -13,7 +14,6 @@ import { overlay } from "overlay-kit";
 
 import type { CapsuleStatus } from "@/shared/types/api/capsule";
 import { formatOpenDate } from "@/shared/utils/date";
-import { useRouter } from "next/navigation";
 import * as styles from "./responsive-footer.css";
 
 interface Props {
@@ -24,18 +24,13 @@ interface Props {
     openDate: string;
   };
   status: CapsuleStatus;
-  capsuleId: number;
   isMine?: boolean;
 }
 
-const ResponsiveFooter = ({
-  remainingTime,
-  status,
-  capsuleId,
-  isMine,
-}: Props) => {
+const ResponsiveFooter = ({ remainingTime, status, isMine }: Props) => {
   const [isCopied, setIsCopied] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleClickShareButton = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -57,8 +52,7 @@ const ResponsiveFooter = ({
   };
 
   const handleOpenCapsuleClick = () => {
-    // TODO: 캡슐 열기 로직 구현
-    router.push(`/capsule-detail/${capsuleId}/open`);
+    router.push(`${pathname}/open`);
   };
 
   const renderButtons = () => {

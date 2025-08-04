@@ -76,7 +76,6 @@ const CapsuleDetailPage = () => {
           openDate: data?.result.remainingTime.openDate,
         }}
         status={data?.result.status}
-        capsuleId={data?.result.id}
         isMine={data?.result.isMine}
       />
     </>
