@@ -18,6 +18,7 @@ export interface CapsuleDetailRes {
     title: string;
     subtitle: string;
     openAt: string;
+    closedAt: string;
     participantCount: number;
     letterCount: number;
     likeCount: number;
@@ -31,6 +32,7 @@ export interface CapsuleDetailRes {
     };
     isMine: boolean;
     inviteCode: string;
+    beadVideoUrl: string;
   };
 }
 
