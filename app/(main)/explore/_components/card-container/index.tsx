@@ -21,8 +21,6 @@ const CardContainer = () => {
 
   const router = useRouter();
 
-  console.log(capsuleLists);
-
   return (
     <div className={styles.cardContainer}>
       {capsuleLists?.result.timeCapsules.map((capsule, index) => (
