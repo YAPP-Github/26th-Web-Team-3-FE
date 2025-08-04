@@ -27,9 +27,9 @@ const meta: Meta<typeof Card> = {
       ],
       description: "카드의 그라디언트 배경과 아이콘을 결정합니다.",
     },
-    dDay: {
-      control: { type: "number" },
-      description: "D-Day",
+    openStatusLabel: {
+      control: { type: "text" },
+      description: "오픈 상태 레이블",
     },
     title: {
       control: { type: "text" },
@@ -53,7 +53,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     variant: "gradient1",
-    dDay: 5,
+    openStatusLabel: "오픈 완료",
     title: "2026년은 언제쯤 찾아올까요",
     peopleCount: 8,
     count: 31,
@@ -74,42 +74,42 @@ export const AllVariants: Story = {
     >
       <Card
         variant="gradient1"
-        dDay={5}
+        openStatusLabel="오픈 완료"
         title="첫 번째 프로젝트"
         peopleCount={8}
         count={31}
       />
       <Card
         variant="gradient2"
-        dDay={12}
+        openStatusLabel="오픈 완료"
         title="두 번째 프로젝트"
         peopleCount={15}
         count={42}
       />
       <Card
         variant="gradient3"
-        dDay={3}
+        openStatusLabel="오픈 완료"
         title="세 번째 프로젝트"
         peopleCount={22}
         count={67}
       />
       <Card
         variant="gradient4"
-        dDay={7}
+        openStatusLabel="오픈 완료"
         title="네 번째 프로젝트"
         peopleCount={18}
         count={55}
       />
       <Card
         variant="gradient5"
-        dDay={1}
+        openStatusLabel="오픈 완료"
         title="다섯 번째 프로젝트"
         peopleCount={12}
         count={33}
       />
       <Card
         variant="gradient6"
-        dDay={10}
+        openStatusLabel="오픈 완료"
         title="여섯 번째 프로젝트"
         peopleCount={9}
         count={24}

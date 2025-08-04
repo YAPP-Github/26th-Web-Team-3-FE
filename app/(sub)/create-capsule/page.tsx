@@ -1,5 +1,5 @@
 "use client";
-import { useCreateCapsule } from "@/shared/api/mutations/use-create-capsule";
+import { useCreateCapsule } from "@/shared/api/mutations/capsule";
 import { PATH } from "@/shared/constants/path";
 import { useFunnel } from "@/shared/hooks/use-funnel";
 import type { CreateCapsuleReq } from "@/shared/types/api/capsule";
@@ -40,7 +40,9 @@ const CreateCapsule = () => {
   const onSubmit: SubmitHandler<CreateCapsuleReq> = (data) => {
     createCapsuleMutate(data, {
       onSuccess: (res) => {
-        router.push(`${PATH.CAPSULE_DETAIL}/${res.result.id}`);
+        router.push(
+          PATH.CAPSULE_DETAIL(res.result.inviteCode, res.result.id.toString()),
+        );
       },
     });
   };

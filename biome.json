@@ -39,7 +39,8 @@
         "useButtonType": "off",
         "useFocusableInteractive": "warn",
         "useSemanticElements": "off",
-        "noLabelWithoutControl": "off"
+        "noLabelWithoutControl": "off",
+        "useKeyWithClickEvents": "off"
       },
       "style": {
         "noNamespaceImport": "off",

@@ -11,7 +11,6 @@ export const useCreateCapsule = () => {
     mutationFn: async (data: CreateCapsuleReq): Promise<CreateCapsuleRes> => {
       return await apiClient.post<CreateCapsuleRes>(ENDPOINTS.CREATE_CAPSULE, {
         json: data,
-        auth: true,
       });
     },
     onError: (err) => {
