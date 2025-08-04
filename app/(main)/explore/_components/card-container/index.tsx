@@ -33,7 +33,7 @@ const CardContainer = () => {
           variant={variants[index % 6]}
           onClick={() => {
             router.push(
-              PATH.CAPSULE_DETAIL(`${capsule.inviteCode}/${capsule.id}`),
+              PATH.CAPSULE_DETAIL(capsule.inviteCode, capsule.id.toString()),
             );
           }}
         />
