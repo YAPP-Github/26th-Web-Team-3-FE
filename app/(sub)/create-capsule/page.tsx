@@ -40,7 +40,9 @@ const CreateCapsule = () => {
   const onSubmit: SubmitHandler<CreateCapsuleReq> = (data) => {
     createCapsuleMutate(data, {
       onSuccess: (res) => {
-        router.push(PATH.CAPSULE_DETAIL(res.result.id.toString()));
+        router.push(
+          PATH.CAPSULE_DETAIL(res.result.inviteCode, res.result.id.toString()),
+        );
       },
     });
   };

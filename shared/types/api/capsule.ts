@@ -9,6 +9,7 @@ export interface CreateCapsuleReq {
 export interface CreateCapsuleRes {
   result: {
     id: number;
+    inviteCode: string;
   };
 }
 
@@ -48,6 +49,7 @@ export interface CapsuleListsRes {
 
 export type TimeCapsules = {
   id: number;
+  inviteCode: string;
   title: string;
   participantCount: number;
   letterCount: number;
