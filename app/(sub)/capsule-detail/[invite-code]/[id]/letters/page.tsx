@@ -12,7 +12,7 @@ import GridLetterCard from "./_components/grid-letter-card";
 import StackLetterCard from "./_components/stack-letter-card";
 import * as styles from "./page.css";
 
-const CapsuleOpenPage = () => {
+const CapsuleLettersPage = () => {
   const params = useParams();
   const capsuleId = params.id as string;
   const [isStackType, setIsStackType] = useState(true);
@@ -69,4 +69,4 @@ const CapsuleOpenPage = () => {
   );
 };
 
-export default CapsuleOpenPage;
+export default CapsuleLettersPage;
