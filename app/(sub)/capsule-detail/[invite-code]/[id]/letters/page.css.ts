@@ -42,7 +42,7 @@ export const shareButton = style({
   color: "white",
   border: "none",
   borderRadius: "24px",
-  padding: "12px 24px",
+  padding: "1.2rem 2.4rem",
   display: "flex",
   alignItems: "center",
   gap: "8px",
