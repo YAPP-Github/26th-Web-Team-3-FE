@@ -22,8 +22,8 @@ const StackLetterCard = ({ letter, onClick: handleClick }: LetterCardProps) => {
     <div className={styles.card} onClick={handleClick}>
       {imageUrl && (
         <Image
-          width="24rem"
-          height="24rem"
+          width="24"
+          height="24"
           className={styles.imageContainer}
           src={imageUrl}
           alt="편지 이미지"
