@@ -1,27 +1,17 @@
+import { themeVars } from "@/shared/styles/base/theme.css";
 import { style } from "@vanilla-extract/css";
 
 export const card = style({
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  background: "rgba(255, 255, 255, 0.1)",
-  borderRadius: "16px",
-  padding: "2rem",
-  width: "320px",
-  cursor: "pointer",
-  transition: "transform 0.3s ease",
-  backdropFilter: "blur(10px)",
-
-  ":hover": {
-    transform: "translate(-50%, -50%) scale(1.05)",
-  },
+  width: "45rem",
+  height: "45rem",
+  background: themeVars.color.gradient.darkgray_bg_horizontal,
+  padding: "2.4rem",
+  borderRadius: "20px",
+  display: "flex",
 });
 
 export const imageContainer = style({
-  borderRadius: "12px",
-  overflow: "hidden",
-  marginBottom: "1rem",
+  width: "24rem",
 });
 
 export const content = style({

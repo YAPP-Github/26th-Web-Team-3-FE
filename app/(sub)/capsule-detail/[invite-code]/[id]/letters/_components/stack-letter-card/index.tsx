@@ -2,13 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 
 import { fileQueryOptions } from "@/shared/api/queries/file";
 import type { Letter } from "@/shared/types/api/letter";
+import Image from "next/image";
 import * as styles from "./stack-letter-card.css";
 
 interface LetterCardProps {
   letter: Letter;
+  onClick: () => void;
 }
 
-const StackLetterCard = ({ letter }: LetterCardProps) => {
+const StackLetterCard = ({ letter, onClick: handleClick }: LetterCardProps) => {
   const { data: fileData } = useQuery({
     ...fileQueryOptions.presignedUrl(letter.files),
     enabled: !!letter.files,
@@ -17,17 +19,21 @@ const StackLetterCard = ({ letter }: LetterCardProps) => {
   const imageUrl = fileData?.presignedUrl;
 
   return (
-    <button className={styles.card} type="button">
+    <div className={styles.card} onClick={handleClick}>
       {imageUrl && (
-        <div className={styles.imageContainer}>
-          <img src={imageUrl} alt="편지 이미지" />
-        </div>
+        <Image
+          width="24rem"
+          height="24rem"
+          className={styles.imageContainer}
+          src={imageUrl}
+          alt="편지 이미지"
+        />
       )}
       <div className={styles.content}>
         <p className={styles.text}>{letter.content}</p>
         <div className={styles.author}>From {letter.from}</div>
       </div>
-    </button>
+    </div>
   );
 };
 
