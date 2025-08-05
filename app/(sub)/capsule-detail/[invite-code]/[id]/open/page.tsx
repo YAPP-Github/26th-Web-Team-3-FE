@@ -17,9 +17,10 @@ const CapsuleOpenPage = () => {
   const capsuleId = params.id as string;
   const [isStackType, setIsStackType] = useState(true);
 
-  const { data: capsuleData } = useQuery(
-    capsuleQueryOptions.capsuleDetail(capsuleId),
-  );
+  const { data: capsuleTitle } = useQuery({
+    ...capsuleQueryOptions.capsuleDetail(capsuleId),
+    select: (data) => data.result.title,
+  });
   const { data: letterData, isLoading } = useQuery(
     letterQueryOptions.letterList(capsuleId),
   );
@@ -28,13 +29,12 @@ const CapsuleOpenPage = () => {
     return <div>로딩 중...</div>;
   }
 
-  const capsule = capsuleData?.result;
   const letters = letterData?.result?.letters || [];
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1 className={styles.title}>{capsule?.title || "캡슐"}</h1>
+        <h1 className={styles.title}>{capsuleTitle || "캡슐"}</h1>
         <p className={styles.subtitle}>7월 참여 · {letters.length}통</p>
       </div>
 
