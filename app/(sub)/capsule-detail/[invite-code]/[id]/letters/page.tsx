@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import GridLetterCard from "./_components/grid-letter-card";
-import StackLetterCard from "./_components/stack-letter-card";
+import StackLayout from "./_components/stack-layout";
 import * as styles from "./page.css";
 
 const CapsuleLettersPage = () => {
@@ -39,13 +39,10 @@ const CapsuleLettersPage = () => {
       </div>
 
       <div className={styles.cardContainer}>
-        {letters.map((letter) =>
-          isStackType ? (
-            <StackLetterCard key={letter.letterId} letter={letter} />
-          ) : (
-            <GridLetterCard key={letter.letterId} letter={letter} />
-          ),
-        )}
+        isStackType ? (
+        <StackLayout letters={letters} />) : (
+        <GridLetterCard letter={letters[0]} />
+        ),
       </div>
 
       <div className={styles.buttonContainer}>
