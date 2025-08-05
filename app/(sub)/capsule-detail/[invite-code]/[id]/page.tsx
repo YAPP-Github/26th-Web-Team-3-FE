@@ -20,7 +20,17 @@ const CapsuleDetailPage = () => {
   const params = useParams();
   const id = params.id as string;
 
-  const { data } = useQuery(capsuleQueryOptions.capsuleDetail(id));
+  const { data, isLoading, isError } = useQuery(
+    capsuleQueryOptions.capsuleDetail(id),
+  );
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!data || isError) {
+    return <div>캡슐 정보를 불러오지 못했습니다.</div>;
+  }
 
   return (
     <>
@@ -28,7 +38,7 @@ const CapsuleDetailPage = () => {
         renderRight={() => {
           return (
             <>
-              <LikeButton isLiked={data?.result.isLiked || false} />
+              <LikeButton isLiked={data?.result.isLiked} />
               <Dropdown>
                 <Dropdown.Trigger>
                   <MenuIcon />
@@ -44,26 +54,29 @@ const CapsuleDetailPage = () => {
       />
       <RevealMotion>
         <InfoTitle
-          title={data?.result.title || ""}
-          participantCount={data?.result.participantCount || 0}
-          joinLettersCount={data?.result.letterCount || 0}
+          title={data?.result.title}
+          participantCount={data?.result.participantCount}
+          joinLettersCount={data?.result.letterCount}
         />
       </RevealMotion>
       <CapsuleImage />
       <div className={styles.container}>
         <RevealMotion delay={0.8}>
-          <CaptionSection description={data?.result.subtitle || ""} />
+          <CaptionSection description={data?.result.subtitle} />
         </RevealMotion>
         <RevealMotion delay={1.2}>
-          <OpenInfoSection openAt={data?.result.openAt || ""} />
+          <OpenInfoSection openAt={data?.result.openAt} />
         </RevealMotion>
       </div>
       <ResponsiveFooter
         remainingTime={{
-          days: data?.result.remainingTime.days || 0,
-          hours: data?.result.remainingTime.hours || 0,
-          minutes: data?.result.remainingTime.minutes || 0,
+          days: data?.result.remainingTime.days,
+          hours: data?.result.remainingTime.hours,
+          minutes: data?.result.remainingTime.minutes,
+          openDate: data?.result.remainingTime.openDate,
         }}
+        status={data?.result.status}
+        isMine={data?.result.isMine}
       />
     </>
   );

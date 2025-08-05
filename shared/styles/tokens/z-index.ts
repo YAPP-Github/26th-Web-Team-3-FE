@@ -9,4 +9,7 @@ export const zIndexTheme = {
   addCapsuleButton: {
     content: "101",
   },
+  openCapsuleBottom: {
+    content: "100",
+  },
 } as const;
