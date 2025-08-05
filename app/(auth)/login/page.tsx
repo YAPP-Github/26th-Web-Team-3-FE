@@ -2,8 +2,8 @@ import LettieImage from "@/shared/assets/character/lettie_animate.png";
 import GoogleIcon from "@/shared/assets/icon/google.svg";
 import NaverIcon from "@/shared/assets/icon/naver.svg";
 import LogoImage from "@/shared/assets/logo/logo_symbol_wordmark.svg";
-
 import { maxWidth } from "@/shared/styles/base/global.css";
+import { getOAuthUrl } from "../_api/auth.api";
 
 import Image from "next/image";
 
@@ -27,6 +27,11 @@ const LoginPage = () => {
             className={styles.button}
             type="button"
             aria-label="네이버 계정으로 계속하기"
+            onClick={() => {
+              getOAuthUrl("NAVER").then((url) => {
+                window.location.href = url;
+              });
+            }}
           >
             <NaverIcon />
             네이버 계정으로 계속하기
@@ -35,6 +40,11 @@ const LoginPage = () => {
             className={styles.button}
             type="button"
             aria-label="구글 계정으로 계속하기"
+            onClick={() => {
+              getOAuthUrl("GOOGLE").then((url) => {
+                window.location.href = url;
+              });
+            }}
           >
             <GoogleIcon />
             구글 계정으로 계속하기
