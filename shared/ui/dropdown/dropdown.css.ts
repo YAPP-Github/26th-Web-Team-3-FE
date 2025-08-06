@@ -30,6 +30,7 @@ export const dropdownItem = style({
   whiteSpace: "nowrap",
   alignItems: "center",
   ...themeVars.text.F16,
+  borderRadius: "15px",
   color: themeVars.color.white[100],
   selectors: {
     "&:hover": {
