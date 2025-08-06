@@ -4,6 +4,9 @@ import { screen } from "@/shared/styles/tokens/screen";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 export const cardBase = style({
+  position: "relative",
+  zIndex: 2,
+  width: "100%",
   height: "24.5rem",
   borderRadius: "16px",
   display: "flex",
@@ -11,7 +14,7 @@ export const cardBase = style({
   overflow: "hidden",
   cursor: "pointer",
   transition: "all 0.3s ease",
-
+  backgroundColor: themeVars.color.white[5],
   ":hover": {
     opacity: 0.6,
     transform: "scale(1) rotate(0deg) skew(0deg, 0deg) translate(0px, -15px)",
@@ -29,6 +32,16 @@ export const chipClass = style({
     ...themeVars.text.F14,
     height: "2.25rem",
   }),
+});
+
+export const cardGradientOverlay = style({
+  position: "absolute",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  pointerEvents: "none",
+  zIndex: 1,
 });
 
 export const cardContentWrapper = style({
@@ -52,6 +65,7 @@ export const cardIcon = style({
 
 export const cardIconWrapper = style({
   position: "relative",
+  zIndex: 2,
   width: "100%",
   height: "50%",
   padding: "2rem",

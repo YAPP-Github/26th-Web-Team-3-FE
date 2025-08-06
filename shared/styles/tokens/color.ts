@@ -35,11 +35,11 @@ export const colorTheme = {
   gradient: {
     purple: "linear-gradient(0deg, #9965f6 0%, rgb(104, 55, 243) 100%)",
     point_purple:
-      "linear-gradient(rgba(119, 0, 156, 1) 0%, rgba(105, 44, 201, 1) 100%)",
+      "linear-gradient(90deg,rgba(119, 0, 156, 1) 0%, rgba(105, 44, 201, 1) 100%)",
     dark_purple:
-      "linear-gradient(rgba(87, 2, 112, 0.41) 0%, rgba(63, 24, 125, 1) 100%)",
+      "linear-gradient(90deg,rgba(87, 2, 112, 0.41) 0%, rgba(63, 24, 125, 1) 100%)",
     light_purple:
-      "linear-gradient(rgba(211, 153, 255, 1) 0%, rgba(148, 182, 255, 1) 100%)",
+      "linear-gradient(90deg,rgba(211, 153, 255, 1) 0%, rgba(148, 182, 255, 1) 100%)",
     card_red:
       "linear-gradient(rgba(0, 0, 0, 0.04) 60%, rgba(234, 53, 96, 0.16) 100%)",
     card_orange:
@@ -53,11 +53,11 @@ export const colorTheme = {
     card_yellow:
       "linear-gradient(rgba(0, 0, 0, 0.04) 60%, rgba(245, 243, 120, 0.16) 100%)",
     white_op:
-      "linear-gradient(rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.08) 34%,rgba(0, 0, 0, 0.08) 66%, rgba(0, 0, 0, 0.04) 100%)",
+      "linear-gradient(90deg,rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.08) 34%,rgba(0, 0, 0, 0.08) 66%, rgba(0, 0, 0, 0.04) 100%)",
     darkgray_op:
-      "linear-gradient(rgba(38, 38, 42, 1) 0%, rgba(48, 48, 53, 1) 34%, rgba(48, 48, 53, 1) 66%, rgba(38, 38, 42, 1) 100%)",
+      "linear-gradient(90deg,rgba(38, 38, 42, 1) 0%, rgba(48, 48, 53, 1) 34%, rgba(48, 48, 53, 1) 66%, rgba(38, 38, 42, 1) 100%)",
     darkgray_bg:
-      "linear-gradient(rgba(28, 28, 33, 1) 34%, rgba(39, 39, 44, 1) 34%, rgba(39, 39, 44, 1) 66%, rgba(28, 28, 33, 1) 100%)",
+      "linear-gradient(90deg,rgba(28, 28, 33, 1) 34%, rgba(39, 39, 44, 1) 34%, rgba(39, 39, 44, 1) 66%, rgba(28, 28, 33, 1) 100%)",
     darkgray_bg_horizontal:
       "linear-gradient(270deg,#1b1b20,#27272c 34.234234234234236%,#27272b 66.21621621621621%,#1c1c21)",
     blue_bg:
