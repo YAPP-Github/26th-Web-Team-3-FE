@@ -30,3 +30,20 @@ export const formatOpenDate = (openDate: string) => {
     day: day.padStart(2, "0"),
   };
 };
+
+/**
+ * 날짜와 시간을 "YYYY-MM-DD HH:MM" 형식으로 포맷
+ * @param dateTime ISO 형식의 날짜시간 문자열
+ * @returns 포맷된 날짜시간 문자열
+ */
+export const formatDateTime = (dateTime: string) => {
+  if (!dateTime) return "";
+
+  const [date, timeWithZone] = dateTime.split("T");
+  const time = timeWithZone?.split(".")[0] || "";
+
+  // 초(SS) 부분 제거
+  const timeWithoutSeconds = time.split(":").slice(0, 2).join(":");
+
+  return `${date} ${timeWithoutSeconds}`;
+};
