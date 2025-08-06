@@ -12,4 +12,7 @@ export const zIndexTheme = {
   openCapsuleBottom: {
     content: "100",
   },
+  dropdown: {
+    content: "100",
+  },
 } as const;

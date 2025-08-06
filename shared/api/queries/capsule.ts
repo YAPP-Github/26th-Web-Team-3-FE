@@ -10,7 +10,14 @@ import { apiClient } from "../api-client";
 export const capsuleQueryKeys = {
   all: () => ["capsule"],
   detail: (id: string) => [...capsuleQueryKeys.all(), id],
-  lists: () => [...capsuleQueryKeys.all(), "lists"],
+  lists: (page?: number, size?: number, sort?: string[], type?: string) => [
+    ...capsuleQueryKeys.all(),
+    "lists",
+    page,
+    size,
+    sort,
+    type,
+  ],
 } as const;
 
 export const capsuleQueryOptions = {
@@ -20,10 +27,15 @@ export const capsuleQueryOptions = {
       queryFn: () => getCapsuleDetail(id),
       enabled: !!id,
     }),
-  capsuleLists: () =>
+  capsuleLists: (
+    page?: number,
+    size?: number,
+    sort?: string[],
+    type?: string,
+  ) =>
     queryOptions({
-      queryKey: capsuleQueryKeys.lists(),
-      queryFn: () => getCapsuleLists(),
+      queryKey: capsuleQueryKeys.lists(page, size, sort, type),
+      queryFn: () => getCapsuleLists(page, size, sort, type),
     }),
 };
 
@@ -31,6 +43,13 @@ const getCapsuleDetail = (id: string) => {
   return apiClient.get<CapsuleDetailRes>(ENDPOINTS.CAPSULE_DETAIL(id));
 };
 
-const getCapsuleLists = () => {
-  return apiClient.get<CapsuleListsRes>(ENDPOINTS.CAPSULE_LISTS);
+const getCapsuleLists = (
+  page?: number,
+  size?: number,
+  sort?: string[],
+  type?: string,
+) => {
+  return apiClient.get<CapsuleListsRes>(
+    ENDPOINTS.CAPSULE_LISTS(page, size, sort, type),
+  );
 };
