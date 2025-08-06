@@ -25,7 +25,7 @@ export const cardStatusLabel = (
 
   // remainingTime이 없는 경우
   if (!status.remainingTime) {
-    return "오픈 완료";
+    return "캡슐 오픈";
   }
 
   const { days, hours, minutes } = status.remainingTime;
