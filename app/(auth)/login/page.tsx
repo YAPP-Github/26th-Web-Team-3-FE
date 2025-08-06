@@ -1,3 +1,5 @@
+"use client";
+
 import LettieImage from "@/shared/assets/character/lettie_animate.png";
 import GoogleIcon from "@/shared/assets/icon/google.svg";
 import NaverIcon from "@/shared/assets/icon/naver.svg";
@@ -10,6 +12,13 @@ import Image from "next/image";
 import * as styles from "./page.css";
 
 const LoginPage = () => {
+  const handleGoToOAuth = (provider: "naver" | "google") => {
+    getOAuthUrl(provider).then((url) => {
+      const encodedUrl = encodeURI(url);
+      window.location.href = encodedUrl;
+    });
+  };
+
   return (
     <div className={maxWidth}>
       <header className={styles.header}>
@@ -27,11 +36,7 @@ const LoginPage = () => {
             className={styles.button}
             type="button"
             aria-label="네이버 계정으로 계속하기"
-            onClick={() => {
-              getOAuthUrl("NAVER").then((url) => {
-                window.location.href = url;
-              });
-            }}
+            onClick={() => handleGoToOAuth("naver")}
           >
             <NaverIcon />
             네이버 계정으로 계속하기
@@ -40,11 +45,7 @@ const LoginPage = () => {
             className={styles.button}
             type="button"
             aria-label="구글 계정으로 계속하기"
-            onClick={() => {
-              getOAuthUrl("GOOGLE").then((url) => {
-                window.location.href = url;
-              });
-            }}
+            onClick={() => handleGoToOAuth("google")}
           >
             <GoogleIcon />
             구글 계정으로 계속하기

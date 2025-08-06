@@ -14,7 +14,7 @@ export default function CallbackPage() {
     if (!code) return;
 
     mutate(
-      { provider: "NAVER", code: code },
+      { provider: "naver", code: code },
       {
         onSuccess: ({ token }) => {
           // setAccessToken(accessToken);
