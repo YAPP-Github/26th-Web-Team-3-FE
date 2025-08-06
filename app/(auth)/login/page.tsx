@@ -14,8 +14,7 @@ import * as styles from "./page.css";
 const LoginPage = () => {
   const handleGoToOAuth = (provider: "naver" | "google") => {
     getOAuthUrl(provider).then((url) => {
-      const encodedUrl = encodeURI(url);
-      window.location.href = encodedUrl;
+      window.location.href = url;
     });
   };
 

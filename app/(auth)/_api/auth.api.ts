@@ -6,14 +6,15 @@ const AUTH_ENDPOINTS = {
   CODE: (provider: "naver" | "google") => `api/v1/auth/code/${provider}`,
 } as const;
 
-const AUTH_REDIRECT_URL = "http://localhost:3000/login/callback";
+const AUTH_REDIRECT_URL = (provider: "naver" | "google") =>
+  `http://localhost:3000/login/callback/${provider}`;
 
 export const getOAuthUrl = async (provider: "naver" | "google") => {
   const response = await apiClient.get<OAuthRes>(
     AUTH_ENDPOINTS.OAUTH_URL(provider),
     {
       searchParams: {
-        redirectUrl: AUTH_REDIRECT_URL,
+        redirectUrl: AUTH_REDIRECT_URL(provider),
       },
     },
   );
@@ -29,7 +30,7 @@ export const postToGetOAuthCode = async (
     {
       json: {
         authorizationCode: code,
-        redirectUrl: AUTH_REDIRECT_URL,
+        redirectUrl: AUTH_REDIRECT_URL(provider),
       },
     },
   );
