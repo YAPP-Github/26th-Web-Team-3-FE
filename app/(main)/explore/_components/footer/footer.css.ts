@@ -3,8 +3,7 @@ import { style } from "@vanilla-extract/css";
 
 export const container = style({
   width: "100%",
-  padding: "1.6rem",
-  paddingBottom: "7.2rem",
+  padding: "4rem 1.6rem 7.2rem 1.6rem",
 });
 
 export const footer = style({
