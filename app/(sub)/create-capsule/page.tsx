@@ -67,7 +67,10 @@ const CreateCapsule = () => {
       )}
       <div className={styles.container}>
         <FormProvider {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className={styles.formStyle}
+          >
             <Funnel>
               <Step name="intro">
                 <IntroStep handleNextStep={handleNextStep} />
