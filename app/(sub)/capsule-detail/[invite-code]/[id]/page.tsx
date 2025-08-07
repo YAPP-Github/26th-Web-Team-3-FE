@@ -1,19 +1,21 @@
 "use client";
 
+import { capsuleQueryOptions } from "@/shared/api/queries/capsule";
 import MenuIcon from "@/shared/assets/icon/menu.svg";
+import { PATH } from "@/shared/constants/path";
 import Dropdown from "@/shared/ui/dropdown";
 import LikeButton from "@/shared/ui/like-button";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import NavbarDetail from "@/shared/ui/navbar/navbar-detail";
+import { formatDateTime } from "@/shared/utils/date";
+import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 import CapsuleImage from "../../_components/capsule-image";
 import CaptionSection from "../../_components/caption-section";
 import InfoTitle from "../../_components/info-title";
 import OpenInfoSection from "../../_components/open-info-section";
 import ResponsiveFooter from "../../_components/responsive-footer";
-
-import { capsuleQueryOptions } from "@/shared/api/queries/capsule";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "next/navigation";
 import * as styles from "./page.css";
 
 const CapsuleDetailPage = () => {
@@ -45,7 +47,9 @@ const CapsuleDetailPage = () => {
                 </Dropdown.Trigger>
                 <Dropdown.Content>
                   <Dropdown.Item label="신고하기" />
-                  <Dropdown.Item label="나가기" />
+                  <Link href={PATH.HOME}>
+                    <Dropdown.Item label="나가기" />
+                  </Link>
                 </Dropdown.Content>
               </Dropdown>
             </>
@@ -59,13 +63,13 @@ const CapsuleDetailPage = () => {
           joinLettersCount={data?.result.letterCount}
         />
       </RevealMotion>
-      <CapsuleImage />
+      <CapsuleImage imageUrl={data?.result.beadVideoUrl} />
       <div className={styles.container}>
         <RevealMotion delay={0.8}>
           <CaptionSection description={data?.result.subtitle} />
         </RevealMotion>
         <RevealMotion delay={1.2}>
-          <OpenInfoSection openAt={data?.result.openAt} />
+          <OpenInfoSection openAt={formatDateTime(data?.result.openAt)} />
         </RevealMotion>
       </div>
       <ResponsiveFooter

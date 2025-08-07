@@ -20,6 +20,17 @@ const plugins = [withSvgr, withVanillaExtract];
 
 const baseConfig: NextConfig = {
   reactStrictMode: true,
+  // Todo: 개발, 배포 환경 분기 처리
+  images: {
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "13.209.7.195",
+        port: "9000",
+        pathname: "**",
+      },
+    ],
+  },
 };
 
 const finalConfig = plugins.reduce((acc, plugin) => plugin(acc), baseConfig);

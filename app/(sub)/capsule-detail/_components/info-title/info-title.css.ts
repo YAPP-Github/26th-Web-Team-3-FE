@@ -8,7 +8,7 @@ export const container = style({
   alignItems: "center",
   justifyContent: "center",
   width: "100%",
-  paddingTop: "2.4rem",
+  paddingTop: "8.8rem",
   ...screen.md({
     paddingTop: "9.6rem",
   }),

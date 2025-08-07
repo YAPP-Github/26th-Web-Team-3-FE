@@ -40,3 +40,11 @@ export const loadingContainer = style({
   justifyContent: "center",
   paddingTop: "10.8rem",
 });
+
+export const formStyle = style({
+  display: "flex",
+  flexDirection: "column",
+  width: "100%",
+  height: "100%",
+  maxWidth: "45rem",
+});

@@ -16,8 +16,14 @@ const variants = [
   "gradient6",
 ] as const;
 
-const CardContainer = () => {
-  const { data: capsuleLists } = useQuery(capsuleQueryOptions.capsuleLists());
+interface CardContainerProps {
+  selectedTab: string;
+}
+
+const CardContainer = ({ selectedTab }: CardContainerProps) => {
+  const { data: capsuleLists } = useQuery(
+    capsuleQueryOptions.capsuleLists(0, 20, ["id", "desc"], selectedTab),
+  );
 
   const router = useRouter();
 

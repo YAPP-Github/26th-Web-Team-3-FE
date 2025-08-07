@@ -4,6 +4,7 @@ import { style } from "@vanilla-extract/css";
 export const dropdownWrapper = style({
   position: "relative",
   borderRadius: "15px",
+  zIndex: themeVars.zIndex.dropdown.content,
 });
 
 export const triggerBtnStyle = style({
@@ -21,6 +22,7 @@ export const dropdownContent = style({
   backgroundColor: themeVars.color.black[70],
   padding: "0.6rem",
   borderRadius: "15px",
+  boxShadow: "0px 4px 16px 0px rgba(0, 0, 0, 0.10)",
 });
 
 export const dropdownItem = style({
@@ -30,6 +32,7 @@ export const dropdownItem = style({
   whiteSpace: "nowrap",
   alignItems: "center",
   ...themeVars.text.F16,
+  borderRadius: "8px",
   color: themeVars.color.white[100],
   selectors: {
     "&:hover": {

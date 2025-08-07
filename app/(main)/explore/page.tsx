@@ -8,10 +8,10 @@ import CardContainer from "./_components/card-container";
 import Footer from "./_components/footer";
 
 const Explore = () => {
-  const [selected, setSelected] = useState<string>("전체");
+  const [selectedTab, setSelectedTab] = useState<string>("all");
 
   const handleSelect = (value: string) => {
-    setSelected(value);
+    setSelectedTab(value);
   };
 
   return (
@@ -19,9 +19,9 @@ const Explore = () => {
       <RevealMotion>
         <TitleSection />
       </RevealMotion>
-      <SelectTabSection onSelect={handleSelect} selectedTab={selected} />
+      <SelectTabSection onSelect={handleSelect} selectedTab={selectedTab} />
       <AddCapsuleButton />
-      <CardContainer />
+      <CardContainer selectedTab={selectedTab} />
       <Footer />
     </>
   );
