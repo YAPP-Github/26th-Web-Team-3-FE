@@ -17,8 +17,6 @@ export const lettieImage = style({
   justifyContent: "center",
   alignSelf: "center",
   width: "100%",
-  maxWidth: "26rem",
-  height: "26rem",
   ...screen.md({
     width: "34rem",
     height: "34rem",
