@@ -1,4 +1,5 @@
 import { themeVars } from "@/shared/styles/base/theme.css";
+import { screen } from "@/shared/styles/tokens/screen";
 import { style } from "@vanilla-extract/css";
 
 export const container = style({
@@ -11,6 +12,9 @@ export const container = style({
   gap: "3.2rem",
   background: themeVars.color.gradient.darkgray_op,
   borderRadius: "16px",
+  ...screen.md({
+    marginBottom: "24rem",
+  }),
 });
 
 export const iconStyle = style({

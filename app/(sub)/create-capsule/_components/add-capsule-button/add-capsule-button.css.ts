@@ -11,6 +11,7 @@ export const buttonStyle = style({
   borderRadius: "16px",
   ...themeVars.text.B1,
   backgroundColor: themeVars.color.purple[50],
+  color: themeVars.color.white[100],
   position: "fixed",
   right: "3rem",
   bottom: "4rem",

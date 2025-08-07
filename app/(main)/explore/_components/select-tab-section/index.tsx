@@ -9,7 +9,12 @@ interface Props {
 }
 
 const SelectTabSection = ({ onSelect, selectedTab }: Props) => {
-  const tabOptions = ["전체", "참여가능", "오픈된 캡슐", "마감된 캡슐"];
+  const tabOptions = [
+    { label: "전체", value: "all" },
+    { label: "참여가능", value: "WRITABLE" },
+    { label: "오픈된 캡슐", value: "OPENED" },
+    { label: "마감된 캡슐", value: "WAITING_OPEN" },
+  ];
 
   return (
     <div className={styles.chipContainer}>
@@ -26,10 +31,10 @@ const SelectTabSection = ({ onSelect, selectedTab }: Props) => {
       <div className={styles.chipWrapper}>
         {tabOptions.map((option) => (
           <TabButton
-            key={option}
-            text={option}
-            selected={selectedTab === option}
-            onClick={() => onSelect(option)}
+            key={option.value}
+            text={option.label}
+            selected={selectedTab === option.value}
+            onClick={() => onSelect(option.value)}
           />
         ))}
       </div>

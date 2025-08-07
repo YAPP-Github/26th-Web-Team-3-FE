@@ -17,7 +17,6 @@ const PopupCancelCreation = ({ isOpen, close }: PopupCancelCreationProps) => {
       </Popup.Content>
       <Popup.Actions>
         <Popup.Button
-          className={styles.continueButton}
           onClick={() => {
             router.push(PATH.EXPLORE);
             close();

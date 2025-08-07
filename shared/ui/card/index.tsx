@@ -41,10 +41,10 @@ const Card = ({
   const icon = gradientIcons[variant];
 
   return (
-    <div
-      className={cn(styles.cardBase, styles.cardVariants[variant], className)}
-      onClick={onClick}
-    >
+    <div className={cn(styles.cardBase, className)} onClick={onClick}>
+      <div
+        className={cn(styles.cardGradientOverlay, styles.cardVariants[variant])}
+      />
       <div className={styles.cardContentWrapper}>
         {openStatusLabel === "오픈 완료" ? (
           <Chip className={styles.chipClass} variant="purple">

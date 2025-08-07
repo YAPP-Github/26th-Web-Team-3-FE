@@ -2,20 +2,11 @@ import { themeVars } from "@/shared/styles/base/theme.css";
 import { screen } from "@/shared/styles/tokens/screen";
 import { style } from "@vanilla-extract/css";
 
-export const inputSectionWrapper = style({
-  display: "flex",
-  flexDirection: "column",
-  gap: "1.6rem",
-  width: "100%",
-  alignSelf: "stretch",
-  minWidth: "100%",
-});
-
 export const inputContainer = style({
   display: "flex",
   flexDirection: "column",
-  gap: "0.8rem",
   width: "100%",
+  gap: "0.8rem",
 });
 
 export const labelStyle = style({
@@ -24,10 +15,9 @@ export const labelStyle = style({
 
 export const inputWrapper = style({
   display: "flex",
-  gap: "0.5rem", // 모바일에서 간격 줄임
-  width: "100%",
+  gap: "0.5rem",
   ...screen.md({
-    gap: "1rem", // 웹에서는 원래 간격
+    gap: "1rem",
   }),
 });
 
