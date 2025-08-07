@@ -6,9 +6,13 @@ interface CapsuleImageProps {
 }
 
 const CapsuleImage = ({ imageUrl }: CapsuleImageProps) => {
+  if (!imageUrl) {
+    return null;
+  }
+
   return (
     <div className={styles.container}>
-      <Image src={imageUrl} width={260} height={253} alt="apng" unoptimized />
+      <Image src={imageUrl} width={252} height={280} alt="apng" unoptimized />
     </div>
   );
 };
