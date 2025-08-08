@@ -1,5 +1,6 @@
 "use client";
 
+import { useLikeToggle } from "@/shared/api/mutations/capsule";
 import { capsuleQueryOptions } from "@/shared/api/queries/capsule";
 import MenuIcon from "@/shared/assets/icon/menu.svg";
 import { PATH } from "@/shared/constants/path";
@@ -21,7 +22,7 @@ import * as styles from "./page.css";
 const CapsuleDetailPage = () => {
   const params = useParams();
   const id = params.id as string;
-
+  const { mutate: likeToggle } = useLikeToggle();
   const { data, isLoading, isError } = useQuery(
     capsuleQueryOptions.capsuleDetail(id),
   );
@@ -34,13 +35,20 @@ const CapsuleDetailPage = () => {
     return <div>캡슐 정보를 불러오지 못했습니다.</div>;
   }
 
+  const handleLikeToggle = (isLiked: boolean) => {
+    likeToggle({ id: data.result.id.toString(), isLiked });
+  };
+
   return (
     <>
       <NavbarDetail
         renderRight={() => {
           return (
             <>
-              <LikeButton isLiked={data?.result.isLiked} />
+              <LikeButton
+                isLiked={data?.result.isLiked}
+                onLikeToggle={() => handleLikeToggle(data?.result.isLiked)}
+              />
               <Dropdown>
                 <Dropdown.Trigger>
                   <MenuIcon />

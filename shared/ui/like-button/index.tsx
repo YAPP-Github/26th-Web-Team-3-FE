@@ -1,14 +1,28 @@
+import { useState } from "react";
+
 import HeartIcon from "@/shared/assets/icon/heart.svg";
 import type { ComponentProps } from "react";
 import * as styles from "./like-button.css";
 
 interface LikeButtonProps extends ComponentProps<"button"> {
   isLiked: boolean;
+  onLikeToggle?: (isLiked: boolean) => void;
 }
 
-const LikeButton = ({ isLiked, ...props }: LikeButtonProps) => {
+const LikeButton = ({ isLiked, onLikeToggle, ...props }: LikeButtonProps) => {
+  const [liked, setLiked] = useState(isLiked);
+
+  const handleClick = () => {
+    setLiked((prev) => !prev);
+    onLikeToggle?.(liked);
+  };
+
   return (
-    <button className={styles.likeButton({ liked: isLiked })} {...props}>
+    <button
+      className={styles.likeButton({ liked })}
+      {...props}
+      onClick={handleClick}
+    >
       <HeartIcon width={24} />
     </button>
   );

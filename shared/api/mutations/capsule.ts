@@ -1,9 +1,11 @@
+import { capsuleQueryKeys } from "@/shared/api/queries/capsule";
 import { ENDPOINTS } from "@/shared/constants/endpoints";
 import type {
   CreateCapsuleReq,
   CreateCapsuleRes,
 } from "@/shared/types/api/capsule";
 import { useMutation } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "../api-client";
 
 export const useCreateCapsule = () => {
@@ -13,8 +15,24 @@ export const useCreateCapsule = () => {
         json: data,
       });
     },
-    onError: (err) => {
-      console.error("에러 발생:", err);
+  });
+};
+
+export const useLikeToggle = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async ({ id, isLiked }: { id: string; isLiked: boolean }) => {
+      if (isLiked) {
+        await apiClient.delete(ENDPOINTS.LIKE_TOGGLE(id));
+      } else {
+        await apiClient.put(ENDPOINTS.LIKE_TOGGLE(id));
+      }
+      return id;
+    },
+    onSuccess: (id: string) => {
+      queryClient.invalidateQueries({
+        queryKey: capsuleQueryKeys.detail(id),
+      });
     },
   });
 };
