@@ -1,8 +1,10 @@
+import type { CapsuleSortType } from "@/shared/types/api/capsule";
+
 export const ENDPOINTS = {
   // 타임캡슐
   CREATE_CAPSULE: "api/v1/capsules",
   CAPSULE_DETAIL: (id: string) => `api/v1/capsules/${id}`,
-  CAPSULE_LISTS: (page = 0, size = 20, sort = ["id", "desc"], type = "all") =>
+  CAPSULE_LISTS: (page = 0, size = 20, sort: CapsuleSortType = "DEFAULT", type = "all") =>
     `api/v1/capsules/explore?page=${page}&size=${size}&sort=${sort}${type === "all" ? "" : `&type=${type}`}`,
   LIKE_TOGGLE: (id: string) => `api/v1/capsules/${id}/like`,
 
