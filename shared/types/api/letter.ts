@@ -2,7 +2,10 @@ export interface Letter {
   letterId: number;
   content: string;
   from: string;
-  files: string;
+  files: {
+    fileId: string;
+    objectKey: string;
+  }[];
   isMine: boolean;
 }
 
