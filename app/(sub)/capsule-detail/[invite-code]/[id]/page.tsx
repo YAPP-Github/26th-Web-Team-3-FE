@@ -1,10 +1,10 @@
 "use client";
-
 import { useLikeToggle } from "@/shared/api/mutations/capsule";
 import { capsuleQueryOptions } from "@/shared/api/queries/capsule";
 import MenuIcon from "@/shared/assets/icon/menu.svg";
 import { PATH } from "@/shared/constants/path";
 import Dropdown from "@/shared/ui/dropdown";
+import InfoToast from "@/shared/ui/info-toast";
 import LikeButton from "@/shared/ui/like-button";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import NavbarDetail from "@/shared/ui/navbar/navbar-detail";
@@ -99,6 +99,9 @@ const CapsuleDetailPage = () => {
         status={data?.result.status}
         isMine={data?.result.isMine}
       />
+      {data.result.status !== "WRITABLE" && (
+        <InfoToast status={data.result.status as "WAITING_OPEN" | "OPENED"} />
+      )}
     </>
   );
 };
