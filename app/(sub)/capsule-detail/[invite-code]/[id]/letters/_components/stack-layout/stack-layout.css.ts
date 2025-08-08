@@ -1,4 +1,5 @@
-// stack-layout.css.ts
+import { themeVars } from "@/shared/styles/base/theme.css";
+import { screen } from "@/shared/styles/tokens/screen";
 import { style } from "@vanilla-extract/css";
 
 export const container = style({
@@ -6,19 +7,25 @@ export const container = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  height: "60vh",
   maxWidth: "600px",
   margin: "0 auto",
 });
 
 export const stackContainer = style({
   position: "relative",
-  width: "350px",
-  height: "450px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  margin: "0 2rem",
+  width: "26rem",
+  height: "32rem",
+  overflow: "visible",
+  padding: "2rem",
+
+  ...screen.md({
+    width: "45rem",
+    height: "45rem",
+    padding: "3rem",
+  }),
 });
 
 export const cardWrapper = style({
@@ -27,59 +34,41 @@ export const cardWrapper = style({
 });
 
 export const navButton = style({
-  background: "rgba(255, 255, 255, 0.1)",
   border: "none",
-  borderRadius: "50%",
   width: "48px",
   height: "48px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  color: "white",
+  color: themeVars.color.white[85],
   cursor: "pointer",
-  zIndex: 20,
-
-  ":hover": {
-    background: "rgba(255, 255, 255, 0.2)",
-  },
-
-  ":disabled": {
-    opacity: 0.3,
-    cursor: "not-allowed",
-  },
 });
 
 export const pagination = style({
+  boxSizing: "border-box",
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "center",
+  alignItems: "center",
+  padding: "6px 16px",
+  backgroundColor: "#27272c",
+  overflow: "visible",
+  alignContent: "center",
+  flexWrap: "nowrap",
+  gap: "3px",
   position: "absolute",
+  borderRadius: "20px",
   bottom: "-60px",
   left: "50%",
   transform: "translateX(-50%)",
-  color: "white",
-  opacity: 0.7,
 });
 
-export const dots = style({
-  position: "absolute",
-  bottom: "-40px",
-  left: "50%",
-  transform: "translateX(-50%)",
-  display: "flex",
-  gap: "8px",
+export const paginationCurrent = style({
+  ...themeVars.text.F14,
+  color: themeVars.color.white[100],
 });
 
-export const dot = style({
-  width: "8px",
-  height: "8px",
-  borderRadius: "50%",
-  border: "none",
-  background: "rgba(255, 255, 255, 0.3)",
-  cursor: "pointer",
-
-  ":hover": {
-    background: "rgba(255, 255, 255, 0.5)",
-  },
-});
-
-export const activeDot = style({
-  background: "rgba(255, 255, 255, 0.8)",
+export const paginationTotal = style({
+  ...themeVars.text.F14,
+  color: themeVars.color.white[40],
 });
