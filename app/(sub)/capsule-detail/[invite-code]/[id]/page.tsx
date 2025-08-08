@@ -1,16 +1,19 @@
 "use client";
-
+import { useLikeToggle } from "@/shared/api/mutations/capsule";
 import { capsuleQueryOptions } from "@/shared/api/queries/capsule";
 import MenuIcon from "@/shared/assets/icon/menu.svg";
 import { PATH } from "@/shared/constants/path";
 import Dropdown from "@/shared/ui/dropdown";
+import InfoToast from "@/shared/ui/info-toast";
 import LikeButton from "@/shared/ui/like-button";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import NavbarDetail from "@/shared/ui/navbar/navbar-detail";
+import PopupReport from "@/shared/ui/popup/popup-report";
 import { formatDateTime } from "@/shared/utils/date";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { overlay } from "overlay-kit";
 import CapsuleImage from "../../_components/capsule-image";
 import CaptionSection from "../../_components/caption-section";
 import InfoTitle from "../../_components/info-title";
@@ -21,7 +24,7 @@ import * as styles from "./page.css";
 const CapsuleDetailPage = () => {
   const params = useParams();
   const id = params.id as string;
-
+  const { mutate: likeToggle } = useLikeToggle();
   const { data, isLoading, isError } = useQuery(
     capsuleQueryOptions.capsuleDetail(id),
   );
@@ -34,19 +37,36 @@ const CapsuleDetailPage = () => {
     return <div>캡슐 정보를 불러오지 못했습니다.</div>;
   }
 
+  const { result } = data;
+  const { days, hours, minutes, openDate } = result.remainingTime;
+
+  const handleLikeToggle = (nextLiked: boolean) => {
+    likeToggle({ id: result.id.toString(), isLiked: nextLiked });
+  };
+
   return (
     <>
       <NavbarDetail
         renderRight={() => {
           return (
             <>
-              <LikeButton isLiked={data?.result.isLiked} />
+              <LikeButton
+                isLiked={result.isLiked}
+                onLikeToggle={(prev) => handleLikeToggle(!prev)}
+              />
               <Dropdown>
                 <Dropdown.Trigger>
                   <MenuIcon />
                 </Dropdown.Trigger>
                 <Dropdown.Content>
-                  <Dropdown.Item label="신고하기" />
+                  <Dropdown.Item
+                    label="신고하기"
+                    onClick={() => {
+                      overlay.open(({ isOpen, close }) => (
+                        <PopupReport isOpen={isOpen} close={close} />
+                      ));
+                    }}
+                  />
                   <Link href={PATH.HOME}>
                     <Dropdown.Item label="나가기" />
                   </Link>
@@ -58,30 +78,26 @@ const CapsuleDetailPage = () => {
       />
       <RevealMotion>
         <InfoTitle
-          title={data?.result.title}
-          participantCount={data?.result.participantCount}
-          joinLettersCount={data?.result.letterCount}
+          title={result.title}
+          participantCount={result.participantCount}
+          joinLettersCount={result.letterCount}
         />
       </RevealMotion>
-      <CapsuleImage imageUrl={data?.result.beadVideoUrl} />
+      <CapsuleImage imageUrl={result.beadVideoUrl} />
       <div className={styles.container}>
         <RevealMotion delay={0.8}>
-          <CaptionSection description={data?.result.subtitle} />
+          <CaptionSection description={result.subtitle} />
         </RevealMotion>
         <RevealMotion delay={1.2}>
-          <OpenInfoSection openAt={formatDateTime(data?.result.openAt)} />
+          <OpenInfoSection openAt={formatDateTime(result.openAt)} />
         </RevealMotion>
       </div>
       <ResponsiveFooter
-        remainingTime={{
-          days: data?.result.remainingTime.days,
-          hours: data?.result.remainingTime.hours,
-          minutes: data?.result.remainingTime.minutes,
-          openDate: data?.result.remainingTime.openDate,
-        }}
-        status={data?.result.status}
-        isMine={data?.result.isMine}
+        remainingTime={{ days, hours, minutes, openDate }}
+        status={result.status}
+        isMine={result.isMine}
       />
+      {result.status !== "WRITABLE" && <InfoToast status={result.status} />}
     </>
   );
 };
