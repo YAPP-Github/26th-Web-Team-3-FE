@@ -100,7 +100,7 @@ const CapsuleDetailPage = () => {
         isMine={data?.result.isMine}
       />
       {data.result.status !== "WRITABLE" && (
-        <InfoToast status={data.result.status as "WAITING_OPEN" | "OPENED"} />
+        <InfoToast status={data.result.status} />
       )}
     </>
   );

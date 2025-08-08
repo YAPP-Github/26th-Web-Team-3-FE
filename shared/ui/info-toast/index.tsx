@@ -7,12 +7,13 @@ import { cn } from "@/shared/utils/cn";
 import * as styles from "./info-toast.css";
 
 type InfoToastProps = {
-  status: Exclude<CapsuleStatus, "WRITABLE">;
+  status: CapsuleStatus;
 };
 
 const MESSAGE = {
   OPENED: "타임캡슐이 열렸어요!",
   WAITING_OPEN: "편지 작성이 마감된 캡슐이에요!",
+  WRITABLE: "타임캡슐에 편지가 담겼어요.",
 };
 
 const InfoToast = ({ status }: InfoToastProps) => {
