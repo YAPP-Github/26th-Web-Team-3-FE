@@ -4,16 +4,17 @@ import { capsuleQueryOptions } from "@/shared/api/queries/capsule";
 import { letterQueryOptions } from "@/shared/api/queries/letter";
 import Grid from "@/shared/assets/icon/grid.svg";
 import Layers from "@/shared/assets/icon/layers.svg";
-import Button from "@/shared/ui/button";
+import { useLetterImages } from "@/shared/hooks/use-letter-images";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
-import GridLetterCard from "./_components/grid-letter-card";
+import GridLayout from "./_components/grid-layout";
 import StackLayout from "./_components/stack-layout";
 import * as styles from "./page.css";
 
 const CapsuleLettersPage = () => {
   const params = useParams();
+  const router = useRouter();
   const capsuleId = params.id as string;
   const [isStackType, setIsStackType] = useState(true);
 
@@ -21,46 +22,54 @@ const CapsuleLettersPage = () => {
     ...capsuleQueryOptions.capsuleDetail(capsuleId),
     select: (data) => data.result.title,
   });
-  const { data: letterData, isLoading } = useQuery(
-    letterQueryOptions.letterList(capsuleId),
-  );
+
+  const { data: letterData, isLoading: isLetterLoading } = useQuery(letterQueryOptions.letterList(capsuleId));
+
+  const letters = letterData?.result?.letters || [];
+  const { imageUrls, isImageLoading } = useLetterImages(letters);
+
+  const isLoading = isLetterLoading || isImageLoading;
 
   if (isLoading) {
     return <div>로딩 중...</div>;
   }
 
-  const letters = letterData?.result?.letters || [];
-
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
+    <div className={isStackType ? styles.stackContainer : styles.gridContainer}>
+      <button className={styles.header} onClick={() => router.back()}>
+        닫기
+      </button>
+      <div className={styles.titleContainer}>
         <h1 className={styles.title}>{capsuleTitle || "캡슐"}</h1>
-        <p className={styles.subtitle}>7월 참여 · {letters.length}통</p>
+        <p className={styles.subtitle}>7명 참여 · {letters.length}통</p>
       </div>
 
       <div className={styles.cardContainer}>
-        isStackType ? (
-        <StackLayout letters={letters} />) : (
-        <GridLetterCard letter={letters[0]} />
-        ),
+        {isStackType ? (
+          <StackLayout letters={letters} imageUrls={imageUrls} />
+        ) : (
+          <GridLayout letters={letters} imageUrls={imageUrls} />
+        )}
       </div>
 
       <div className={styles.buttonContainer}>
-        <Button
-          variant={isStackType ? "primary" : "secondary"}
-          text={isStackType ? "모아 보기" : ""}
+        <button
           onClick={() => setIsStackType(true)}
           className={isStackType ? styles.button : styles.noneButton}
-          icon={<Layers className={styles.svgIcon} />}
-        />
+          type="button"
+        >
+          <Layers className={styles.svgIcon} />
+          {isStackType ? "모아 보기" : ""}
+        </button>
 
-        <Button
-          variant={isStackType ? "secondary" : "primary"}
-          text={isStackType ? "" : "펼쳐 보기"}
+        <button
           onClick={() => setIsStackType(false)}
           className={isStackType ? styles.noneButton : styles.button}
-          icon={<Grid className={styles.svgIcon} />}
-        />
+          type="button"
+        >
+          <Grid className={styles.svgIcon} />
+          {isStackType ? "" : "펼쳐 보기"}
+        </button>
       </div>
     </div>
   );

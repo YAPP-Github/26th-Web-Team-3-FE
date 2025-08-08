@@ -1,52 +1,62 @@
 import { themeVars } from "@/shared/styles/base/theme.css";
 import { style } from "@vanilla-extract/css";
 
-export const container = style({
-  background: "linear-gradient(180deg, #1a1a2e 0%, #16213e 100%)",
-  minHeight: "100vh",
+export const stackContainer = style({
   color: "white",
   position: "relative",
   width: "100%",
+  height: "100%",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "3.2rem",
+  paddingBottom: "8.13rem",
+});
+
+export const gridContainer = style({
+  color: "white",
+  position: "relative",
+  width: "100%",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "3.2rem",
+  padding: "9.4rem 0",
 });
 
 export const header = style({
+  display: "flex",
+  width: "100vw",
+  maxWidth: "120rem",
+  height: "6.4rem",
+  padding: "1rem 2.5rem",
+  alignItems: "center",
+  justifyContent: "flex-end",
+  position: "absolute",
+  top: "0",
+  ...themeVars.text.B1,
+  color: themeVars.color.white[40],
+});
+
+export const titleContainer = style({
   textAlign: "center",
-  marginBottom: "3rem",
+  height: "fit-content",
 });
 
 export const title = style({
-  fontSize: "2rem",
-  fontWeight: "bold",
-  marginBottom: "0.5rem",
+  ...themeVars.text.H2,
 });
 
 export const subtitle = style({
-  fontSize: "1rem",
-  opacity: 0.7,
+  ...themeVars.text.B1,
+  color: themeVars.color.white[40],
 });
 
 export const cardContainer = style({
   position: "relative",
-  height: "60vh",
   marginBottom: "2rem",
-});
-
-export const pagination = style({
-  textAlign: "center",
-  marginBottom: "2rem",
-  opacity: 0.7,
-});
-
-export const shareButton = style({
-  background: "#8b5cf6",
-  color: "white",
-  border: "none",
-  borderRadius: "24px",
-  padding: "1.2rem 2.4rem",
-  display: "flex",
-  alignItems: "center",
-  gap: "8px",
-  cursor: "pointer",
 });
 
 export const buttonContainer = style({
@@ -63,17 +73,30 @@ export const buttonContainer = style({
 });
 
 export const button = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "1.2rem",
   borderRadius: "50px",
   width: "11.6rem",
   height: "4.8rem",
+  border: "none",
+  cursor: "pointer",
+  background: themeVars.color.gradient.point_purple,
+  ...themeVars.text.F16B,
+  color: themeVars.color.white[100],
 });
 
 export const noneButton = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
   background: "none",
   color: themeVars.color.white[30],
   width: "3rem",
   height: "4.8rem",
   border: "none",
+  cursor: "pointer",
 });
 
 export const svgIcon = style({
