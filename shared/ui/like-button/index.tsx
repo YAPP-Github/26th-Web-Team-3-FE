@@ -13,7 +13,7 @@ const LikeButton = ({ isLiked, onLikeToggle, ...props }: LikeButtonProps) => {
   const [liked, setLiked] = useState(isLiked);
 
   const handleClick = () => {
-    setLiked((prev) => !prev);
+    setLiked(!liked);
     onLikeToggle?.(liked);
   };
 
