@@ -1,33 +1,28 @@
-import { useQuery } from "@tanstack/react-query";
-
-import { fileQueryOptions } from "@/shared/api/queries/file";
 import type { Letter } from "@/shared/types/api/letter";
+import HoverMotion from "@/shared/ui/motion/hover-motion";
+import Image from "next/image";
 import * as styles from "./grid-letter-card.css";
 
 interface LetterCardProps {
   letter: Letter;
+  imageUrl?: string | null;
+  onClick?: () => void;
 }
 
-const GridLetterCard = ({ letter }: LetterCardProps) => {
-  const { data: fileData } = useQuery({
-    ...fileQueryOptions.presignedUrl(letter.files),
-    enabled: !!letter.files,
-  });
-
-  const imageUrl = fileData?.presignedUrl;
-
+const GridLetterCard = ({ letter, imageUrl, onClick }: LetterCardProps) => {
   return (
-    <button className={styles.card} type="button">
-      {imageUrl && (
-        <div className={styles.imageContainer}>
-          <img src={imageUrl} alt="편지 이미지" />
-        </div>
-      )}
-      <div className={styles.content}>
-        <p className={styles.text}>{letter.content}</p>
-        <div className={styles.author}>From {letter.from}</div>
-      </div>
-    </button>
+    <HoverMotion>
+      <section className={styles.card} onClick={onClick}>
+        {imageUrl && <Image width={200} height={200} className={styles.image} src={imageUrl} alt="편지 이미지" />}
+        <div className={styles.content}>{!imageUrl && <p>{letter.content}</p>}</div>
+
+        {letter.from && (
+          <p>
+            <span className={styles.author}>From</span> {letter.from}
+          </p>
+        )}
+      </section>
+    </HoverMotion>
   );
 };
 
