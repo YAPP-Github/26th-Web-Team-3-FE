@@ -9,6 +9,12 @@ export interface Letter {
   isMine: boolean;
 }
 
+export interface ImageUrl {
+  letterId: number;
+  fileId: string;
+  url: string | null;
+}
+
 export interface LetterDetailRes {
   result: Letter;
 }
