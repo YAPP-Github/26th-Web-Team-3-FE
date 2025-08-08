@@ -47,7 +47,7 @@ const CapsuleDetailPage = () => {
             <>
               <LikeButton
                 isLiked={data?.result.isLiked}
-                onLikeToggle={() => handleLikeToggle(data?.result.isLiked)}
+                onLikeToggle={(prev) => handleLikeToggle(!prev)}
               />
               <Dropdown>
                 <Dropdown.Trigger>

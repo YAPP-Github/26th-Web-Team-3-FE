@@ -14,7 +14,7 @@ const LikeButton = ({ isLiked, onLikeToggle, ...props }: LikeButtonProps) => {
 
   const handleClick = () => {
     setLiked(!liked);
-    onLikeToggle?.(liked);
+    onLikeToggle?.(!liked);
   };
 
   return (
