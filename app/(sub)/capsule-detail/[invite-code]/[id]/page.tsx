@@ -37,8 +37,11 @@ const CapsuleDetailPage = () => {
     return <div>캡슐 정보를 불러오지 못했습니다.</div>;
   }
 
-  const handleLikeToggle = (isLiked: boolean) => {
-    likeToggle({ id: data.result.id.toString(), isLiked });
+  const { result } = data;
+  const { days, hours, minutes, openDate } = result.remainingTime;
+
+  const handleLikeToggle = (nextLiked: boolean) => {
+    likeToggle({ id: result.id.toString(), isLiked: nextLiked });
   };
 
   return (
@@ -48,7 +51,7 @@ const CapsuleDetailPage = () => {
           return (
             <>
               <LikeButton
-                isLiked={data?.result.isLiked}
+                isLiked={result.isLiked}
                 onLikeToggle={(prev) => handleLikeToggle(!prev)}
               />
               <Dropdown>
@@ -75,33 +78,26 @@ const CapsuleDetailPage = () => {
       />
       <RevealMotion>
         <InfoTitle
-          title={data?.result.title}
-          participantCount={data?.result.participantCount}
-          joinLettersCount={data?.result.letterCount}
+          title={result.title}
+          participantCount={result.participantCount}
+          joinLettersCount={result.letterCount}
         />
       </RevealMotion>
-      <CapsuleImage imageUrl={data?.result.beadVideoUrl} />
+      <CapsuleImage imageUrl={result.beadVideoUrl} />
       <div className={styles.container}>
         <RevealMotion delay={0.8}>
-          <CaptionSection description={data?.result.subtitle} />
+          <CaptionSection description={result.subtitle} />
         </RevealMotion>
         <RevealMotion delay={1.2}>
-          <OpenInfoSection openAt={formatDateTime(data?.result.openAt)} />
+          <OpenInfoSection openAt={formatDateTime(result.openAt)} />
         </RevealMotion>
       </div>
       <ResponsiveFooter
-        remainingTime={{
-          days: data?.result.remainingTime.days,
-          hours: data?.result.remainingTime.hours,
-          minutes: data?.result.remainingTime.minutes,
-          openDate: data?.result.remainingTime.openDate,
-        }}
-        status={data?.result.status}
-        isMine={data?.result.isMine}
+        remainingTime={{ days, hours, minutes, openDate }}
+        status={result.status}
+        isMine={result.isMine}
       />
-      {data.result.status !== "WRITABLE" && (
-        <InfoToast status={data.result.status} />
-      )}
+      {result.status !== "WRITABLE" && <InfoToast status={result.status} />}
     </>
   );
 };
