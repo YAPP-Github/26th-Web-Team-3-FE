@@ -87,7 +87,7 @@ const StackLayout = ({ letters, imageUrls }: StackLayoutProps) => {
         style={{ visibility: currentIndex > 0 ? "visible" : "hidden" }}
         type="button"
       >
-        <Left size={24} />
+        <Left width={24} height={24} />
       </button>
 
       <div className={styles.stackContainer}>
@@ -121,7 +121,7 @@ const StackLayout = ({ letters, imageUrls }: StackLayoutProps) => {
         style={{ visibility: currentIndex < letters.length - 1 ? "visible" : "hidden" }}
         type="button"
       >
-        <Right size={24} />
+        <Right width={24} height={24} />
       </button>
 
       <div className={styles.pagination}>
