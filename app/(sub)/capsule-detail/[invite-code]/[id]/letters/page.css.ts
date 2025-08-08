@@ -2,7 +2,7 @@ import { themeVars } from "@/shared/styles/base/theme.css";
 import { style } from "@vanilla-extract/css";
 
 export const stackContainer = style({
-  color: "white",
+  color: themeVars.color.white[100],
   position: "relative",
   width: "100%",
   height: "100%",
@@ -15,7 +15,7 @@ export const stackContainer = style({
 });
 
 export const gridContainer = style({
-  color: "white",
+  color: themeVars.color.white[100],
   position: "relative",
   width: "100%",
   display: "flex",
