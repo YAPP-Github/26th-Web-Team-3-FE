@@ -4,7 +4,7 @@ import Left from "@/shared/assets/icon/left.svg";
 import Right from "@/shared/assets/icon/right.svg";
 import type { Letter } from "@/shared/types/api/letter";
 import { AnimatePresence, motion } from "motion/react";
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import StackLetterCard from "../stack-letter-card";
 import { createStackAnimations } from "./animations";
 import * as styles from "./stack-layout.css";
@@ -33,6 +33,15 @@ const StackLayout = ({ letters, imageUrls }: StackLayoutProps) => {
   const [direction, setDirection] = useState(0);
   const [visibleLetters, setVisibleLetters] = useState<VisibleLetter[]>([]);
   const [isAnimating, setIsAnimating] = useState(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, []);
 
   useLayoutEffect(() => {
     const maxCards = Math.min(3, letters.length - currentIndex);
@@ -58,9 +67,10 @@ const StackLayout = ({ letters, imageUrls }: StackLayoutProps) => {
       setDirection(1);
       setCurrentIndex((prev) => prev + 1);
 
-      setTimeout(() => {
+      timerRef.current = setTimeout(() => {
         setDirection(0);
         setIsAnimating(false);
+        timerRef.current = null;
       }, 300);
     }
   };
@@ -71,9 +81,10 @@ const StackLayout = ({ letters, imageUrls }: StackLayoutProps) => {
       setDirection(-1);
       setCurrentIndex((prev) => prev - 1);
 
-      setTimeout(() => {
+      timerRef.current = setTimeout(() => {
         setDirection(0);
         setIsAnimating(false);
+        timerRef.current = null;
       }, 400);
     }
   };
