@@ -35,38 +35,24 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const TimeCapsule: Story = {
-  args: {
-    status: "success",
-    infoText: "타임캡슐에 편지가 담겼어요.",
-  },
-  render: () => (
-    <div>
-      <InfoToast status="success" infoText="타임캡슐에 편지가 담겼어요." />
-    </div>
-  ),
-};
-
 export const OpenedTimeCapsule: Story = {
   args: {
-    status: "success",
-    infoText: "타임캡슐이 열렸어요!",
+    status: "OPENED",
   },
   render: () => (
     <div>
-      <InfoToast status="success" infoText="타임캡슐이 열렸어요!" />
+      <InfoToast status="OPENED" />
     </div>
   ),
 };
 
 export const ClosedTimeCapsule: Story = {
   args: {
-    status: "locked",
-    infoText: "편지 작성이 마감된 캡슐이에요!",
+    status: "WAITING_OPEN",
   },
   render: () => (
     <div>
-      <InfoToast status="locked" infoText="편지 작성이 마감된 캡슐이에요!" />
+      <InfoToast status="WAITING_OPEN" />
     </div>
   ),
 };
