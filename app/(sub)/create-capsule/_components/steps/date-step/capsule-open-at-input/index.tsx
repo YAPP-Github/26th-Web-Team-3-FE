@@ -1,6 +1,7 @@
 "use client";
 
-import { createISOString } from "@/shared/utils/date";
+import { createISOString, getTodayDate } from "@/shared/utils/date";
+import { getDefaultDate } from "@/shared/utils/date";
 import { useRef } from "react";
 import { useFormContext } from "react-hook-form";
 import * as styles from "./capsule-open-at-input.css";
@@ -32,6 +33,8 @@ const CapsuleOpenAtInput = () => {
             className={styles.inputStyle}
             onChange={handleInputChange("date")}
             required
+            defaultValue={getDefaultDate()}
+            min={getTodayDate()}
           />
         </label>
         <label htmlFor="openTime" className={styles.labelStyle}>
@@ -41,6 +44,7 @@ const CapsuleOpenAtInput = () => {
             className={styles.inputStyle}
             onChange={handleInputChange("time")}
             required
+            defaultValue={"19:00"}
           />
         </label>
       </div>

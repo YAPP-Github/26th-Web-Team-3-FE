@@ -5,6 +5,7 @@ import { useFunnel } from "@/shared/hooks/use-funnel";
 import type { CreateCapsuleReq } from "@/shared/types/api/capsule";
 import NavbarDetail from "@/shared/ui/navbar/navbar-detail";
 import PopupCancelCreation from "@/shared/ui/popup/popup-cancel-creation";
+import { getDefaultDate } from "@/shared/utils/date";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { overlay } from "overlay-kit";
@@ -13,7 +14,6 @@ import CompleteStep from "./_components/steps/complete-step";
 import DateStep from "./_components/steps/date-step";
 import IntroStep from "./_components/steps/intro-step";
 import PrivateStep from "./_components/steps/privacy-step";
-
 import * as styles from "./page.css";
 
 const CreateCapsule = () => {
@@ -29,7 +29,7 @@ const CreateCapsule = () => {
       subtitle: "",
       accessType: "PUBLIC",
       openAt: "",
-      closedAt: "",
+      closedAt: getDefaultDate(10),
     },
   });
 

@@ -4,6 +4,7 @@ import Lettie from "@/shared/assets/character/lettie_animate.png";
 import Button from "@/shared/ui/button";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import Image from "next/image";
+import { useFormContext } from "react-hook-form";
 import CapsuleOpenAtInput from "./capsule-open-at-input";
 import LetterCloseAtInput from "./letter-close-at-input";
 
@@ -13,8 +14,12 @@ interface Props {
 }
 
 const DateStep = ({ handleNextStep }: Props) => {
+  const { watch } = useFormContext();
   const handleNextClick = () => {
-    // Todo: 선택되지 않은 항목이 있는지 확인
+    if (watch("openAt") > watch("closedAt")) {
+      alert("편지 작성 마감일은 타임캡슐 오픈일 이전이어야 합니다.");
+      return;
+    }
     handleNextStep("privacy");
   };
 
