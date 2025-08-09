@@ -1,3 +1,5 @@
+"use client";
+
 import LettieImage from "@/shared/assets/character/lettie_animate.png";
 import { PATH } from "@/shared/constants/path";
 import Button from "@/shared/ui/button";

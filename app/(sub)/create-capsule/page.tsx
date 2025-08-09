@@ -1,6 +1,6 @@
 "use client";
 import { useCreateCapsule } from "@/shared/api/mutations/capsule";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 
 import CreateCapsuleLoading from "@/app/(sub)/create-capsule/_components/create-capsule-loading";
 import { useFunnel } from "@/shared/hooks/use-funnel";
@@ -126,4 +126,10 @@ const CreateCapsule = () => {
   );
 };
 
-export default CreateCapsule;
+export default function Page() {
+  return (
+    <Suspense fallback={<div>로딩중...</div>}>
+      <CreateCapsule />
+    </Suspense>
+  );
+}
