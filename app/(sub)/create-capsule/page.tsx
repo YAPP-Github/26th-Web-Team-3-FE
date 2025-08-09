@@ -5,9 +5,8 @@ import { useFunnel } from "@/shared/hooks/use-funnel";
 import type { CreateCapsuleReq } from "@/shared/types/api/capsule";
 import NavbarDetail from "@/shared/ui/navbar/navbar-detail";
 import PopupCancelCreation from "@/shared/ui/popup/popup-cancel-creation";
-import { getDefaultDate } from "@/shared/utils/date";
-import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
+import { createISOString, getDefaultDate } from "@/shared/utils/date"; // add createISOString
+import { useRouter, useSearchParams } from "next/navigation";
 import { overlay } from "overlay-kit";
 import { FormProvider, type SubmitHandler, useForm } from "react-hook-form";
 import CompleteStep from "./_components/steps/complete-step";
@@ -16,6 +15,15 @@ import IntroStep from "./_components/steps/intro-step";
 import PrivateStep from "./_components/steps/privacy-step";
 import * as styles from "./page.css";
 
+type CreateCapsuleForm = {
+  title: string;
+  subtitle: string;
+  accessType: "PUBLIC" | "PRIVATE";
+  openDate: string; // YYYY-MM-DD
+  openTime: string; // HH:mm
+  closedAt: string; // YYYY-MM-DD
+};
+
 const CreateCapsule = () => {
   const { Funnel, Step, setStep } = useFunnel();
   const searchParams = useSearchParams();
@@ -23,12 +31,13 @@ const CreateCapsule = () => {
   const currentStep = searchParams.get("step") || "intro";
   const { mutate: createCapsuleMutate } = useCreateCapsule();
 
-  const form = useForm<CreateCapsuleReq>({
+  const form = useForm<CreateCapsuleForm>({
     defaultValues: {
       title: "",
       subtitle: "",
       accessType: "PUBLIC",
-      openAt: "",
+      openDate: getDefaultDate(),
+      openTime: "19:00",
       closedAt: getDefaultDate(10),
     },
   });
@@ -37,8 +46,17 @@ const CreateCapsule = () => {
     setStep(newStep);
   };
 
-  const onSubmit: SubmitHandler<CreateCapsuleReq> = (data) => {
-    createCapsuleMutate(data, {
+  const onSubmit: SubmitHandler<CreateCapsuleForm> = (data) => {
+    // 서버에서 요구하는 형식대로 제출 직전에 변환
+    const payload: CreateCapsuleReq = {
+      title: data.title,
+      subtitle: data.subtitle,
+      accessType: data.accessType,
+      openAt: createISOString(data.openDate, `${data.openTime}:00`),
+      closedAt: createISOString(data.closedAt),
+    };
+
+    createCapsuleMutate(payload, {
       onSuccess: (res) => {
         router.push(
           PATH.CAPSULE_DETAIL(res.result.inviteCode, res.result.id.toString()),

@@ -15,11 +15,8 @@ const LetterCloseAtInput = () => {
           type="date"
           id="closeDate"
           className={styles.inputStyle}
-          {...register("closedAt", {
-            setValueAs: (v) =>
-              v ? new Date(`${v}T00:00:00`).toISOString() : undefined,
-          })}
           min={getTodayDate()}
+          {...register("closedAt")}
         />
       </label>
     </div>

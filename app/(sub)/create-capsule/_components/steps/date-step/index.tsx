@@ -16,7 +16,9 @@ interface Props {
 const DateStep = ({ handleNextStep }: Props) => {
   const { watch } = useFormContext();
   const handleNextClick = () => {
-    if (watch("openAt") > watch("closedAt")) {
+    const openDate = watch("openDate") as string;
+    const closedAt = watch("closedAt") as string;
+    if (openDate && closedAt && closedAt >= openDate) {
       alert("편지 작성 마감일은 타임캡슐 오픈일 이전이어야 합니다.");
       return;
     }

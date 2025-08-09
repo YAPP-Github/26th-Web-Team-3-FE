@@ -1,26 +1,11 @@
 "use client";
 
-import { createISOString, getTodayDate } from "@/shared/utils/date";
-import { getDefaultDate } from "@/shared/utils/date";
-import { useRef } from "react";
+import { getTodayDate } from "@/shared/utils/date";
 import { useFormContext } from "react-hook-form";
 import * as styles from "./capsule-open-at-input.css";
 
 const CapsuleOpenAtInput = () => {
-  const { setValue, register } = useFormContext();
-  const dateTimeRef = useRef({ date: "", time: "" });
-
-  const handleInputChange =
-    (type: "date" | "time") => (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value;
-      dateTimeRef.current[type] = value;
-
-      const { date, time } = dateTimeRef.current;
-      if (date && time) {
-        const combinedDateTime = createISOString(date, `${time}:00`);
-        setValue("openAt", combinedDateTime, { shouldValidate: true });
-      }
-    };
+  const { register } = useFormContext();
 
   return (
     <div className={styles.inputContainer}>
@@ -31,10 +16,9 @@ const CapsuleOpenAtInput = () => {
             type="date"
             id="openDate"
             className={styles.inputStyle}
-            onChange={handleInputChange("date")}
             required
-            defaultValue={getDefaultDate()}
             min={getTodayDate()}
+            {...register("openDate")}
           />
         </label>
         <label htmlFor="openTime" className={styles.labelStyle}>
@@ -42,14 +26,11 @@ const CapsuleOpenAtInput = () => {
             type="time"
             id="openTime"
             className={styles.inputStyle}
-            onChange={handleInputChange("time")}
             required
-            defaultValue={"19:00"}
+            {...register("openTime")}
           />
         </label>
       </div>
-
-      <input type="hidden" {...register("openAt")} />
     </div>
   );
 };
