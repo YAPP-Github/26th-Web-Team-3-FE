@@ -14,11 +14,11 @@ interface Props {
 }
 
 const DateStep = ({ handleNextStep }: Props) => {
-  const { watch } = useFormContext();
+  const { getValues } = useFormContext();
   const handleNextClick = () => {
-    const openDate = watch("openDate") as string;
-    const closedAt = watch("closedAt") as string;
-    if (openDate && closedAt && closedAt >= openDate) {
+    const openDate = getValues("openDate") as string;
+    const closedAt = getValues("closedAt") as string;
+    if (closedAt >= openDate) {
       alert("편지 작성 마감일은 타임캡슐 오픈일 이전이어야 합니다.");
       return;
     }
@@ -44,6 +44,7 @@ const DateStep = ({ handleNextStep }: Props) => {
         alt="lettie-animate-image"
         width={340}
         height={340}
+        unoptimized
       />
       <div className={styles.inputSectionWrapper}>
         <RevealMotion delay={0.8}>

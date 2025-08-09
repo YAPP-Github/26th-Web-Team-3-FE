@@ -44,6 +44,7 @@ const IntroStep = ({ handleNextStep }: Props) => {
         alt="lettie-animate-image"
         width={340}
         height={340}
+        unoptimized
       />
       <RevealMotion delay={0.8}>
         <input

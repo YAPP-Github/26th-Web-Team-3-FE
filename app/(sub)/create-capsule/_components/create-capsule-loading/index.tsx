@@ -1,8 +1,8 @@
 import LettieImage from "@/shared/assets/character/lettie_animate.png";
 import Image from "next/image";
-import * as styles from "./page.css";
+import * as styles from "./create-capsule-loading.css";
 
-const Loading = () => {
+const CreateCapsuleLoading = () => {
   return (
     <div className={styles.loadingContainer}>
       <h1 className={styles.titleCaption}>
@@ -15,4 +15,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default CreateCapsuleLoading;

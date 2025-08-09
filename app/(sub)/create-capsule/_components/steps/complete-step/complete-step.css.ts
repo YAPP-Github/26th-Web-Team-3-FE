@@ -20,10 +20,13 @@ export const container = style({
 export const titleCaption = style({
   display: "flex",
   textAlign: "center",
+  justifyContent: "center",
+  alignItems: "center",
   ...themeVars.text.H2,
   background: themeVars.color.gradient.light_purple,
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
+  width: "100%",
 });
 
 export const lettieImage = style({
@@ -41,4 +44,10 @@ export const buttonWrapper = style({
   ...screen.md({
     padding: "1.6rem 1.6rem 16.3rem 1.6rem",
   }),
+});
+
+export const letterCaption = style({
+  ...themeVars.text.B1,
+  color: themeVars.color.white[40],
+  textAlign: "center",
 });

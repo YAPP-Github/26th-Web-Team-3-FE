@@ -1,12 +1,14 @@
 "use client";
 import { useCreateCapsule } from "@/shared/api/mutations/capsule";
-import { PATH } from "@/shared/constants/path";
+import { useState } from "react";
+
+import CreateCapsuleLoading from "@/app/(sub)/create-capsule/_components/create-capsule-loading";
 import { useFunnel } from "@/shared/hooks/use-funnel";
 import type { CreateCapsuleReq } from "@/shared/types/api/capsule";
 import NavbarDetail from "@/shared/ui/navbar/navbar-detail";
 import PopupCancelCreation from "@/shared/ui/popup/popup-cancel-creation";
 import { createISOString, getDefaultDate } from "@/shared/utils/date"; // add createISOString
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { overlay } from "overlay-kit";
 import { FormProvider, type SubmitHandler, useForm } from "react-hook-form";
 import CompleteStep from "./_components/steps/complete-step";
@@ -26,19 +28,27 @@ type CreateCapsuleForm = {
 
 const CreateCapsule = () => {
   const { Funnel, Step, setStep } = useFunnel();
+  const [capsuleInfo, setCapsuleInfo] = useState<{
+    id: number;
+    inviteCode: string;
+  } | null>(null);
+
   const searchParams = useSearchParams();
-  const router = useRouter();
+
   const currentStep = searchParams.get("step") || "intro";
-  const { mutate: createCapsuleMutate } = useCreateCapsule();
+  const { mutate: createCapsuleMutate, isPending } = useCreateCapsule();
+
+  const defaultOpenDate = getDefaultDate();
+  const defaultClosedAt = getDefaultDate(10);
 
   const form = useForm<CreateCapsuleForm>({
     defaultValues: {
       title: "",
       subtitle: "",
       accessType: "PUBLIC",
-      openDate: getDefaultDate(),
+      openDate: defaultOpenDate,
       openTime: "19:00",
-      closedAt: getDefaultDate(10),
+      closedAt: defaultClosedAt,
     },
   });
 
@@ -58,12 +68,18 @@ const CreateCapsule = () => {
 
     createCapsuleMutate(payload, {
       onSuccess: (res) => {
-        router.push(
-          PATH.CAPSULE_DETAIL(res.result.inviteCode, res.result.id.toString()),
-        );
+        setCapsuleInfo({
+          id: res.result.id,
+          inviteCode: res.result.inviteCode,
+        });
+        setStep("complete");
       },
     });
   };
+
+  if (isPending) {
+    return <CreateCapsuleLoading />;
+  }
 
   return (
     <>
@@ -97,10 +113,10 @@ const CreateCapsule = () => {
                 <DateStep handleNextStep={handleNextStep} />
               </Step>
               <Step name="privacy">
-                <PrivateStep handleNextStep={handleNextStep} />
+                <PrivateStep />
               </Step>
               <Step name="complete">
-                <CompleteStep />
+                {capsuleInfo && <CompleteStep capsuleInfo={capsuleInfo} />}
               </Step>
             </Funnel>
           </form>
