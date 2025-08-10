@@ -1,29 +1,18 @@
 import ky, { type Options as KyOptions, type ResponsePromise } from "ky";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const API_BASE_URL =
+  process.env.NODE_ENV === "development"
+    ? ""
+    : process.env.NEXT_PUBLIC_API_BASE_URL;
 
-const defaultOption = {
+const http = ky.create({
   prefixUrl: API_BASE_URL,
   timeout: 30_000,
   retry: 0,
   headers: {
     "Content-Type": "application/json",
   },
-};
-
-const http = ky.create({
-  ...defaultOption,
-  hooks: {
-    beforeRequest: [
-      (request) => {
-        // 임시: 로컬스토리지에서 수동으로 넣은 토큰 가져오기
-        const token = localStorage.getItem("accessToken");
-        if (token) {
-          request.headers.set("Authorization", `Bearer ${token}`);
-        }
-      },
-    ],
-  },
+  credentials: "include",
 });
 
 type ExtendedOptions = KyOptions & {

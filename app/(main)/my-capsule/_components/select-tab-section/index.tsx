@@ -1,15 +1,24 @@
 import TabButton from "@/app/(main)/_components/tab-button";
 import UpdownIcon from "@/shared/assets/icon/updown.svg";
+import {
+  MY_CAPSULE_FILTER,
+  type MyCapsuleFilterType,
+} from "@/shared/types/api/capsule";
 import Dropdown from "@/shared/ui/dropdown";
 import * as styles from "./select-tab-section.css";
 
 interface Props {
-  onSelect: (value: string) => void;
-  selectedTab: string;
+  onSelect: (value: MyCapsuleFilterType) => void;
+  selectedTab: MyCapsuleFilterType;
 }
 
 const SelectTabSection = ({ onSelect, selectedTab }: Props) => {
-  const tabOptions = ["전체", "좋아요", "내가 쓴 캡슐"];
+  const tabOptions = [
+    { label: "전체", value: MY_CAPSULE_FILTER.ALL },
+    { label: "좋아요", value: MY_CAPSULE_FILTER.LIKED },
+    { label: "내가 만든 캡슐", value: MY_CAPSULE_FILTER.CREATED },
+    { label: "참여 중인 캡슐", value: MY_CAPSULE_FILTER.PARTICIPATING },
+  ];
 
   return (
     <div className={styles.chipContainer}>
@@ -26,10 +35,10 @@ const SelectTabSection = ({ onSelect, selectedTab }: Props) => {
       <div className={styles.chipWrapper}>
         {tabOptions.map((option) => (
           <TabButton
-            key={option}
-            text={option}
-            selected={selectedTab === option}
-            onClick={() => onSelect(option)}
+            key={option.value}
+            text={option.label}
+            selected={selectedTab === option.value}
+            onClick={() => onSelect(option.value)}
           />
         ))}
       </div>
