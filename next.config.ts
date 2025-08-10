@@ -29,14 +29,6 @@ const baseConfig: NextConfig = {
       },
     ],
   },
-  async rewrites() {
-    return [
-      {
-        source: "/api/:path*",
-        destination: "https://lettie.me/api/:path*",
-      },
-    ];
-  },
 };
 
 const finalConfig = plugins.reduce((acc, plugin) => plugin(acc), baseConfig);
