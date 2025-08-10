@@ -2,7 +2,7 @@ import ky, { type Options as KyOptions, type ResponsePromise } from "ky";
 
 const API_BASE_URL =
   process.env.NODE_ENV === "development"
-    ? ""
+    ? "/"
     : process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const http = ky.create({
