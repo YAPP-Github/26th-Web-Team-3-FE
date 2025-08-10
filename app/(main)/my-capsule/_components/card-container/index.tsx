@@ -1,6 +1,9 @@
 import { capsuleQueryOptions } from "@/shared/api/queries/capsule";
 import { PATH } from "@/shared/constants/path";
-import type { MyCapsuleFilterType } from "@/shared/types/api/capsule";
+import type {
+  CapsuleSortType,
+  MyCapsuleFilterType,
+} from "@/shared/types/api/capsule";
 import Card from "@/shared/ui/card";
 import { cardStatusLabel } from "@/shared/utils/capsule-card";
 import { useQuery } from "@tanstack/react-query";
@@ -18,12 +21,13 @@ const variants = [
 
 interface CardContainerProps {
   selectedTab: MyCapsuleFilterType;
+  selectedSort: CapsuleSortType;
 }
 
-const CardContainer = ({ selectedTab }: CardContainerProps) => {
+const CardContainer = ({ selectedTab, selectedSort }: CardContainerProps) => {
   const router = useRouter();
   const { data: capsuleLists } = useQuery(
-    capsuleQueryOptions.myCapsuleList(0, 20, "DEFAULT", selectedTab),
+    capsuleQueryOptions.myCapsuleList(0, 20, selectedSort, selectedTab),
   );
   return (
     <div className={styles.cardContainer}>

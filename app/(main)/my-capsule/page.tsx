@@ -1,6 +1,8 @@
 "use client";
 
 import {
+  CAPSULE_SORT,
+  type CapsuleSortType,
   MY_CAPSULE_FILTER,
   type MyCapsuleFilterType,
 } from "@/shared/types/api/capsule";
@@ -13,16 +15,27 @@ const MyCapsule = () => {
   const [selectedTab, setSelectedTab] = useState<MyCapsuleFilterType>(
     MY_CAPSULE_FILTER.ALL,
   );
+  const [selectedSort, setSelectedSort] = useState<CapsuleSortType>(
+    CAPSULE_SORT.DEFAULT,
+  );
 
   const handleSelect = (value: MyCapsuleFilterType) => {
     setSelectedTab(value);
   };
 
+  const handleSort = (value: CapsuleSortType) => {
+    setSelectedSort(value);
+  };
+
   return (
     <>
       <TitleSection />
-      <SelectTabSection onSelect={handleSelect} selectedTab={selectedTab} />
-      <CardContainer selectedTab={selectedTab} />
+      <SelectTabSection
+        onSelect={handleSelect}
+        selectedTab={selectedTab}
+        handleSort={handleSort}
+      />
+      <CardContainer selectedTab={selectedTab} selectedSort={selectedSort} />
     </>
   );
 };
