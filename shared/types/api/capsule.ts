@@ -67,3 +67,12 @@ export type TimeCapsules = {
     message: string | null;
   };
 };
+
+export const CAPSULE_SORT = {
+  DEFAULT: "DEFAULT",
+  LATEST: "LATEST",
+  OPEN_IMMINENT: "OPEN_IMMINENT",
+  WRITE_DEADLINE: "WRITE_DEADLINE",
+} as const;
+
+export type CapsuleSortType = (typeof CAPSULE_SORT)[keyof typeof CAPSULE_SORT];

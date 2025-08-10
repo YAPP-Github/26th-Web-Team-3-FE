@@ -13,12 +13,7 @@ export const cardBase = style({
   flexDirection: "column",
   overflow: "hidden",
   cursor: "pointer",
-  transition: "all 0.3s ease",
   backgroundColor: themeVars.color.white[5],
-  ":hover": {
-    opacity: 0.6,
-    transform: "scale(1) rotate(0deg) skew(0deg, 0deg) translate(0px, -15px)",
-  },
 
   ...screen.md({
     height: "30rem",

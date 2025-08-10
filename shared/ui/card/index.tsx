@@ -10,6 +10,7 @@ import Thumbnail_6 from "@/shared/assets/2D-illust/thumbnail_6.svg";
 import { cn } from "@/shared/utils/cn";
 import type { ComponentProps } from "react";
 import Chip from "../chip";
+import HoverMotion from "../motion/hover-motion";
 
 const gradientIcons = {
   gradient1: <Thumbnail_1 />,
@@ -29,43 +30,35 @@ interface CardProps extends ComponentProps<"div"> {
   onClick?: () => void;
 }
 
-const Card = ({
-  openStatusLabel,
-  title,
-  peopleCount,
-  count,
-  variant,
-  className,
-  onClick,
-}: CardProps) => {
+const Card = ({ openStatusLabel, title, peopleCount, count, variant, className, onClick }: CardProps) => {
   const icon = gradientIcons[variant];
 
   return (
-    <div className={cn(styles.cardBase, className)} onClick={onClick}>
-      <div
-        className={cn(styles.cardGradientOverlay, styles.cardVariants[variant])}
-      />
-      <div className={styles.cardContentWrapper}>
-        {openStatusLabel === "오픈 완료" ? (
-          <Chip className={styles.chipClass} variant="purple">
-            {openStatusLabel}
-          </Chip>
-        ) : (
-          <Chip className={styles.chipClass} variant="gray">
-            {openStatusLabel}
-          </Chip>
-        )}
-        <span className={styles.cardTitle}>{title}</span>
-        <div className={styles.cardDescription}>
-          <span>{peopleCount}명 참여</span>
-          <span>·</span>
-          <span>{count}통</span>
+    <HoverMotion>
+      <div className={cn(styles.cardBase, className)} onClick={onClick}>
+        <div className={cn(styles.cardGradientOverlay, styles.cardVariants[variant])} />
+        <div className={styles.cardContentWrapper}>
+          {openStatusLabel === "오픈 완료" ? (
+            <Chip className={styles.chipClass} variant="purple">
+              {openStatusLabel}
+            </Chip>
+          ) : (
+            <Chip className={styles.chipClass} variant="gray">
+              {openStatusLabel}
+            </Chip>
+          )}
+          <span className={styles.cardTitle}>{title}</span>
+          <div className={styles.cardDescription}>
+            <span>{peopleCount}명 참여</span>
+            <span>·</span>
+            <span>{count}통</span>
+          </div>
+        </div>
+        <div className={styles.cardIconWrapper}>
+          <div className={styles.cardIcon}>{icon}</div>
         </div>
       </div>
-      <div className={styles.cardIconWrapper}>
-        <div className={styles.cardIcon}>{icon}</div>
-      </div>
-    </div>
+    </HoverMotion>
   );
 };
 
