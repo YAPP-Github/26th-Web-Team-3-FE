@@ -1,19 +1,14 @@
-import { useFormContext } from "react-hook-form";
-
 import TitleCaption from "@/app/(sub)/create-capsule/_components/title-caption";
 import LettieImage from "@/shared/assets/character/lettie_animate.png";
 import Button from "@/shared/ui/button";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import Image from "next/image";
+import { useFormContext } from "react-hook-form";
 import RadioOption from "./radio-option";
 
 import * as styles from "./private-step.css";
 
-interface Props {
-  handleNextStep: (step: string) => void;
-}
-
-const PrivacyStep = ({ handleNextStep }: Props) => {
+const PrivacyStep = () => {
   const { register } = useFormContext();
 
   return (
@@ -34,6 +29,7 @@ const PrivacyStep = ({ handleNextStep }: Props) => {
         alt="lettie"
         width={340}
         height={340}
+        unoptimized
         className={styles.lettieImage}
       />
       <div className={styles.radioSection}>
@@ -54,11 +50,7 @@ const PrivacyStep = ({ handleNextStep }: Props) => {
       </div>
       <div className={styles.buttonContainer}>
         <RevealMotion delay={1.2}>
-          <Button
-            variant="primary"
-            text="캡슐 만들기"
-            onClick={() => handleNextStep("complete")}
-          />
+          <Button variant="primary" text="캡슐 만들기" type="submit" />
         </RevealMotion>
       </div>
     </div>

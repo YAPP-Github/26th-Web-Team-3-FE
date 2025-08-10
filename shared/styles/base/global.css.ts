@@ -1,13 +1,6 @@
 import { globalStyle, style } from "@vanilla-extract/css";
 import { themeVars } from "./theme.css";
 
-/* CSS Variables */
-// globalStyle(":root", {
-//   vars: {
-//     "--max-width": "800px",
-//   },
-// });
-
 /* HTML & Body Styles */
 globalStyle("html, body", {
   justifyContent: "center",
@@ -23,6 +16,12 @@ globalStyle("html, body", {
 /* Scrollbar Hide */
 globalStyle("::-webkit-scrollbar", {
   display: "none",
+});
+
+globalStyle('input[type="date"]', {
+  appearance: "none",
+  WebkitAppearance: "none",
+  MozAppearance: "none",
 });
 
 export const rootStyle = style({

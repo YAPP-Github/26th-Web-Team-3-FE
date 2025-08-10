@@ -1,17 +1,11 @@
 "use client";
 
+import { getDate } from "@/shared/utils/date";
 import { useFormContext } from "react-hook-form";
 import * as styles from "./letter-close-at-input.css";
 
 const LetterCloseAtInput = () => {
-  const { register, setValue } = useFormContext();
-  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const date = e.target.value;
-    if (date) {
-      const combinedDateTime = new Date(`${date}T23:59:59`).toISOString();
-      setValue("closedAt", combinedDateTime);
-    }
-  };
+  const { register } = useFormContext();
 
   return (
     <div className={styles.inputContainer}>
@@ -21,10 +15,10 @@ const LetterCloseAtInput = () => {
           type="date"
           id="closeDate"
           className={styles.inputStyle}
-          onChange={handleDateChange}
+          min={getDate()}
+          {...register("closedAt")}
         />
       </label>
-      <input type="hidden" {...register("closedAt")} />
     </div>
   );
 };

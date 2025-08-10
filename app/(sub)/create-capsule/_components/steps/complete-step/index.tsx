@@ -1,10 +1,24 @@
+"use client";
+
 import LettieImage from "@/shared/assets/character/lettie_animate.png";
+import { PATH } from "@/shared/constants/path";
 import Button from "@/shared/ui/button";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import * as styles from "./complete-step.css";
 
-const CompleteStep = () => {
+interface CapsuleInfo {
+  id: number;
+  inviteCode: string;
+}
+
+interface Props {
+  capsuleInfo: CapsuleInfo;
+}
+
+const CompleteStep = ({ capsuleInfo }: Props) => {
+  const router = useRouter();
   return (
     <div className={styles.container}>
       <RevealMotion delay={0.1}>
@@ -13,12 +27,31 @@ const CompleteStep = () => {
           <br />
           만들어졌어요!
         </h1>
+        <p className={styles.letterCaption}>
+          편지 10통마다 구슬에 별이 생겨요.
+        </p>
       </RevealMotion>
 
-      <Image src={LettieImage} alt="lettie" className={styles.lettieImage} />
+      <Image
+        src={LettieImage}
+        alt="lettie"
+        className={styles.lettieImage}
+        unoptimized
+      />
       <div className={styles.buttonWrapper}>
         <RevealMotion delay={0.8}>
-          <Button variant="primary" text="만든 캡슐 보러가기" type="submit" />
+          <Button
+            variant="primary"
+            text="만든 캡슐 보러가기"
+            onClick={() => {
+              router.push(
+                PATH.CAPSULE_DETAIL(
+                  capsuleInfo.inviteCode,
+                  capsuleInfo.id.toString(),
+                ),
+              );
+            }}
+          />
         </RevealMotion>
       </div>
     </div>

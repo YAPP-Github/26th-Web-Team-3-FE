@@ -7,6 +7,7 @@ export const inputContainer = style({
   flexDirection: "column",
   width: "100%",
   gap: "0.8rem",
+  marginBottom: "1.6rem",
 });
 
 export const labelStyle = style({
@@ -28,7 +29,7 @@ export const inputCaption = style({
 
 export const inputStyle = style({
   ...themeVars.text.F15,
-  color: themeVars.color.white[30],
+  color: themeVars.color.white[100],
   backgroundColor: themeVars.color.white[5],
   border: `1px ${themeVars.color.white[30]}`,
   borderRadius: "12px",
@@ -38,7 +39,6 @@ export const inputStyle = style({
   ...screen.md({
     padding: "0 2rem",
     ...themeVars.text.F17,
-    color: themeVars.color.white[30],
   }),
   selectors: {
     "&::-webkit-calendar-picker-indicator": {

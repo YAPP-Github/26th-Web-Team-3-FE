@@ -4,6 +4,7 @@ import Lettie from "@/shared/assets/character/lettie_animate.png";
 import Button from "@/shared/ui/button";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import Image from "next/image";
+import { useFormContext } from "react-hook-form";
 import CapsuleOpenAtInput from "./capsule-open-at-input";
 import LetterCloseAtInput from "./letter-close-at-input";
 
@@ -13,8 +14,18 @@ interface Props {
 }
 
 const DateStep = ({ handleNextStep }: Props) => {
+  const { getValues } = useFormContext();
   const handleNextClick = () => {
-    // Todo: 선택되지 않은 항목이 있는지 확인
+    const openDate = getValues("openDate") as string;
+    const closedAt = getValues("closedAt") as string;
+    if (!openDate || !closedAt) {
+      alert("날짜를 입력해주세요.");
+      return;
+    }
+    if (closedAt >= openDate) {
+      alert("편지 작성 마감일은 타임캡슐 오픈일 이전이어야 합니다.");
+      return;
+    }
     handleNextStep("privacy");
   };
 
@@ -37,6 +48,7 @@ const DateStep = ({ handleNextStep }: Props) => {
         alt="lettie-animate-image"
         width={340}
         height={340}
+        unoptimized
       />
       <div className={styles.inputSectionWrapper}>
         <RevealMotion delay={0.8}>

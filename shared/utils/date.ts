@@ -47,3 +47,17 @@ export const formatDateTime = (dateTime: string) => {
 
   return `${date} ${timeWithoutSeconds}`;
 };
+
+/**
+ * 오늘 날짜 또는 지정된 일수 후의 날짜 반환
+ * @param daysAfter 오늘로부터 며칠 후인지 (기본값: 0, 즉 오늘)
+ * @returns 날짜 문자열 (YYYY-MM-DD)
+ */
+export const getDate = (daysAfter = 0) => {
+  const date = new Date();
+  date.setDate(date.getDate() + daysAfter);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
