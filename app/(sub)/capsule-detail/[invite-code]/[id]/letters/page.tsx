@@ -18,9 +18,12 @@ const CapsuleLettersPage = () => {
   const capsuleId = params.id as string;
   const [isStackType, setIsStackType] = useState(true);
 
-  const { data: capsuleTitle } = useQuery({
+  const { data: capsuleData } = useQuery({
     ...capsuleQueryOptions.capsuleDetail(capsuleId),
-    select: (data) => data.result.title,
+    select: (data) => ({
+      title: data.result.title,
+      participantCount: data.result.participantCount,
+    }),
   });
 
   const { data: letterData, isLoading: isLetterLoading } = useQuery(letterQueryOptions.letterList(capsuleId));
@@ -40,8 +43,10 @@ const CapsuleLettersPage = () => {
         닫기
       </button>
       <div className={styles.titleContainer}>
-        <h1 className={styles.title}>{capsuleTitle || "캡슐"}</h1>
-        <p className={styles.subtitle}>7명 참여 · {letters.length}통</p>
+        <h1 className={styles.title}>{capsuleData?.title || "캡슐"}</h1>
+        <p className={styles.subtitle}>
+          {capsuleData?.participantCount || 0}명 참여 · {letters.length}통
+        </p>
       </div>
 
       <div className={styles.cardContainer}>
