@@ -18,12 +18,13 @@ export const useFunnel = () => {
   const step = searchParams.get("step") || "intro";
 
   useEffect(() => {
-    if (!searchParams.get("step")) {
+    const currentStep = searchParams.get("step");
+    if (!currentStep) {
       const params = new URLSearchParams(searchParams);
       params.set("step", "intro");
       router.replace(`?${params.toString()}`);
     }
-  }, [searchParams, router]);
+  }, []);
 
   const setStep = (step: string) => {
     const params = new URLSearchParams(searchParams);
