@@ -13,8 +13,7 @@ const withSvgr = (config: NextConfig): NextConfig => ({
 });
 
 // Vanilla Extract 플러그인
-const withVanillaExtract = (config: NextConfig): NextConfig =>
-  createVanillaExtractPlugin()(config);
+const withVanillaExtract = (config: NextConfig): NextConfig => createVanillaExtractPlugin()(config);
 
 const plugins = [withSvgr, withVanillaExtract];
 
@@ -24,9 +23,8 @@ const baseConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "13.209.7.195",
-        port: "9000",
+        protocol: "https",
+        hostname: "s3.lettie.me",
         pathname: "**",
       },
     ],
