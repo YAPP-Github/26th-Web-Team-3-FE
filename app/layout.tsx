@@ -12,7 +12,7 @@ import SprinkleContainer from "@/shared/ui/sprinkle-container";
 // TODO: 추후 수정
 export const metadata: Metadata = {
   title: "Lettie",
-  description: "그룹 타임캡슐 웹 플랫폼",
+  description: "북극여우 레티가 전해주는 타임캡슐",
   icons: {
     icon: "/icon.svg",
   },

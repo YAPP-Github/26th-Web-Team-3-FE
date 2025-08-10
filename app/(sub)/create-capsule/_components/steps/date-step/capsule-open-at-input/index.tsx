@@ -1,6 +1,6 @@
 "use client";
 
-import { getTodayDate } from "@/shared/utils/date";
+import { getDate } from "@/shared/utils/date";
 import { useFormContext } from "react-hook-form";
 import * as styles from "./capsule-open-at-input.css";
 
@@ -17,7 +17,7 @@ const CapsuleOpenAtInput = () => {
             id="openDate"
             className={styles.inputStyle}
             required
-            min={getTodayDate()}
+            min={getDate()}
             {...register("openDate")}
           />
         </label>

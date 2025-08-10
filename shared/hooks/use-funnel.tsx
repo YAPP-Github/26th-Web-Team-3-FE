@@ -1,5 +1,6 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import type { ReactElement, ReactNode } from "react";
+import { useEffect } from "react";
 
 interface StepProps {
   name: string;
@@ -15,6 +16,14 @@ export const useFunnel = () => {
   const searchParams = useSearchParams();
 
   const step = searchParams.get("step") || "intro";
+
+  useEffect(() => {
+    if (!searchParams.get("step")) {
+      const params = new URLSearchParams(searchParams);
+      params.set("step", "intro");
+      router.replace(`?${params.toString()}`);
+    }
+  }, [searchParams, router]);
 
   const setStep = (step: string) => {
     const params = new URLSearchParams(searchParams);
@@ -34,5 +43,5 @@ export const useFunnel = () => {
     return <>{targetStep}</>;
   };
 
-  return { Funnel, Step, setStep };
+  return { Funnel, Step, setStep, step };
 };

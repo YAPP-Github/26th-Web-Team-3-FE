@@ -18,6 +18,10 @@ const DateStep = ({ handleNextStep }: Props) => {
   const handleNextClick = () => {
     const openDate = getValues("openDate") as string;
     const closedAt = getValues("closedAt") as string;
+    if (!openDate || !closedAt) {
+      alert("날짜를 입력해주세요.");
+      return;
+    }
     if (closedAt >= openDate) {
       alert("편지 작성 마감일은 타임캡슐 오픈일 이전이어야 합니다.");
       return;

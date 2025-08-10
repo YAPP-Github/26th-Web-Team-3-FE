@@ -1,6 +1,6 @@
 "use client";
 
-import { getTodayDate } from "@/shared/utils/date";
+import { getDate } from "@/shared/utils/date";
 import { useFormContext } from "react-hook-form";
 import * as styles from "./letter-close-at-input.css";
 
@@ -15,7 +15,7 @@ const LetterCloseAtInput = () => {
           type="date"
           id="closeDate"
           className={styles.inputStyle}
-          min={getTodayDate()}
+          min={getDate()}
           {...register("closedAt")}
         />
       </label>

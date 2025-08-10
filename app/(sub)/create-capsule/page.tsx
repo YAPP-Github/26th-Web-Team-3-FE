@@ -7,8 +7,7 @@ import { useFunnel } from "@/shared/hooks/use-funnel";
 import type { CreateCapsuleReq } from "@/shared/types/api/capsule";
 import NavbarDetail from "@/shared/ui/navbar/navbar-detail";
 import PopupCancelCreation from "@/shared/ui/popup/popup-cancel-creation";
-import { createISOString, getDefaultDate } from "@/shared/utils/date"; // add createISOString
-import { useSearchParams } from "next/navigation";
+import { createISOString, getDate } from "@/shared/utils/date";
 import { overlay } from "overlay-kit";
 import { FormProvider, type SubmitHandler, useForm } from "react-hook-form";
 import CompleteStep from "./_components/steps/complete-step";
@@ -26,20 +25,19 @@ type CreateCapsuleForm = {
   closedAt: string; // YYYY-MM-DD
 };
 
+interface CapsuleInfo {
+  id: number;
+  inviteCode: string;
+}
+
 const CreateCapsule = () => {
-  const { Funnel, Step, setStep } = useFunnel();
-  const [capsuleInfo, setCapsuleInfo] = useState<{
-    id: number;
-    inviteCode: string;
-  } | null>(null);
+  const { Funnel, Step, setStep, step } = useFunnel();
+  const [capsuleInfo, setCapsuleInfo] = useState<CapsuleInfo | null>(null);
 
-  const searchParams = useSearchParams();
-
-  const currentStep = searchParams.get("step") || "intro";
   const { mutate: createCapsuleMutate, isPending } = useCreateCapsule();
 
-  const defaultOpenDate = getDefaultDate();
-  const defaultClosedAt = getDefaultDate(10);
+  const defaultOpenDate = getDate(14);
+  const defaultClosedAt = getDate(10);
 
   const form = useForm<CreateCapsuleForm>({
     defaultValues: {
@@ -63,7 +61,7 @@ const CreateCapsule = () => {
       subtitle: data.subtitle,
       accessType: data.accessType,
       openAt: createISOString(data.openDate, `${data.openTime}:00`),
-      closedAt: createISOString(data.closedAt),
+      closedAt: createISOString(data.closedAt, "19:00:00"),
     };
 
     createCapsuleMutate(payload, {
@@ -83,7 +81,7 @@ const CreateCapsule = () => {
 
   return (
     <>
-      {currentStep !== "complete" && (
+      {step !== "complete" && (
         <NavbarDetail
           renderRight={() => (
             <button

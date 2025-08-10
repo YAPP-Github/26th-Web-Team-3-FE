@@ -49,27 +49,15 @@ export const formatDateTime = (dateTime: string) => {
 };
 
 /**
- * 오늘 날짜 반환
- * @returns 오늘 날짜 문자열 (YYYY-MM-DD)
- */
-export const getTodayDate = () => {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, "0");
-  const day = String(today.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-};
-
-/**
- * 오늘로부터 지정된 일수 후의 날짜 반환
- * @param daysAfter 오늘로부터 며칠 후인지 (기본값: 14)
+ * 오늘 날짜 또는 지정된 일수 후의 날짜 반환
+ * @param daysAfter 오늘로부터 며칠 후인지 (기본값: 0, 즉 오늘)
  * @returns 날짜 문자열 (YYYY-MM-DD)
  */
-export const getDefaultDate = (daysAfter = 14) => {
-  const today = new Date();
-  today.setDate(today.getDate() + daysAfter);
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, "0");
-  const day = String(today.getDate()).padStart(2, "0");
+export const getDate = (daysAfter = 0) => {
+  const date = new Date();
+  date.setDate(date.getDate() + daysAfter);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
 };
