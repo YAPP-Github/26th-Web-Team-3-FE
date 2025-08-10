@@ -2,8 +2,17 @@ export interface Letter {
   letterId: number;
   content: string;
   from: string;
-  files: string;
+  files: {
+    fileId: string;
+    objectKey: string;
+  }[];
   isMine: boolean;
+}
+
+export interface ImageUrl {
+  letterId: number;
+  fileId: string;
+  url: string | null;
 }
 
 export interface LetterDetailRes {
