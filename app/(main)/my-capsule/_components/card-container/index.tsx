@@ -30,6 +30,7 @@ const CardContainer = ({ selectedTab, selectedSort }: CardContainerProps) => {
   const { data: capsuleLists } = useQuery(
     capsuleQueryOptions.myCapsuleList(0, 20, selectedSort, selectedTab),
   );
+
   return capsuleLists?.result.timeCapsules.length === 0 ? (
     <EmptySection />
   ) : (
