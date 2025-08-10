@@ -8,6 +8,7 @@ import Card from "@/shared/ui/card";
 import { cardStatusLabel } from "@/shared/utils/capsule-card";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import EmptySection from "../empty-section";
 import * as styles from "./card-container.css";
 
 const variants = [
@@ -29,7 +30,9 @@ const CardContainer = ({ selectedTab, selectedSort }: CardContainerProps) => {
   const { data: capsuleLists } = useQuery(
     capsuleQueryOptions.myCapsuleList(0, 20, selectedSort, selectedTab),
   );
-  return (
+  return capsuleLists?.result.timeCapsules.length === 0 ? (
+    <EmptySection />
+  ) : (
     <div className={styles.cardContainer}>
       {capsuleLists?.result.timeCapsules.map((capsule, index) => (
         <Card
