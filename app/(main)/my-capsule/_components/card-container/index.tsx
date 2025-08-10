@@ -33,6 +33,7 @@ const CardContainer = ({ selectedTab, selectedSort }: CardContainerProps) => {
     <div className={styles.cardContainer}>
       {capsuleLists?.result.timeCapsules.map((capsule, index) => (
         <Card
+          privacy={capsule.accessType}
           key={capsule.id}
           openStatusLabel={cardStatusLabel(capsule.remainingStatus)}
           title={capsule.title}
