@@ -10,7 +10,7 @@ const EmptySection = () => {
       <NoneImage width={120} height={64.5} />
       <p className={styles.caption}>어라, 내 타임캡슐이 없어요</p>
       <Link href={PATH.CREATE_CAPSULE}>
-        <TabButton text="타임캡슐 만들기" />
+        <TabButton text="타임캡슐 만들기" href={PATH.CREATE_CAPSULE} />
       </Link>
     </div>
   );

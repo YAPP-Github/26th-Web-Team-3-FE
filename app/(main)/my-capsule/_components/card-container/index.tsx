@@ -1,3 +1,5 @@
+"use client";
+
 import { capsuleQueryOptions } from "@/shared/api/queries/capsule";
 import { CARD_GRADIENTS } from "@/shared/constants/card";
 import { PATH } from "@/shared/constants/path";
