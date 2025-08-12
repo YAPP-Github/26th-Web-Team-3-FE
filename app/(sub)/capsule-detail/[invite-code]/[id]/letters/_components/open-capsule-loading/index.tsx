@@ -43,10 +43,7 @@ const OpenCapsuleLoading = ({ participantCount, letterCount, isLoading, onComple
   }, [isLoading, handleComplete]);
 
   return (
-    <div
-      className={cn(styles.loadingContainer, isLoading ? styles.loadingContainerDisabled : undefined)}
-      onClick={handleComplete}
-    >
+    <div className={styles.loadingContainer}>
       <RevealMotion delay={0.1}>
         <h1 className={styles.titleCaption}>
           드디어

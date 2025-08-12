@@ -8,12 +8,6 @@ export const loadingContainer = style({
   alignItems: "center",
   justifyContent: "center",
   height: "100%",
-  cursor: "pointer",
-});
-
-export const loadingContainerDisabled = style({
-  cursor: "default",
-  pointerEvents: "none",
 });
 
 export const titleCaption = style({

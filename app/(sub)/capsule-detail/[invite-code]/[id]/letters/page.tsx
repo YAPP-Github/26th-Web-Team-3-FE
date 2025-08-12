@@ -6,7 +6,7 @@ import Grid from "@/shared/assets/icon/grid.svg";
 import Layers from "@/shared/assets/icon/layers.svg";
 import { useLetterImages } from "@/shared/hooks/use-letter-images";
 import { useQuery } from "@tanstack/react-query";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import GridLayout from "./_components/grid-layout";
 import OpenCapsuleLoading from "./_components/open-capsule-loading";
@@ -15,19 +15,18 @@ import * as styles from "./page.css";
 
 const CapsuleLettersPage = () => {
   const params = useParams();
-  const searchParams = useSearchParams();
   const router = useRouter();
   const capsuleId = params.id as string;
-  const isOpening = searchParams.get("opening") === "true";
 
   const [isStackType, setIsStackType] = useState(true);
-  const [showOpeningLoading, setShowOpeningLoading] = useState(isOpening);
+  const [hasShownOpening, setHasShownOpening] = useState(false);
 
   const { data: capsuleData } = useQuery({
     ...capsuleQueryOptions.capsuleDetail(capsuleId),
     select: (data) => ({
       title: data.result.title,
       participantCount: data.result.participantCount,
+      isFirstOpen: data.result.isFirtstOpen,
     }),
   });
 
@@ -38,13 +37,10 @@ const CapsuleLettersPage = () => {
   const isLoading = isLetterLoading || isImageLoading;
 
   const handleLoadingComplete = () => {
-    setShowOpeningLoading(false);
-    const url = new URL(window.location.href);
-    url.searchParams.delete("opening");
-    router.replace(url.pathname + url.search);
+    setHasShownOpening(true);
   };
 
-  if (showOpeningLoading) {
+  if (!capsuleData?.isFirstOpen && !hasShownOpening) {
     return (
       <OpenCapsuleLoading
         participantCount={capsuleData?.participantCount || 0}
@@ -53,6 +49,10 @@ const CapsuleLettersPage = () => {
         onComplete={handleLoadingComplete}
       />
     );
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
   return (

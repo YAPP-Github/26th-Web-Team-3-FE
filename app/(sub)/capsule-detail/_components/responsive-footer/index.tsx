@@ -54,7 +54,7 @@ const ResponsiveFooter = ({ remainingTime, status, isMine }: Props) => {
   };
 
   const handleOpenCapsuleClick = () => {
-    router.push(`${pathname}/letters?opening=true`);
+    router.push(`${pathname}/letters`);
   };
 
   const renderButtons = () => {
