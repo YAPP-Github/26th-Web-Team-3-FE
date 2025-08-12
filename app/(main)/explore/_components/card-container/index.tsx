@@ -2,19 +2,22 @@ import Card from "@/shared/ui/card";
 import * as styles from "./card-container.css";
 
 import { capsuleQueryOptions } from "@/shared/api/queries/capsule";
+import { CARD_GRADIENTS } from "@/shared/constants/card";
 import { PATH } from "@/shared/constants/path";
+import type { CapsuleSortType } from "@/shared/types/api/capsule";
 import { cardStatusLabel } from "@/shared/utils/capsule-card";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
-const variants = ["gradient1", "gradient2", "gradient3", "gradient4", "gradient5", "gradient6"] as const;
-
 interface CardContainerProps {
   selectedTab: string;
+  selectedSort: CapsuleSortType;
 }
 
-const CardContainer = ({ selectedTab }: CardContainerProps) => {
-  const { data: capsuleLists } = useQuery(capsuleQueryOptions.capsuleLists(0, 20, "DEFAULT", selectedTab));
+const CardContainer = ({ selectedTab, selectedSort }: CardContainerProps) => {
+  const { data: capsuleLists } = useQuery(
+    capsuleQueryOptions.capsuleLists(0, 20, selectedSort, selectedTab),
+  );
 
   const router = useRouter();
 
@@ -27,9 +30,11 @@ const CardContainer = ({ selectedTab }: CardContainerProps) => {
           title={capsule.title}
           peopleCount={capsule.participantCount}
           count={capsule.letterCount}
-          variant={variants[index % 6]}
+          variant={CARD_GRADIENTS[index % 6]}
           onClick={() => {
-            router.push(PATH.CAPSULE_DETAIL(capsule.inviteCode, capsule.id.toString()));
+            router.push(
+              PATH.CAPSULE_DETAIL(capsule.inviteCode, capsule.id.toString()),
+            );
           }}
         />
       ))}

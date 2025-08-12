@@ -13,13 +13,13 @@ const withSvgr = (config: NextConfig): NextConfig => ({
 });
 
 // Vanilla Extract 플러그인
-const withVanillaExtract = (config: NextConfig): NextConfig => createVanillaExtractPlugin()(config);
+const withVanillaExtract = (config: NextConfig): NextConfig =>
+  createVanillaExtractPlugin()(config);
 
 const plugins = [withSvgr, withVanillaExtract];
 
 const baseConfig: NextConfig = {
   reactStrictMode: true,
-  // Todo: 개발, 배포 환경 분기 처리
   images: {
     remotePatterns: [
       {
@@ -28,6 +28,14 @@ const baseConfig: NextConfig = {
         pathname: "**",
       },
     ],
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "https://lettie.me/api/:path*",
+      },
+    ];
   },
 };
 

@@ -1,3 +1,5 @@
+import LockIcon from "@/shared/assets/icon/gray_lock.svg";
+
 import * as styles from "./card.css";
 
 import Thumbnail_1 from "@/shared/assets/2D-illust/thumbnail_1.svg";
@@ -28,25 +30,44 @@ interface CardProps extends ComponentProps<"div"> {
   count: number;
   variant: keyof typeof styles.cardVariants;
   onClick?: () => void;
+  privacy?: "PUBLIC" | "PRIVATE";
 }
 
-const Card = ({ openStatusLabel, title, peopleCount, count, variant, className, onClick }: CardProps) => {
+const Card = ({
+  openStatusLabel,
+  title,
+  peopleCount,
+  count,
+  variant,
+  className,
+  onClick,
+  privacy,
+}: CardProps) => {
   const icon = gradientIcons[variant];
 
   return (
     <HoverMotion>
       <div className={cn(styles.cardBase, className)} onClick={onClick}>
-        <div className={cn(styles.cardGradientOverlay, styles.cardVariants[variant])} />
-        <div className={styles.cardContentWrapper}>
-          {openStatusLabel === "오픈 완료" ? (
-            <Chip className={styles.chipClass} variant="purple">
-              {openStatusLabel}
-            </Chip>
-          ) : (
-            <Chip className={styles.chipClass} variant="gray">
-              {openStatusLabel}
-            </Chip>
+        <div
+          className={cn(
+            styles.cardGradientOverlay,
+            styles.cardVariants[variant],
           )}
+        />
+        <div className={styles.cardContentWrapper}>
+          <div className={styles.cardTopWrapper}>
+            {openStatusLabel === "오픈 완료" ? (
+              <Chip className={styles.chipClass} variant="purple">
+                {openStatusLabel}
+              </Chip>
+            ) : (
+              <Chip className={styles.chipClass} variant="gray">
+                {openStatusLabel}
+              </Chip>
+            )}
+            {privacy === "PRIVATE" && <LockIcon />}
+          </div>
+
           <span className={styles.cardTitle}>{title}</span>
           <div className={styles.cardDescription}>
             <span>{peopleCount}명 참여</span>

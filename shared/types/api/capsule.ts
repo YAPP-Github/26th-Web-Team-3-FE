@@ -36,6 +36,7 @@ export interface CapsuleDetailRes {
     isMine: boolean;
     inviteCode: string;
     beadVideoUrl: string;
+    accessType?: "PUBLIC" | "PRIVATE";
   };
 }
 
@@ -66,6 +67,7 @@ export type TimeCapsules = {
     openDate: string | null;
     message: string | null;
   };
+  accessType?: "PUBLIC" | "PRIVATE";
 };
 
 export const CAPSULE_SORT = {
@@ -76,3 +78,13 @@ export const CAPSULE_SORT = {
 } as const;
 
 export type CapsuleSortType = (typeof CAPSULE_SORT)[keyof typeof CAPSULE_SORT];
+
+export const MY_CAPSULE_FILTER = {
+  ALL: "ALL",
+  CREATED: "CREATED",
+  LIKED: "LIKED",
+  PARTICIPATING: "PARTICIPATING",
+} as const;
+
+export type MyCapsuleFilterType =
+  (typeof MY_CAPSULE_FILTER)[keyof typeof MY_CAPSULE_FILTER];
