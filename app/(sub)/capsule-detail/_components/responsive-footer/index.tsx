@@ -42,34 +42,19 @@ const ResponsiveFooter = ({ remainingTime, status, isMine }: Props) => {
 
   const handleWriteButtonClick = () => {
     overlay.open(({ isOpen, close }) => (
-      <WriteModal
-        capsuleTitle="비 오는 날의 타임캡슐"
-        isOpen={isOpen}
-        onClose={close}
-        remainingTime={remainingTime}
-      />
+      <WriteModal capsuleTitle="비 오는 날의 타임캡슐" isOpen={isOpen} onClose={close} remainingTime={remainingTime} />
     ));
   };
 
   const handleOpenCapsuleClick = () => {
-    router.push(`${pathname}/letters`);
+    router.push(`${pathname}/letters?opening=true`);
   };
 
   const renderButtons = () => {
     const shareButton = isCopied ? (
-      <Button
-        variant="secondary"
-        text="링크 복사됨"
-        icon={<CheckIcon />}
-        onClick={handleClickShareButton}
-      />
+      <Button variant="secondary" text="링크 복사됨" icon={<CheckIcon />} onClick={handleClickShareButton} />
     ) : (
-      <Button
-        variant="secondary"
-        text="공유하기"
-        icon={<ShareIcon />}
-        onClick={handleClickShareButton}
-      />
+      <Button variant="secondary" text="공유하기" icon={<ShareIcon />} onClick={handleClickShareButton} />
     );
 
     switch (status) {
@@ -77,11 +62,7 @@ const ResponsiveFooter = ({ remainingTime, status, isMine }: Props) => {
         return (
           <>
             {shareButton}
-            <Button
-              variant="primary"
-              text="편지 담기"
-              onClick={handleWriteButtonClick}
-            />
+            <Button variant="primary" text="편지 담기" onClick={handleWriteButtonClick} />
           </>
         );
       case "WAITING_OPEN":
@@ -90,11 +71,7 @@ const ResponsiveFooter = ({ remainingTime, status, isMine }: Props) => {
         return (
           <>
             {shareButton}
-            <Button
-              variant="primary"
-              text="캡슐 열기"
-              onClick={handleOpenCapsuleClick}
-            />
+            <Button variant="primary" text="캡슐 열기" onClick={handleOpenCapsuleClick} />
           </>
         );
       default:
