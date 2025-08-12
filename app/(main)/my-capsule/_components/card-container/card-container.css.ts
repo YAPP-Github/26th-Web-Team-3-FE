@@ -2,10 +2,13 @@ import { style } from "@vanilla-extract/css";
 
 export const cardContainer = style({
   display: "grid",
-  gap: "1rem",
+  gap: "1.2rem",
+  rowGap: "3.2rem",
   width: "100%",
-  padding: "2.3rem 1rem 7.2rem 1rem",
+  padding: "1.6rem",
+  paddingTop: "2.3rem",
   margin: "0 auto",
+  paddingBottom: "7.2rem",
   gridTemplateColumns: "repeat(2, 1fr)",
 
   // 정확한 반응형 적용하기 위해 미디어 쿼리 직접 사용

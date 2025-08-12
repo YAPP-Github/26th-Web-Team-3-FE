@@ -53,6 +53,13 @@ export const cardContentWrapper = style({
   }),
 });
 
+export const cardTopWrapper = style({
+  display: "flex",
+  flexDirection: "row",
+  gap: "1.4rem",
+  alignItems: "center",
+});
+
 export const cardIcon = style({
   width: "7.6rem",
   height: "8rem",

@@ -25,7 +25,7 @@ export const cardStatusLabel = (
 
   // remainingTime이 없는 경우
   if (!status.remainingTime) {
-    return "오픈 완료";
+    return "캡슐 오픈";
   }
 
   const { days, hours, minutes } = status.remainingTime;
@@ -45,11 +45,11 @@ export const cardStatusLabel = (
 
   switch (getTimePriority()) {
     case "days":
-      return `D-${days}`;
+      return `${days}일 후 오픈`;
     case "hours":
-      return `${hours}시간 전`;
+      return `${hours}시간 후 오픈`;
     case "minutes":
-      return `${minutes}분 전`;
+      return `${minutes}분 후 오픈`;
     default:
       return "잠시 후 오픈";
   }

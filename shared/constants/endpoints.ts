@@ -4,9 +4,27 @@ export const ENDPOINTS = {
   // 타임캡슐
   CREATE_CAPSULE: "api/v1/capsules",
   CAPSULE_DETAIL: (id: string) => `api/v1/capsules/${id}`,
-  CAPSULE_LISTS: (page = 0, size = 20, sort: CapsuleSortType = "DEFAULT", type = "all") =>
-    `api/v1/capsules/explore?page=${page}&size=${size}&sort=${sort}${type === "all" ? "" : `&type=${type}`}`,
+  CAPSULE_LISTS: (
+    page = 0,
+    size = 20,
+    sort: CapsuleSortType = "DEFAULT",
+    type = "all",
+  ) =>
+    `api/v1/capsules/explore?page=${page}&size=${size}&sort=${sort}${
+      type === "all" ? "" : `&type=${type}`
+    }`,
+
   LIKE_TOGGLE: (id: string) => `api/v1/capsules/${id}/like`,
+
+  MY_CAPSULE_LIST: (
+    page = 0,
+    size = 20,
+    sort: CapsuleSortType = "DEFAULT",
+    filter = "ALL",
+  ) =>
+    `api/v1/capsules/my?page=${page}&size=${size}&sort=${sort}&filter=${filter}`,
+
+  USER_INFO: "api/v1/users/my-info",
 
   // 편지
   LETTER_LIST: (capsuleId: string, page = 0, size = 20) =>
