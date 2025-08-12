@@ -1,7 +1,6 @@
 "use client";
 
-import { useSocialLogin } from "@/app/(auth)/_api/api.queries";
-import { setAccessToken } from "@/shared/utils/auth";
+import { useSocialLogin } from "@/app/(auth)/_api/auth.queries";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
@@ -19,8 +18,7 @@ export default function CallbackPage() {
     mutate(
       { provider: provider, code: code },
       {
-        onSuccess: ({ token }) => {
-          setAccessToken(token);
+        onSuccess: () => {
           router.push("/");
         },
         onError: () => {

@@ -1,9 +1,24 @@
+"use client";
+
+import { useLogout } from "@/app/(auth)/_api/auth.queries";
+import { useRouter } from "next/navigation";
 import SettingItem from "./_components/setting-item";
 import SettingSection from "./_components/setting-section";
 import UserGreetingSection from "./_components/user-greeting-section";
 import * as styles from "./page.css";
 
 const Setting = () => {
+  const { mutate: logout } = useLogout();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    logout(undefined, {
+      onSuccess: () => {
+        router.push("/");
+      },
+    });
+  };
+
   return (
     <div className={styles.settingPage}>
       <UserGreetingSection />
@@ -16,8 +31,7 @@ const Setting = () => {
           <SettingItem>문의하기</SettingItem>
         </SettingSection>
         <SettingSection>
-          <SettingItem>로그아웃</SettingItem>
-          <SettingItem>탈퇴하기</SettingItem>
+          <SettingItem onClick={handleLogout}>로그아웃</SettingItem>
         </SettingSection>
       </div>
     </div>

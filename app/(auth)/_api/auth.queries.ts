@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { postToGetOAuthCode } from "./auth.api";
+import { postLogin, postLogout } from "./auth.api";
 
 export const useSocialLogin = () => {
   return useMutation({
@@ -9,6 +9,12 @@ export const useSocialLogin = () => {
     }: {
       provider: "naver" | "google";
       code: string;
-    }) => postToGetOAuthCode(provider, code),
+    }) => postLogin(provider, code),
+  });
+};
+
+export const useLogout = () => {
+  return useMutation({
+    mutationFn: postLogout,
   });
 };

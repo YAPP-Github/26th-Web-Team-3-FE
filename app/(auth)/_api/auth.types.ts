@@ -6,7 +6,11 @@ export interface OAuthRes {
 
 export interface OAuthCodeRes {
   result: {
-    token: string;
     nickname: string;
+    success: boolean;
   };
+}
+
+export interface LogoutRes {
+  result: boolean;
 }
