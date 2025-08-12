@@ -24,6 +24,8 @@ export const ENDPOINTS = {
   ) =>
     `api/v1/capsules/my?page=${page}&size=${size}&sort=${sort}&filter=${filter}`,
 
+  USER_INFO: "api/v1/users/my-info",
+
   // 편지
   LETTER_LIST: (capsuleId: string, page = 0, size = 20) =>
     `api/v1/letters?capsuleId=${capsuleId}&page=${page}&size=${size}`,
