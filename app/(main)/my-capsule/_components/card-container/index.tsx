@@ -1,4 +1,5 @@
 import { capsuleQueryOptions } from "@/shared/api/queries/capsule";
+import { CARD_GRADIENTS } from "@/shared/constants/card";
 import { PATH } from "@/shared/constants/path";
 import type {
   CapsuleSortType,
@@ -10,15 +11,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import EmptySection from "../empty-section";
 import * as styles from "./card-container.css";
-
-const variants = [
-  "gradient1",
-  "gradient2",
-  "gradient3",
-  "gradient4",
-  "gradient5",
-  "gradient6",
-] as const;
 
 interface CardContainerProps {
   selectedTab: MyCapsuleFilterType;
@@ -43,7 +35,7 @@ const CardContainer = ({ selectedTab, selectedSort }: CardContainerProps) => {
           title={capsule.title}
           peopleCount={capsule.participantCount}
           count={capsule.letterCount}
-          variant={variants[index % 6]}
+          variant={CARD_GRADIENTS[index % 6]}
           onClick={() => {
             router.push(
               PATH.CAPSULE_DETAIL(capsule.inviteCode, capsule.id.toString()),
