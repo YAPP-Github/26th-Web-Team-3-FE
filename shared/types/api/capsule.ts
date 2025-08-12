@@ -36,6 +36,7 @@ export interface CapsuleDetailRes {
     isMine: boolean;
     inviteCode: string;
     beadVideoUrl: string;
+    isFirtstOpen: boolean;
     accessType?: "PUBLIC" | "PRIVATE";
   };
 }
@@ -86,5 +87,4 @@ export const MY_CAPSULE_FILTER = {
   PARTICIPATING: "PARTICIPATING",
 } as const;
 
-export type MyCapsuleFilterType =
-  (typeof MY_CAPSULE_FILTER)[keyof typeof MY_CAPSULE_FILTER];
+export type MyCapsuleFilterType = (typeof MY_CAPSULE_FILTER)[keyof typeof MY_CAPSULE_FILTER];
