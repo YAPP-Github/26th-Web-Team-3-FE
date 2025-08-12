@@ -1,10 +1,13 @@
 "use client";
 
 import { useLogout } from "@/app/(auth)/_api/auth.queries";
+import PopupLogout from "@/shared/ui/popup/popup-logout";
 import { useRouter } from "next/navigation";
 import SettingItem from "./_components/setting-item";
 import SettingSection from "./_components/setting-section";
 import UserGreetingSection from "./_components/user-greeting-section";
+
+import { overlay } from "overlay-kit";
 import * as styles from "./page.css";
 
 const Setting = () => {
@@ -31,7 +34,20 @@ const Setting = () => {
           <SettingItem>문의하기</SettingItem>
         </SettingSection>
         <SettingSection>
-          <SettingItem onClick={handleLogout}>로그아웃</SettingItem>
+          <SettingItem
+            onClick={() =>
+              overlay.open(({ isOpen, close }) => (
+                <PopupLogout
+                  isOpen={isOpen}
+                  close={close}
+                  onLogout={handleLogout}
+                />
+              ))
+            }
+          >
+            로그아웃
+          </SettingItem>
+          <SettingItem>탈퇴하기</SettingItem>
         </SettingSection>
       </div>
     </div>
