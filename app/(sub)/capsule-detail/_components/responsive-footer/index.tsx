@@ -13,6 +13,7 @@ import ShakeYMotion from "@/shared/ui/motion/shakeY-motion";
 import { overlay } from "overlay-kit";
 
 import type { CapsuleStatus } from "@/shared/types/api/capsule";
+import { getAccessToken } from "@/shared/utils/auth";
 import { formatOpenDate } from "@/shared/utils/date";
 import * as styles from "./responsive-footer.css";
 
@@ -31,6 +32,7 @@ const ResponsiveFooter = ({ remainingTime, status, isMine }: Props) => {
   const [isCopied, setIsCopied] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
+  const isLoggedIn = !!getAccessToken();
 
   const handleClickShareButton = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -41,6 +43,11 @@ const ResponsiveFooter = ({ remainingTime, status, isMine }: Props) => {
   };
 
   const handleWriteButtonClick = () => {
+    if (!isLoggedIn) {
+      router.push("/login");
+      return;
+    }
+
     overlay.open(({ isOpen, close }) => (
       <WriteModal
         capsuleTitle="비 오는 날의 타임캡슐"

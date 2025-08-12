@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 
-const publicRoutes = ["/", "/login", "/explore", "/search"];
+const publicRoutes = ["/", "/login", "/explore", "/search", "/capsule-detail"];
 const protectedRoutes = ["/setting", "/create-capsule", "/my-capsule"];
 
 const isPublicPath = (pathname: string): boolean => {
@@ -10,22 +10,6 @@ const isPublicPath = (pathname: string): boolean => {
 
   if (publicRoutes.some((route) => pathname.startsWith(route))) {
     return true;
-  }
-
-  // capsule-detail
-  if (pathname.startsWith("/capsule-detail")) {
-    const capsuleDetailPattern = /^\/capsule-detail\/[^\/]+\/[^\/]+$/;
-    const lettersPattern = /^\/capsule-detail\/[^\/]+\/[^\/]+\/letters$/;
-
-    // /capsule-detail/[invite-code]/[id]/letters는 protected
-    if (lettersPattern.test(pathname)) {
-      return false;
-    }
-
-    // /capsule-detail/[invite-code]/[id]는 public
-    if (capsuleDetailPattern.test(pathname)) {
-      return true;
-    }
   }
 
   return false;
