@@ -30,6 +30,18 @@ const isTokenExpired = (token: string): boolean => {
   }
 };
 
+/**
+ * Middleware that enforces authentication for protected routes, redirecting unauthenticated or expired sessions to the login page.
+ *
+ * Checks the incoming request path and:
+ * - Allows API routes and configured public paths to pass through.
+ * - For protected paths, reads the `accessToken` cookie and:
+ *   - If missing, redirects to `/login` with a `next` query preserving the original URL.
+ *   - If expired or malformed, deletes the `accessToken` cookie and redirects to `/login` with the same `next` query.
+ *   - If valid, allows the request to continue.
+ *
+ * @returns A NextResponse allowing the request to continue or a redirect response to `/login`. When the token is expired, the response will also remove the `accessToken` cookie.
+ */
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
