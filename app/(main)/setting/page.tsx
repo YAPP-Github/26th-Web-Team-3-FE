@@ -3,6 +3,7 @@ import { useLogout } from "@/app/(auth)/_api/auth.queries";
 import { userQueryOptions } from "@/shared/api/queries/user";
 import PopupLogout from "@/shared/ui/popup/popup-logout";
 import { useQuery } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import SettingItem from "./_components/setting-item";
 import SettingSection from "./_components/setting-section";
@@ -14,13 +15,14 @@ import * as styles from "./page.css";
 const Setting = () => {
   const { mutate: logout } = useLogout();
   const router = useRouter();
-
+  const queryClient = useQueryClient();
   const { data: userInfo } = useQuery(userQueryOptions.userInfo({}));
 
   const handleLogout = () => {
     logout(undefined, {
       onSuccess: () => {
-        router.push("/");
+        queryClient.clear();
+        router.replace("/");
       },
     });
   };

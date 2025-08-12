@@ -8,7 +8,7 @@ const AUTH_ENDPOINTS = {
 } as const;
 
 const AUTH_REDIRECT_URL = (provider: "naver" | "google") =>
-  `${process.env.NEXT_PUBLIC_API_BASE_URL}/${provider}`;
+  `${process.env.NEXT_PUBLIC_REDIRECT_URL}/${provider}`;
 
 export const getOAuthUrl = async (provider: "naver" | "google") => {
   const response = await apiClient.get<OAuthRes>(

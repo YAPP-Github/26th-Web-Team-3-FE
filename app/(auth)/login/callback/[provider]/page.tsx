@@ -19,7 +19,7 @@ export default function CallbackPage() {
       { provider: provider, code: code },
       {
         onSuccess: () => {
-          router.push("/");
+          router.replace("/");
         },
         onError: () => {
           console.log("로그인 실패");
