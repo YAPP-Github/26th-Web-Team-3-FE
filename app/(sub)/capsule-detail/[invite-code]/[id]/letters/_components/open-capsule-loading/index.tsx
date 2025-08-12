@@ -2,7 +2,7 @@ import LettieImage from "@/shared/assets/character/lettie_animate.png";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import { cn } from "@/shared/utils/cn";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import * as styles from "./open-capsule-loading.css";
 
 interface OpenCapsuleLoadingProps {
@@ -18,7 +18,7 @@ const OpenCapsuleLoading = ({ participantCount, letterCount, isLoading, onComple
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const isCompletedRef = useRef(false);
 
-  const handleComplete = () => {
+  const handleComplete = useCallback(() => {
     if (isLoading || isCompletedRef.current) return;
 
     isCompletedRef.current = true;
@@ -28,7 +28,7 @@ const OpenCapsuleLoading = ({ participantCount, letterCount, isLoading, onComple
     }
 
     onComplete();
-  };
+  }, [isLoading, onComplete]);
 
   useEffect(() => {
     if (!isLoading) {
@@ -40,7 +40,7 @@ const OpenCapsuleLoading = ({ participantCount, letterCount, isLoading, onComple
         clearTimeout(timeoutRef.current);
       }
     };
-  }, [isLoading, onComplete]);
+  }, [isLoading, handleComplete]);
 
   return (
     <div

@@ -9,7 +9,6 @@ export const loadingContainer = style({
   justifyContent: "center",
   height: "100%",
   cursor: "pointer",
-  transition: "cursor 0.2s ease",
 });
 
 export const loadingContainerDisabled = style({
