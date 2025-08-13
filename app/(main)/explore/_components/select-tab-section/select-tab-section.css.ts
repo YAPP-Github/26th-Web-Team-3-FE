@@ -8,6 +8,7 @@ export const chipContainer = style({
   justifyContent: "center",
   alignItems: "center",
   position: "relative",
+  width: "100%",
 });
 
 export const chipWrapper = style({
@@ -15,6 +16,7 @@ export const chipWrapper = style({
   gap: "1.2rem",
   flexDirection: "row",
   justifyContent: "center",
+  flex: 1,
 });
 
 export const dropdown = style({

@@ -1,15 +1,14 @@
 "use client";
 
-import useClickOutside from "@/shared/hooks/use-click-outside";
 import { cn } from "@/shared/utils/cn";
 import {
   type ComponentProps,
   type ReactNode,
   createContext,
   useContext,
-  useRef,
   useState,
 } from "react";
+import { useOutsideClickEffect } from "react-simplikit";
 import * as styles from "./dropdown.css";
 
 interface DropdownContextProps {
@@ -36,12 +35,12 @@ interface DropdownRootProps {
 
 const DropdownRoot = ({ className, children }: DropdownRootProps) => {
   const [open, setOpen] = useState(false);
+  const [wrapperEl, setWrapperEl] = useState<HTMLDivElement | null>(null);
 
   const handleToggleOpen = () => setOpen((prev) => !prev);
   const handleClose = () => setOpen(false);
 
-  const ref = useRef<HTMLDivElement>(null);
-  useClickOutside(ref, handleClose);
+  useOutsideClickEffect(wrapperEl, handleClose);
 
   const contextValue: DropdownContextProps = {
     open,
@@ -51,7 +50,7 @@ const DropdownRoot = ({ className, children }: DropdownRootProps) => {
 
   return (
     <DropdownContext.Provider value={contextValue}>
-      <div ref={ref} className={cn(styles.dropdownWrapper, className)}>
+      <div ref={setWrapperEl} className={cn(styles.dropdownWrapper, className)}>
         {children}
       </div>
     </DropdownContext.Provider>
@@ -115,11 +114,17 @@ const DropdownItem = ({
   onClick,
   ...props
 }: DropdownItemProps) => {
+  const { handleToggleClose } = useDropdownContext();
+
   return (
     <li>
       <button
         {...props}
-        onClick={onClick}
+        onClick={(e) => {
+          e.stopPropagation();
+          handleToggleClose();
+          onClick?.();
+        }}
         className={cn(styles.dropdownItem, className)}
         role="menuitem"
         aria-label={label}

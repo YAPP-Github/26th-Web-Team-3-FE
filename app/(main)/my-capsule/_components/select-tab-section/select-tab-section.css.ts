@@ -8,6 +8,7 @@ export const chipContainer = style({
   justifyContent: "center",
   alignItems: "center",
   position: "relative",
+  width: "100%",
 });
 
 export const chipWrapper = style({
@@ -19,12 +20,11 @@ export const chipWrapper = style({
 
 export const dropdown = style({
   position: "absolute",
-  right: "0",
-  top: "100%",
-  transform: "translateY(-180%)",
+  right: 0,
+  top: 0,
   marginRight: "1rem",
   ...screen.md({
-    top: "100%",
-    transform: "translateY(-90%)",
+    top: 0,
+    right: 0,
   }),
 });
