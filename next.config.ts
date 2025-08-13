@@ -33,7 +33,7 @@ const baseConfig: NextConfig = {
     return [
       {
         source: "/api/:path*",
-        destination: "https://lettie.me/api/:path*",
+        destination: "https://api-dev.lettie.me/api/:path*",
       },
     ];
   },
