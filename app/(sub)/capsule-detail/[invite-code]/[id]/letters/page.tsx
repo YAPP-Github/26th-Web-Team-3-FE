@@ -9,6 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import GridLayout from "./_components/grid-layout";
+import OpenCapsuleLoading from "./_components/open-capsule-loading";
 import StackLayout from "./_components/stack-layout";
 import * as styles from "./page.css";
 
@@ -16,25 +17,41 @@ const CapsuleLettersPage = () => {
   const params = useParams();
   const router = useRouter();
   const capsuleId = params.id as string;
-  const [isStackType, setIsStackType] = useState(true);
 
-  const { data: capsuleData } = useQuery({
+  const [isStackType, setIsStackType] = useState(true);
+  const [hasShownOpening, setHasShownOpening] = useState(false);
+
+  const { data: capsuleData, isLoading: isCapsuleLoading } = useQuery({
     ...capsuleQueryOptions.capsuleDetail(capsuleId),
     select: (data) => ({
       title: data.result.title,
       participantCount: data.result.participantCount,
+      isFirstOpen: data.result.isFirstOpen,
     }),
   });
 
   const { data: letterData, isLoading: isLetterLoading } = useQuery(letterQueryOptions.letterList(capsuleId));
-
   const letters = letterData?.result?.letters || [];
   const { imageUrls, isImageLoading } = useLetterImages(letters);
 
-  const isLoading = isLetterLoading || isImageLoading;
+  const isLoading = isLetterLoading || isImageLoading || isCapsuleLoading;
+
+  const handleLoadingComplete = () => {
+    setHasShownOpening(true);
+  };
 
   if (isLoading) {
-    return <div>로딩 중...</div>;
+    return <div>Loading...</div>;
+  }
+
+  if (capsuleData?.isFirstOpen && !hasShownOpening) {
+    return (
+      <OpenCapsuleLoading
+        participantCount={capsuleData?.participantCount || 0}
+        letterCount={letters.length}
+        onComplete={handleLoadingComplete}
+      />
+    );
   }
 
   return (
