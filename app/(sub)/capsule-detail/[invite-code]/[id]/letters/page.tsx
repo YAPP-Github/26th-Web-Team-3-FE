@@ -21,7 +21,7 @@ const CapsuleLettersPage = () => {
   const [isStackType, setIsStackType] = useState(true);
   const [hasShownOpening, setHasShownOpening] = useState(false);
 
-  const { data: capsuleData } = useQuery({
+  const { data: capsuleData, isLoading: isCapsuleLoading } = useQuery({
     ...capsuleQueryOptions.capsuleDetail(capsuleId),
     select: (data) => ({
       title: data.result.title,
@@ -34,25 +34,24 @@ const CapsuleLettersPage = () => {
   const letters = letterData?.result?.letters || [];
   const { imageUrls, isImageLoading } = useLetterImages(letters);
 
-  const isLoading = isLetterLoading || isImageLoading;
+  const isLoading = isLetterLoading || isImageLoading || isCapsuleLoading;
 
   const handleLoadingComplete = () => {
     setHasShownOpening(true);
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   if (capsuleData?.isFirstOpen && !hasShownOpening) {
     return (
       <OpenCapsuleLoading
         participantCount={capsuleData?.participantCount || 0}
         letterCount={letters.length}
-        isLoading={isLoading}
         onComplete={handleLoadingComplete}
       />
     );
-  }
-
-  if (isLoading) {
-    return <div>Loading...</div>;
   }
 
   return (

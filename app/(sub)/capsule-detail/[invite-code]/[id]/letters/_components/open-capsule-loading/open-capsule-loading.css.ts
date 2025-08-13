@@ -32,7 +32,3 @@ export const subtitle = style({
   textAlign: "center",
   transition: "opacity 0.3s ease",
 });
-
-export const subtitleLoading = style({
-  opacity: 0,
-});
