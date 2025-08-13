@@ -1,5 +1,4 @@
 "use client";
-
 import { capsuleQueryOptions } from "@/shared/api/queries/capsule";
 import { CARD_GRADIENTS } from "@/shared/constants/card";
 import { PATH } from "@/shared/constants/path";
@@ -8,6 +7,7 @@ import type {
   MyCapsuleFilterType,
 } from "@/shared/types/api/capsule";
 import Card from "@/shared/ui/card";
+import LoadingSpinner from "@/shared/ui/loading-spinner";
 import { cardStatusLabel } from "@/shared/utils/capsule-card";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
@@ -21,9 +21,11 @@ interface CardContainerProps {
 
 const CardContainer = ({ selectedTab, selectedSort }: CardContainerProps) => {
   const router = useRouter();
-  const { data: capsuleLists } = useQuery(
+  const { data: capsuleLists, isPending } = useQuery(
     capsuleQueryOptions.myCapsuleList(0, 20, selectedSort, selectedTab),
   );
+
+  if (isPending) return <LoadingSpinner loading={isPending} size={20} />;
 
   return capsuleLists?.result.timeCapsules.length === 0 ? (
     <EmptySection />
