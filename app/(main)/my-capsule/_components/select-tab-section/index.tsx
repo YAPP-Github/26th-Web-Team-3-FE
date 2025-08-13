@@ -23,6 +23,16 @@ const SelectTabSection = ({ onSelect, selectedTab, handleSort }: Props) => {
 
   return (
     <div className={styles.chipContainer}>
+      <div className={styles.chipWrapper}>
+        {tabOptions.map((option) => (
+          <TabButton
+            key={option.value}
+            text={option.label}
+            selected={selectedTab === option.value}
+            onClick={() => onSelect(option.value)}
+          />
+        ))}
+      </div>
       <Dropdown className={styles.dropdown}>
         <Dropdown.Trigger>
           <UpdownIcon />
@@ -42,16 +52,6 @@ const SelectTabSection = ({ onSelect, selectedTab, handleSort }: Props) => {
           />
         </Dropdown.Content>
       </Dropdown>
-      <div className={styles.chipWrapper}>
-        {tabOptions.map((option) => (
-          <TabButton
-            key={option.value}
-            text={option.label}
-            selected={selectedTab === option.value}
-            onClick={() => onSelect(option.value)}
-          />
-        ))}
-      </div>
     </div>
   );
 };

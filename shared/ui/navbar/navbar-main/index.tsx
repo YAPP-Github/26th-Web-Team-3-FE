@@ -5,18 +5,24 @@ import { PATH } from "@/shared/constants/path";
 import { cn } from "@/shared/utils/cn";
 import Link from "next/link";
 import { useState } from "react";
+import { useOutsideClickEffect } from "react-simplikit";
 import HamburgerMenuButton from "../../hamburger-menu-button";
 import * as styles from "./navbar-main.css";
 
 const NavbarMain = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [wrapperRef, setWrapperRef] = useState<HTMLDivElement | null>(null);
 
   const handleMenuClick = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
+  useOutsideClickEffect(wrapperRef, () => {
+    setIsMenuOpen(false);
+  });
+
   return (
-    <>
+    <div ref={setWrapperRef}>
       <nav
         className={cn(
           styles.navHomeStyle,
@@ -89,7 +95,7 @@ const NavbarMain = () => {
           </Link>
         </li>
       </ul>
-    </>
+    </div>
   );
 };
 

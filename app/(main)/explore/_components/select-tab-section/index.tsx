@@ -26,7 +26,9 @@ const SelectTabSection = ({ onSelect, selectedTab, handleSort }: Props) => {
         <Dropdown.Content>
           <Dropdown.Item
             label="최신 순"
-            onClick={() => handleSort(CAPSULE_SORT.LATEST)}
+            onClick={() => {
+              handleSort(CAPSULE_SORT.LATEST);
+            }}
           />
           <Dropdown.Item
             label="오픈 임박 순"

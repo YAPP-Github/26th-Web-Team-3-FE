@@ -30,7 +30,9 @@
     "pretendard": "^1.3.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hook-form": "^7.61.1"
+    "react-hook-form": "^7.61.1",
+    "react-simplikit": "^0.0.40",
+    "react-spinners": "^0.17.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
