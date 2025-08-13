@@ -36,7 +36,7 @@ export interface CapsuleDetailRes {
     isMine: boolean;
     inviteCode: string;
     beadVideoUrl: string;
-    isFirtstOpen: boolean;
+    isFirstOpen: boolean;
     accessType?: "PUBLIC" | "PRIVATE";
   };
 }

@@ -26,7 +26,7 @@ const CapsuleLettersPage = () => {
     select: (data) => ({
       title: data.result.title,
       participantCount: data.result.participantCount,
-      isFirstOpen: data.result.isFirtstOpen,
+      isFirstOpen: data.result.isFirstOpen,
     }),
   });
 
@@ -40,7 +40,7 @@ const CapsuleLettersPage = () => {
     setHasShownOpening(true);
   };
 
-  if (!capsuleData?.isFirstOpen && !hasShownOpening) {
+  if (capsuleData?.isFirstOpen && !hasShownOpening) {
     return (
       <OpenCapsuleLoading
         participantCount={capsuleData?.participantCount || 0}
