@@ -5,4 +5,5 @@ export const wrapper = style({
   justifyContent: "center",
   alignItems: "center",
   width: "100%",
+  height: "20%",
 });

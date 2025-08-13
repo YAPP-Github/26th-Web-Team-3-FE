@@ -19,17 +19,6 @@ const getAccessToken = (request: NextRequest): string | undefined => {
   return request.cookies.get("accessToken")?.value;
 };
 
-// 토큰 만료 확인 함수
-const isTokenExpired = (token: string): boolean => {
-  try {
-    const payload = JSON.parse(atob(token.split(".")[1]));
-    const currentTime = Math.floor(Date.now() / 1000);
-    return payload.exp < currentTime;
-  } catch {
-    return true;
-  }
-};
-
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -49,17 +38,6 @@ export async function middleware(request: NextRequest) {
     const originalUrl = request.nextUrl.pathname + request.nextUrl.search;
     loginUrl.searchParams.set("next", originalUrl);
     return NextResponse.redirect(loginUrl);
-  }
-
-  if (isTokenExpired(accessToken)) {
-    // 만료된 토큰 쿠키 삭제 후 로그인 페이지로 리다이렉트
-    const loginUrl = new URL("/login", request.url);
-    const originalUrl = request.nextUrl.pathname + request.nextUrl.search;
-    loginUrl.searchParams.set("next", originalUrl);
-
-    const response = NextResponse.redirect(loginUrl);
-    response.cookies.delete("accessToken");
-    return response;
   }
 
   return NextResponse.next();

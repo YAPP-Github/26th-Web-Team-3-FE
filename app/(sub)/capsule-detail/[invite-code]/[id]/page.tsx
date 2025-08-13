@@ -1,4 +1,5 @@
 "use client";
+
 import { useLikeToggle } from "@/shared/api/mutations/capsule";
 import { capsuleQueryOptions } from "@/shared/api/queries/capsule";
 import MenuIcon from "@/shared/assets/icon/menu.svg";
@@ -6,6 +7,7 @@ import { PATH } from "@/shared/constants/path";
 import Dropdown from "@/shared/ui/dropdown";
 import InfoToast from "@/shared/ui/info-toast";
 import LikeButton from "@/shared/ui/like-button";
+import LoadingSpinner from "@/shared/ui/loading-spinner";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import NavbarDetail from "@/shared/ui/navbar/navbar-detail";
 import PopupReport from "@/shared/ui/popup/popup-report";
@@ -30,7 +32,7 @@ const CapsuleDetailPage = () => {
   );
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner loading={true} size={20} />;
   }
 
   if (!data || isError) {
