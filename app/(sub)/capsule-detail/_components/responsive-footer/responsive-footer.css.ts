@@ -37,7 +37,7 @@ export const buttonSoloContainer = style({
   order: 1,
   ...screen.md({
     marginLeft: "auto",
-    width: "25%",
+    width: "18rem",
     order: 2,
   }),
 });
