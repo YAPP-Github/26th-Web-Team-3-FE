@@ -24,6 +24,12 @@ globalStyle('input[type="date"]', {
   MozAppearance: "none",
 });
 
+globalStyle('input[type="time"]', {
+  appearance: "none",
+  WebkitAppearance: "none",
+  MozAppearance: "none",
+});
+
 export const rootStyle = style({
   display: "flex",
   flexDirection: "column",

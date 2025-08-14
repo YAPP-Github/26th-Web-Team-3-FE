@@ -8,7 +8,7 @@ export const cardContainer = style({
   padding: "1.6rem",
   paddingTop: "2.3rem",
   margin: "0 auto",
-  paddingBottom: "7.2rem",
+  paddingBottom: "0rem",
   gridTemplateColumns: "repeat(2, 1fr)",
 
   // 정확한 반응형 적용하기 위해 미디어 쿼리 직접 사용

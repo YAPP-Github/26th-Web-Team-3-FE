@@ -1,37 +1,29 @@
 "use client";
-import { capsuleQueryOptions } from "@/shared/api/queries/capsule";
 import { CARD_GRADIENTS } from "@/shared/constants/card";
 import { PATH } from "@/shared/constants/path";
-import type {
-  CapsuleSortType,
-  MyCapsuleFilterType,
-} from "@/shared/types/api/capsule";
+import type { TimeCapsules } from "@/shared/types/api/capsule";
 import Card from "@/shared/ui/card";
 import LoadingSpinner from "@/shared/ui/loading-spinner";
 import { cardStatusLabel } from "@/shared/utils/capsule-card";
-import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import EmptySection from "../empty-section";
 import * as styles from "./card-container.css";
 
 interface CardContainerProps {
-  selectedTab: MyCapsuleFilterType;
-  selectedSort: CapsuleSortType;
+  capsules: TimeCapsules[];
+  isLoading: boolean;
 }
 
-const CardContainer = ({ selectedTab, selectedSort }: CardContainerProps) => {
+const CardContainer = ({ capsules, isLoading }: CardContainerProps) => {
   const router = useRouter();
-  const { data: capsuleLists, isPending } = useQuery(
-    capsuleQueryOptions.myCapsuleList(0, 20, selectedSort, selectedTab),
-  );
 
-  if (isPending) return <LoadingSpinner loading={isPending} size={20} />;
+  if (isLoading) return <LoadingSpinner loading={isLoading} size={20} />;
 
-  return capsuleLists?.result.timeCapsules.length === 0 ? (
-    <EmptySection />
-  ) : (
+  if (capsules.length === 0) return <EmptySection />;
+
+  return (
     <div className={styles.cardContainer}>
-      {capsuleLists?.result.timeCapsules.map((capsule, index) => (
+      {capsules.map((capsule, index) => (
         <Card
           privacy={capsule.accessType}
           key={capsule.id}

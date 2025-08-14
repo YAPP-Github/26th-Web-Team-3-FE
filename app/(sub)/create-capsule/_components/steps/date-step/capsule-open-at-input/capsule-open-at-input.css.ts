@@ -35,9 +35,8 @@ export const inputStyle = style({
   borderRadius: "12px",
   width: "100%",
   height: "5rem",
-  padding: "0 0.5rem",
+  padding: "0 2rem",
   ...screen.md({
-    padding: "0 2rem",
     ...themeVars.text.F17,
   }),
   selectors: {
