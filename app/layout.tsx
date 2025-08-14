@@ -12,6 +12,8 @@ import SprinkleContainer from "@/shared/ui/sprinkle-container";
 // TODO: 추후 수정
 export const metadata: Metadata = {
   metadataBase: new URL("https://lettie.me"),
+  title: "Lettie",
+  description: "북극여우 레티가 전해주는 타임캡슐",
   icons: {
     icon: "/icon.svg",
   },
