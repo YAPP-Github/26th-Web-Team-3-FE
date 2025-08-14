@@ -30,6 +30,7 @@ export const container = style({
   ...screen.md({
     bottom: "16.7rem",
   }),
+  whiteSpace: "nowrap",
 });
 
 export const checkIcon = style({
