@@ -8,6 +8,7 @@ import { useLetterImages } from "@/shared/hooks/use-letter-images";
 import { useQuery } from "@tanstack/react-query";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
+import EmptySection from "./_components/empty-section";
 import GridLayout from "./_components/grid-layout";
 import OpenCapsuleLoading from "./_components/open-capsule-loading";
 import StackLayout from "./_components/stack-layout";
@@ -53,6 +54,23 @@ const CapsuleLettersPage = () => {
         letterCount={letters.length}
         onComplete={handleLoadingComplete}
       />
+    );
+  }
+
+  if (letters.length === 0) {
+    return (
+      <div className={styles.gridContainer}>
+        <button className={styles.header} onClick={() => router.back()}>
+          닫기
+        </button>
+        <div className={styles.titleContainer}>
+          <h1 className={styles.title}>{capsuleData?.title || "캡슐"}</h1>
+          <p className={styles.subtitle}>
+            {capsuleData?.participantCount || 0}명 참여 · {letters.length}통
+          </p>
+        </div>
+        <EmptySection />
+      </div>
     );
   }
 
