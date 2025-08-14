@@ -1,5 +1,4 @@
 "use client";
-
 import { useLikeToggle } from "@/shared/api/mutations/capsule";
 import { capsuleQueryOptions } from "@/shared/api/queries/capsule";
 import MenuIcon from "@/shared/assets/icon/menu.svg";
@@ -11,9 +10,11 @@ import LoadingSpinner from "@/shared/ui/loading-spinner";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import NavbarDetail from "@/shared/ui/navbar/navbar-detail";
 import PopupReport from "@/shared/ui/popup/popup-report";
+import { getAccessToken } from "@/shared/utils/auth";
 import { formatDateTime } from "@/shared/utils/date";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useParams } from "next/navigation";
 import { overlay } from "overlay-kit";
 import CapsuleImage from "../../_components/capsule-image";
@@ -30,6 +31,8 @@ const CapsuleDetailPage = () => {
   const { data, isLoading, isError } = useQuery(
     capsuleQueryOptions.capsuleDetail(id),
   );
+  const isLoggedIn = !!getAccessToken();
+  const router = useRouter();
 
   if (isLoading) {
     return <LoadingSpinner loading={true} size={20} />;
@@ -43,6 +46,10 @@ const CapsuleDetailPage = () => {
   const { days, hours, minutes, openDate } = result.remainingTime;
 
   const handleLikeToggle = (nextLiked: boolean) => {
+    if (!isLoggedIn) {
+      router.push(PATH.LOGIN);
+      return;
+    }
     likeToggle({ id: result.id.toString(), isLiked: nextLiked });
   };
 
