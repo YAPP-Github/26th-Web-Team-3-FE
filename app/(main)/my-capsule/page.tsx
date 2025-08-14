@@ -9,7 +9,7 @@ import {
 import LoadingSpinner from "@/shared/ui/loading-spinner";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useIntersectionObserver } from "react-simplikit";
 import CardContainer from "./_components/card-container";
 import SelectTabSection from "./_components/select-tab-section";
@@ -25,19 +25,25 @@ const MyCapsule = () => {
     CAPSULE_SORT.DEFAULT,
   );
 
-  const footerRef = useIntersectionObserver<HTMLDivElement>(
-    (entry) => {
-      if (entry.isIntersecting && hasNextPage && !isFetchingNextPage) {
-        fetchNextPage();
-      }
-    },
-    { threshold: 1 },
-  );
-
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending } =
     useInfiniteQuery(
       capsuleQueryOptions.infiniteMyCapsuleList(selectedSort, selectedTab),
     );
+
+  const onIntersect = useCallback(
+    (entry: IntersectionObserverEntry) => {
+      if (!entry.isIntersecting) return;
+      if (hasNextPage && !isFetchingNextPage) {
+        fetchNextPage();
+      }
+    },
+    [hasNextPage, isFetchingNextPage, fetchNextPage],
+  );
+
+  const footerRef = useIntersectionObserver<HTMLDivElement>(onIntersect, {
+    threshold: 0.1,
+    rootMargin: "100px 0px",
+  });
 
   const handleSelect = (value: MyCapsuleFilterType) => {
     setSelectedTab(value);

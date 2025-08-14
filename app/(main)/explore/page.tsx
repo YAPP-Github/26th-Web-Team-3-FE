@@ -24,7 +24,7 @@ const Explore = () => {
         fetchNextPage();
       }
     },
-    { threshold: 1 },
+    { threshold: 0.8 },
   );
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending } =
