@@ -51,12 +51,6 @@ export const mobileButton = style({
 export const desktopButtonContainer = style({
   display: "none",
   cursor: "default",
-  backgroundColor: themeVars.color.white[5],
-  selectors: {
-    "&:hover": {
-      backgroundColor: themeVars.color.white[15],
-    },
-  },
   ...screen.md({
     display: "flex",
     cursor: "pointer",

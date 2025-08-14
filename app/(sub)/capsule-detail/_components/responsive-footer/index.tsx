@@ -13,7 +13,6 @@ import { overlay } from "overlay-kit";
 
 import { PATH } from "@/shared/constants/path";
 import type { CapsuleStatus } from "@/shared/types/api/capsule";
-import { getAccessToken } from "@/shared/utils/auth";
 import { formatOpenDate } from "@/shared/utils/date";
 import * as styles from "./responsive-footer.css";
 interface Props {
@@ -24,13 +23,13 @@ interface Props {
     openDate: string;
   };
   status: CapsuleStatus;
+  isLoggedIn: boolean;
 }
 
-const ResponsiveFooter = ({ remainingTime, status }: Props) => {
+const ResponsiveFooter = ({ remainingTime, status, isLoggedIn }: Props) => {
   const [isCopied, setIsCopied] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
-  const isLoggedIn = !!getAccessToken();
   const searchParams = useSearchParams();
 
   const handleClickShareButton = () => {
