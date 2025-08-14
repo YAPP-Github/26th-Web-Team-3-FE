@@ -15,7 +15,7 @@ import { formatDateTime } from "@/shared/utils/date";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useParams } from "next/navigation";
+import { useParams, usePathname, useSearchParams } from "next/navigation";
 import { overlay } from "overlay-kit";
 import CapsuleImage from "../../_components/capsule-image";
 import CaptionSection from "../../_components/caption-section";
@@ -33,6 +33,8 @@ const CapsuleDetailPage = () => {
   );
   const isLoggedIn = !!getAccessToken();
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   if (isLoading) {
     return <LoadingSpinner loading={true} size={20} />;
@@ -47,7 +49,9 @@ const CapsuleDetailPage = () => {
 
   const handleLikeToggle = (nextLiked: boolean) => {
     if (!isLoggedIn) {
-      router.push(PATH.LOGIN);
+      const current = `${pathname}${searchParams?.toString() ? `?${searchParams.toString()}` : ""}`;
+      const loginUrl = `${PATH.LOGIN}?next=${encodeURIComponent(current)}`;
+      router.push(loginUrl);
       return;
     }
     likeToggle({ id: result.id.toString(), isLiked: nextLiked });

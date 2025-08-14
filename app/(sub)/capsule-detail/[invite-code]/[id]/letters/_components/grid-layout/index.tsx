@@ -12,8 +12,16 @@ const GridLayout = ({ letters, imageUrls }: GridLayoutProps) => {
     <div className={styles.container}>
       <div className={styles.grid}>
         {letters.map((letter) => {
-          const imageUrl = imageUrls.find((img) => img.letterId === letter.letterId)?.url;
-          return <GridLetterCard key={letter.letterId} letter={letter} imageUrl={imageUrl} />;
+          const imageUrl = imageUrls.find(
+            (img) => img.letterId === letter.letterId,
+          )?.url;
+          return (
+            <GridLetterCard
+              key={letter.letterId}
+              letter={letter}
+              imageUrl={imageUrl}
+            />
+          );
         })}
       </div>
     </div>

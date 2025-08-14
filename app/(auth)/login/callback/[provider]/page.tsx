@@ -14,19 +14,19 @@ export default function CallbackPage() {
   const { mutate, isPending, isError } = useSocialLogin();
 
   useEffect(() => {
-    if (!code || !provider) return;
+    if (!(code && provider)) return;
 
     mutate(
       { provider: provider, code: code },
       {
         onSuccess: () => {
-          // next 파라미터가 있으면 해당 페이지로, 없으면 홈으로
-          const redirectUrl = nextUrl || "/";
+          const redirectUrl =
+            nextUrl?.startsWith("/") && !nextUrl.startsWith("//")
+              ? nextUrl
+              : "/";
           router.replace(redirectUrl);
         },
-        onError: () => {
-          console.log("로그인 실패");
-        },
+        onError: () => {},
       },
     );
   }, [code, provider, nextUrl]);

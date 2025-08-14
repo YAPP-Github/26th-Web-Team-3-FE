@@ -1,22 +1,21 @@
 "use client";
-import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
-
 import CheckIcon from "@/shared/assets/icon/check.svg";
 import ShareIcon from "@/shared/assets/icon/share.svg";
 import Button from "@/shared/ui/button";
 import Chip from "@/shared/ui/chip";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 import WriteModal from "../write-modal";
 
 import ShakeYMotion from "@/shared/ui/motion/shakeY-motion";
 import { overlay } from "overlay-kit";
 
+import { PATH } from "@/shared/constants/path";
 import type { CapsuleStatus } from "@/shared/types/api/capsule";
 import { getAccessToken } from "@/shared/utils/auth";
 import { formatOpenDate } from "@/shared/utils/date";
 import * as styles from "./responsive-footer.css";
-
 interface Props {
   remainingTime: {
     days: number;
@@ -25,14 +24,14 @@ interface Props {
     openDate: string;
   };
   status: CapsuleStatus;
-  isMine?: boolean;
 }
 
-const ResponsiveFooter = ({ remainingTime, status, isMine }: Props) => {
+const ResponsiveFooter = ({ remainingTime, status }: Props) => {
   const [isCopied, setIsCopied] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   const isLoggedIn = !!getAccessToken();
+  const searchParams = useSearchParams();
 
   const handleClickShareButton = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -44,12 +43,19 @@ const ResponsiveFooter = ({ remainingTime, status, isMine }: Props) => {
 
   const handleWriteButtonClick = () => {
     if (!isLoggedIn) {
-      router.push("/login");
+      const current = `${pathname}${searchParams?.toString() ? `?${searchParams.toString()}` : ""}`;
+      const loginUrl = `${PATH.LOGIN}?next=${encodeURIComponent(current)}`;
+      router.push(loginUrl);
       return;
     }
 
     overlay.open(({ isOpen, close }) => (
-      <WriteModal capsuleTitle="비 오는 날의 타임캡슐" isOpen={isOpen} onClose={close} remainingTime={remainingTime} />
+      <WriteModal
+        capsuleTitle="비 오는 날의 타임캡슐"
+        isOpen={isOpen}
+        onClose={close}
+        remainingTime={remainingTime}
+      />
     ));
   };
 
@@ -59,9 +65,19 @@ const ResponsiveFooter = ({ remainingTime, status, isMine }: Props) => {
 
   const renderButtons = () => {
     const shareButton = isCopied ? (
-      <Button variant="secondary" text="링크 복사됨" icon={<CheckIcon />} onClick={handleClickShareButton} />
+      <Button
+        variant="secondary"
+        text="링크 복사됨"
+        icon={<CheckIcon />}
+        onClick={handleClickShareButton}
+      />
     ) : (
-      <Button variant="secondary" text="공유하기" icon={<ShareIcon />} onClick={handleClickShareButton} />
+      <Button
+        variant="secondary"
+        text="공유하기"
+        icon={<ShareIcon />}
+        onClick={handleClickShareButton}
+      />
     );
 
     switch (status) {
@@ -69,7 +85,11 @@ const ResponsiveFooter = ({ remainingTime, status, isMine }: Props) => {
         return (
           <>
             {shareButton}
-            <Button variant="primary" text="편지 담기" onClick={handleWriteButtonClick} />
+            <Button
+              variant="primary"
+              text="편지 담기"
+              onClick={handleWriteButtonClick}
+            />
           </>
         );
       case "WAITING_OPEN":
@@ -78,7 +98,11 @@ const ResponsiveFooter = ({ remainingTime, status, isMine }: Props) => {
         return (
           <>
             {shareButton}
-            <Button variant="primary" text="캡슐 열기" onClick={handleOpenCapsuleClick} />
+            <Button
+              variant="primary"
+              text="캡슐 열기"
+              onClick={handleOpenCapsuleClick}
+            />
           </>
         );
       default:

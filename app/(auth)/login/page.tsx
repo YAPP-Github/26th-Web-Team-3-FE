@@ -17,13 +17,12 @@ const LoginPage = () => {
   const nextUrl = searchParams.get("next");
 
   const handleGoToOAuth = (provider: "naver" | "google") => {
-    getOAuthUrl(provider).then((url) => {
-      // next 파라미터가 있으면 OAuth URL에 추가
-      const oauthUrl = new URL(url);
-      if (nextUrl) {
-        oauthUrl.searchParams.set("next", nextUrl);
-      }
-      window.location.href = oauthUrl.toString();
+    const safeNext =
+      nextUrl?.startsWith("/") && !nextUrl.startsWith("//")
+        ? nextUrl
+        : undefined;
+    getOAuthUrl(provider, safeNext).then((url) => {
+      window.location.href = url;
     });
   };
 

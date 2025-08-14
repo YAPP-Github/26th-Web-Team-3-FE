@@ -18,7 +18,7 @@ const IntroStep = ({ handleNextStep }: Props) => {
 
   const handleClickNext = () => {
     const title = getValues("title");
-    if (!title || !title.trim()) {
+    if (!title?.trim()) {
       alert("타임캡슐 이름을 입력해주세요.");
       return;
     }
