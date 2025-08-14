@@ -108,7 +108,6 @@ const CapsuleDetailPage = () => {
       <ResponsiveFooter
         remainingTime={{ days, hours, minutes, openDate }}
         status={result.status}
-        isMine={result.isMine}
       />
       {result.status !== "WRITABLE" && <InfoToast status={result.status} />}
     </>
