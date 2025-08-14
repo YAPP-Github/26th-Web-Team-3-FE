@@ -5,7 +5,7 @@ export const PATH = {
   MY_CAPSULE: "/my-capsule",
   SETTING: "/setting",
   SEARCH: "/search",
-
+  LOGIN: "/login",
   // capsule
   CREATE_CAPSULE: "/create-capsule",
   CAPSULE_DETAIL: (inviteCode: string, id: string) =>

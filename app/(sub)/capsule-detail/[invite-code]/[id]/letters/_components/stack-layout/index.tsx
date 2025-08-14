@@ -104,8 +104,13 @@ const StackLayout = ({ letters, imageUrls }: StackLayoutProps) => {
       <div className={styles.stackContainer}>
         <AnimatePresence mode="popLayout">
           {visibleLetters.map(({ letter, key }, index) => {
-            const animationProps = createStackAnimations(direction, visibleLetters)[index];
-            const imageUrl = imageUrls.find((img) => img.letterId === letter.letterId)?.url;
+            const animationProps = createStackAnimations(
+              direction,
+              visibleLetters,
+            )[index];
+            const imageUrl = imageUrls.find(
+              (img) => img.letterId === letter.letterId,
+            )?.url;
 
             return (
               <motion.div
@@ -129,7 +134,9 @@ const StackLayout = ({ letters, imageUrls }: StackLayoutProps) => {
         className={styles.navButton}
         onClick={nextLetter}
         disabled={isAnimating}
-        style={{ visibility: currentIndex < letters.length - 1 ? "visible" : "hidden" }}
+        style={{
+          visibility: currentIndex < letters.length - 1 ? "visible" : "hidden",
+        }}
         type="button"
       >
         <Right width={24} height={24} />

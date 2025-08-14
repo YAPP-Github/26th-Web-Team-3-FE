@@ -8,25 +8,28 @@ export default function CallbackPage() {
   const searchParams = useSearchParams();
   const params = useParams();
   const code = searchParams.get("code");
+  const nextUrl = searchParams.get("next");
   const provider = params.provider as "naver" | "google";
   const router = useRouter();
   const { mutate, isPending, isError } = useSocialLogin();
 
   useEffect(() => {
-    if (!code || !provider) return;
+    if (!(code && provider)) return;
 
     mutate(
       { provider: provider, code: code },
       {
         onSuccess: () => {
-          router.replace("/");
+          const redirectUrl =
+            nextUrl?.startsWith("/") && !nextUrl.startsWith("//")
+              ? nextUrl
+              : "/";
+          router.replace(redirectUrl);
         },
-        onError: () => {
-          console.log("로그인 실패");
-        },
+        onError: () => {},
       },
     );
-  }, [code, provider]);
+  }, [code, provider, nextUrl]);
 
   if (isPending) return <LoadingSpinner loading={isPending} />;
 

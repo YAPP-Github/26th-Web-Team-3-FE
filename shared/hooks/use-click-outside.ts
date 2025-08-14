@@ -6,7 +6,7 @@ const useClickOutside = (
   enable = true,
 ) => {
   useEffect(() => {
-    if (!enable || !ref.current) return;
+    if (!(enable && ref.current)) return;
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       if (ref.current && !ref.current.contains(event.target as Node)) {
         callback();

@@ -4,7 +4,10 @@ const getRotateAngle = (stackIndex: number) => {
   return stackIndex * -5;
 };
 
-export const createStackAnimations = (direction: number, visibleLetters: VisibleLetter[]) => {
+export const createStackAnimations = (
+  direction: number,
+  visibleLetters: VisibleLetter[],
+) => {
   return visibleLetters.map(({ stackIndex }) => ({
     initial:
       direction === -1 && stackIndex === 0

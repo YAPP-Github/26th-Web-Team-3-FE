@@ -20,11 +20,12 @@ export const chipWrapper = style({
 
 export const dropdown = style({
   position: "absolute",
-  right: 0,
-  top: 0,
+  right: "0",
+  top: "100%",
+  transform: "translateY(-180%)",
   marginRight: "1rem",
   ...screen.md({
-    top: 0,
-    right: 0,
+    top: "100%",
+    transform: "translateY(-90%)",
   }),
 });

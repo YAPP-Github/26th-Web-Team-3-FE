@@ -18,7 +18,7 @@ const DateStep = ({ handleNextStep }: Props) => {
   const handleNextClick = () => {
     const openDate = getValues("openDate") as string;
     const closedAt = getValues("closedAt") as string;
-    if (!openDate || !closedAt) {
+    if (!(openDate && closedAt)) {
       alert("날짜를 입력해주세요.");
       return;
     }

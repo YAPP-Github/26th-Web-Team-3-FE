@@ -30,7 +30,9 @@ const CapsuleLettersPage = () => {
     }),
   });
 
-  const { data: letterData, isLoading: isLetterLoading } = useQuery(letterQueryOptions.letterList(capsuleId));
+  const { data: letterData, isLoading: isLetterLoading } = useQuery(
+    letterQueryOptions.letterList(capsuleId),
+  );
   const letters = letterData?.result?.letters || [];
   const { imageUrls, isImageLoading } = useLetterImages(letters);
 

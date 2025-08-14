@@ -1,19 +1,27 @@
 "use client";
-
 import LettieImage from "@/shared/assets/character/lettie_animate.png";
 import GoogleIcon from "@/shared/assets/icon/google.svg";
 import NaverIcon from "@/shared/assets/icon/naver.svg";
 import LogoImage from "@/shared/assets/logo/logo_symbol_wordmark.svg";
+import { PATH } from "@/shared/constants/path";
 import { maxWidth } from "@/shared/styles/base/global.css";
-import { getOAuthUrl } from "../_api/auth.api";
-
+import LoadingSpinner from "@/shared/ui/loading-spinner";
 import Image from "next/image";
-
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+import { getOAuthUrl } from "../_api/auth.api";
 import * as styles from "./page.css";
-
 const LoginPage = () => {
+  const searchParams = useSearchParams();
+  const nextUrl = searchParams.get("next");
+
   const handleGoToOAuth = (provider: "naver" | "google") => {
-    getOAuthUrl(provider).then((url) => {
+    const safeNext =
+      nextUrl?.startsWith("/") && !nextUrl.startsWith("//")
+        ? nextUrl
+        : undefined;
+    getOAuthUrl(provider, safeNext).then((url) => {
       window.location.href = url;
     });
   };
@@ -21,7 +29,9 @@ const LoginPage = () => {
   return (
     <div className={maxWidth}>
       <header className={styles.header}>
-        <LogoImage />
+        <Link href={PATH.HOME}>
+          <LogoImage />
+        </Link>
       </header>
       <div className={styles.contentsContainer}>
         <h1 className={styles.title}>
@@ -55,4 +65,10 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default function Page() {
+  return (
+    <Suspense fallback={<LoadingSpinner loading={true} />}>
+      <LoginPage />
+    </Suspense>
+  );
+}

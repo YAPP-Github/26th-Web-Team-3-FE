@@ -12,7 +12,11 @@ interface OpenCapsuleLoadingProps {
 
 const AUTO_CLOSE_DELAY = 3000;
 
-const OpenCapsuleLoading = ({ participantCount, letterCount, onComplete }: OpenCapsuleLoadingProps) => {
+const OpenCapsuleLoading = ({
+  participantCount,
+  letterCount,
+  onComplete,
+}: OpenCapsuleLoadingProps) => {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const isCompletedRef = useRef(false);
 

@@ -57,7 +57,6 @@ const WriteModal = ({
     input.onchange = (e) => {
       const file = (e.target as HTMLInputElement).files?.[0];
       if (file) {
-        console.log("Selected file:", file);
         // 파일 처리 로직 추가
       }
     };
