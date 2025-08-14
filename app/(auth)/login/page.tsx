@@ -8,13 +8,22 @@ import { PATH } from "@/shared/constants/path";
 import { maxWidth } from "@/shared/styles/base/global.css";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { getOAuthUrl } from "../_api/auth.api";
 import * as styles from "./page.css";
 
 const LoginPage = () => {
+  const searchParams = useSearchParams();
+  const nextUrl = searchParams.get("next");
+
   const handleGoToOAuth = (provider: "naver" | "google") => {
     getOAuthUrl(provider).then((url) => {
-      window.location.href = url;
+      // next 파라미터가 있으면 OAuth URL에 추가
+      const oauthUrl = new URL(url);
+      if (nextUrl) {
+        oauthUrl.searchParams.set("next", nextUrl);
+      }
+      window.location.href = oauthUrl.toString();
     });
   };
 
