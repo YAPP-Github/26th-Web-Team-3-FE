@@ -11,6 +11,7 @@ import SprinkleContainer from "@/shared/ui/sprinkle-container";
 
 // TODO: 추후 수정
 export const metadata: Metadata = {
+  metadataBase: new URL("https://lettie.me"),
   icons: {
     icon: "/icon.svg",
   },

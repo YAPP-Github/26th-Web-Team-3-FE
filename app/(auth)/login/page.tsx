@@ -1,17 +1,17 @@
 "use client";
-
 import LettieImage from "@/shared/assets/character/lettie_animate.png";
 import GoogleIcon from "@/shared/assets/icon/google.svg";
 import NaverIcon from "@/shared/assets/icon/naver.svg";
 import LogoImage from "@/shared/assets/logo/logo_symbol_wordmark.svg";
 import { PATH } from "@/shared/constants/path";
 import { maxWidth } from "@/shared/styles/base/global.css";
+import LoadingSpinner from "@/shared/ui/loading-spinner";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { getOAuthUrl } from "../_api/auth.api";
 import * as styles from "./page.css";
-
 const LoginPage = () => {
   const searchParams = useSearchParams();
   const nextUrl = searchParams.get("next");
@@ -66,4 +66,10 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default function Page() {
+  return (
+    <Suspense fallback={<LoadingSpinner loading={true} />}>
+      <LoginPage />
+    </Suspense>
+  );
+}
