@@ -4,11 +4,11 @@ import LettieImage from "@/shared/assets/character/lettie_animate.png";
 import GoogleIcon from "@/shared/assets/icon/google.svg";
 import NaverIcon from "@/shared/assets/icon/naver.svg";
 import LogoImage from "@/shared/assets/logo/logo_symbol_wordmark.svg";
+import { PATH } from "@/shared/constants/path";
 import { maxWidth } from "@/shared/styles/base/global.css";
-import { getOAuthUrl } from "../_api/auth.api";
-
 import Image from "next/image";
-
+import Link from "next/link";
+import { getOAuthUrl } from "../_api/auth.api";
 import * as styles from "./page.css";
 
 const LoginPage = () => {
@@ -21,7 +21,9 @@ const LoginPage = () => {
   return (
     <div className={maxWidth}>
       <header className={styles.header}>
-        <LogoImage />
+        <Link href={PATH.HOME}>
+          <LogoImage />
+        </Link>
       </header>
       <div className={styles.contentsContainer}>
         <h1 className={styles.title}>
