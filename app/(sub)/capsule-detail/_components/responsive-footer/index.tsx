@@ -12,26 +12,23 @@ import ShakeYMotion from "@/shared/ui/motion/shakeY-motion";
 import { overlay } from "overlay-kit";
 
 import { PATH } from "@/shared/constants/path";
-import type { CapsuleStatus } from "@/shared/types/api/capsule";
+import type { CapsuleDetailRes } from "@/shared/types/api/capsule";
 import { getAccessToken } from "@/shared/utils/auth";
 import { formatOpenDate } from "@/shared/utils/date";
 import * as styles from "./responsive-footer.css";
-interface Props {
-  remainingTime: {
-    days: number;
-    hours: number;
-    minutes: number;
-    openDate: string;
-  };
-  status: CapsuleStatus;
+
+interface ResponsiveFooterProps {
+  capsuleData: CapsuleDetailRes;
 }
 
-const ResponsiveFooter = ({ remainingTime, status }: Props) => {
+const ResponsiveFooter = ({ capsuleData }: ResponsiveFooterProps) => {
   const [isCopied, setIsCopied] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   const isLoggedIn = !!getAccessToken();
   const searchParams = useSearchParams();
+
+  const { status, remainingTime } = capsuleData.result;
 
   const handleClickShareButton = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -43,19 +40,16 @@ const ResponsiveFooter = ({ remainingTime, status }: Props) => {
 
   const handleWriteButtonClick = () => {
     if (!isLoggedIn) {
-      const current = `${pathname}${searchParams?.toString() ? `?${searchParams.toString()}` : ""}`;
+      const current = `${pathname}${
+        searchParams?.toString() ? `?${searchParams.toString()}` : ""
+      }`;
       const loginUrl = `${PATH.LOGIN}?next=${encodeURIComponent(current)}`;
       router.push(loginUrl);
       return;
     }
 
     overlay.open(({ isOpen, close }) => (
-      <WriteModal
-        capsuleTitle="비 오는 날의 타임캡슐"
-        isOpen={isOpen}
-        onClose={close}
-        remainingTime={remainingTime}
-      />
+      <WriteModal capsuleData={capsuleData} isOpen={isOpen} onClose={close} />
     ));
   };
 

@@ -14,8 +14,12 @@ import { getAccessToken } from "@/shared/utils/auth";
 import { formatDateTime } from "@/shared/utils/date";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useParams, usePathname, useSearchParams } from "next/navigation";
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
 import { overlay } from "overlay-kit";
 import CapsuleImage from "../../_components/capsule-image";
 import CaptionSection from "../../_components/caption-section";
@@ -49,7 +53,9 @@ const CapsuleDetailPage = () => {
 
   const handleLikeToggle = (nextLiked: boolean) => {
     if (!isLoggedIn) {
-      const current = `${pathname}${searchParams?.toString() ? `?${searchParams.toString()}` : ""}`;
+      const current = `${pathname}${
+        searchParams?.toString() ? `?${searchParams.toString()}` : ""
+      }`;
       const loginUrl = `${PATH.LOGIN}?next=${encodeURIComponent(current)}`;
       router.push(loginUrl);
       return;
@@ -105,10 +111,7 @@ const CapsuleDetailPage = () => {
           <OpenInfoSection openAt={formatDateTime(result.openAt)} />
         </RevealMotion>
       </div>
-      <ResponsiveFooter
-        remainingTime={{ days, hours, minutes, openDate }}
-        status={result.status}
-      />
+      <ResponsiveFooter capsuleData={data} />
       {result.status !== "WRITABLE" && <InfoToast status={result.status} />}
     </>
   );
