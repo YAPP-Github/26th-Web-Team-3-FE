@@ -32,4 +32,6 @@ export const ENDPOINTS = {
   LETTER_DETAIL: (letterId: string) => `api/v1/letters/${letterId}`,
   // 파일
   PRESIGNED_URL: (fileId: string) => `api/v1/files/${fileId}/presigned-url`,
+  UPLOAD_FILE: (fileName: string, extension: string) =>
+    `api/v1/files/presigned-url?fileName=${fileName}&extension=${extension}`,
 } as const;
