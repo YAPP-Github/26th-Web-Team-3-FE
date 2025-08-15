@@ -232,3 +232,36 @@ export const textarea = style({
     color: themeVars.color.white[30],
   },
 });
+
+export const imagePreviewContainer = style({
+  position: "absolute",
+  bottom: "1.6rem",
+  left: "1.6rem",
+});
+
+export const imagePreview = style({
+  borderRadius: "8px",
+});
+
+export const removeImageButton = style({
+  position: "absolute",
+  top: "0.4rem",
+  right: "0.4rem",
+  width: "2.2rem",
+  height: "2.2rem",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  border: "none",
+  cursor: "pointer",
+});
+
+export const errorMessage = style({
+  position: "absolute",
+  bottom: "-2.4rem",
+  left: "2rem",
+  ...themeVars.text.F12,
+  color: themeVars.color.white[100],
+  fontWeight: "400",
+  zIndex: 1,
+});
