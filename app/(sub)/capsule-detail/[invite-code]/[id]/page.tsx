@@ -113,7 +113,7 @@ const CapsuleDetailPage = () => {
           <OpenInfoSection openAt={formatDateTime(result.openAt)} />
         </RevealMotion>
       </div>
-      <ResponsiveFooter capsuleData={data} />
+      <ResponsiveFooter capsuleData={data} isLoggedIn={isLoggedIn} />
       {result.status !== "WRITABLE" && <InfoToast status={result.status} />}
     </>
   );

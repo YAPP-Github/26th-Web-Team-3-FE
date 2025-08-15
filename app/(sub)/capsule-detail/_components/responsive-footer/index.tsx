@@ -18,9 +18,13 @@ import * as styles from "./responsive-footer.css";
 
 interface ResponsiveFooterProps {
   capsuleData: CapsuleDetailRes;
+  isLoggedIn: boolean;
 }
 
-const ResponsiveFooter = ({ capsuleData }: ResponsiveFooterProps) => {
+const ResponsiveFooter = ({
+  capsuleData,
+  isLoggedIn,
+}: ResponsiveFooterProps) => {
   const [isCopied, setIsCopied] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
