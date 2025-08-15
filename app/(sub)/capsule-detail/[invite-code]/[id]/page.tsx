@@ -1,6 +1,7 @@
 "use client";
 import { useLikeToggle } from "@/shared/api/mutations/capsule";
 import { capsuleQueryOptions } from "@/shared/api/queries/capsule";
+import { userQueryOptions } from "@/shared/api/queries/user";
 import MenuIcon from "@/shared/assets/icon/menu.svg";
 import { PATH } from "@/shared/constants/path";
 import Dropdown from "@/shared/ui/dropdown";
@@ -10,7 +11,6 @@ import LoadingSpinner from "@/shared/ui/loading-spinner";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import NavbarDetail from "@/shared/ui/navbar/navbar-detail";
 import PopupReport from "@/shared/ui/popup/popup-report";
-import { getAccessToken } from "@/shared/utils/auth";
 import { formatDateTime } from "@/shared/utils/date";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
@@ -35,10 +35,12 @@ const CapsuleDetailPage = () => {
   const { data, isLoading, isError } = useQuery(
     capsuleQueryOptions.capsuleDetail(id),
   );
-  const isLoggedIn = !!getAccessToken();
+  const { data: user } = useQuery(userQueryOptions.userInfo());
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+
+  const isLoggedIn = !!user?.result;
 
   if (isLoading) {
     return <LoadingSpinner loading={true} size={20} />;

@@ -13,7 +13,6 @@ import { overlay } from "overlay-kit";
 
 import { PATH } from "@/shared/constants/path";
 import type { CapsuleDetailRes } from "@/shared/types/api/capsule";
-import { getAccessToken } from "@/shared/utils/auth";
 import { formatOpenDate } from "@/shared/utils/date";
 import * as styles from "./responsive-footer.css";
 
@@ -25,7 +24,6 @@ const ResponsiveFooter = ({ capsuleData }: ResponsiveFooterProps) => {
   const [isCopied, setIsCopied] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
-  const isLoggedIn = !!getAccessToken();
   const searchParams = useSearchParams();
 
   const { status, remainingTime } = capsuleData.result;
