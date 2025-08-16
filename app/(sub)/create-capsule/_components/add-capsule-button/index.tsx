@@ -2,7 +2,6 @@
 
 import PlusIcon from "@/shared/assets/icon/plus.svg";
 import { useInView } from "@/shared/hooks/use-in-view";
-import { cn } from "@/shared/utils/cn";
 
 import { PATH } from "@/shared/constants/path";
 import Link from "next/link";
@@ -15,16 +14,16 @@ const AddCapsuleButton = () => {
   return (
     <>
       <div ref={ref} className={styles.refDiv} />
-      <Link
-        href={PATH.CREATE_CAPSULE}
-        className={cn(
-          styles.buttonStyle,
-          isIntersecting ? styles.expanded : styles.collapsed,
-        )}
-      >
-        <PlusIcon />
-        {isIntersecting && "만들기"}
-      </Link>
+      <div className={styles.buttonContainer({ isIntersecting })}>
+        <div className={styles.lineInteract({ isIntersecting })} />
+        <Link
+          href={PATH.CREATE_CAPSULE}
+          className={styles.buttonStyle({ isIntersecting })}
+        >
+          <PlusIcon />
+          {isIntersecting && "만들기"}
+        </Link>
+      </div>
     </>
   );
 };
