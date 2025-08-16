@@ -85,8 +85,8 @@ export const buttonContainer = recipe({
     bottom: "4rem",
     padding: "0.1rem",
     borderRadius: "16px",
-    overflow: "hidden",
     zIndex: themeVars.zIndex.addCapsuleButton.content,
+    clipPath: "inset(0 0 0 0 round 16px)",
   },
   variants: {
     isIntersecting: {

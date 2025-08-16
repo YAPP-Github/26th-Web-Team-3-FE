@@ -65,4 +65,7 @@ export const lineInteractContainer = style({
   width: "calc(100% + 2px)",
   height: "calc(100% + 2px)",
   borderRadius: "13px",
+  transform: "translateZ(0)",
+  willChange: "transform",
+  zIndex: -1,
 });
