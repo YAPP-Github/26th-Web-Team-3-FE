@@ -64,5 +64,8 @@ export const colorTheme = {
       "linear-gradient(rgba(23, 23, 28, 1) 0%, rgba(103, 84, 226, 1) 100%)",
     header_bg:
       "linear-gradient(rgba(23, 23, 28, 1) 40%, rgba(23, 23, 28, 0) 100%)",
+
+    conic:
+      "conic-gradient(from 0deg at 50% 50%, rgb(255, 255, 255) 3.6deg, rgba(255, 255, 255, 0) 50.4deg, rgba(234, 234, 234, 0) 126deg, rgba(253, 253, 253, 0.89) 178.378deg, rgba(210, 210, 210, 0) 234deg, rgba(184, 184, 184, 0) 309.6deg, rgb(255, 255, 255) 360deg)",
   },
 } as const;

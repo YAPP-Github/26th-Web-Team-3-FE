@@ -51,6 +51,7 @@ const IntroStep = ({ handleNextStep }: Props) => {
           type="text"
           placeholder="타임캡슐 이름"
           className={styles.titleInput}
+          maxLength={15}
           {...register("title", { required: "타임캡슐 이름을 입력해주세요" })}
         />
 
@@ -58,6 +59,7 @@ const IntroStep = ({ handleNextStep }: Props) => {
           type="text"
           placeholder="내 타임캡슐을 소개해보세요."
           className={styles.descriptionInput}
+          maxLength={80}
           {...register("subtitle")}
         />
       </RevealMotion>
