@@ -52,12 +52,10 @@ const rotateMirrorAnimation = keyframes({
 export const lineInteract = recipe({
   base: {
     position: "absolute",
-
     zIndex: -1,
     borderRadius: "99px",
     opacity: 1,
-    background:
-      "conic-gradient(from 0deg at 50% 50%, rgb(255, 255, 255) 3.6deg, rgba(255, 255, 255, 0) 50.4deg, rgba(234, 234, 234, 0) 126deg, rgba(253, 253, 253, 0.89) 178.378deg, rgba(210, 210, 210, 0) 234deg, rgba(184, 184, 184, 0) 309.6deg, rgb(255, 255, 255) 360deg)",
+    background: themeVars.color.gradient.conic,
     animation: `${rotateMirrorAnimation} 4s cubic-bezier(0.44, 0, 0.56, 1) infinite`,
   },
   variants: {
