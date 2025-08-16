@@ -3,3 +3,9 @@ export interface FileRes {
   objectKey: string;
   expiresAt: string;
 }
+
+export interface FileUploadReq {
+  fileName: "LETTER" | "CAPSULE";
+  extension: string;
+  file: File;
+}

@@ -28,3 +28,10 @@ export interface LetterListRes {
     totalElements: number;
   };
 }
+
+export interface WriteLetterReq {
+  capsuleId: string;
+  content: string;
+  objectKeys: string;
+  from: string;
+}

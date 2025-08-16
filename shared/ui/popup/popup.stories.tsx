@@ -210,6 +210,10 @@ export const ConfirmLetter: Story = {
             openDate="2025. 06. 25"
             isOpen={isOpen}
             close={close}
+            onConfirm={() => {
+              console.log("편지 담기 확인");
+              close();
+            }}
           />
         ));
       }}
