@@ -1,9 +1,8 @@
 "use client";
 
-import { ControlType, addPropertyControls } from "framer";
 import { motion } from "motion/react";
 import React from "react";
-import * as styles from "./floating-stars.css";
+import * as styles from "./floating-stars-container.css";
 
 interface FloatingStarsProps {
   size: number;
@@ -100,77 +99,3 @@ export default function FloatingStarsContainer(props: FloatingStarsProps) {
     </div>
   );
 }
-
-FloatingStarsContainer.defaultProps = {
-  size: 2,
-  color: "#FFFFFF",
-  speed: 1.5,
-  count: 20,
-  swayAmount: 10,
-  speedRandomness: 0.5,
-  sizeRandomness: 0.5,
-  swayRandomness: 0.5,
-};
-
-addPropertyControls(FloatingStarsContainer, {
-  size: {
-    type: ControlType.Number,
-    title: "Size",
-    min: 1,
-    max: 50,
-    defaultValue: FloatingStarsContainer.defaultProps.size,
-  },
-  color: {
-    type: ControlType.Color,
-    title: "Color",
-    defaultValue: FloatingStarsContainer.defaultProps.color,
-  },
-  speed: {
-    type: ControlType.Number,
-    title: "Speed",
-    min: 0.1,
-    max: 5,
-    step: 0.1,
-    defaultValue: FloatingStarsContainer.defaultProps.speed,
-  },
-  count: {
-    type: ControlType.Number,
-    title: "Count",
-    min: 1,
-    max: 100,
-    step: 1,
-    defaultValue: FloatingStarsContainer.defaultProps.count,
-  },
-  swayAmount: {
-    type: ControlType.Number,
-    title: "Sway Amount",
-    min: 0,
-    max: 50,
-    step: 1,
-    defaultValue: FloatingStarsContainer.defaultProps.swayAmount,
-  },
-  speedRandomness: {
-    type: ControlType.Number,
-    title: "Speed Randomness",
-    min: 0,
-    max: 1,
-    step: 0.1,
-    defaultValue: FloatingStarsContainer.defaultProps.speedRandomness,
-  },
-  sizeRandomness: {
-    type: ControlType.Number,
-    title: "Size Randomness",
-    min: 0,
-    max: 1,
-    step: 0.1,
-    defaultValue: FloatingStarsContainer.defaultProps.sizeRandomness,
-  },
-  swayRandomness: {
-    type: ControlType.Number,
-    title: "Sway Randomness",
-    min: 0,
-    max: 1,
-    step: 0.1,
-    defaultValue: FloatingStarsContainer.defaultProps.swayRandomness,
-  },
-});
