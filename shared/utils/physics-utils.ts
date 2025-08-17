@@ -22,7 +22,7 @@ export function makeWalls(
   if (wallOptions.bottom) {
     bottom = Bodies.rectangle(
       containerBounding.width / 2,
-      containerBounding.height,
+      containerBounding.height - 10,
       containerBounding.width + containerBounding.width,
       100,
       opts

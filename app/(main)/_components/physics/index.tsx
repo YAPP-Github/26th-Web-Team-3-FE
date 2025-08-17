@@ -238,6 +238,7 @@ const containerStyle = {
 const bodyStyle = {
   position: "absolute",
   visibility: "hidden",
+  pointerEvents: "auto", 
 };
 
 Physics.defaultProps = {

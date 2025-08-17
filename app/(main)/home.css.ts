@@ -8,13 +8,14 @@ export const homeContainer = style({
   alignItems: "center",
   width: "100%",
   height: "100%",
+  zIndex: themeVars.zIndex.home.content,
 });
 
 export const mainContainer = style({
   position: "relative",
   width: "100%",
   height: "100%",
-  zIndex: themeVars.zIndex.home.container,
+  zIndex: themeVars.zIndex.home.content,
 });
 
 export const image = style({
@@ -22,7 +23,7 @@ export const image = style({
   height: "10rem",
   maxWidth: "unset",
   pointerEvents: "auto",
-
+  zIndex: themeVars.zIndex.home.image,
   ...screen.md({
     width: "18rem",
     height: "18rem",
@@ -35,7 +36,7 @@ export const physicsContainer = style({
   top: "6.4rem",
   left: 0,
   width: "100%",
-  height: "calc(100% - 6.4rem)",
+  height: "100%",
   zIndex: themeVars.zIndex.home.container,
   pointerEvents: "none",
 });
