@@ -12,16 +12,15 @@ import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { getOAuthUrl } from "../_api/auth.api";
 import * as styles from "./page.css";
+import { oauthUtils } from "@/shared/utils/oauth";
+
 const LoginPage = () => {
   const searchParams = useSearchParams();
   const nextUrl = searchParams.get("next");
 
   const handleGoToOAuth = (provider: "naver" | "google") => {
-    const safeNext =
-      nextUrl?.startsWith("/") && !nextUrl.startsWith("//")
-        ? nextUrl
-        : undefined;
-    getOAuthUrl(provider, safeNext).then((url) => {
+    oauthUtils.saveNextUrl(nextUrl);
+    getOAuthUrl(provider).then((url) => {
       window.location.href = url;
     });
   };
