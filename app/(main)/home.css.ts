@@ -7,13 +7,13 @@ export const homeContainer = style({
   flexDirection: "column",
   alignItems: "center",
   width: "100%",
-  height: "100%",
+  height: "calc(100% - 6.4rem)",
 });
 
 export const mainContainer = style({
   position: "relative",
   width: "100%",
-  height: "100%",
+  height: "calc(100% - 6.4rem)",
   zIndex: themeVars.zIndex.home.container,
 });
 
@@ -37,9 +37,9 @@ export const physicsContainer = style({
   width: "100%",
   height: "calc(100% - 6.4rem)",
   zIndex: themeVars.zIndex.home.container,
-  pointerEvents: "none", // 전체 영역에서 클릭 이벤트 비활성화
+  pointerEvents: "none",
 });
 
 export const physicsElement = style({
-  pointerEvents: "auto", // 물리 요소들만 클릭 이벤트 활성화
+  pointerEvents: "auto",
 });
