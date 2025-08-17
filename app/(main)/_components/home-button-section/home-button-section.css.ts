@@ -1,6 +1,19 @@
 import { themeVars } from "@/shared/styles/base/theme.css";
 import { screen } from "@/shared/styles/tokens/screen";
-import { style } from "@vanilla-extract/css";
+import { keyframes, style } from "@vanilla-extract/css";
+
+const rotateMirrorAnimation = keyframes({
+  "0%": {
+    transform: "rotate(0deg)",
+  },
+  "50%": {
+    transform: "rotate(360deg)",
+  },
+  "100%": {
+    transform: "rotate(0deg)",
+  },
+});
+
 export const container = style({
   display: "flex",
   flexDirection: "column",
@@ -22,6 +35,37 @@ export const button = style({
   backgroundColor: themeVars.color.black[70],
 });
 
-export const gradientButton = style({
+export const exploreButton = style({
   background: themeVars.color.gradient.purple,
+  ...themeVars.text.B1,
+  cursor: "pointer",
+  padding: "0.9rem 2.5rem",
+  borderRadius: "13px",
+  position: "relative",
+});
+
+export const lineInteract = style({
+  position: "absolute",
+  top: "-160%",
+  left: "-10%",
+  zIndex: themeVars.zIndex.button.lineInteract,
+  width: "21.9rem",
+  height: "21.9rem",
+  borderRadius: "99px",
+  opacity: 1,
+  background: themeVars.color.gradient.conic,
+  animation: `${rotateMirrorAnimation} 5s cubic-bezier(0.44, 0, 0.56, 1) infinite`,
+});
+
+export const lineInteractContainer = style({
+  position: "absolute",
+  overflow: "hidden",
+  top: "-1px",
+  left: "-1px",
+  width: "calc(100% + 2px)",
+  height: "calc(100% + 2px)",
+  borderRadius: "13px",
+  transform: "translateZ(0)",
+  willChange: "transform",
+  zIndex: themeVars.zIndex.button.lineInteract,
 });
