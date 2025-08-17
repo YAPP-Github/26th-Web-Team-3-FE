@@ -6,7 +6,7 @@ export const iconWrapper = style({
 });
 
 export const continueButton = style({
-  color: themeVars.color.purple[10],
+  color: `${themeVars.color.purple[10]} !important`,
 });
 
 export const titleWrapper = style({

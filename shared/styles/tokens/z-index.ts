@@ -15,7 +15,12 @@ export const zIndexTheme = {
   dropdown: {
     content: "100",
   },
+
   button: {
     lineInteract: "-1",
+  },
+  
+  modal: {
+    content: "200",
   },
 } as const;
