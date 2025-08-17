@@ -33,6 +33,7 @@ export const button = style({
   borderRadius: "13px",
   height: "5rem",
   backgroundColor: themeVars.color.black[70],
+  width: "16rem",
 });
 
 export const exploreButton = style({
@@ -40,8 +41,10 @@ export const exploreButton = style({
   ...themeVars.text.B1,
   cursor: "pointer",
   padding: "0.9rem 2.5rem",
+  whiteSpace: "nowrap",
   borderRadius: "13px",
   position: "relative",
+  width: "16rem",
 });
 
 export const lineInteract = style({
