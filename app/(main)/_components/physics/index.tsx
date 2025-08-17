@@ -140,15 +140,15 @@ export default function Physics(props: PhysicsProps) {
           props.densityOptions,
         );
 
-        // Update function :)
+        // Update function
+        let rafId: number | null = null;
         const update = () => {
-          requestAnimationFrame(update);
+          rafId = requestAnimationFrame(update);
 
           stack.bodies.forEach((block, i) => {
             const el = containerRef.current?.children[i] as HTMLElement;
-            if (el && block.vertices && block.vertices[0]) {
-              const { x, y } = block.vertices[0];
-
+            if (el) {
+              const { x, y } = block.position;
               el.style.visibility = "visible";
               el.style.top = `${y}px`;
               el.style.left = `${x}px`;
@@ -159,10 +159,26 @@ export default function Physics(props: PhysicsProps) {
             }
           });
 
-          Matter.Engine.update(engine);
+          Matter.Engine.update(engine, 1000 / 60);
         };
 
         update();
+      // cleanup on unmount
+        return () => {
+          if (rafId) cancelAnimationFrame(rafId);
+          if (mouseConstraint) Matter.Composite.remove(engine.world, mouseConstraint);
+          // 디버그 렌더가 존재했다면 정지 및 DOM 제거
+          const renderCanvas = containerRef.current?.querySelector("canvas");
+          if (renderCanvas) {
+            try {
+              // Render.stop은 render 인스턴스가 필요하지만, 간단하게 캔버스 제거만으로도 반복 렌더 방지
+              renderCanvas.remove();
+            } catch {}
+          }
+          Matter.World.clear(engine.world, false);
+          Matter.Engine.clear(engine);
+          engineRef.current = null;
+        };
       }
     }
   }, [
@@ -178,7 +194,7 @@ export default function Physics(props: PhysicsProps) {
 
   return (
     <div
-      style={containerStyle}
+      style={containerStyle as React.CSSProperties}
       ref={containerRef}
       draggable="false"
       onDragStart={(e) => {
@@ -191,7 +207,7 @@ export default function Physics(props: PhysicsProps) {
             <div
               key={i}
               style={bodyStyle as React.CSSProperties}
-              id="physics-body"
+              data-physics-body
               draggable="false"
             >
               {el}
@@ -201,7 +217,7 @@ export default function Physics(props: PhysicsProps) {
       ) : (
         <div
           style={bodyStyle as React.CSSProperties}
-          id="physics-body"
+          data-physics-body
           draggable="false"
         >
           {props.children}
@@ -214,6 +230,7 @@ export default function Physics(props: PhysicsProps) {
 // Styles are written in object syntax
 // Learn more: https://reactjs.org/docs/dom-elements.html#style
 const containerStyle = {
+  position: "relative",
   height: "100%",
   width: "100%",
   overflow: "hidden",

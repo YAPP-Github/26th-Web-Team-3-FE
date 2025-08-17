@@ -22,7 +22,7 @@ export function makeWalls(
   if (wallOptions.bottom) {
     bottom = Bodies.rectangle(
       containerBounding.width / 2,
-      containerBounding.height + containerBounding.height * 0.15,
+      containerBounding.height,
       containerBounding.width + containerBounding.width,
       100,
       opts
@@ -104,7 +104,7 @@ export function makeBodies(
         density: densityOpts.enable ? densityOpts.density : 0,
         friction: frictionOpts.friction,
         frictionAir: frictionOpts.frictionAir,
-        restitution: 0.8, // 탄성 증가로 겹침 방지
+        restitution: 0.8,
         collisionFilter: {
           group: 1,
         },
@@ -130,21 +130,32 @@ function findNonOverlappingPosition(
   const padding = 10; // 요소 간 최소 간격
 
   for (let attempt = 0; attempt < maxAttempts; attempt++) {
-    const maxLeft = containerBounding.width - width;
-    const maxTop = containerBounding.height - height;
+    const maxLeft = Math.max(0, containerBounding.width - width);
+    const maxTop = Math.max(0, containerBounding.height - height);
+    const left = Math.floor(Math.random() * (maxLeft + 1));
+    const top = Math.floor(Math.random() * (maxTop + 1));
+    // Matter.Body는 중심 좌표를 사용하므로 중심으로 변환
+    const x = left + width / 2;
+    const y = top + height / 2;
 
-    const x = Math.floor(Math.random() * maxLeft);
-    const y = Math.floor(Math.random() * maxTop);
+    // 기존 바디들과 AABB 겹침 검사
+    const halfW = width / 2;
+    const halfH = height / 2;
+    const aLeft = x - halfW - padding;
+    const aRight = x + halfW + padding;
+    const aTop = y - halfH - padding;
+    const aBottom = y + halfH + padding;
 
-    // 기존 바디들과 겹치는지 확인
     let overlaps = false;
     for (const body of existingBodies) {
-      const distance = Math.sqrt(
-        (x - body.position.x) ** 2 + (y - body.position.y) ** 2
+      const b = body.bounds;
+      const intersects = !(
+        aRight < b.min.x ||
+        aLeft > b.max.x ||
+        aBottom < b.min.y ||
+        aTop > b.max.y
       );
-      const minDistance = (width + height) / 2 + padding;
-
-      if (distance < minDistance) {
+      if (intersects) {
         overlaps = true;
         break;
       }
@@ -156,10 +167,12 @@ function findNonOverlappingPosition(
   }
 
   // 최대 시도 횟수를 초과하면 랜덤 위치 반환
-  const maxLeft = containerBounding.width - width;
-  const maxTop = containerBounding.height - height;
+  const maxLeft = Math.max(0, containerBounding.width - width);
+  const maxTop = Math.max(0, containerBounding.height - height);
+  const left = Math.floor(Math.random() * (maxLeft + 1));
+  const top = Math.floor(Math.random() * (maxTop + 1));
   return {
-    x: Math.floor(Math.random() * maxLeft),
-    y: Math.floor(Math.random() * maxTop),
+    x: left + width / 2,
+    y: top + height / 2,
   };
 }
