@@ -7,7 +7,7 @@ export const zIndexTheme = {
     content: "101",
   },
   addCapsuleButton: {
-    content: "101",
+    content: "130",
   },
   openCapsuleBottom: {
     content: "100",
@@ -15,7 +15,18 @@ export const zIndexTheme = {
   dropdown: {
     content: "100",
   },
+
+  button: {
+    lineInteract: "-2",
+  },
+
+  modal: {
+    content: "200",
+  },
+
   home: {
-    container: "1",
+    container: "0",
+    image: "-1",
+    content: "50",
   },
 } as const;
