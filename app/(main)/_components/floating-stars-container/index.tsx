@@ -15,7 +15,6 @@ interface FloatingStarsProps {
   swayRandomness: number;
 }
 
-// 시드를 사용한 결정적 랜덤 숫자 생성기
 function seededRandom(seed: number) {
   const x = Math.sin(seed) * 10000;
   return x - Math.floor(x);
@@ -34,7 +33,7 @@ export default function FloatingStarsContainer(props: FloatingStarsProps) {
   } = props;
 
   const generateStar = (index: number) => {
-    const seed = index * 12345; // 인덱스를 시드로 사용하여 결정적 랜덤성 보장
+    const seed = index * 12345;
     return {
       id: `star-${index}`,
       left: `${seededRandom(seed) * 100}%`,

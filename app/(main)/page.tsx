@@ -1,16 +1,10 @@
-"use client";
+
 import HomeButtonSection from "./_components/home-button-section";
 import HomeCaptionSection from "./_components/home-caption-section";
 import HomeTitleSection from "./_components/home-title-section";
 
-import dynamic from "next/dynamic";
+import FloatingStarsContainer from "./_components/floating-stars-container";
 
-const FloatingStarsContainer = dynamic(
-  () => import("./_components/floating-stars-container"),
-  {
-    ssr: false,
-  },
-);
 
 const Home = () => {
   return (
