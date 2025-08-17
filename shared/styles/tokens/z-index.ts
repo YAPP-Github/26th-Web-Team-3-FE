@@ -1,6 +1,6 @@
 export const zIndexTheme = {
   header: {
-    content: "99",
+    content: "130",
   },
   popup: {
     dim: "100",
@@ -14,5 +14,8 @@ export const zIndexTheme = {
   },
   dropdown: {
     content: "100",
+  },
+  home: {
+    container: "1",
   },
 } as const;
