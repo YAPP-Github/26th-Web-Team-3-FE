@@ -11,6 +11,7 @@ interface ModalProps {
   children: React.ReactNode;
   overlayClassName?: string;
   contentClassName?: string;
+  fullScreenOnMobile?: boolean;
 }
 
 export default function Modal({
@@ -19,6 +20,7 @@ export default function Modal({
   children,
   overlayClassName,
   contentClassName,
+  fullScreenOnMobile = true,
 }: ModalProps) {
   useEffect(() => {
     const handleEscapeKey = (event: KeyboardEvent) => {
@@ -46,6 +48,10 @@ export default function Modal({
     }
   };
 
+  const contentStyles = fullScreenOnMobile
+    ? `${styles.content} ${contentClassName || ""}`
+    : `${styles.contentWithoutFullScreen} ${contentClassName || ""}`;
+
   return createPortal(
     <div
       className={`${styles.overlay} ${overlayClassName || ""}`}
@@ -62,7 +68,7 @@ export default function Modal({
       role="dialog"
       aria-modal="true"
     >
-      <div className={`${styles.content} ${contentClassName || ""}`}>
+      <div className={contentStyles}>
         <div className={styles.body}>{children}</div>
       </div>
     </div>,

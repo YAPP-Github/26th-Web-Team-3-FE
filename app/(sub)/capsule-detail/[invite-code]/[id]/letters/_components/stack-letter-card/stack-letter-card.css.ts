@@ -14,6 +14,7 @@ export const card = style({
   flexDirection: "column",
   gap: "0.6rem",
   justifyContent: "space-between",
+  cursor: "pointer",
 
   ...screen.md({
     width: "45rem",
@@ -52,6 +53,7 @@ export const content = style({
 
 export const author = style({
   color: themeVars.color.white[40],
+  marginRight: "0.6rem",
 });
 
 export const contentWithImage = style({
