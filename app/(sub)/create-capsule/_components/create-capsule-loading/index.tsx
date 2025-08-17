@@ -10,6 +10,9 @@ const CreateCapsuleLoading = () => {
         <br />
         만들고 있어요...
       </h1>
+      <p className={styles.letterCaption}>
+          편지 10통마다 구슬에 별이 생겨요.
+        </p>
       <Image src={LettieImage} alt="lettie" className={styles.lettieImage} />
     </div>
   );

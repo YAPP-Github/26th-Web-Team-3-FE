@@ -1,6 +1,7 @@
 "use client";
 import { useLogout } from "@/app/(auth)/_api/auth.queries";
 import { userQueryOptions } from "@/shared/api/queries/user";
+import PopupReport from "@/shared/ui/popup/popup-report";
 import PopupLogout from "@/shared/ui/popup/popup-logout";
 import { useQuery } from "@tanstack/react-query";
 import { useQueryClient } from "@tanstack/react-query";
@@ -36,9 +37,14 @@ const Setting = () => {
           <SettingItem>개인정보 취급 방침</SettingItem>
         </SettingSection>
         <SettingSection category="고객센터">
-          <SettingItem>문의하기</SettingItem>
-        </SettingSection>
-        <SettingSection>
+          <SettingItem onClick={() =>
+              overlay.open(({ isOpen, close }) => (
+                <PopupReport
+                  isOpen={isOpen}
+                  close={close}
+                />
+              ))
+            }>문의하기</SettingItem>
           <SettingItem
             onClick={() =>
               overlay.open(({ isOpen, close }) => (
@@ -52,8 +58,8 @@ const Setting = () => {
           >
             로그아웃
           </SettingItem>
-          <SettingItem>탈퇴하기</SettingItem>
         </SettingSection>
+        <p className={styles.warningText}>*회원탈퇴는 '문의하기'를 이용해주세요. </p>
       </div>
     </div>
   );

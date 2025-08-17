@@ -5,12 +5,26 @@ import Image from "next/image";
 import HomeButtonSection from "./_components/home-button-section";
 import HomeCaptionSection from "./_components/home-caption-section";
 import HomeTitleSection from "./_components/home-title-section";
+
+import FloatingStarsContainer from "@/shared/ui/floating-stars-container";
 import * as styles from "./home.css";
+
+
 
 const Home = () => {
   return (
-    <div className={styles.homeContainer}>
-      <main className={styles.mainContainer}>
+    <div>
+      <main>
+        <FloatingStarsContainer
+          size={1}
+          color="#CFD1D5"
+          speed={2.0}
+          count={20}
+          swayAmount={10}
+          speedRandomness={0.8}
+          sizeRandomness={0.8}
+          swayRandomness={0.8}
+        />
         <HomeTitleSection />
         <HomeButtonSection />
         <HomeCaptionSection />

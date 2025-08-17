@@ -28,7 +28,7 @@ const PopupReport = ({ isOpen, close }: PopupReportProps) => {
         아래 이메일로 연락 주시면 빠르게 조치하겠습니다.
       </Popup.Content>
       <div className={styles.captionContainer}>
-        <p>lettie@gmail.com</p>
+        <p>lettie.team@gmail.com</p>
         <button
           type="button"
           className={styles.copyButton}
