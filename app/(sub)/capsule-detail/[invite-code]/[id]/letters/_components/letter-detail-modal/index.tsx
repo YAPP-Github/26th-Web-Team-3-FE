@@ -38,7 +38,8 @@ const LetterDetailModal = ({
           <p className={styles.content}>{letter.content}</p>
           {letter.from && (
             <p className={styles.from}>
-              <span className={styles.author}>From</span> {letter.from}
+              <span className={styles.author}>From</span>
+              {letter.from}
             </p>
           )}
         </div>

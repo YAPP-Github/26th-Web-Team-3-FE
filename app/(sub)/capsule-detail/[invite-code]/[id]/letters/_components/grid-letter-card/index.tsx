@@ -40,7 +40,8 @@ const GridLetterCard = ({ letter, imageUrl }: LetterCardProps) => {
 
         {letter.from && (
           <p>
-            <span className={styles.author}>From</span> {letter.from}
+            <span className={styles.author}>From</span>
+            {letter.from}
           </p>
         )}
       </section>

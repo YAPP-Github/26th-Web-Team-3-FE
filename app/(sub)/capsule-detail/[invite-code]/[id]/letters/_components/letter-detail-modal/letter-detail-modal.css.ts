@@ -76,4 +76,5 @@ export const from = style({
 
 export const author = style({
   color: themeVars.color.white[40],
+  marginRight: "0.6rem",
 });
