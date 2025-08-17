@@ -15,6 +15,7 @@ const Home = () => {
     <div>
       <main>
         <FloatingStarsContainer
+
           size={1.8}
           color="#CFD1D5"
           speed={2.0}

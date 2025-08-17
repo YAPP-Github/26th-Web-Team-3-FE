@@ -17,11 +17,8 @@ export const zIndexTheme = {
   },
 
   button: {
-    lineInteract: "-2",
-  },
 
-  modal: {
-    content: "200",
+    lineInteract: "-2",
   },
 
   home: {
@@ -29,4 +26,9 @@ export const zIndexTheme = {
     image: "-1",
     content: "50",
   },
+  
+  modal: {
+    content: "200",
+  },
+
 } as const;
