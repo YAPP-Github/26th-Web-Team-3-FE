@@ -2,7 +2,7 @@
 import { ControlType, addPropertyControls } from "framer";
 import Matter from "matter-js";
 import type React from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { makeBodies, makeWalls } from "@/shared/utils/physics-utils";
 
@@ -40,148 +40,192 @@ interface ExtendedMouse extends Matter.Mouse {
 export default function Physics(props: PhysicsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const engineRef = useRef<Matter.Engine | null>(null);
+  const [isLargeScreen, setIsLargeScreen] = useState<boolean>(false);
 
+  // 800px 기준으로 화면 크기 변경 감지
   useEffect(() => {
-    if (!engineRef.current && containerRef.current) {
-      const engine = Matter.Engine.create({
-        enableSleeping: props.sleeping,
-        gravity: { y: props.gravY, x: props.gravX },
-      });
-      engineRef.current = engine;
-
-      const containerBounding = containerRef.current?.getBoundingClientRect();
-
-      if (containerBounding) {
-        makeWalls(containerBounding, engine, props.wallOptions);
-      }
-
-      if (props.debug) {
-        const render = Matter.Render.create({
-          element: containerRef.current,
-          engine: engine,
-          options: {
-            height: containerBounding.height,
-            width: containerBounding.width,
-            showAngleIndicator: true,
-            showVelocity: true,
-          },
-        });
-        Matter.Render.run(render);
-      }
-
-      let mouseConstraint: Matter.MouseConstraint | null = null;
-      if (props.mouseOptions.enable && containerRef.current) {
-        const mouse = Matter.Mouse.create(containerRef.current);
-
-        mouseConstraint = Matter.MouseConstraint.create(engine, {
-          mouse: mouse,
-          constraint: {
-            stiffness: props.mouseOptions.stiffness,
-          },
-        });
-        Matter.Composite.add(engine.world, mouseConstraint);
-
-        // Mouse 객체를 확장된 타입으로 캐스팅
-        const extendedMouse = mouseConstraint.mouse as ExtendedMouse;
-
-        // Remove the many event listeners preventing scroll/drag
-        mouseConstraint.mouse.element.removeEventListener(
-          "mousewheel",
-          extendedMouse.mousewheel as EventListener,
-        );
-        mouseConstraint.mouse.element.removeEventListener(
-          "DOMMouseScroll",
-          extendedMouse.mousewheel as EventListener,
-        );
-        mouseConstraint.mouse.element.removeEventListener(
-          "touchstart",
-          extendedMouse.mousedown as EventListener,
-        );
-        mouseConstraint.mouse.element.removeEventListener(
-          "touchmove",
-          extendedMouse.mousemove as EventListener,
-        );
-        mouseConstraint.mouse.element.removeEventListener(
-          "touchend",
-          extendedMouse.mouseup as EventListener,
-        );
-
-        mouseConstraint.mouse.element.addEventListener(
-          "touchstart",
-          extendedMouse.mousedown as EventListener,
-          { passive: true },
-        );
-        mouseConstraint.mouse.element.addEventListener("touchmove", (e) => {
-          if (mouseConstraint?.body) {
-            (extendedMouse.mousemove as EventListener)(e);
-          }
-        });
-        mouseConstraint.mouse.element.addEventListener("touchend", (e) => {
-          if (mouseConstraint?.body) {
-            (extendedMouse.mouseup as EventListener)(e);
-          }
-        });
-
-        containerRef.current.addEventListener("mouseleave", () => {
-          if (mouseConstraint) {
-            (extendedMouse.mouseup as EventListener)(
-              new Event("mouseup") as MouseEvent,
-            );
-          }
-        });
-      }
-
+    const updateScreenSize = () => {
       if (containerRef.current) {
-        const stack = makeBodies(
-          containerRef.current,
-          engine.world,
-          containerRef.current.children,
-          props.frictionOptions,
-          props.densityOptions,
-        );
+        const rect = containerRef.current.getBoundingClientRect();
+        const newIsLargeScreen = rect.width >= 800;
+        
+        // 800px 기준으로 상태가 변경될 때만 업데이트
+        if (newIsLargeScreen !== isLargeScreen) {
+          setIsLargeScreen(newIsLargeScreen);
+        }
+      }
+    };
 
-        // Update function
-        let rafId: number | null = null;
-        const update = () => {
-          rafId = requestAnimationFrame(update);
+    // 초기 크기 설정
+    updateScreenSize();
 
-          stack.bodies.forEach((block, i) => {
-            const el = containerRef.current?.children[i] as HTMLElement;
-            if (el) {
-              const { x, y } = block.position;
-              el.style.visibility = "visible";
-              el.style.top = `${y}px`;
-              el.style.left = `${x}px`;
-              el.style.transform = `
+    // resize 이벤트 리스너 추가
+    window.addEventListener('resize', updateScreenSize);
+    
+    // ResizeObserver를 사용하여 더 정확한 크기 변경 감지
+    const resizeObserver = new ResizeObserver(updateScreenSize);
+    if (containerRef.current) {
+      resizeObserver.observe(containerRef.current);
+    }
+
+    return () => {
+      window.removeEventListener('resize', updateScreenSize);
+      resizeObserver.disconnect();
+    };
+  }, [isLargeScreen]); // isLargeScreen을 의존성으로 추가
+
+  // 물리 엔진 초기화 및 재설정 (800px 기준 변경 시에만)
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    // 기존 엔진 정리
+    if (engineRef.current) {
+      Matter.World.clear(engineRef.current.world, false);
+      Matter.Engine.clear(engineRef.current);
+      engineRef.current = null;
+    }
+
+    // 새 엔진 생성
+    const engine = Matter.Engine.create({
+      enableSleeping: props.sleeping,
+      gravity: { y: props.gravY, x: props.gravX },
+    });
+    engineRef.current = engine;
+
+    const containerBounding = containerRef.current.getBoundingClientRect();
+
+    if (containerBounding) {
+      makeWalls(containerBounding, engine, props.wallOptions);
+    }
+
+    if (props.debug) {
+      const render = Matter.Render.create({
+        element: containerRef.current,
+        engine: engine,
+        options: {
+          height: containerBounding.height,
+          width: containerBounding.width,
+          showAngleIndicator: true,
+          showVelocity: true,
+        },
+      });
+      Matter.Render.run(render);
+    }
+
+    let mouseConstraint: Matter.MouseConstraint | null = null;
+    if (props.mouseOptions.enable && containerRef.current) {
+      const mouse = Matter.Mouse.create(containerRef.current);
+
+      mouseConstraint = Matter.MouseConstraint.create(engine, {
+        mouse: mouse,
+        constraint: {
+          stiffness: props.mouseOptions.stiffness,
+        },
+      });
+      Matter.Composite.add(engine.world, mouseConstraint);
+
+      // Mouse 객체를 확장된 타입으로 캐스팅
+      const extendedMouse = mouseConstraint.mouse as ExtendedMouse;
+
+      // Remove the many event listeners preventing scroll/drag
+      mouseConstraint.mouse.element.removeEventListener(
+        "mousewheel",
+        extendedMouse.mousewheel as EventListener,
+      );
+      mouseConstraint.mouse.element.removeEventListener(
+        "DOMMouseScroll",
+        extendedMouse.mousewheel as EventListener,
+      );
+      mouseConstraint.mouse.element.removeEventListener(
+        "touchstart",
+        extendedMouse.mousedown as EventListener,
+      );
+      mouseConstraint.mouse.element.removeEventListener(
+        "touchmove",
+        extendedMouse.mousemove as EventListener,
+      );
+      mouseConstraint.mouse.element.removeEventListener(
+        "touchend",
+        extendedMouse.mouseup as EventListener,
+      );
+
+      mouseConstraint.mouse.element.addEventListener(
+        "touchstart",
+        extendedMouse.mousedown as EventListener,
+        { passive: true },
+      );
+      mouseConstraint.mouse.element.addEventListener("touchmove", (e) => {
+        if (mouseConstraint?.body) {
+          (extendedMouse.mousemove as EventListener)(e);
+        }
+      });
+      mouseConstraint.mouse.element.addEventListener("touchend", (e) => {
+        if (mouseConstraint?.body) {
+          (extendedMouse.mouseup as EventListener)(e);
+        }
+      });
+
+      containerRef.current.addEventListener("mouseleave", () => {
+        if (mouseConstraint) {
+          (extendedMouse.mouseup as EventListener)(
+            new Event("mouseup") as MouseEvent,
+          );
+        }
+      });
+    }
+
+    if (containerRef.current) {
+      const stack = makeBodies(
+        containerRef.current,
+        engine.world,
+        containerRef.current.children,
+        props.frictionOptions,
+        props.densityOptions,
+      );
+
+      // Update function
+      let rafId: number | null = null;
+      const update = () => {
+        rafId = requestAnimationFrame(update);
+
+        stack.bodies.forEach((block, i) => {
+          const el = containerRef.current?.children[i] as HTMLElement;
+          if (el) {
+            const { x, y } = block.position;
+            el.style.visibility = "visible";
+            el.style.top = `${y}px`;
+            el.style.left = `${x}px`;
+            el.style.transform = `
     translate(-50%, -50%)
     rotate(${block.angle}rad)
 `;
-            }
-          });
-
-          Matter.Engine.update(engine, 1000 / 60);
-        };
-
-        update();
-      // cleanup on unmount
-        return () => {
-          if (rafId) cancelAnimationFrame(rafId);
-          if (mouseConstraint) Matter.Composite.remove(engine.world, mouseConstraint);
-          // 디버그 렌더가 존재했다면 정지 및 DOM 제거
-          const renderCanvas = containerRef.current?.querySelector("canvas");
-          if (renderCanvas) {
-            try {
-              // Render.stop은 render 인스턴스가 필요하지만, 간단하게 캔버스 제거만으로도 반복 렌더 방지
-              renderCanvas.remove();
-            } catch {}
           }
-          Matter.World.clear(engine.world, false);
-          Matter.Engine.clear(engine);
-          engineRef.current = null;
-        };
-      }
+        });
+
+        Matter.Engine.update(engine, 1000 / 60);
+      };
+
+      update();
+
+      // cleanup on unmount
+      return () => {
+        if (rafId) cancelAnimationFrame(rafId);
+        if (mouseConstraint) Matter.Composite.remove(engine.world, mouseConstraint);
+        // 디버그 렌더가 존재했다면 정지 및 DOM 제거
+        const renderCanvas = containerRef.current?.querySelector("canvas");
+        if (renderCanvas) {
+          try {
+            // Render.stop은 render 인스턴스가 필요하지만, 간단하게 캔버스 제거만으로도 반복 렌더 방지
+            renderCanvas.remove();
+          } catch {}
+        }
+        Matter.World.clear(engine.world, false);
+        Matter.Engine.clear(engine);
+        engineRef.current = null;
+      };
     }
   }, [
+    isLargeScreen, // 800px 기준 변경 시에만 재실행
     props.sleeping,
     props.gravY,
     props.gravX,
