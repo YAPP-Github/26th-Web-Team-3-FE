@@ -1,6 +1,5 @@
 import { apiClient } from "@/shared/api/api-client";
 import type { LogoutRes, OAuthCodeRes, OAuthRes } from "./auth.types";
-import { oauthUtils } from "@/shared/utils/oauth";
 
 const AUTH_ENDPOINTS = {
   OAUTH_URL: (provider: "naver" | "google") => `api/v1/auth/oauth/${provider}`,
