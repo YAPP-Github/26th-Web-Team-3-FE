@@ -43,7 +43,7 @@ export const image = style({
   width: "100%",
   height: "auto",
   objectFit: "cover",
-  borderRadius: "8px",
+  borderRadius: "14px",
   ...screen.md({
     width: "30rem",
     height: "30rem",
