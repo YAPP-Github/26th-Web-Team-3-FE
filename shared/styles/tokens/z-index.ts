@@ -19,8 +19,8 @@ export const zIndexTheme = {
   button: {
     lineInteract: "-1",
   },
-  
+
   modal: {
-    content: "200",
+    content: "10",
   },
 } as const;
