@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-
+import { themeVars } from "@/shared/styles/base/theme.css";
 export const settingPage = style({
   display: "flex",
   flexDirection: "column",
@@ -16,4 +16,10 @@ export const itemsContainer = style({
   gap: "1rem",
   width: "100%",
   marginTop: "2.4rem",
+});
+
+export const warningText = style({
+  ...themeVars.text.F14,
+  color: themeVars.color.white[40],
+  paddingTop: "1rem",
 });
