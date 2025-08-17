@@ -29,18 +29,19 @@ export const container = style({
 export const button = style({
   ...themeVars.text.B1,
   cursor: "pointer",
-  padding: "0.9rem 2.5rem",
+  padding: "0.8rem 2.4rem",
   borderRadius: "13px",
   height: "5rem",
   backgroundColor: themeVars.color.black[70],
   width: "16rem",
+  whiteSpace: "nowrap",
 });
 
 export const exploreButton = style({
   background: themeVars.color.gradient.purple,
   ...themeVars.text.B1,
   cursor: "pointer",
-  padding: "0.9rem 2.5rem",
+  padding: "0.8rem 1.6rem",
   whiteSpace: "nowrap",
   borderRadius: "13px",
   position: "relative",
