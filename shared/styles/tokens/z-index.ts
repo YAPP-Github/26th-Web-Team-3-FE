@@ -15,4 +15,7 @@ export const zIndexTheme = {
   dropdown: {
     content: "100",
   },
+  modal: {
+    content: "200",
+  },
 } as const;
