@@ -28,7 +28,7 @@ const CompleteStep = ({ capsuleInfo }: Props) => {
           만들어졌어요!
         </h1>
         <p className={styles.letterCaption}>
-          편지 10통마다 구슬에 별이 생겨요.
+          캡슐이 열리는 날 이메일로 알려드려요!
         </p>
       </RevealMotion>
 

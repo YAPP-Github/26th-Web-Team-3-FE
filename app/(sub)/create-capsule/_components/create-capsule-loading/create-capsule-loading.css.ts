@@ -27,3 +27,9 @@ export const loadingContainer = style({
   justifyContent: "center",
   paddingTop: "10.8rem",
 });
+
+export const letterCaption = style({
+  ...themeVars.text.B1,
+  color: themeVars.color.white[40],
+  textAlign: "center",
+});
