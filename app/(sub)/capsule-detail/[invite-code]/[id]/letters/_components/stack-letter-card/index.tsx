@@ -1,16 +1,28 @@
 import type { Letter } from "@/shared/types/api/letter";
 import Image from "next/image";
+import { overlay } from "overlay-kit";
+import LetterDetailModal from "../letter-detail-modal";
 import * as styles from "./stack-letter-card.css";
 
 interface LetterCardProps {
   letter: Letter;
   imageUrl?: string | null;
-  onClick?: () => void;
 }
 
-const StackLetterCard = ({ letter, imageUrl, onClick }: LetterCardProps) => {
+const StackLetterCard = ({ letter, imageUrl }: LetterCardProps) => {
+  const handleClick = () => {
+    overlay.open(({ isOpen, close }) => (
+      <LetterDetailModal
+        letter={letter}
+        imageUrl={imageUrl}
+        isOpen={isOpen}
+        onClose={close}
+      />
+    ));
+  };
+
   return (
-    <section className={styles.card} onClick={onClick}>
+    <section className={styles.card} onClick={handleClick} role="button">
       <div className={styles.contentWrapper}>
         {imageUrl && (
           <Image

@@ -1,18 +1,30 @@
 import type { Letter } from "@/shared/types/api/letter";
 import HoverMotion from "@/shared/ui/motion/hover-motion";
 import Image from "next/image";
+import { overlay } from "overlay-kit";
+import LetterDetailModal from "../letter-detail-modal";
 import * as styles from "./grid-letter-card.css";
 
 interface LetterCardProps {
   letter: Letter;
   imageUrl?: string | null;
-  onClick?: () => void;
 }
 
-const GridLetterCard = ({ letter, imageUrl, onClick }: LetterCardProps) => {
+const GridLetterCard = ({ letter, imageUrl }: LetterCardProps) => {
+  const handleClick = () => {
+    overlay.open(({ isOpen, close }) => (
+      <LetterDetailModal
+        letter={letter}
+        imageUrl={imageUrl}
+        isOpen={isOpen}
+        onClose={close}
+      />
+    ));
+  };
+
   return (
     <HoverMotion>
-      <section className={styles.card} onClick={onClick}>
+      <section className={styles.card} onClick={handleClick} role="button">
         {imageUrl && (
           <Image
             width={200}

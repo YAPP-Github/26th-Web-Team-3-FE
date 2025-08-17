@@ -14,6 +14,7 @@ export const card = style({
   flexDirection: "column",
   gap: "0.6rem",
   justifyContent: "space-between",
+  cursor: "pointer",
 
   ...screen.md({
     width: "45rem",
