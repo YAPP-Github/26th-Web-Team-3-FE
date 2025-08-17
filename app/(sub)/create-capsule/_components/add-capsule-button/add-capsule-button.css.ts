@@ -37,7 +37,7 @@ export const buttonStyle = recipe({
 });
 
 export const refDiv = style({
-  height: 1,
+  height: "1px",
 });
 
 const rotateMirrorAnimation = keyframes({
@@ -52,7 +52,7 @@ const rotateMirrorAnimation = keyframes({
 export const lineInteract = recipe({
   base: {
     position: "absolute",
-    zIndex: -1,
+    zIndex: themeVars.zIndex.button.lineInteract,
     borderRadius: "99px",
     opacity: 1,
     background: themeVars.color.gradient.conic,
@@ -61,14 +61,14 @@ export const lineInteract = recipe({
   variants: {
     isIntersecting: {
       true: {
-        width: "131px",
-        height: "131px",
+        width: "13.1rem",
+        height: "13.1rem",
         top: "-4rem",
         right: "-1rem",
       },
       false: {
-        width: "85px",
-        height: "85px",
+        width: "8.5rem",
+        height: "8.5rem",
         top: "-2rem",
         right: "-1.5rem",
       },
