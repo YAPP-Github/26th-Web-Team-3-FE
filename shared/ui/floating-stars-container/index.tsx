@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import React from "react";
+import { useEffect, useState } from "react";
 import * as styles from "./floating-stars-container.css";
 
 interface FloatingStarsProps {
@@ -32,6 +32,8 @@ export default function FloatingStarsContainer(props: FloatingStarsProps) {
     swayRandomness,
   } = props;
 
+  const [stars, setStars] = useState<any[]>([]);
+
   const generateStar = (index: number) => {
     const seed = index * 12345;
     return {
@@ -46,18 +48,16 @@ export default function FloatingStarsContainer(props: FloatingStarsProps) {
     };
   };
 
-  const stars = React.useMemo(
-    () => Array.from({ length: count }, (_, i) => generateStar(i)),
-    [
-      count,
-      size,
-      speed,
-      speedRandomness,
-      sizeRandomness,
-      swayAmount,
-      swayRandomness,
-    ],
-  );
+  // 반드시 client에 마운트 된 후에만 생성
+  useEffect(() => {
+    const generatedStars = Array.from({ length: count }, (_, i) => generateStar(i));
+    setStars(generatedStars);
+  }, [count, size, speed, speedRandomness, sizeRandomness, swayAmount, swayRandomness]);
+
+  // 별들이 생성되기 전에는 아무것도 렌더링하지 않음
+  if (stars.length === 0) {
+    return null;
+  }
 
   return (
     <div className={styles.container}>
