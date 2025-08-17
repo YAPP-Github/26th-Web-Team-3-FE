@@ -18,7 +18,7 @@ const Home = () => {
           size={1.8}
           color="#CFD1D5"
           speed={2.0}
-          count={20}
+          count={35}
           swayAmount={10}
           speedRandomness={0.8}
           sizeRandomness={0.8}
