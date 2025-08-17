@@ -7,13 +7,13 @@ export const homeContainer = style({
   flexDirection: "column",
   alignItems: "center",
   width: "100%",
-  height: "calc(100% - 6.4rem)",
+  height: "100%",
 });
 
 export const mainContainer = style({
   position: "relative",
   width: "100%",
-  height: "calc(100% - 6.4rem)",
+  height: "100%",
   zIndex: themeVars.zIndex.home.container,
 });
 

@@ -9,7 +9,7 @@ export function makeWalls(
     bottom?: boolean;
     left?: boolean;
     right?: boolean;
-  },
+  }
 ) {
   const Bodies = Matter.Bodies;
   const opts = { isStatic: true, friction: 2 };
@@ -25,7 +25,7 @@ export function makeWalls(
       containerBounding.height + containerBounding.height * 0.15,
       containerBounding.width + containerBounding.width,
       100,
-      opts,
+      opts
     );
     Matter.World.add(engine.world, bottom);
   }
@@ -36,7 +36,7 @@ export function makeWalls(
       -50,
       containerBounding.width + 100,
       100,
-      opts,
+      opts
     );
     Matter.World.add(engine.world, top);
   }
@@ -47,7 +47,7 @@ export function makeWalls(
       containerBounding.height / 2,
       100,
       containerBounding.height,
-      opts,
+      opts
     );
     Matter.World.add(engine.world, wRight);
   }
@@ -58,7 +58,7 @@ export function makeWalls(
       containerBounding.height / 2,
       100,
       containerBounding.height,
-      opts,
+      opts
     );
     Matter.World.add(engine.world, wLeft);
   }
@@ -76,7 +76,7 @@ export function makeBodies(
   densityOpts: {
     enable: boolean;
     density: number;
-  },
+  }
 ): Matter.Composite {
   const containerBounding = container.getBoundingClientRect();
   const bodies: Matter.Body[] = [];
@@ -91,7 +91,7 @@ export function makeBodies(
       bodies,
       width,
       height,
-      containerBounding,
+      containerBounding
     );
 
     const body = Matter.Bodies.rectangle(
@@ -108,7 +108,7 @@ export function makeBodies(
         collisionFilter: {
           group: 1,
         },
-      },
+      }
     );
 
     bodies.push(body);
@@ -124,7 +124,7 @@ function findNonOverlappingPosition(
   existingBodies: Matter.Body[],
   width: number,
   height: number,
-  containerBounding: DOMRect,
+  containerBounding: DOMRect
 ): { x: number; y: number } {
   const maxAttempts = 100;
   const padding = 10; // 요소 간 최소 간격
@@ -140,7 +140,7 @@ function findNonOverlappingPosition(
     let overlaps = false;
     for (const body of existingBodies) {
       const distance = Math.sqrt(
-        (x - body.position.x) ** 2 + (y - body.position.y) ** 2,
+        (x - body.position.x) ** 2 + (y - body.position.y) ** 2
       );
       const minDistance = (width + height) / 2 + padding;
 

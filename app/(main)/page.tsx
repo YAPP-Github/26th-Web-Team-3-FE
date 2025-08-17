@@ -7,9 +7,8 @@ import HomeCaptionSection from "./_components/home-caption-section";
 import HomeTitleSection from "./_components/home-title-section";
 
 import FloatingStarsContainer from "@/shared/ui/floating-stars-container";
+
 import * as styles from "./home.css";
-
-
 
 const Home = () => {
   return (

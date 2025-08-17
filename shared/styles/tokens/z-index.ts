@@ -25,8 +25,8 @@ export const zIndexTheme = {
   },
 
   home: {
-    container: "0",
     image: "-1",
     content: "50",
+    container: "1",
   },
 } as const;
