@@ -22,7 +22,9 @@ const InfoToast = ({ status }: InfoToastProps) => {
   return (
     <div className={cn(styles.container, exiting ? styles.exit : styles.enter)}>
       {status === "WAITING_OPEN" && <LockIcon />}
-      {status === "OPENED" && <CheckIcon className={styles.checkIcon} />}
+      {["OPENED", "WRITABLE"].includes(status) && (
+        <CheckIcon className={styles.checkIcon} />
+      )}
       {MESSAGE[status]}
     </div>
   );

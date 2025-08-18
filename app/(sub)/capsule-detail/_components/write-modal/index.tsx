@@ -24,9 +24,15 @@ interface WriteModalProps {
   capsuleData: CapsuleDetailRes;
   isOpen: boolean;
   onClose: () => void;
+  onSuccess: () => void;
 }
 
-const WriteModal = ({ capsuleData, isOpen, onClose }: WriteModalProps) => {
+const WriteModal = ({
+  capsuleData,
+  isOpen,
+  onClose,
+  onSuccess,
+}: WriteModalProps) => {
   const { mutate: writeLetterMutate, isPending } = useWriteLetter();
 
   const {
@@ -59,6 +65,7 @@ const WriteModal = ({ capsuleData, isOpen, onClose }: WriteModalProps) => {
             onSuccess: () => {
               close();
               onClose();
+        onSuccess();
             },
             onError: (error) => {
               console.error("편지 제출 실패:", error);

@@ -3,8 +3,10 @@ import CheckIcon from "@/shared/assets/icon/check.svg";
 import ShareIcon from "@/shared/assets/icon/share.svg";
 import Button from "@/shared/ui/button";
 import Chip from "@/shared/ui/chip";
+import InfoToast from "@/shared/ui/info-toast";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import { useTimeout } from "react-simplikit";
 
 import WriteModal from "../write-modal";
 
@@ -31,6 +33,20 @@ const ResponsiveFooter = ({
   const searchParams = useSearchParams();
 
   const { status, remainingTime } = capsuleData.result;
+
+  useTimeout(
+    () => {
+      setShowSuccessToast(false);
+    },
+    showSuccessToast ? 3000 : undefined,
+  );
+
+  useTimeout(
+    () => {
+      setIsCopied(false);
+    },
+    isCopied ? 2000 : undefined,
+  );
 
   const handleClickShareButton = () => {
     navigator.clipboard.writeText(window.location.href);
