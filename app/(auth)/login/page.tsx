@@ -34,10 +34,9 @@ const LoginPage = () => {
       </header>
       <div className={styles.contentsContainer}>
         <h1 className={styles.title}>
-          타임캡슐을 만들고 <br />
-          친구들과 추억을 나눠요
+          5초 만에 로그인하고 <br />
+          모든 기능을 사용해보세요!
         </h1>
-        <p className={styles.caption}>로그인하고 모든 기능을 사용해보세요!</p>
         <Image src={LettieImage} alt="Lettie" className={styles.lettieImage} />
         <div className={styles.buttonContainer}>
           <button
