@@ -12,6 +12,7 @@ export const navHomeStyle = style({
   padding: "1rem 1rem 1rem 2rem",
   background: themeVars.color.gradient.header_bg,
   zIndex: themeVars.zIndex.header.content,
+  color: themeVars.color.white[85],
 });
 
 export const navWrapper = style({
@@ -31,7 +32,7 @@ export const navList = style({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    gap: "0.8rem",
+    gap: "1.6rem",
   }),
 });
 
@@ -64,6 +65,7 @@ export const menuContainer = style({
   left: "0",
   width: "100%",
   backgroundColor: themeVars.color.black["90_bg"],
+  color: themeVars.color.white[85],
   zIndex: themeVars.zIndex.header.content,
   transition: "max-height 0.2s ease-out, opacity 0.3s ease",
   maxHeight: 0,
@@ -93,7 +95,6 @@ export const menuItem = style({
   textAlign: "start",
   padding: "1.6rem 2rem",
   ...themeVars.text.F16,
-  color: themeVars.color.white[100],
   cursor: "pointer",
   ":hover": {
     backgroundColor: themeVars.color.white[5],

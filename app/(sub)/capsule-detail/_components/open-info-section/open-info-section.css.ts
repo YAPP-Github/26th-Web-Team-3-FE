@@ -9,7 +9,6 @@ export const container = style({
   width: "100%",
   alignItems: "center",
   padding: "1.6rem 2.4rem",
-  gap: "3.2rem",
   background: themeVars.color.gradient.darkgray_op,
   borderRadius: "16px",
   ...screen.md({
@@ -21,8 +20,10 @@ export const iconStyle = style({
   width: "2.4rem",
   height: "2.4rem",
   color: themeVars.color.white[40],
+  marginRight: "0.6rem",
 });
 
 export const textStyle = style({
   color: themeVars.color.white[40],
+  paddingRight: "3.2rem",
 });
