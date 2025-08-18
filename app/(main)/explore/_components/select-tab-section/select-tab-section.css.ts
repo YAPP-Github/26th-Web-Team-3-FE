@@ -13,10 +13,13 @@ export const chipContainer = style({
 
 export const chipWrapper = style({
   display: "flex",
-  gap: "1.2rem",
+  gap: "0.6rem",
   flexDirection: "row",
   justifyContent: "center",
   flex: 1,
+  ...screen.md({
+    gap: "1.2rem",
+  }),
 });
 
 export const dropdown = style({
