@@ -1,4 +1,5 @@
 import Card from "@/shared/ui/card";
+import EmptySection from "@/app/(main)/explore/_components/empty-section";
 
 import * as styles from "./card-container.css";
 
@@ -18,6 +19,8 @@ const CardContainer = ({ capsules, isLoading }: CardContainerProps) => {
   const router = useRouter();
 
   if (isLoading) return <LoadingSpinner loading={isLoading} size={20} />;
+
+  if (capsules.length === 0) return <EmptySection />;
 
   return (
     <div className={styles.cardContainer}>
