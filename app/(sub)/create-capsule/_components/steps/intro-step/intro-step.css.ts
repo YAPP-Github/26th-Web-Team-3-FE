@@ -27,12 +27,18 @@ export const lettieImage = style({
   }),
 });
 
+export const inputContainer = style({
+  position: "relative",
+  width: "100%",
+});
+
 export const titleInput = style({
   width: "100%",
   height: "5rem",
   borderRadius: "12px",
   ...themeVars.text.F17,
   paddingLeft: "2rem",
+  paddingRight: "4rem",
   color: themeVars.color.white[100],
   background: themeVars.color.gradient.darkgray_op,
   selectors: {
@@ -42,7 +48,7 @@ export const titleInput = style({
     "&:focus": {
       outline: "none",
       backgroundColor: themeVars.color.white[100],
-      boxShadow: "0 0 5px rgba(255, 255, 255, 0.5)", // 기본적인 흐림 그림자
+      boxShadow: "0 0 5px rgba(255, 255, 255, 0.5)",
       border: `1px blur ${themeVars.color.white[100]}`,
     },
   },
@@ -53,11 +59,14 @@ export const descriptionInput = style({
   height: "10rem",
   borderRadius: "12px",
   ...themeVars.text.F17,
-  paddingLeft: "2rem",
   marginTop: "1.2rem",
   color: themeVars.color.white[100],
   background: themeVars.color.gradient.darkgray_op,
-  paddingBottom: "4rem",
+  padding: "1.4rem 3.9rem 2rem 2rem",
+  resize: "none",
+  whiteSpace: "normal",
+  wordWrap: "break-word",
+  overflowWrap: "break-word",
   selectors: {
     "&:placeholder": {
       color: themeVars.color.white[85],
@@ -65,10 +74,30 @@ export const descriptionInput = style({
     "&:focus": {
       outline: "none",
       backgroundColor: themeVars.color.white[100],
-      boxShadow: "0 0 5px rgba(255, 255, 255, 0.5)", // 기본적인 흐림 그림자
+      boxShadow: "0 0 5px rgba(255, 255, 255, 0.5)",
       border: `1px blur ${themeVars.color.white[100]}`,
     },
   },
+});
+
+export const charCountTitle = style({
+  position: "absolute",
+  right: "1.5rem",
+  top: "50%",
+  transform: "translateY(-50%)",
+  ...themeVars.text.F15,
+  color: themeVars.color.white[30],
+  pointerEvents: "none",
+});
+
+export const charCountDescription = style({
+  position: "absolute",
+  right: "1.5rem",
+  bottom: "10%",
+  transform: "translateY(-20%)",
+  ...themeVars.text.F15,
+  color: themeVars.color.white[30],
+  pointerEvents: "none",
 });
 
 export const buttonContainer = style({
