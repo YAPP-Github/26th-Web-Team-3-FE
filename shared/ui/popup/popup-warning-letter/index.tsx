@@ -1,14 +1,18 @@
 import WarningIcon from "@/shared/assets/icon/warning.svg";
 import Popup from "@/shared/ui/popup";
-import { overlay } from "overlay-kit";
 import * as styles from "./popup-warning-letter.css";
 
 interface PopupWarningLetterProps {
   isOpen: boolean;
   close: () => void;
+  confirm: () => void;
 }
 
-const PopupWarningLetter = ({ isOpen, close }: PopupWarningLetterProps) => {
+const PopupWarningLetter = ({
+  isOpen,
+  close,
+  confirm,
+}: PopupWarningLetterProps) => {
   return (
     <Popup open={isOpen} close={close}>
       <div className={styles.iconWrapper}>
@@ -21,8 +25,8 @@ const PopupWarningLetter = ({ isOpen, close }: PopupWarningLetterProps) => {
         </div>
       </Popup.Title>
       <Popup.Actions>
-        <Popup.Button onClick={overlay.closeAll}>돌아가기</Popup.Button>
-        <Popup.Button className={styles.continueButton} onClick={close}>
+        <Popup.Button onClick={close}>돌아가기</Popup.Button>
+        <Popup.Button className={styles.continueButton} onClick={confirm}>
           계속 쓰기
         </Popup.Button>
       </Popup.Actions>

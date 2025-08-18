@@ -14,7 +14,7 @@ import type { CapsuleDetailRes } from "@/shared/types/api/capsule";
 import type { WriteLetterReq } from "@/shared/types/api/letter";
 import { formatOpenDateString } from "@/shared/utils/date";
 import Image from "next/image";
-import { overlay } from "overlay-kit";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Modal from "../modal";
 import { useImageUpload } from "./_hooks/use-image-upload";
@@ -34,11 +34,14 @@ const WriteModal = ({
   onSuccess,
 }: WriteModalProps) => {
   const { mutate: writeLetterMutate, isPending } = useWriteLetter();
+  const [isWarningOpen, setIsWarningOpen] = useState(false);
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
   const {
     register,
     handleSubmit,
     setValue,
+    getValues,
     formState: { errors },
   } = useForm<WriteLetterReq>({
     defaultValues: {
@@ -55,31 +58,25 @@ const WriteModal = ({
     });
 
   const onSubmit = (data: WriteLetterReq) => {
-    overlay.open(({ isOpen, close }) => (
-      <PopupConfirmLetter
-        openDate={formatOpenDateString(capsuleData.result.openAt)}
-        isOpen={isOpen}
-        close={close}
-        onConfirm={() => {
-          writeLetterMutate(data, {
-            onSuccess: () => {
-              close();
-              onClose();
+    setIsConfirmOpen(true);
+  };
+
+  const handleConfirm = (data: WriteLetterReq) => {
+    writeLetterMutate(data, {
+      onSuccess: () => {
+        setIsConfirmOpen(false);
+        onClose();
         onSuccess();
-            },
-            onError: (error) => {
-              console.error("편지 제출 실패:", error);
-            },
-          });
-        }}
-      />
-    ));
+      },
+      onError: (error) => {
+        setIsConfirmOpen(false);
+        console.error("편지 제출 실패:", error);
+      },
+    });
   };
 
   const handleCloseWithWarning = () => {
-    overlay.open(({ isOpen, close }) => (
-      <PopupWarningLetter isOpen={isOpen} close={close} />
-    ));
+    setIsWarningOpen(true);
   };
 
   return (
@@ -187,6 +184,24 @@ const WriteModal = ({
           </RevealMotion>
         </div>
       </form>
+      {isWarningOpen && (
+        <PopupWarningLetter
+          isOpen={isWarningOpen}
+          close={() => {
+            setIsWarningOpen(false);
+            onClose();
+          }}
+          confirm={() => setIsWarningOpen(false)}
+        />
+      )}
+      {isConfirmOpen && (
+        <PopupConfirmLetter
+          openDate={formatOpenDateString(capsuleData.result.openAt)}
+          isOpen={isConfirmOpen}
+          close={() => setIsConfirmOpen(false)}
+          onConfirm={() => handleConfirm(getValues())}
+        />
+      )}
     </Modal>
   );
 };
