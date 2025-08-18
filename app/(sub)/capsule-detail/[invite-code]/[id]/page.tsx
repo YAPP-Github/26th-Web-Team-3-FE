@@ -51,7 +51,6 @@ const CapsuleDetailPage = () => {
   }
 
   const { result } = data;
-  const { days, hours, minutes, openDate } = result.remainingTime;
 
   const handleLikeToggle = (nextLiked: boolean) => {
     if (!isLoggedIn) {
