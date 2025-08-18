@@ -5,7 +5,7 @@ import Lettie from "@/shared/assets/character/lettie_animate.png";
 import Button from "@/shared/ui/button";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import Image from "next/image";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useController } from "react-hook-form";
 
 import * as styles from "./intro-step.css";
 
@@ -14,7 +14,17 @@ interface Props {
 }
 
 const IntroStep = ({ handleNextStep }: Props) => {
-  const { register, getValues } = useFormContext();
+  const { control, getValues } = useFormContext();
+  
+  const { field: titleField } = useController({
+    name: "title",
+    control,
+  });
+
+  const { field: subtitleField } = useController({
+    name: "subtitle",
+    control
+  });
 
   const handleClickNext = () => {
     const title = getValues("title");
@@ -47,21 +57,26 @@ const IntroStep = ({ handleNextStep }: Props) => {
         unoptimized
       />
       <RevealMotion delay={0.8}>
-        <input
-          type="text"
-          placeholder="타임캡슐 이름"
-          className={styles.titleInput}
-          maxLength={15}
-          {...register("title", { required: "타임캡슐 이름을 입력해주세요" })}
-        />
+        <div className={styles.inputContainer}>
+          <input
+            type="text"
+            placeholder="타임캡슐 이름"
+            className={styles.titleInput}
+            maxLength={15}
+            {...titleField}
+          />
+          <span className={styles.charCountTitle}>{titleField.value?.length || 0}/15</span>
+        </div>
 
-        <input
-          type="text"
-          placeholder="내 타임캡슐을 소개해보세요."
-          className={styles.descriptionInput}
-          maxLength={80}
-          {...register("subtitle")}
-        />
+        <div className={styles.inputContainer}>
+          <textarea
+            placeholder="내 타임캡슐을 소개해보세요."
+            className={styles.descriptionInput}
+            maxLength={80}
+            {...subtitleField}
+          />
+          <span className={styles.charCountDescription}>{subtitleField.value?.length || 0}/80</span>
+        </div>
       </RevealMotion>
       <RevealMotion delay={1.2}>
         <div className={styles.buttonContainer}>

@@ -34,7 +34,7 @@ export const button = style({
   padding: "0.8rem 2.4rem",
   borderRadius: "13px",
   height: "5rem",
-  backgroundColor: themeVars.color.black[70],
+  backgroundColor: themeVars.color.black[80],
   width: "16rem",
   whiteSpace: "nowrap",
   zIndex: themeVars.zIndex.home.content,

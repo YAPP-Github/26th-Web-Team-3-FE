@@ -9,6 +9,7 @@ export const menuButtonStyle = style({
   alignItems: "center",
   justifyContent: "center",
   gap: "0.5rem",
+  color: themeVars.color.white[85],
   ...screen.md({
     display: "none",
   }),

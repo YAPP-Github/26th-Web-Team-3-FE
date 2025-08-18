@@ -12,7 +12,13 @@ const CapsuleImage = ({ imageUrl }: CapsuleImageProps) => {
 
   return (
     <div className={styles.container}>
-      <Image src={imageUrl} width={252} height={280} alt="apng" unoptimized />
+      <Image
+        src={imageUrl}
+        className={styles.image}
+        width={252}
+        height={280}
+        alt="apng"
+        unoptimized />
     </div>
   );
 };
