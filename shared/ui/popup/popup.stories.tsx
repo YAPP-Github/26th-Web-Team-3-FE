@@ -156,7 +156,11 @@ export const WarningLetter: Story = {
       }}
       onClick={() => {
         overlay.open(({ isOpen, close }) => (
-          <PopupWarningLetter isOpen={isOpen} close={close} />
+          <PopupWarningLetter
+            isOpen={isOpen}
+            close={close}
+            confirm={() => console.log("확인")}
+          />
         ));
       }}
     >
