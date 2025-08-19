@@ -98,9 +98,10 @@ const CapsuleDetailPage = () => {
                       ));
                     }}
                   />
-                  <Dropdown.Item
-                    label="캡슐 떠나기"
-                    className={styles.textHighlight}
+                  {result.isJoined && (
+                    <Dropdown.Item
+                      label="캡슐 떠나기"
+                      className={styles.textHighlight}
                     onClick={() => {
                       overlay.open(({ isOpen, close }) => (
                         <PopupWarningCapsule
@@ -108,8 +109,9 @@ const CapsuleDetailPage = () => {
                           onConfirm={() => handleLeaveCapsule(close)}
                         />
                       ));
-                    }}
-                  />
+                      }}
+                    />
+                  )}
                 </Dropdown.Content>
               </Dropdown>
             </>
