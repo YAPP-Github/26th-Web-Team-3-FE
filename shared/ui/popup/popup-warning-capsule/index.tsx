@@ -4,10 +4,13 @@ import * as styles from "./popup-warning-capsule.css";
 
 interface PopupWarningCapsuleProps {
   isOpen: boolean;
-  close: () => void;
+  onConfirm: () => void;
 }
 
-const PopupWarningCapsule = ({ isOpen, close }: PopupWarningCapsuleProps) => {
+const PopupWarningCapsule = ({
+  isOpen,
+  onConfirm,
+}: PopupWarningCapsuleProps) => {
   return (
     <Popup open={isOpen} close={close}>
       <div className={styles.iconWrapper}>
@@ -21,7 +24,7 @@ const PopupWarningCapsule = ({ isOpen, close }: PopupWarningCapsuleProps) => {
       </Popup.Content>
       <Popup.Actions>
         <Popup.Button onClick={close}>돌아가기</Popup.Button>
-        <Popup.Button className={styles.continueButton} onClick={close}>
+        <Popup.Button className={styles.continueButton} onClick={onConfirm}>
           떠나기
         </Popup.Button>
       </Popup.Actions>

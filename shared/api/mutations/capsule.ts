@@ -36,3 +36,22 @@ export const useLikeToggle = () => {
     },
   });
 };
+
+export const useLeaveCapsule = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: string) => {
+      await apiClient.delete(ENDPOINTS.LEAVE_CAPSULE(id));
+      return id;
+    },
+    onSuccess: (id: string) => {
+      queryClient.invalidateQueries({
+        queryKey: [
+          capsuleQueryKeys.detail(id),
+          capsuleQueryKeys.lists(),
+          capsuleQueryKeys.my(),
+        ],
+      });
+    },
+  });
+};

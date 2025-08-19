@@ -29,7 +29,7 @@ const Explore = () => {
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending } =
     useInfiniteQuery(
-      capsuleQueryOptions.infiniteCapsuleLists(selectedSort, selectedTab),
+      capsuleQueryOptions.capsuleLists(selectedSort, selectedTab),
     );
 
   const handleSelect = (value: string) => {

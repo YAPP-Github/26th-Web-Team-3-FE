@@ -27,7 +27,7 @@ const MyCapsule = () => {
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending } =
     useInfiniteQuery(
-      capsuleQueryOptions.infiniteMyCapsuleList(selectedSort, selectedTab),
+      capsuleQueryOptions.myCapsuleList(selectedSort, selectedTab),
     );
 
   const onIntersect = useCallback(
