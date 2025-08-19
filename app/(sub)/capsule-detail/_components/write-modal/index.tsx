@@ -62,6 +62,7 @@ const WriteModal = ({
   };
 
   const handleConfirm = (data: WriteLetterReq) => {
+    if (isPending) return;
     writeLetterMutate(data, {
       onSuccess: () => {
         setIsConfirmOpen(false);

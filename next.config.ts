@@ -25,7 +25,7 @@ const baseConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "s3-dev.lettie.me",
-        pathname: "**",
+        pathname: "/**",
       },
       {
         protocol: "https",
