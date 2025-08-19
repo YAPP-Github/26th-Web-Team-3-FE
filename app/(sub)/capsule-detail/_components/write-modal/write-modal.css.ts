@@ -146,13 +146,9 @@ export const imageButton = style({
 export const inputSection = style({
   display: "flex",
   flexDirection: "column",
-  width: "45rem",
+  width: "100%",
   margin: "0 auto",
   gap: "0.6rem",
-
-  ...screen.md({
-    width: "100%",
-  }),
 });
 
 export const senderInput = style({
@@ -179,12 +175,8 @@ export const textareaContainer = style({
   alignItems: "center",
   justifyContent: "center",
 
-  width: "45rem",
+  width: "100%",
   margin: "0 auto",
-
-  ...screen.md({
-    width: "100%",
-  }),
 });
 
 export const imageAddButton = style({

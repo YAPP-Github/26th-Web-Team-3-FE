@@ -26,9 +26,9 @@ export const zIndexTheme = {
     image: "-1",
     content: "50",
   },
-  
+
   modal: {
-    content: "200",
+    content: "10",
   },
 
 } as const;

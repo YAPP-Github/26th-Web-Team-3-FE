@@ -24,8 +24,13 @@ const baseConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "s3-dev.lettie.me",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "s3.lettie.me",
-        pathname: "**",
+        pathname: "/**",
       },
     ],
   },

@@ -3,13 +3,14 @@ import CheckIcon from "@/shared/assets/icon/check.svg";
 import ShareIcon from "@/shared/assets/icon/share.svg";
 import Button from "@/shared/ui/button";
 import Chip from "@/shared/ui/chip";
+import InfoToast from "@/shared/ui/info-toast";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import { useTimeout } from "react-simplikit";
 
 import WriteModal from "../write-modal";
 
 import ShakeYMotion from "@/shared/ui/motion/shakeY-motion";
-import { overlay } from "overlay-kit";
 
 import { PATH } from "@/shared/constants/path";
 import type { CapsuleDetailRes } from "@/shared/types/api/capsule";
@@ -25,19 +26,31 @@ const ResponsiveFooter = ({
   capsuleData,
   isLoggedIn,
 }: ResponsiveFooterProps) => {
-  const [isCopied, setIsCopied] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-
+  const [isCopied, setIsCopied] = useState(false);
+  const [isWriteModalOpen, setIsWriteModalOpen] = useState(false);
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
   const { status, remainingTime } = capsuleData.result;
+
+  useTimeout(
+    () => {
+      setShowSuccessToast(false);
+    },
+    showSuccessToast ? 3000 : undefined,
+  );
+
+  useTimeout(
+    () => {
+      setIsCopied(false);
+    },
+    isCopied ? 2000 : undefined,
+  );
 
   const handleClickShareButton = () => {
     navigator.clipboard.writeText(window.location.href);
     setIsCopied(true);
-    setTimeout(() => {
-      setIsCopied(false);
-    }, 2000);
   };
 
   const handleWriteButtonClick = () => {
@@ -50,9 +63,7 @@ const ResponsiveFooter = ({
       return;
     }
 
-    overlay.open(({ isOpen, close }) => (
-      <WriteModal capsuleData={capsuleData} isOpen={isOpen} onClose={close} />
-    ));
+    setIsWriteModalOpen(true);
   };
 
   const handleOpenCapsuleClick = () => {
@@ -160,6 +171,16 @@ const ResponsiveFooter = ({
     <div className={styles.container}>
       <div className={styles.buttonContainer}>{renderButtons()}</div>
       {renderTimeInfo()}
+
+      {isWriteModalOpen && (
+        <WriteModal
+          capsuleData={capsuleData}
+          isOpen={isWriteModalOpen}
+          onClose={() => setIsWriteModalOpen(false)}
+          onSuccess={() => setShowSuccessToast(true)}
+        />
+      )}
+      {showSuccessToast && <InfoToast status="WRITABLE" />}
     </div>
   );
 };

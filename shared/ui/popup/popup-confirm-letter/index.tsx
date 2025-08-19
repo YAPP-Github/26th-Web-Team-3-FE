@@ -20,10 +20,10 @@ const PopupConfirmLetter = ({
   return (
     <Popup open={isOpen} close={close}>
       <Popup.Title className={styles.title}>
-        <p>한 번 편지를 담으면</p>
-        <p>꺼낼 수 없어요</p>
+        <p>캡슐이 열리는 날</p>
+        <p>이메일로 알려드려요!</p>
       </Popup.Title>
-      <Popup.Content>
+      <Popup.Content className={styles.openDate}>
         <p>{openDate}에 열려요</p>
       </Popup.Content>
       <Image src={Lettie} alt="apng" width={200} height={200} />
