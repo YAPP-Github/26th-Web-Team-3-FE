@@ -4,6 +4,7 @@ import BackIcon from "@/shared/assets/icon/left.svg";
 import { cn } from "@/shared/utils/cn";
 import { useRouter } from "next/navigation";
 import type { ReactElement } from "react";
+import { PATH } from "@/shared/constants/path";
 import * as styles from "./navbar-detail.css";
 
 interface NavbarDetailProps {
@@ -15,11 +16,19 @@ const NavbarDetail = ({ renderRight, className }: NavbarDetailProps) => {
   const router = useRouter();
   const renderRightElement = renderRight ? renderRight() : null;
 
+  const handleBack = () => {
+    if (window.history.length <= 1) {
+      router.push(PATH.EXPLORE);
+    } else {
+      router.back();
+    }
+  };
+
   return (
     <div className={styles.container}>
       <button
         type="button"
-        onClick={() => router.back()}
+        onClick={handleBack}
         className={styles.backButton}
       >
         <BackIcon />
