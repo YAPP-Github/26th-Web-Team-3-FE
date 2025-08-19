@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-
+import { useEffect, useState } from "react";
+import { useOutsideClickEffect } from "react-simplikit";
 import { themeClass } from "@/shared/styles/base/theme.css";
 import { cn } from "@/shared/utils/cn";
 import type { ComponentProps, ReactNode } from "react";
@@ -41,6 +41,7 @@ interface PopupRootProps extends PopupProps {
 }
 
 const PopupRoot = ({ children, className, open, close }: PopupRootProps) => {
+  const [wrapperEl, setWrapperEl] = useState<HTMLDivElement | null>(null);
   useEffect(() => {
     const handleEscKey = (event: KeyboardEvent) => {
       if (event.key === "Escape" && close) {
@@ -54,15 +55,20 @@ const PopupRoot = ({ children, className, open, close }: PopupRootProps) => {
     }
   }, [open, close]);
 
+  useOutsideClickEffect(wrapperEl, () => {
+    close();
+  });
+
   if (typeof window === "undefined" || !open) return null;
 
   return createPortal(
-    <div className={themeClass}>
+    <div className={themeClass} >
       <div className={styles.dim}>
         <div
           className={cn(styles.root, className)}
           role="dialog"
           aria-modal="true"
+          ref={setWrapperEl}
         >
           {children}
         </div>
