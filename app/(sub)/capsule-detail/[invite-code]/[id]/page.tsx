@@ -128,7 +128,7 @@ const CapsuleDetailPage = () => {
       <CapsuleImage imageUrl={result.beadVideoUrl} />
       <div className={styles.container}>
         <RevealMotion delay={0.8}>
-          <CaptionSection description={result.subtitle} />
+          {result.subtitle && <CaptionSection description={result.subtitle} />}
         </RevealMotion>
         <RevealMotion delay={1.2}>
           <OpenInfoSection openAt={formatDateTime(result.openAt)} />
