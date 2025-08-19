@@ -38,6 +38,11 @@ export const capsuleQueryKeys = {
     sort,
     filter,
   ],
+  searchList: (keyword: string) => [
+    ...capsuleQueryKeys.all(),
+    "searchList",
+    keyword,
+  ],
 } as const;
 
 export const capsuleQueryOptions = {
@@ -92,6 +97,18 @@ export const capsuleQueryOptions = {
       },
       initialPageParam: 0,
     }),
+
+  searchCapsuleList: (keyword: string) =>
+    infiniteQueryOptions({
+      queryKey: capsuleQueryKeys.searchList(keyword),
+      queryFn: ({ pageParam = 0 }) =>
+        getSearchCapsuleLists(keyword, pageParam, 20),
+      getNextPageParam: (lastPage) => {
+        const { pageNumber, totalPages } = lastPage.result;
+        return pageNumber < totalPages - 1 ? pageNumber + 1 : undefined;
+      },
+      initialPageParam: 0,
+    }),
 } as const;
 
 const getCapsuleDetail = (id: string) => {
@@ -106,6 +123,16 @@ const getCapsuleLists = (
 ) => {
   return apiClient.get<CapsuleListsRes>(
     ENDPOINTS.CAPSULE_LISTS(page, size, sort, type),
+  );
+};
+
+const getSearchCapsuleLists = (
+  keyword: string,
+  page?: number,
+  size?: number,
+) => {
+  return apiClient.get<CapsuleListsRes>(
+    ENDPOINTS.CAPSULE_SEARCH_LISTS(keyword, page, size),
   );
 };
 
