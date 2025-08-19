@@ -11,6 +11,7 @@ import LoadingSpinner from "@/shared/ui/loading-spinner";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import NavbarDetail from "@/shared/ui/navbar/navbar-detail";
 import PopupReport from "@/shared/ui/popup/popup-report";
+import PopupWarningCapsule from "@/shared/ui/popup/popup-warning-capsule";
 import { formatDateTime } from "@/shared/utils/date";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
@@ -87,9 +88,11 @@ const CapsuleDetailPage = () => {
                       ));
                     }}
                   />
-                  <Link href={PATH.HOME}>
-                    <Dropdown.Item label="나가기" />
-                  </Link>
+                    <Dropdown.Item label="캡슐 떠나기" className={styles.textHighlight} onClick={() => {
+                      overlay.open(({ isOpen, close }) => (
+                        <PopupWarningCapsule isOpen={isOpen} close={close} />
+                      ));
+                    }}/>
                 </Dropdown.Content>
               </Dropdown>
             </>
