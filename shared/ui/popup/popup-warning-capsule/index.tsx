@@ -4,11 +4,13 @@ import * as styles from "./popup-warning-capsule.css";
 
 interface PopupWarningCapsuleProps {
   isOpen: boolean;
+  close: () => void;
   onConfirm: () => void;
 }
 
 const PopupWarningCapsule = ({
   isOpen,
+  close,
   onConfirm,
 }: PopupWarningCapsuleProps) => {
   return (
@@ -23,7 +25,7 @@ const PopupWarningCapsule = ({
         <p>작성한 편지도 확인할 수 없습니다.</p>
       </Popup.Content>
       <Popup.Actions>
-        <Popup.Button onClick={close}>돌아가기</Popup.Button>
+        <Popup.Button onClick={close}>취소</Popup.Button>
         <Popup.Button className={styles.continueButton} onClick={onConfirm}>
           떠나기
         </Popup.Button>

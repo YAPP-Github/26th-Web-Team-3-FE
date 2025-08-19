@@ -106,6 +106,7 @@ const CapsuleDetailPage = () => {
                       overlay.open(({ isOpen, close }) => (
                         <PopupWarningCapsule
                           isOpen={isOpen}
+                          close={close}
                           onConfirm={() => handleLeaveCapsule(close)}
                         />
                       ));
