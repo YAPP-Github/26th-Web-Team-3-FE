@@ -3,12 +3,12 @@ import { useSocialLogin } from "@/app/(auth)/_api/auth.queries";
 import LoadingSpinner from "@/shared/ui/loading-spinner";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+import { oauthUtils } from "@/shared/utils/oauth";
 
 export default function CallbackPage() {
   const searchParams = useSearchParams();
   const params = useParams();
   const code = searchParams.get("code");
-  const nextUrl = searchParams.get("next");
   const provider = params.provider as "naver" | "google";
   const router = useRouter();
   const { mutate, isPending, isError } = useSocialLogin();
@@ -20,16 +20,13 @@ export default function CallbackPage() {
       { provider: provider, code: code },
       {
         onSuccess: () => {
-          const redirectUrl =
-            nextUrl?.startsWith("/") && !nextUrl.startsWith("//")
-              ? nextUrl
-              : "/";
+          const redirectUrl = oauthUtils.getAndClearNextUrl();
           router.replace(redirectUrl);
         },
         onError: () => {},
       },
     );
-  }, [code, provider, nextUrl]);
+  }, [code, provider]);
 
   if (isPending) return <LoadingSpinner loading={isPending} />;
 

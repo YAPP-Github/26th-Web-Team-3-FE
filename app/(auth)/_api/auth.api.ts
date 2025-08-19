@@ -10,17 +10,12 @@ const AUTH_ENDPOINTS = {
 const AUTH_REDIRECT_URL = (provider: "naver" | "google") =>
   `${process.env.NEXT_PUBLIC_REDIRECT_URL}/${provider}`;
 
-export const getOAuthUrl = async (
-  provider: "naver" | "google",
-  next?: string,
-) => {
-  const redirectUrl = new URL(AUTH_REDIRECT_URL(provider));
-  if (next) {
-    redirectUrl.searchParams.set("next", next);
-  }
+export const getOAuthUrl = async (provider: "naver" | "google") => {
+  const redirectUrl = AUTH_REDIRECT_URL(provider);
+
   const response = await apiClient.get<OAuthRes>(
     AUTH_ENDPOINTS.OAUTH_URL(provider),
-    { searchParams: { redirectUrl: redirectUrl.toString() } },
+    { searchParams: { redirectUrl: redirectUrl } }
   );
   return response.result.url;
 };
@@ -33,7 +28,7 @@ export const postLogin = async (provider: "naver" | "google", code: string) => {
         authorizationCode: code,
         redirectUrl: AUTH_REDIRECT_URL(provider),
       },
-    },
+    }
   );
   return response.result;
 };

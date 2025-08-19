@@ -15,11 +15,13 @@ const rotateMirrorAnimation = keyframes({
 });
 
 export const container = style({
+  position: "relative",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   gap: "1rem",
   paddingTop: "3.2rem",
+  zIndex: themeVars.zIndex.home.content,
   ...screen.md({
     flexDirection: "row",
     justifyContent: "center",
@@ -32,9 +34,10 @@ export const button = style({
   padding: "0.8rem 2.4rem",
   borderRadius: "13px",
   height: "5rem",
-  backgroundColor: themeVars.color.black[70],
+  backgroundColor: themeVars.color.black[80],
   width: "16rem",
   whiteSpace: "nowrap",
+  zIndex: themeVars.zIndex.home.content,
 });
 
 export const exploreButton = style({

@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postLogin, postLogout } from "./auth.api";
 
 export const useSocialLogin = () => {
@@ -14,7 +14,11 @@ export const useSocialLogin = () => {
 };
 
 export const useLogout = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: postLogout,
+    onSuccess: () => {
+      queryClient.clear();
+    },
   });
 };

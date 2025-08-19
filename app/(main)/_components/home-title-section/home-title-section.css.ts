@@ -12,6 +12,7 @@ export const container = style({
   ...screen.md({
     paddingTop: "16.5rem",
   }),
+  zIndex: themeVars.zIndex.home.content,
 });
 
 export const homeTitleSection = style({
@@ -23,4 +24,5 @@ export const homeTitleSection = style({
   ...screen.md({
     fontSize: "4.5rem",
   }),
+  zIndex: themeVars.zIndex.home.content,
 });

@@ -22,8 +22,11 @@ export const contentsContainer = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  marginTop: "4.8rem",
+  marginTop: "3.6rem",
   gap: "1rem",
+  ...screen.md({
+    marginTop: "7.2rem",
+  }),
 });
 
 export const title = style({
@@ -38,8 +41,8 @@ export const caption = style({
 });
 
 export const lettieImage = style({
-  width: "28rem",
-  height: "28rem",
+  width: "24rem",
+  height: "24rem",
   ...screen.md({
     width: "34rem",
     height: "34rem",
