@@ -88,13 +88,6 @@ const WriteModal = ({
       alert("편지 내용을 입력해주세요.");
       return;
     }
-    
-    // 이미지 업로드 중이면 제출 불가
-    if (isUploading) {
-      alert("이미지 업로드 중입니다. 잠시만 기다려주세요.");
-      return;
-    }
-    
     setIsConfirmOpen(true);
   };
 

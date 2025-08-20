@@ -79,6 +79,12 @@ export const title = style({
   borderRadius: "8px",
   transition: "all 0.3s ease",
   zIndex: 1,
+  selectors: {
+    "&:disabled": {
+      color: themeVars.color.white[30],
+      cursor: "not-allowed",
+    },
+  },
 });
 
 export const capsuleInfo = style({
