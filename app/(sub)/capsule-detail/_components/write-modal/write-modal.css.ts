@@ -7,16 +7,13 @@ export const container = style({
   background: themeVars.color.black["90_bg"],
   paddingLeft: "3.2rem",
   paddingRight: "3.2rem",
-  width: "100vw",
-  height: "100vh",
-
   borderRadius: 0,
-
+  width: "100vw",
   ...screen.md({
     width: "60rem",
-    maxWidth: "100vw",
-    height: "100vh",
+    height: "73.5rem",
   }),
+  position: "relative",
 });
 
 export const sprinkleWrapper = style({
@@ -84,6 +81,12 @@ export const title = style({
   borderRadius: "8px",
   transition: "all 0.3s ease",
   zIndex: 1,
+  selectors: {
+    "&:disabled": {
+      color: themeVars.color.white[30],
+      cursor: "not-allowed",
+    },
+  },
 });
 
 export const capsuleInfo = style({
@@ -155,6 +158,7 @@ export const senderInput = style({
   background: themeVars.color.white[7],
   borderRadius: "12px",
   padding: "1.2rem 2.0rem",
+  width: "100%",
   color: themeVars.color.white[85],
   "::placeholder": {
     color: themeVars.color.white[30],
@@ -174,15 +178,11 @@ export const textareaContainer = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-
   width: "100%",
   margin: "0 auto",
 });
 
 export const imageAddButton = style({
-  position: "absolute",
-  bottom: "1.4rem",
-  left: "0.8rem",
   display: "flex",
   alignItems: "center",
   gap: "0.8rem",
@@ -211,7 +211,8 @@ export const plusIconWrapper = style({
   padding: "0.7rem",
 });
 
-export const textarea = style({
+export const textareaDiv = style({
+  position: "relative",
   background: themeVars.color.gradient.darkgray_bg_horizontal,
   border: "none",
   borderRadius: "12px",
@@ -220,9 +221,17 @@ export const textarea = style({
   width: "100%",
   height: "100%",
   resize: "none",
+  boxSizing: "border-box",
+  overflow: "scroll",
   "::placeholder": {
     color: themeVars.color.white[30],
   },
+});
+export const textarea = style({
+  color: themeVars.color.white[85],
+  width: "100%",
+  resize: "none",
+  height: "27rem",
 });
 
 export const imagePreviewContainer = style({
@@ -256,4 +265,37 @@ export const errorMessage = style({
   color: themeVars.color.white[100],
   fontWeight: "400",
   zIndex: 1,
+});
+
+export const imageAddButtonContainer = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  position: "absolute",
+  bottom: "1.4rem",
+  left: "0.8rem",
+});
+
+export const charCount = style({
+  position: "absolute",
+  right: "1.5rem",
+  bottom: "1.5rem",
+  ...themeVars.text.F15,
+  color: themeVars.color.white[30],
+  pointerEvents: "none",
+});
+
+export const senderInputContainer = style({
+  position: "relative",
+  width: "100%",
+});
+
+export const senderCharCount = style({
+  position: "absolute",
+  right: "1.5rem",
+  top: "50%",
+  transform: "translateY(-50%)",
+  ...themeVars.text.F15,
+  color: themeVars.color.white[30],
+  pointerEvents: "none",
 });

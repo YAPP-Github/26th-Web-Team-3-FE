@@ -1,7 +1,7 @@
 import type { Letter } from "@/shared/types/api/letter";
 import HoverMotion from "@/shared/ui/motion/hover-motion";
 import Image from "next/image";
-import { overlay } from "overlay-kit";
+import { useOverlay } from "@/shared/hooks/use-overlay";
 import LetterDetailModal from "../letter-detail-modal";
 import * as styles from "./grid-letter-card.css";
 
@@ -11,8 +11,10 @@ interface LetterCardProps {
 }
 
 const GridLetterCard = ({ letter, imageUrl }: LetterCardProps) => {
+  const { open } = useOverlay();
+
   const handleClick = () => {
-    overlay.open(({ isOpen, close }) => (
+    open(({ isOpen, close }) => (
       <LetterDetailModal
         letter={letter}
         imageUrl={imageUrl}

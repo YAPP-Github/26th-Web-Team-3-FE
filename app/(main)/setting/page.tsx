@@ -9,8 +9,7 @@ import { useRouter } from "next/navigation";
 import SettingItem from "./_components/setting-item";
 import SettingSection from "./_components/setting-section";
 import UserGreetingSection from "./_components/user-greeting-section";
-
-import { overlay } from "overlay-kit";
+import { useOverlay } from "@/shared/hooks/use-overlay";
 import * as styles from "./page.css";
 
 const Setting = () => {
@@ -18,6 +17,7 @@ const Setting = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const { data: userInfo } = useQuery(userQueryOptions.userInfo({}));
+  const { open } = useOverlay();
 
   const handleLogout = () => {
     logout(undefined, {
@@ -38,7 +38,7 @@ const Setting = () => {
         </SettingSection>
         <SettingSection category="고객센터">
           <SettingItem onClick={() =>
-              overlay.open(({ isOpen, close }) => (
+              open(({ isOpen, close }) => (
                 <PopupReport
                   isOpen={isOpen}
                   close={close}
@@ -47,7 +47,7 @@ const Setting = () => {
             }>문의하기</SettingItem>
           <SettingItem
             onClick={() =>
-              overlay.open(({ isOpen, close }) => (
+              open(({ isOpen, close }) => (
                 <PopupLogout
                   isOpen={isOpen}
                   close={close}

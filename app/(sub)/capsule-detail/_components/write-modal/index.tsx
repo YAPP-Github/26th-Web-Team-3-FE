@@ -14,8 +14,8 @@ import type { CapsuleDetailRes } from "@/shared/types/api/capsule";
 import type { WriteLetterReq } from "@/shared/types/api/letter";
 import { formatOpenDateString } from "@/shared/utils/date";
 import Image from "next/image";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useState, useEffect } from "react";
+import { useForm, useController } from "react-hook-form";
 import Modal from "../modal";
 import { useImageUpload } from "./_hooks/use-image-upload";
 import * as styles from "./write-modal.css";
@@ -38,10 +38,11 @@ const WriteModal = ({
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
   const {
-    register,
     handleSubmit,
     setValue,
     getValues,
+    control,
+    reset,
     formState: { errors },
   } = useForm<WriteLetterReq>({
     defaultValues: {
@@ -52,12 +53,41 @@ const WriteModal = ({
     },
   });
 
+  const { field: contentField } = useController({
+    name: "content",
+    control,
+  });
+
+  const { field: fromField } = useController({
+    name: "from",
+    control,
+  });
+
   const { uploadedImageUrl, handleImageUpload, removeImage, isUploading } =
     useImageUpload({
       onObjectKeyChange: (value) => setValue("objectKeys", value),
     });
 
+  // 모달이 열릴 때마다 폼 초기화
+  useEffect(() => {
+    if (isOpen) {
+      reset({
+        capsuleId: capsuleData.result.id.toString(),
+        content: "",
+        from: "",
+        objectKeys: "",
+      });
+      if (uploadedImageUrl) {
+        removeImage();
+      }
+    }
+  }, [isOpen]);
+
   const onSubmit = (data: WriteLetterReq) => {
+    if (!data.content?.trim()) {
+      alert("편지 내용을 입력해주세요.");
+      return;
+    }
     setIsConfirmOpen(true);
   };
 
@@ -83,10 +113,6 @@ const WriteModal = ({
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
-        <div className={styles.sprinkleWrapper}>
-          <SprinkleContainer />
-        </div>
-
         <div className={styles.header}>
           <button
             type="button"
@@ -95,8 +121,12 @@ const WriteModal = ({
           >
             닫기
           </button>
-          <button type="submit" className={styles.title} disabled={isPending}>
-            {isPending ? "제출 중..." : "편지담기"}
+          <button 
+            type="submit" 
+            className={styles.title} 
+            disabled={isPending || isUploading}
+          >
+            {isPending ? "제출 중..." : isUploading ? "업로드 중..." : "편지담기"}
           </button>
         </div>
 
@@ -121,20 +151,18 @@ const WriteModal = ({
 
           <RevealMotion delay={0.6}>
             <div className={styles.textareaContainer}>
-              <textarea
-                className={styles.textarea}
-                placeholder="나누고 싶은 생각을 공유해보세요!"
-                {...register("content", {
-                  required: "편지 내용을 입력해주세요.",
-                })}
-              />
-
-              {errors.content && (
-                <div className={styles.errorMessage}>
-                  {errors.content.message}
-                </div>
-              )}
-
+              <div className={styles.textareaDiv}>
+                <textarea
+                  className={styles.textarea}
+                  placeholder="나누고 싶은 생각을 공유해보세요!"
+                  {...contentField}
+                  maxLength={1000}
+                />
+                <span className={styles.charCount}>
+                  {contentField.value?.length || 0}/1000
+                </span>
+              </div>
+              
               {uploadedImageUrl ? (
                 <div className={styles.imagePreviewContainer}>
                   <button
@@ -153,20 +181,22 @@ const WriteModal = ({
                   />
                 </div>
               ) : (
-                <button
-                  type="button"
-                  className={styles.imageAddButton}
-                  onClick={handleImageUpload}
-                  disabled={isUploading}
-                  aria-label="이미지 추가"
-                >
-                  <div className={styles.plusIconWrapper}>
-                    <Plus className={styles.plusIcon} />
-                  </div>
-                  <span className={styles.imageCaption}>
-                    {isUploading ? "업로드 중..." : "이미지 추가"}
-                  </span>
-                </button>
+                <div className={styles.imageAddButtonContainer}>
+                  <button
+                    type="button"
+                    className={styles.imageAddButton}
+                    onClick={handleImageUpload}
+                    disabled={isUploading}
+                    aria-label="이미지 추가"
+                  >
+                    <div className={styles.plusIconWrapper}>
+                      <Plus className={styles.plusIcon} />
+                    </div>
+                    <span className={styles.imageCaption}>
+                      {isUploading ? "업로드 중..." : "이미지 추가"}
+                    </span>
+                  </button>
+                </div>
               )}
             </div>
           </RevealMotion>
@@ -174,13 +204,19 @@ const WriteModal = ({
           <RevealMotion delay={0.9}>
             <div className={styles.inputSection}>
               <p className={styles.senderTitle}>보내는 사람</p>
-              <input
-                id="sender-name"
-                type="text"
-                placeholder="꼭 입력하지 않아도 괜찮아요"
-                className={styles.senderInput}
-                {...register("from")}
-              />
+              <div className={styles.senderInputContainer}>
+                <input
+                  id="sender-name"
+                  type="text"
+                  placeholder="꼭 입력하지 않아도 괜찮아요"
+                  className={styles.senderInput}
+                  {...fromField}
+                  maxLength={20}
+                />
+                <span className={styles.senderCharCount}>
+                  {fromField.value?.length || 0}/20
+                </span>
+              </div>
             </div>
           </RevealMotion>
         </div>
@@ -200,7 +236,10 @@ const WriteModal = ({
           openDate={formatOpenDateString(capsuleData.result.openAt)}
           isOpen={isConfirmOpen}
           close={() => setIsConfirmOpen(false)}
-          onConfirm={() => handleConfirm(getValues())}
+          onConfirm={() => {
+            const currentData = getValues();
+            handleConfirm(currentData);
+          }}
         />
       )}
     </Modal>

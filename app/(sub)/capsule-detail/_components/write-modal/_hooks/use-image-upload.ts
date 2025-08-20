@@ -1,5 +1,5 @@
 import { useFileUpload } from "@/shared/api/mutations/file";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 interface useImageUploadProps {
   onObjectKeyChange: (value: string) => void;
@@ -57,13 +57,13 @@ export const useImageUpload = ({ onObjectKeyChange }: useImageUploadProps) => {
     });
   };
 
-  const removeImage = () => {
+  const removeImage = useCallback(() => {
     if (uploadedImageUrl) {
       URL.revokeObjectURL(uploadedImageUrl);
     }
     setUploadedImageUrl(null);
     onObjectKeyChange("");
-  };
+  }, [uploadedImageUrl, onObjectKeyChange]);
 
   return {
     uploadedImageUrl,

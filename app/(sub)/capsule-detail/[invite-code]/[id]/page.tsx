@@ -20,7 +20,6 @@ import {
   useRouter,
   useSearchParams,
 } from "next/navigation";
-import { overlay } from "overlay-kit";
 import CapsuleImage from "../../_components/capsule-image";
 import CaptionSection from "../../_components/caption-section";
 import InfoTitle from "../../_components/info-title";
@@ -28,6 +27,8 @@ import OpenInfoSection from "../../_components/open-info-section";
 import ResponsiveFooter from "../../_components/responsive-footer";
 import { useLeaveCapsule } from "@/shared/api/mutations/capsule";
 import * as styles from "./page.css";
+import { oauthUtils } from "@/shared/utils/oauth";
+import { useOverlay } from "@/shared/hooks/use-overlay";
 
 const CapsuleDetailPage = () => {
   const params = useParams();
@@ -41,6 +42,7 @@ const CapsuleDetailPage = () => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { open } = useOverlay();
 
   const isLoggedIn = !!user?.result;
 
@@ -56,11 +58,9 @@ const CapsuleDetailPage = () => {
 
   const handleLikeToggle = (nextLiked: boolean) => {
     if (!isLoggedIn) {
-      const current = `${pathname}${
-        searchParams?.toString() ? `?${searchParams.toString()}` : ""
-      }`;
-      const loginUrl = `${PATH.LOGIN}?next=${encodeURIComponent(current)}`;
-      router.push(loginUrl);
+      const current = oauthUtils.buildCurrentUrl(pathname, searchParams);
+      oauthUtils.saveNextUrl(current);
+      router.push(PATH.LOGIN);
       return;
     }
     likeToggle({ id: result.id.toString(), isLiked: nextLiked });
@@ -93,7 +93,7 @@ const CapsuleDetailPage = () => {
                   <Dropdown.Item
                     label="신고하기"
                     onClick={() => {
-                      overlay.open(({ isOpen, close }) => (
+                      open(({ isOpen, close }) => (
                         <PopupReport isOpen={isOpen} close={close} />
                       ));
                     }}
@@ -103,7 +103,7 @@ const CapsuleDetailPage = () => {
                       label="캡슐 떠나기"
                       className={styles.textHighlight}
                     onClick={() => {
-                      overlay.open(({ isOpen, close }) => (
+                      open(({ isOpen, close }) => (
                         <PopupWarningCapsule
                           isOpen={isOpen}
                           close={close}

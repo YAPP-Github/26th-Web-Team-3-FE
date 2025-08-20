@@ -1,6 +1,6 @@
 import type { Letter } from "@/shared/types/api/letter";
 import Image from "next/image";
-import { overlay } from "overlay-kit";
+import { useOverlay } from "@/shared/hooks/use-overlay";
 import LetterDetailModal from "../letter-detail-modal";
 import * as styles from "./stack-letter-card.css";
 
@@ -10,8 +10,10 @@ interface LetterCardProps {
 }
 
 const StackLetterCard = ({ letter, imageUrl }: LetterCardProps) => {
+  const { open } = useOverlay();
+
   const handleClick = () => {
-    overlay.open(({ isOpen, close }) => (
+    open(({ isOpen, close }) => (
       <LetterDetailModal
         letter={letter}
         imageUrl={imageUrl}
