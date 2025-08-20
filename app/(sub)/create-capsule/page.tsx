@@ -8,13 +8,13 @@ import type { CreateCapsuleReq } from "@/shared/types/api/capsule";
 import NavbarDetail from "@/shared/ui/navbar/navbar-detail";
 import PopupCancelCreation from "@/shared/ui/popup/popup-cancel-creation";
 import { createISOString, getDate } from "@/shared/utils/date";
-import { overlay } from "overlay-kit";
 import { FormProvider, type SubmitHandler, useForm } from "react-hook-form";
 import CompleteStep from "./_components/steps/complete-step";
 import DateStep from "./_components/steps/date-step";
 import IntroStep from "./_components/steps/intro-step";
 import PrivateStep from "./_components/steps/privacy-step";
 import * as styles from "./page.css";
+import { useOverlay } from "@/shared/hooks/use-overlay";
 
 type CreateCapsuleForm = {
   title: string;
@@ -33,6 +33,7 @@ interface CapsuleInfo {
 const CreateCapsule = () => {
   const { Funnel, Step, setStep, step } = useFunnel();
   const [capsuleInfo, setCapsuleInfo] = useState<CapsuleInfo | null>(null);
+  const { open } = useOverlay();
 
   const { mutate: createCapsuleMutate, isPending } = useCreateCapsule();
 
@@ -87,7 +88,7 @@ const CreateCapsule = () => {
             <button
               className={styles.closeButton}
               onClick={() =>
-                overlay.open(({ isOpen, close }) => (
+                open(({ isOpen, close }) => (
                   <PopupCancelCreation isOpen={isOpen} close={close} />
                 ))
               }

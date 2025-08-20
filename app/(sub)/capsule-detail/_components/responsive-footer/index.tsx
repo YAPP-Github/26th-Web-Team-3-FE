@@ -7,7 +7,6 @@ import InfoToast from "@/shared/ui/info-toast";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useTimeout } from "react-simplikit";
-
 import WriteModal from "../write-modal";
 
 import ShakeYMotion from "@/shared/ui/motion/shakeY-motion";
@@ -17,6 +16,7 @@ import type { CapsuleDetailRes } from "@/shared/types/api/capsule";
 import { formatOpenDate } from "@/shared/utils/date";
 import * as styles from "./responsive-footer.css";
 import { oauthUtils } from "@/shared/utils/oauth";
+import { useOverlay } from "@/shared/hooks/use-overlay";
 
 interface ResponsiveFooterProps {
   capsuleData: CapsuleDetailRes;
@@ -31,9 +31,9 @@ const ResponsiveFooter = ({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isCopied, setIsCopied] = useState(false);
-  const [isWriteModalOpen, setIsWriteModalOpen] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const { status, remainingTime } = capsuleData.result;
+  const { open } = useOverlay();
 
   useTimeout(
     () => {
@@ -62,7 +62,14 @@ const ResponsiveFooter = ({
       return;
     }
 
-    setIsWriteModalOpen(true);
+    open(({ isOpen, close }) => (
+      <WriteModal
+        capsuleData={capsuleData}
+        isOpen={isOpen}
+        onClose={close}
+        onSuccess={() => setShowSuccessToast(true)}
+      />
+    ));
   };
 
   const handleOpenCapsuleClick = () => {
@@ -170,15 +177,6 @@ const ResponsiveFooter = ({
     <div className={styles.container}>
       <div className={styles.buttonContainer}>{renderButtons()}</div>
       {renderTimeInfo()}
-
-      {isWriteModalOpen && (
-        <WriteModal
-          capsuleData={capsuleData}
-          isOpen={isWriteModalOpen}
-          onClose={() => setIsWriteModalOpen(false)}
-          onSuccess={() => setShowSuccessToast(true)}
-        />
-      )}
       {showSuccessToast && <InfoToast status="WRITABLE" />}
     </div>
   );
