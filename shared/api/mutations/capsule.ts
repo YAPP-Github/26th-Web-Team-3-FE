@@ -44,14 +44,14 @@ export const useLeaveCapsule = () => {
       await apiClient.delete(ENDPOINTS.LEAVE_CAPSULE(id));
       return id;
     },
-    onSuccess: (id: string) => {
-      queryClient.invalidateQueries({
-        queryKey: [
-          capsuleQueryKeys.detail(id),
-          capsuleQueryKeys.lists(),
-          capsuleQueryKeys.my(),
-        ],
-      });
+    onSuccess: async (id: string) => {
+      await Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: capsuleQueryKeys.detail(id),
+        }),
+        queryClient.invalidateQueries({ queryKey: capsuleQueryKeys.lists() }),
+        queryClient.invalidateQueries({ queryKey: capsuleQueryKeys.my() }),
+      ]);
     },
   });
 };
