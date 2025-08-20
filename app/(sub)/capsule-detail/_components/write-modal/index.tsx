@@ -14,7 +14,7 @@ import type { CapsuleDetailRes } from "@/shared/types/api/capsule";
 import type { WriteLetterReq } from "@/shared/types/api/letter";
 import { formatOpenDateString } from "@/shared/utils/date";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm, useController } from "react-hook-form";
 import Modal from "../modal";
 import { useImageUpload } from "./_hooks/use-image-upload";
@@ -43,6 +43,7 @@ const WriteModal = ({
     setValue,
     getValues,
     control,
+    reset,
     formState: { errors },
   } = useForm<WriteLetterReq>({
     defaultValues: {
@@ -68,7 +69,26 @@ const WriteModal = ({
       onObjectKeyChange: (value) => setValue("objectKeys", value),
     });
 
+  // 모달이 열릴 때마다 폼 초기화
+  useEffect(() => {
+    if (isOpen) {
+      reset({
+        capsuleId: capsuleData.result.id.toString(),
+        content: "",
+        from: "",
+        objectKeys: "",
+      });
+      if (uploadedImageUrl) {
+        removeImage();
+      }
+    }
+  }, [isOpen]);
+
   const onSubmit = (data: WriteLetterReq) => {
+    if (!data.content?.trim()) {
+      alert("편지 내용을 입력해주세요.");
+      return;
+    }
     setIsConfirmOpen(true);
   };
 
