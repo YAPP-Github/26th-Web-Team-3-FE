@@ -38,7 +38,6 @@ const WriteModal = ({
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
   const {
-    register,
     handleSubmit,
     setValue,
     getValues,
@@ -89,6 +88,13 @@ const WriteModal = ({
       alert("편지 내용을 입력해주세요.");
       return;
     }
+    
+    // 이미지 업로드 중이면 제출 불가
+    if (isUploading) {
+      alert("이미지 업로드 중입니다. 잠시만 기다려주세요.");
+      return;
+    }
+    
     setIsConfirmOpen(true);
   };
 
@@ -126,8 +132,12 @@ const WriteModal = ({
           >
             닫기
           </button>
-          <button type="submit" className={styles.title} disabled={isPending}>
-            {isPending ? "제출 중..." : "편지담기"}
+          <button 
+            type="submit" 
+            className={styles.title} 
+            disabled={isPending || isUploading}
+          >
+            {isPending ? "제출 중..." : isUploading ? "업로드 중..." : "편지담기"}
           </button>
         </div>
 
@@ -237,7 +247,10 @@ const WriteModal = ({
           openDate={formatOpenDateString(capsuleData.result.openAt)}
           isOpen={isConfirmOpen}
           close={() => setIsConfirmOpen(false)}
-          onConfirm={() => handleConfirm(getValues())}
+          onConfirm={() => {
+            const currentData = getValues();
+            handleConfirm(currentData);
+          }}
         />
       )}
     </Modal>
