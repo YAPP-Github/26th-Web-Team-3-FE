@@ -34,7 +34,6 @@ export const content = style({
   borderRadius: "0px",
 
   ...screen.md({
-    maxHeight: "90vh",
     borderRadius: "24px",
     width: "fit-content",
   }),

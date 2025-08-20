@@ -8,6 +8,7 @@ export const container = style({
   paddingLeft: "3.2rem",
   paddingRight: "3.2rem",
   borderRadius: 0,
+  width: "100vw",
   ...screen.md({
     width: "60rem",
     height: "73.5rem",
