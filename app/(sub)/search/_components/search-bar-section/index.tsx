@@ -22,7 +22,7 @@ const SearchBarSection = ({ keyword }: SearchBarSectionProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (inputValue.trim()) {
-      router.push(`/search?keyword=${encodeURIComponent(inputValue.trim())}`);
+      router.push(`/search?keyword=${inputValue.trim()}`);
     }
   };
 

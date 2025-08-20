@@ -14,7 +14,7 @@ export const ENDPOINTS = {
       type === "all" ? "" : `&type=${type}`
     }`,
   CAPSULE_SEARCH_LISTS: (keyword: string, page = 0, size = 20) =>
-    `api/v1/capsules/search?keyword=${keyword}&page=${page}&size=${size}`,
+    `api/v1/capsules/search?keyword=${encodeURIComponent(keyword)}&page=${page}&size=${size}`,
 
   LEAVE_CAPSULE: (id: string) => `api/v1/capsules/${id}/leave`,
 
