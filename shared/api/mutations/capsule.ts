@@ -51,6 +51,7 @@ export const useLeaveCapsule = () => {
         }),
         queryClient.invalidateQueries({ queryKey: capsuleQueryKeys.lists() }),
         queryClient.invalidateQueries({ queryKey: capsuleQueryKeys.my() }),
+        queryClient.invalidateQueries({ queryKey: capsuleQueryKeys.all() }),
       ]);
     },
   });

@@ -1,4 +1,7 @@
 import ky, { type Options as KyOptions, type ResponsePromise } from "ky";
+import { HTTP_STATUS_CODE } from "@/shared/constants/api";
+import { HTTPError } from "ky";
+import { PATH } from "@/shared/constants/path";
 
 const API_BASE_URL =
   process.env.NODE_ENV === "development"
@@ -13,6 +16,26 @@ const http = ky.create({
     "Content-Type": "application/json",
   },
   credentials: "include",
+  hooks: {
+    beforeError: [
+      async (error) => {
+        if (error instanceof HTTPError) {
+          const { response } = error;
+          switch (response.status) {
+            case HTTP_STATUS_CODE.UNAUTHORIZED: {
+              window.location.replace(PATH.LOGIN);
+              break;
+            }
+            case HTTP_STATUS_CODE.NOT_FOUND: {
+              window.location.replace("/404");
+              break;
+            }
+          }
+        }
+        return error;
+      },
+    ],
+  },
 });
 
 async function parseResponse<T>(res: ResponsePromise): Promise<T> {
