@@ -26,6 +26,7 @@ export interface CapsuleDetailRes {
     letterCount: number;
     likeCount: number;
     isLiked: boolean;
+    isJoined: boolean;
     status: CapsuleStatus;
     remainingTime: {
       days: number;

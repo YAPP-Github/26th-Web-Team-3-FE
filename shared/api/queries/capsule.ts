@@ -14,27 +14,15 @@ import { apiClient } from "../api-client";
 export const capsuleQueryKeys = {
   all: () => ["capsule"],
   detail: (id: string) => [...capsuleQueryKeys.all(), id],
-  lists: (
-    page?: number,
-    size?: number,
-    sort?: CapsuleSortType,
-    type?: string,
-  ) => [...capsuleQueryKeys.all(), "lists", page, size, sort, type],
-  infiniteLists: (sort?: CapsuleSortType, type?: string) => [
+  lists: (sort?: CapsuleSortType, type?: string) => [
     ...capsuleQueryKeys.all(),
-    "infiniteLists",
+    "lists",
     sort,
     type,
   ],
-  my: (
-    page?: number,
-    size?: number,
-    sort?: CapsuleSortType,
-    filter?: MyCapsuleFilterType,
-  ) => [...capsuleQueryKeys.all(), "my", page, size, sort, filter],
-  infiniteMy: (sort?: CapsuleSortType, filter?: MyCapsuleFilterType) => [
+  my: (sort?: CapsuleSortType, filter?: MyCapsuleFilterType) => [
     ...capsuleQueryKeys.all(),
-    "infiniteMy",
+    "my",
     sort,
     filter,
   ],
@@ -52,19 +40,10 @@ export const capsuleQueryOptions = {
       queryFn: () => getCapsuleDetail(id),
       enabled: !!id,
     }),
-  capsuleLists: (
-    page?: number,
-    size?: number,
-    sort?: CapsuleSortType,
-    type?: string,
-  ) =>
-    queryOptions({
-      queryKey: capsuleQueryKeys.lists(page, size, sort, type),
-      queryFn: () => getCapsuleLists(page, size, sort, type),
-    }),
-  infiniteCapsuleLists: (sort?: CapsuleSortType, type?: string) =>
+
+  capsuleLists: (sort?: CapsuleSortType, type?: string) =>
     infiniteQueryOptions({
-      queryKey: capsuleQueryKeys.infiniteLists(sort, type),
+      queryKey: capsuleQueryKeys.lists(sort, type),
       queryFn: ({ pageParam = 0 }) =>
         getCapsuleLists(pageParam, 20, sort, type),
       getNextPageParam: (lastPage) => {
@@ -73,22 +52,10 @@ export const capsuleQueryOptions = {
       },
       initialPageParam: 0,
     }),
-  myCapsuleList: (
-    page?: number,
-    size?: number,
-    sort?: CapsuleSortType,
-    filter?: MyCapsuleFilterType,
-  ) =>
-    queryOptions({
-      queryKey: capsuleQueryKeys.my(page, size, sort, filter),
-      queryFn: () => getMyCapsuleList(page, size, sort, filter),
-    }),
-  infiniteMyCapsuleList: (
-    sort?: CapsuleSortType,
-    filter?: MyCapsuleFilterType,
-  ) =>
+
+  myCapsuleList: (sort?: CapsuleSortType, filter?: MyCapsuleFilterType) =>
     infiniteQueryOptions({
-      queryKey: capsuleQueryKeys.infiniteMy(sort, filter),
+      queryKey: capsuleQueryKeys.my(sort, filter),
       queryFn: ({ pageParam = 0 }) =>
         getMyCapsuleList(pageParam, 20, sort, filter),
       getNextPageParam: (lastPage) => {
@@ -119,10 +86,10 @@ const getCapsuleLists = (
   page?: number,
   size?: number,
   sort?: CapsuleSortType,
-  type?: string,
+  type?: string
 ) => {
   return apiClient.get<CapsuleListsRes>(
-    ENDPOINTS.CAPSULE_LISTS(page, size, sort, type),
+    ENDPOINTS.CAPSULE_LISTS(page, size, sort, type)
   );
 };
 
@@ -140,9 +107,9 @@ const getMyCapsuleList = (
   page?: number,
   size?: number,
   sort?: CapsuleSortType,
-  filter?: MyCapsuleFilterType,
+  filter?: MyCapsuleFilterType
 ) => {
   return apiClient.get<CapsuleListsRes>(
-    ENDPOINTS.MY_CAPSULE_LIST(page, size, sort, filter),
+    ENDPOINTS.MY_CAPSULE_LIST(page, size, sort, filter)
   );
 };
