@@ -150,6 +150,7 @@ export const senderInput = style({
   background: themeVars.color.white[7],
   borderRadius: "12px",
   padding: "1.2rem 2.0rem",
+  width: "100%",
   color: themeVars.color.white[85],
   "::placeholder": {
     color: themeVars.color.white[30],
@@ -203,6 +204,7 @@ export const plusIconWrapper = style({
 });
 
 export const textareaDiv = style({
+  position: "relative",
   background: themeVars.color.gradient.darkgray_bg_horizontal,
   border: "none",
   borderRadius: "12px",
@@ -264,4 +266,28 @@ export const imageAddButtonContainer = style({
   position: "absolute",
   bottom: "1.4rem",
   left: "0.8rem",
+});
+
+export const charCount = style({
+  position: "absolute",
+  right: "1.5rem",
+  bottom: "1.5rem",
+  ...themeVars.text.F15,
+  color: themeVars.color.white[30],
+  pointerEvents: "none",
+});
+
+export const senderInputContainer = style({
+  position: "relative",
+  width: "100%",
+});
+
+export const senderCharCount = style({
+  position: "absolute",
+  right: "1.5rem",
+  top: "50%",
+  transform: "translateY(-50%)",
+  ...themeVars.text.F15,
+  color: themeVars.color.white[30],
+  pointerEvents: "none",
 });
