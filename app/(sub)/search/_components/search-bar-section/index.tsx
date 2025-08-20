@@ -4,7 +4,7 @@ import SearchIcon from "@/shared/assets/icon/search.svg";
 import { PATH } from "@/shared/constants/path";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as styles from "./search-bar-section.css";
 
 interface SearchBarSectionProps {
@@ -14,6 +14,10 @@ interface SearchBarSectionProps {
 const SearchBarSection = ({ keyword }: SearchBarSectionProps) => {
   const [inputValue, setInputValue] = useState(keyword);
   const router = useRouter();
+
+  useEffect(() => {
+    setInputValue(keyword);
+  }, [keyword]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
