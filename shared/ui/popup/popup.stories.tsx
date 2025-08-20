@@ -131,7 +131,7 @@ export const WarningCapsule: Story = {
       }}
       onClick={() => {
         overlay.open(({ isOpen, close }) => (
-          <PopupWarningCapsule isOpen={isOpen} close={close} />
+          <PopupWarningCapsule isOpen={isOpen} close={close} onConfirm={() => {}} />
         ));
       }}
     >

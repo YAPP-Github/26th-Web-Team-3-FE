@@ -8,11 +8,13 @@ export const ENDPOINTS = {
     page = 0,
     size = 20,
     sort: CapsuleSortType = "DEFAULT",
-    type = "all",
+    type = "all"
   ) =>
     `api/v1/capsules/explore?page=${page}&size=${size}&sort=${sort}${
       type === "all" ? "" : `&type=${type}`
     }`,
+
+  LEAVE_CAPSULE: (id: string) => `api/v1/capsules/${id}/leave`,
 
   LIKE_TOGGLE: (id: string) => `api/v1/capsules/${id}/like`,
 
@@ -20,7 +22,7 @@ export const ENDPOINTS = {
     page = 0,
     size = 20,
     sort: CapsuleSortType = "DEFAULT",
-    filter = "ALL",
+    filter = "ALL"
   ) =>
     `api/v1/capsules/my?page=${page}&size=${size}&sort=${sort}&filter=${filter}`,
 

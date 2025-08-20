@@ -11,9 +11,9 @@ import LoadingSpinner from "@/shared/ui/loading-spinner";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import NavbarDetail from "@/shared/ui/navbar/navbar-detail";
 import PopupReport from "@/shared/ui/popup/popup-report";
+import PopupWarningCapsule from "@/shared/ui/popup/popup-warning-capsule";
 import { formatDateTime } from "@/shared/utils/date";
 import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
 import {
   useParams,
   usePathname,
@@ -26,6 +26,7 @@ import CaptionSection from "../../_components/caption-section";
 import InfoTitle from "../../_components/info-title";
 import OpenInfoSection from "../../_components/open-info-section";
 import ResponsiveFooter from "../../_components/responsive-footer";
+import { useLeaveCapsule } from "@/shared/api/mutations/capsule";
 import * as styles from "./page.css";
 
 const CapsuleDetailPage = () => {
@@ -36,6 +37,7 @@ const CapsuleDetailPage = () => {
     capsuleQueryOptions.capsuleDetail(id),
   );
   const { data: user } = useQuery(userQueryOptions.userInfo());
+  const { mutate: leaveCapsule } = useLeaveCapsule();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -64,6 +66,15 @@ const CapsuleDetailPage = () => {
     likeToggle({ id: result.id.toString(), isLiked: nextLiked });
   };
 
+  const handleLeaveCapsule = (close: () => void) => {
+    close();
+    leaveCapsule(result.id.toString(), {
+      onSuccess: () => {
+        router.push(PATH.EXPLORE);
+      },
+    });
+  };
+
   return (
     <>
       <NavbarDetail
@@ -87,9 +98,21 @@ const CapsuleDetailPage = () => {
                       ));
                     }}
                   />
-                  <Link href={PATH.HOME}>
-                    <Dropdown.Item label="나가기" />
-                  </Link>
+                  {result.isJoined && (
+                    <Dropdown.Item
+                      label="캡슐 떠나기"
+                      className={styles.textHighlight}
+                    onClick={() => {
+                      overlay.open(({ isOpen, close }) => (
+                        <PopupWarningCapsule
+                          isOpen={isOpen}
+                          close={close}
+                          onConfirm={() => handleLeaveCapsule(close)}
+                        />
+                      ));
+                      }}
+                    />
+                  )}
                 </Dropdown.Content>
               </Dropdown>
             </>
@@ -106,7 +129,7 @@ const CapsuleDetailPage = () => {
       <CapsuleImage imageUrl={result.beadVideoUrl} />
       <div className={styles.container}>
         <RevealMotion delay={0.8}>
-          <CaptionSection description={result.subtitle} />
+          {result.subtitle && <CaptionSection description={result.subtitle} />}
         </RevealMotion>
         <RevealMotion delay={1.2}>
           <OpenInfoSection openAt={formatDateTime(result.openAt)} />
