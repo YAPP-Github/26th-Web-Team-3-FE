@@ -25,8 +25,8 @@ export const description = style({
 export const button = style({
   marginTop: "1.6rem",
   ...themeVars.text.F14,
-  backgroundColor: themeVars.color.white[100],
   color: themeVars.color.black[100],
+  backgroundColor: themeVars.color.white[100],
   borderRadius: "8px",
   padding: "0.8rem 1.2rem",
   selectors: {

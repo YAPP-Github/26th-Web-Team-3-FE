@@ -1,7 +1,7 @@
 import ky, { type Options as KyOptions, type ResponsePromise } from "ky";
 import { HTTP_STATUS_CODE } from "@/shared/constants/api";
 import { HTTPError } from "ky";
-import Router from "next/router";
+import { PATH } from "@/shared/constants/path";
 
 const API_BASE_URL =
   process.env.NODE_ENV === "development"
@@ -23,11 +23,11 @@ const http = ky.create({
           const { response } = error;
           switch (response.status) {
             case HTTP_STATUS_CODE.UNAUTHORIZED: {
-              Router.push("/login");
+              window.location.replace(PATH.LOGIN);
               break;
             }
             case HTTP_STATUS_CODE.NOT_FOUND: {
-              Router.push("/404");
+              window.location.replace("/404");
               break;
             }
           }
