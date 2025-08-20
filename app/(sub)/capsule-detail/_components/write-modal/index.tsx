@@ -113,10 +113,6 @@ const WriteModal = ({
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
-        <div className={styles.sprinkleWrapper}>
-          <SprinkleContainer />
-        </div>
-
         <div className={styles.header}>
           <button
             type="button"

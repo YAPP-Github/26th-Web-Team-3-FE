@@ -10,6 +10,7 @@ export const container = style({
   borderRadius: 0,
   ...screen.md({
     width: "60rem",
+    height: "73.5rem",
   }),
   position: "relative",
 });
