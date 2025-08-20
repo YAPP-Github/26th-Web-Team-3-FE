@@ -5,10 +5,8 @@ export const wrapper = style({
   display: "flex",
   justifyContent: "center",
   width: "100%",
-  marginTop: "2.5rem",
   background: themeVars.color.gradient.header_bg,
-  paddingLeft: "1.6rem",
-  paddingRight: "1.6rem",
+  padding: "2.5rem 1.6rem",
 });
 
 export const searchBarContainer = style({
