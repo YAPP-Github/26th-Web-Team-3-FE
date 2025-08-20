@@ -28,4 +28,19 @@ export const oauthUtils = {
   hasNextUrl: (): boolean => {
     return sessionStorage.getItem(OAUTH_NEXT_KEY) !== null;
   },
+
+  /**
+   * 현재 경로와 쿼리 파라미터를 조합하여 완전한 URL을 생성합니다.
+   * @param pathname - 현재 경로
+   * @param searchParams - 쿼리 파라미터
+   * @returns 완전한 URL 문자열
+   */
+  buildCurrentUrl: (
+    pathname: string,
+    searchParams?: URLSearchParams | null
+  ): string => {
+    return `${pathname}${
+      searchParams?.toString() ? `?${searchParams.toString()}` : ""
+    }`;
+  },
 };

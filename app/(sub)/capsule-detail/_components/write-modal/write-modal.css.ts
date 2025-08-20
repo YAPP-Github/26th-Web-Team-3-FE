@@ -7,15 +7,9 @@ export const container = style({
   background: themeVars.color.black["90_bg"],
   paddingLeft: "3.2rem",
   paddingRight: "3.2rem",
-  width: "100vw",
-  height: "100vh",
-
   borderRadius: 0,
-
   ...screen.md({
     width: "60rem",
-    maxWidth: "100vw",
-    height: "100vh",
   }),
 });
 

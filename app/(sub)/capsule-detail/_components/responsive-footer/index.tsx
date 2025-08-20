@@ -16,6 +16,7 @@ import { PATH } from "@/shared/constants/path";
 import type { CapsuleDetailRes } from "@/shared/types/api/capsule";
 import { formatOpenDate } from "@/shared/utils/date";
 import * as styles from "./responsive-footer.css";
+import { oauthUtils } from "@/shared/utils/oauth";
 
 interface ResponsiveFooterProps {
   capsuleData: CapsuleDetailRes;
@@ -55,11 +56,9 @@ const ResponsiveFooter = ({
 
   const handleWriteButtonClick = () => {
     if (!isLoggedIn) {
-      const current = `${pathname}${
-        searchParams?.toString() ? `?${searchParams.toString()}` : ""
-      }`;
-      const loginUrl = `${PATH.LOGIN}?next=${encodeURIComponent(current)}`;
-      router.push(loginUrl);
+      const current = oauthUtils.buildCurrentUrl(pathname, searchParams);
+      oauthUtils.saveNextUrl(current);
+      router.push(PATH.LOGIN);
       return;
     }
 
