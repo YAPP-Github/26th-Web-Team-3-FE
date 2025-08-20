@@ -15,9 +15,7 @@ export const ENDPOINTS = {
     }`,
 
   LEAVE_CAPSULE: (id: string) => `api/v1/capsules/${id}/leave`,
-
   LIKE_TOGGLE: (id: string) => `api/v1/capsules/${id}/like`,
-
   MY_CAPSULE_LIST: (
     page = 0,
     size = 20,
