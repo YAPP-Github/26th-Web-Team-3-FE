@@ -1,3 +1,5 @@
+"use client";
+
 import EmptySection from "@/app/(main)/explore/_components/empty-section";
 import Card from "@/shared/ui/card";
 
