@@ -11,6 +11,7 @@ export const container = style({
   ...screen.md({
     width: "60rem",
   }),
+  position: "relative",
 });
 
 export const sprinkleWrapper = style({
@@ -168,15 +169,11 @@ export const textareaContainer = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-
   width: "100%",
   margin: "0 auto",
 });
 
 export const imageAddButton = style({
-  position: "absolute",
-  bottom: "1.4rem",
-  left: "0.8rem",
   display: "flex",
   alignItems: "center",
   gap: "0.8rem",
@@ -205,7 +202,7 @@ export const plusIconWrapper = style({
   padding: "0.7rem",
 });
 
-export const textarea = style({
+export const textareaDiv = style({
   background: themeVars.color.gradient.darkgray_bg_horizontal,
   border: "none",
   borderRadius: "12px",
@@ -214,9 +211,17 @@ export const textarea = style({
   width: "100%",
   height: "100%",
   resize: "none",
+  boxSizing: "border-box",
+  overflow: "scroll",
   "::placeholder": {
     color: themeVars.color.white[30],
   },
+});
+export const textarea = style({
+  color: themeVars.color.white[85],
+  width: "100%",
+  resize: "none",
+  height: "27rem",
 });
 
 export const imagePreviewContainer = style({
@@ -250,4 +255,13 @@ export const errorMessage = style({
   color: themeVars.color.white[100],
   fontWeight: "400",
   zIndex: 1,
+});
+
+export const imageAddButtonContainer = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  position: "absolute",
+  bottom: "1.4rem",
+  left: "0.8rem",
 });

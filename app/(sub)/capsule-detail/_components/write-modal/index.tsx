@@ -121,20 +121,16 @@ const WriteModal = ({
 
           <RevealMotion delay={0.6}>
             <div className={styles.textareaContainer}>
-              <textarea
-                className={styles.textarea}
-                placeholder="나누고 싶은 생각을 공유해보세요!"
+              <div className={styles.textareaDiv}>
+                <textarea
+                  className={styles.textarea}
+                  placeholder="나누고 싶은 생각을 공유해보세요!"
                 {...register("content", {
                   required: "편지 내용을 입력해주세요.",
                 })}
               />
-
-              {errors.content && (
-                <div className={styles.errorMessage}>
-                  {errors.content.message}
-                </div>
-              )}
-
+              </div>
+              
               {uploadedImageUrl ? (
                 <div className={styles.imagePreviewContainer}>
                   <button
@@ -153,11 +149,12 @@ const WriteModal = ({
                   />
                 </div>
               ) : (
-                <button
-                  type="button"
-                  className={styles.imageAddButton}
-                  onClick={handleImageUpload}
-                  disabled={isUploading}
+                <div className={styles.imageAddButtonContainer}>
+                  <button
+                    type="button"
+                    className={styles.imageAddButton}
+                    onClick={handleImageUpload}
+                    disabled={isUploading}
                   aria-label="이미지 추가"
                 >
                   <div className={styles.plusIconWrapper}>
@@ -165,8 +162,9 @@ const WriteModal = ({
                   </div>
                   <span className={styles.imageCaption}>
                     {isUploading ? "업로드 중..." : "이미지 추가"}
-                  </span>
-                </button>
+                    </span>
+                  </button>
+                </div>
               )}
             </div>
           </RevealMotion>
