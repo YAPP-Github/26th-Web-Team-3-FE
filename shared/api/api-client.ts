@@ -22,12 +22,10 @@ const http = ky.create({
       async (error) => {
         if (error instanceof HTTPError) {
           const { response } = error;
-          const url = error.request.url;
-
-          if (url.includes(ENDPOINTS.USER_INFO)) {
+          const pathname = new URL(error.request.url).pathname;
+          if (pathname.endsWith(ENDPOINTS.USER_INFO)) {
             return error;
           }
-
           switch (response.status) {
             case HTTP_STATUS_CODE.UNAUTHORIZED: {
               window.location.replace(PATH.LOGIN);

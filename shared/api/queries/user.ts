@@ -18,7 +18,6 @@ export const userQueryOptions = {
       queryFn: () => {
         return apiClient.get<UserInfo>(ENDPOINTS.USER_INFO);
       },
-      onError: options?.onError,
       ...options,
     }),
 };
