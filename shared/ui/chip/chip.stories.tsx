@@ -30,15 +30,6 @@ const meta: Meta<typeof Chip> = {
         defaultValue: { summary: "purple" },
       },
     },
-    size: {
-      control: "radio",
-      options: ["default", "small"],
-      description: "칩의 크기",
-      table: {
-        type: { summary: '"default" | "small"' },
-        defaultValue: { summary: "default" },
-      },
-    },
     className: {
       control: "text",
       description: "추가 CSS 클래스",
@@ -69,7 +60,6 @@ export const Default: Story = {
   args: {
     children: "Default Chip",
     variant: "purple",
-    size: "default",
   },
 };
 
@@ -77,7 +67,6 @@ export const Purple: Story = {
   args: {
     children: "Purple Chip",
     variant: "purple",
-    size: "default",
   },
 };
 
@@ -85,7 +74,6 @@ export const Gray: Story = {
   args: {
     children: "Gray Chip",
     variant: "gray",
-    size: "default",
   },
 };
 
@@ -93,7 +81,6 @@ export const Small: Story = {
   args: {
     children: "Small Chip",
     variant: "purple",
-    size: "small",
   },
 };
 
@@ -101,23 +88,22 @@ export const SmallGray: Story = {
   args: {
     children: "Small Gray",
     variant: "gray",
-    size: "small",
   },
 };
 
 export const AllVariants: Story = {
   render: () => (
     <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-      <Chip variant="purple" size="small">
+      <Chip variant="purple">
         Small Purple
       </Chip>
-      <Chip variant="purple" size="default">
+      <Chip variant="purple">
         Default Purple
       </Chip>
-      <Chip variant="gray" size="small">
+      <Chip variant="gray">
         Small Gray
       </Chip>
-      <Chip variant="gray" size="default">
+      <Chip variant="gray">
         Default Gray
       </Chip>
     </div>
