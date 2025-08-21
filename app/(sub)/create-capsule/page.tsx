@@ -75,7 +75,7 @@ const CreateCapsule = () => {
     });
   };
 
-  // 로딩 상태 관리
+  // 로딩 화면 2초 동안 지속
   useEffect(() => {
     if (isPending) {
       setShowLoading(true);
