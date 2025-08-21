@@ -1,4 +1,6 @@
 "use client";
+import { HTTPError } from "ky";
+import { HTTP_STATUS_CODE } from "@/shared/constants/api";
 import { useLogout } from "@/app/(auth)/_api/auth.queries";
 import { userQueryOptions } from "@/shared/api/queries/user";
 import PopupReport from "@/shared/ui/popup/popup-report";
@@ -10,13 +12,20 @@ import SettingItem from "./_components/setting-item";
 import SettingSection from "./_components/setting-section";
 import UserGreetingSection from "./_components/user-greeting-section";
 import { useOverlay } from "@/shared/hooks/use-overlay";
+import { PATH } from "@/shared/constants/path";
 import * as styles from "./page.css";
 
 const Setting = () => {
   const { mutate: logout } = useLogout();
   const router = useRouter();
   const queryClient = useQueryClient();
-  const { data: userInfo } = useQuery(userQueryOptions.userInfo({}));
+  const { data: userInfo } = useQuery(userQueryOptions.userInfo({
+    onError: (error) => {
+      if (error instanceof HTTPError && error.response.status === HTTP_STATUS_CODE.UNAUTHORIZED) {
+         router.replace(PATH.LOGIN);
+}
+    },
+  }));
   const { open } = useOverlay();
 
   const handleLogout = () => {

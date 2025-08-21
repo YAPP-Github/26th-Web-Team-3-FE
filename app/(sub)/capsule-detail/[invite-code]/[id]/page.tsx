@@ -37,7 +37,9 @@ const CapsuleDetailPage = () => {
   const { data, isLoading, isError } = useQuery(
     capsuleQueryOptions.capsuleDetail(id),
   );
-  const { data: user } = useQuery(userQueryOptions.userInfo());
+  const { data: user } = useQuery(
+    userQueryOptions.userInfo()
+  );
   const { mutate: leaveCapsule } = useLeaveCapsule();
   const router = useRouter();
   const pathname = usePathname();

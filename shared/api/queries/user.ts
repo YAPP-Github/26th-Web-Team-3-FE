@@ -9,7 +9,10 @@ const userQueryKeys = {
 } as const;
 
 export const userQueryOptions = {
-  userInfo: (options?: { enabled?: boolean }) =>
+  userInfo: (options?: {
+    enabled?: boolean;
+    onError?: (error: Error) => void;
+  }) =>
     queryOptions({
       queryKey: userQueryKeys.userInfo(),
       queryFn: () => {

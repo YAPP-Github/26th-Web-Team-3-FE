@@ -2,6 +2,7 @@ import ky, { type Options as KyOptions, type ResponsePromise } from "ky";
 import { HTTP_STATUS_CODE } from "@/shared/constants/api";
 import { HTTPError } from "ky";
 import { PATH } from "@/shared/constants/path";
+import { ENDPOINTS } from "@/shared/constants/endpoints";
 
 const API_BASE_URL =
   process.env.NODE_ENV === "development"
@@ -21,6 +22,10 @@ const http = ky.create({
       async (error) => {
         if (error instanceof HTTPError) {
           const { response } = error;
+          const pathname = new URL(error.request.url).pathname;
+          if (pathname.endsWith(ENDPOINTS.USER_INFO)) {
+            return error;
+          }
           switch (response.status) {
             case HTTP_STATUS_CODE.UNAUTHORIZED: {
               window.location.replace(PATH.LOGIN);

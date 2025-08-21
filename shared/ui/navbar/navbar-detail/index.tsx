@@ -1,6 +1,7 @@
 "use client";
 
 import BackIcon from "@/shared/assets/icon/left.svg";
+import HomeIcon from "@/shared/assets/icon/home.svg";
 import { cn } from "@/shared/utils/cn";
 import { useRouter } from "next/navigation";
 import type { ReactElement } from "react";
@@ -24,15 +25,24 @@ const NavbarDetail = ({ renderRight, className }: NavbarDetailProps) => {
     }
   };
 
+  const handleHome = () => {
+    router.push(PATH.HOME);
+  };
+
   return (
     <div className={styles.container}>
+      <div>
       <button
         type="button"
         onClick={handleBack}
-        className={styles.backButton}
+        className={styles.iconButton}
       >
         <BackIcon />
       </button>
+      <button type="button" onClick={handleHome} className={styles.iconButton}>
+        <HomeIcon />
+      </button>
+      </div>
       <div className={cn(styles.rightElement, className)}>
         {renderRightElement}
       </div>
