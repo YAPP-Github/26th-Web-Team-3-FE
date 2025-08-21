@@ -2,8 +2,9 @@ import { style } from "@vanilla-extract/css";
 
 export const cardContainer = style({
   display: "grid",
-  gap: "1.2rem",
-  rowGap: "3.2rem",
+
+  gap: "0.8rem",
+  rowGap: "2.4rem",
   width: "100%",
   padding: "1.6rem",
   paddingTop: "2.3rem",
@@ -18,6 +19,8 @@ export const cardContainer = style({
     },
     "(min-width: 1024px)": {
       gridTemplateColumns: "repeat(4, 1fr)",
+      gap: "1.2rem",
+      rowGap: "3.2rem",
     },
   },
 });
