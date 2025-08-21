@@ -39,17 +39,25 @@ const DropdownRoot = ({ className, children }: DropdownRootProps) => {
   const [open, setOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [wrapperEl, setWrapperEl] = useState<HTMLDivElement | null>(null);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const handleToggleOpen = () => {
+    // 애니메이션 중일 때는 무시
+    if (isAnimating) return;
+    
     if (open) {
+      setIsAnimating(true);
       setIsClosing(true);
     } else {
+      setIsAnimating(true);
       setOpen(true);
       setIsClosing(false);
     }
   };
 
   const handleClose = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
     setIsClosing(true);
   };
 
@@ -59,13 +67,22 @@ const DropdownRoot = ({ className, children }: DropdownRootProps) => {
       const timer = setTimeout(() => {
         setOpen(false);
         setIsClosing(false);
-      }, 150); 
+        setIsAnimating(false);
+      }, 150);
+
+      return () => clearTimeout(timer);
+    } else if (open) {
+      // 열기 애니메이션 완료 후
+      const timer = setTimeout(() => {
+        setIsAnimating(false);
+      }, 150);
 
       return () => clearTimeout(timer);
     }
-  }, [isClosing]);
+  }, [isClosing, open]);
 
-  useOutsideClickEffect(wrapperEl, handleClose);
+  // 드롭다운이 열려있을 때만 외부 클릭 감지
+  useOutsideClickEffect(open ? wrapperEl : null, handleClose);
 
   const contextValue: DropdownContextProps = {
     open,
