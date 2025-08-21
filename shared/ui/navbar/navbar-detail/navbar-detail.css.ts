@@ -12,7 +12,7 @@ export const container = style({
   left: "50%",
   transform: "translateX(-50%)",
   width: "100%",
-  maxWidth: "80rem",
+  maxWidth: "120rem",
 });
 
 export const iconButton = style({
