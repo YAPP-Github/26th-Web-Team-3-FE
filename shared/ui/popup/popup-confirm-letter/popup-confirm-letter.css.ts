@@ -4,7 +4,6 @@ import { style } from "@vanilla-extract/css";
 export const title = style({
   display: "flex",
   flexDirection: "column",
-  gap: "1.3rem",
   marginTop: "0.4rem",
   marginBottom: "1rem",
   ...themeVars.text.F20,

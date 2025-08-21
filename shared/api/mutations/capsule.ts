@@ -9,11 +9,15 @@ import { useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "../api-client";
 
 export const useCreateCapsule = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: CreateCapsuleReq): Promise<CreateCapsuleRes> => {
       return await apiClient.post<CreateCapsuleRes>(ENDPOINTS.CREATE_CAPSULE, {
         json: data,
       });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: capsuleQueryKeys.all() });
     },
   });
 };

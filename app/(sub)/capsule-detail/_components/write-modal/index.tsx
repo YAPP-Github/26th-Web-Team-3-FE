@@ -7,7 +7,6 @@ import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import ShakeYMotion from "@/shared/ui/motion/shakeY-motion";
 import PopupConfirmLetter from "@/shared/ui/popup/popup-confirm-letter";
 import PopupWarningLetter from "@/shared/ui/popup/popup-warning-letter";
-import SprinkleContainer from "@/shared/ui/sprinkle-container";
 
 import { useWriteLetter } from "@/shared/api/mutations/letter";
 import type { CapsuleDetailRes } from "@/shared/types/api/capsule";
@@ -49,7 +48,7 @@ const WriteModal = ({
       capsuleId: capsuleData.result.id.toString(),
       content: "",
       from: "",
-      objectKeys: "",
+      objectKey: "",
     },
   });
 
@@ -65,7 +64,7 @@ const WriteModal = ({
 
   const { uploadedImageUrl, handleImageUpload, removeImage, isUploading } =
     useImageUpload({
-      onObjectKeyChange: (value) => setValue("objectKeys", value),
+      onObjectKeyChange: (value) => setValue("objectKey", value),
     });
 
   // 모달이 열릴 때마다 폼 초기화
@@ -75,7 +74,7 @@ const WriteModal = ({
         capsuleId: capsuleData.result.id.toString(),
         content: "",
         from: "",
-        objectKeys: "",
+        objectKey: "",
       });
       if (uploadedImageUrl) {
         removeImage();
