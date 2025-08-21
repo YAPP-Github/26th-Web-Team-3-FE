@@ -15,9 +15,10 @@ export const container = style({
   maxWidth: "80rem",
 });
 
-export const backButton = style({
+export const iconButton = style({
   width: "4.4rem",
   height: "4.4rem",
+  marginRight: "1rem",
   color: themeVars.color.white[40],
 });
 
