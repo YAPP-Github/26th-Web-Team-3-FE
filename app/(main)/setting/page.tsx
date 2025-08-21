@@ -10,13 +10,18 @@ import SettingItem from "./_components/setting-item";
 import SettingSection from "./_components/setting-section";
 import UserGreetingSection from "./_components/user-greeting-section";
 import { useOverlay } from "@/shared/hooks/use-overlay";
+import { PATH } from "@/shared/constants/path";
 import * as styles from "./page.css";
 
 const Setting = () => {
   const { mutate: logout } = useLogout();
   const router = useRouter();
   const queryClient = useQueryClient();
-  const { data: userInfo } = useQuery(userQueryOptions.userInfo({}));
+  const { data: userInfo } = useQuery(userQueryOptions.userInfo({
+    onError: (_error) => {
+      router.replace(PATH.LOGIN);
+    },
+  }));
   const { open } = useOverlay();
 
   const handleLogout = () => {
