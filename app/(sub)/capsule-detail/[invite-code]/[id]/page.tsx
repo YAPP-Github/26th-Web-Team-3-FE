@@ -29,6 +29,7 @@ import { useLeaveCapsule } from "@/shared/api/mutations/capsule";
 import * as styles from "./page.css";
 import { oauthUtils } from "@/shared/utils/oauth";
 import { useOverlay } from "@/shared/hooks/use-overlay";
+import { useState} from "react";
 
 const CapsuleDetailPage = () => {
   const params = useParams();
@@ -37,7 +38,13 @@ const CapsuleDetailPage = () => {
   const { data, isLoading, isError } = useQuery(
     capsuleQueryOptions.capsuleDetail(id),
   );
-  const { data: user } = useQuery(userQueryOptions.userInfo());
+  const [shouldCheckUser, setShouldCheckUser] = useState(false);
+
+  const { data: user } = useQuery(
+    userQueryOptions.userInfo({ 
+      enabled: shouldCheckUser
+    })
+  );
   const { mutate: leaveCapsule } = useLeaveCapsule();
   const router = useRouter();
   const pathname = usePathname();
@@ -45,7 +52,6 @@ const CapsuleDetailPage = () => {
   const { open } = useOverlay();
 
   const isLoggedIn = !!user?.result;
-
   if (isLoading) {
     return <LoadingSpinner loading={true} size={20} />;
   }
@@ -57,6 +63,11 @@ const CapsuleDetailPage = () => {
   const { result } = data;
 
   const handleLikeToggle = (nextLiked: boolean) => {
+    if (!shouldCheckUser) {
+      setShouldCheckUser(true);
+      return;
+    }
+    
     if (!isLoggedIn) {
       const current = oauthUtils.buildCurrentUrl(pathname, searchParams);
       oauthUtils.saveNextUrl(current);
