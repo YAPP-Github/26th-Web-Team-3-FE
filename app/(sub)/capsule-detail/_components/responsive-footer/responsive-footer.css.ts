@@ -11,9 +11,10 @@ export const container = style({
   ...screen.md({
     position: "fixed",
     bottom: "7rem",
-    width: "calc(80rem - 3.4rem)",
+    left: "50%",
+    transform: "translateX(-50%)",
+    width: "calc(90rem - 3.4rem)",
     flexDirection: "row",
-    margin: "0 1.7rem",
     padding: "1.2rem 1.2rem 1.2rem 2.4rem",
     background: themeVars.color.gradient.darkgray_op,
   }),

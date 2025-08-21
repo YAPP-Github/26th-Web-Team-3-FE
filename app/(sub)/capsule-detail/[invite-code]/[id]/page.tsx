@@ -121,24 +121,25 @@ const CapsuleDetailPage = () => {
           );
         }}
       />
-      <RevealMotion>
-        <InfoTitle
-          title={result.title}
-          participantCount={result.participantCount}
-          joinLettersCount={result.letterCount}
-        />
-      </RevealMotion>
-      <CapsuleImage imageUrl={result.beadVideoUrl} />
-      <div className={styles.container}>
-        <RevealMotion delay={0.8}>
-          {result.subtitle && <CaptionSection description={result.subtitle} />}
+      
+        <RevealMotion>
+          <InfoTitle
+            title={result.title}
+            participantCount={result.participantCount}
+            joinLettersCount={result.letterCount}
+          />
         </RevealMotion>
-        <RevealMotion delay={1.2}>
-          <OpenInfoSection openAt={formatDateTime(result.openAt)} />
-        </RevealMotion>
-      </div>
-      <ResponsiveFooter capsuleData={data} isLoggedIn={isLoggedIn} />
-      {result.status !== "WRITABLE" && <InfoToast status={result.status} />}
+        <CapsuleImage imageUrl={result.beadVideoUrl} />
+        <div className={styles.container}>
+          <RevealMotion delay={0.8}>
+            {result.subtitle && <CaptionSection description={result.subtitle} />}
+          </RevealMotion>
+          <RevealMotion delay={1.2}>
+            <OpenInfoSection openAt={formatDateTime(result.openAt)} />
+          </RevealMotion>
+        </div>
+        <ResponsiveFooter capsuleData={data} isLoggedIn={isLoggedIn} />
+        {result.status !== "WRITABLE" && <InfoToast status={result.status} />}
     </>
   );
 };

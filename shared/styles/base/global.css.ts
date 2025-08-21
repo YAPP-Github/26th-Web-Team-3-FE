@@ -48,11 +48,6 @@ export const globalLayout = style({
 });
 
 export const maxWidth = style({
-  maxWidth: "800px",
-  width: "100%",
-});
-
-export const mainLayout = style({
   maxWidth: "1200px",
   width: "100%",
 });
