@@ -46,7 +46,7 @@ export const dropdownContent = style({
   padding: "0.6rem",
   borderRadius: "15px",
   boxShadow: "0px 4px 16px 0px rgba(0, 0, 0, 0.10)",
-  animation: `${slideIn} 0.2s ease-out`,
+  animation: `${slideIn} 0.15s ease-out`,
   transformOrigin: "top right",
 });
 
