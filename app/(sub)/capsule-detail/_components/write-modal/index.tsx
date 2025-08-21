@@ -7,7 +7,7 @@ import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import ShakeYMotion from "@/shared/ui/motion/shakeY-motion";
 import PopupConfirmLetter from "@/shared/ui/popup/popup-confirm-letter";
 import PopupWarningLetter from "@/shared/ui/popup/popup-warning-letter";
-
+import { PulseLoader } from "react-spinners";
 import { useWriteLetter } from "@/shared/api/mutations/letter";
 import type { CapsuleDetailRes } from "@/shared/types/api/capsule";
 import type { WriteLetterReq } from "@/shared/types/api/letter";
@@ -123,9 +123,9 @@ const WriteModal = ({
           <button 
             type="submit" 
             className={styles.title} 
-            disabled={isPending || isUploading}
+            disabled={(isPending || isUploading)}
           >
-            {isPending ? "제출 중..." : isUploading ? "업로드 중..." : "편지담기"}
+            {(isPending || isUploading) ? <PulseLoader color="#FFFFFF" size={5}/> : '편지담기'}
           </button>
         </div>
 
