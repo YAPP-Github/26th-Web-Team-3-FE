@@ -42,11 +42,6 @@ export default function Modal({
 
   if (!isOpen) return null;
 
-  const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (event.target === event.currentTarget) {
-      onClose();
-    }
-  };
 
   const contentStyles = fullScreenOnMobile
     ? `${styles.content} ${contentClassName || ""}`
@@ -55,7 +50,6 @@ export default function Modal({
   return createPortal(
     <div
       className={`${styles.overlay} ${overlayClassName || ""}`}
-      onClick={handleOverlayClick}
       onKeyDown={(event) => {
         if (
           (event.key === "Enter" || event.key === " ") &&

@@ -69,6 +69,9 @@ export const content = style({
 });
 
 export const title = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
   ...themeVars.text.B1,
   color: themeVars.color.purple[10],
   margin: 0,

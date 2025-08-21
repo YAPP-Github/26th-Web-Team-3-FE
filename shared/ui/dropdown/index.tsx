@@ -7,12 +7,14 @@ import {
   createContext,
   useContext,
   useState,
+  useEffect,
 } from "react";
 import { useOutsideClickEffect } from "react-simplikit";
 import * as styles from "./dropdown.css";
 
 interface DropdownContextProps {
   open: boolean;
+  isClosing: boolean;
   handleToggleOpen: () => void;
   handleToggleClose: () => void;
 }
@@ -35,15 +37,56 @@ interface DropdownRootProps {
 
 const DropdownRoot = ({ className, children }: DropdownRootProps) => {
   const [open, setOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const [wrapperEl, setWrapperEl] = useState<HTMLDivElement | null>(null);
+  const [isAnimating, setIsAnimating] = useState(false);
 
-  const handleToggleOpen = () => setOpen((prev) => !prev);
-  const handleClose = () => setOpen(false);
+  const handleToggleOpen = () => {
+    // 애니메이션 중일 때는 무시
+    if (isAnimating) return;
+    
+    if (open) {
+      setIsAnimating(true);
+      setIsClosing(true);
+    } else {
+      setIsAnimating(true);
+      setOpen(true);
+      setIsClosing(false);
+    }
+  };
 
-  useOutsideClickEffect(wrapperEl, handleClose);
+  const handleClose = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setIsClosing(true);
+  };
+
+  // 애니메이션 완료 후 실제로 닫기
+  useEffect(() => {
+    if (isClosing) {
+      const timer = setTimeout(() => {
+        setOpen(false);
+        setIsClosing(false);
+        setIsAnimating(false);
+      }, 150);
+
+      return () => clearTimeout(timer);
+    } else if (open) {
+      // 열기 애니메이션 완료 후
+      const timer = setTimeout(() => {
+        setIsAnimating(false);
+      }, 150);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isClosing, open]);
+
+  // 드롭다운이 열려있을 때만 외부 클릭 감지
+  useOutsideClickEffect(open ? wrapperEl : null, handleClose);
 
   const contextValue: DropdownContextProps = {
     open,
+    isClosing,
     handleToggleOpen,
     handleToggleClose: handleClose,
   };
@@ -92,11 +135,21 @@ interface DropdownContentProps {
 }
 
 const DropdownContent = ({ children, className }: DropdownContentProps) => {
-  const { open } = useDropdownContext();
+  const { open, isClosing } = useDropdownContext();
 
-  if (!open) return null;
+  if (!open && !isClosing) return null;
 
-  return <ul className={cn(styles.dropdownContent, className)}>{children}</ul>;
+  return (
+    <ul 
+      className={cn(
+        styles.dropdownContent,
+        isClosing? styles.dropdownContentClosing: '',
+        className
+      )}
+    >
+      {children}
+    </ul>
+  );
 };
 
 // Dropdown의 메뉴 리스트 아이템 컴포넌트

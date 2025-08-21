@@ -1,7 +1,6 @@
 "use client";
 import { useCreateCapsule } from "@/shared/api/mutations/capsule";
-import { Suspense, useState } from "react";
-
+import { Suspense, useState, useEffect } from "react";
 import CreateCapsuleLoading from "@/app/(sub)/create-capsule/_components/create-capsule-loading";
 import { useFunnel } from "@/shared/hooks/use-funnel";
 import type { CreateCapsuleReq } from "@/shared/types/api/capsule";
@@ -33,8 +32,9 @@ interface CapsuleInfo {
 const CreateCapsule = () => {
   const { Funnel, Step, setStep, step } = useFunnel();
   const [capsuleInfo, setCapsuleInfo] = useState<CapsuleInfo | null>(null);
+  const [showLoading, setShowLoading] = useState(false);
   const { open } = useOverlay();
-
+  
   const { mutate: createCapsuleMutate, isPending } = useCreateCapsule();
 
   const defaultOpenDate = getDate(14);
@@ -71,12 +71,25 @@ const CreateCapsule = () => {
           id: res.result.id,
           inviteCode: res.result.inviteCode,
         });
-        setStep("complete");
       },
     });
   };
 
-  if (isPending) {
+  // 로딩 화면 2초 동안 지속
+  useEffect(() => {
+    if (isPending) {
+      setShowLoading(true);
+    } else if (showLoading && !isPending) {
+      const timer = setTimeout(() => {
+        setShowLoading(false);
+        setStep("complete");
+      }, 2000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [isPending, showLoading]);
+
+  if (showLoading) {
     return <CreateCapsuleLoading />;
   }
 

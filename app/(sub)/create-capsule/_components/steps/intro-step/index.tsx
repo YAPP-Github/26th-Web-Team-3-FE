@@ -14,7 +14,7 @@ interface Props {
 }
 
 const IntroStep = ({ handleNextStep }: Props) => {
-  const { control, getValues } = useFormContext();
+  const { control} = useFormContext();
   
   const { field: titleField } = useController({
     name: "title",
@@ -27,11 +27,6 @@ const IntroStep = ({ handleNextStep }: Props) => {
   });
 
   const handleClickNext = () => {
-    const title = getValues("title");
-    if (!title?.trim()) {
-      alert("타임캡슐 이름을 입력해주세요.");
-      return;
-    }
     handleNextStep("date");
   };
 
@@ -80,7 +75,7 @@ const IntroStep = ({ handleNextStep }: Props) => {
       </RevealMotion>
       <RevealMotion delay={1.2}>
         <div className={styles.buttonContainer}>
-          <Button variant="primary" text="다음" onClick={handleClickNext} />
+          <Button variant="primary" text="다음" onClick={handleClickNext} disabled={!titleField.value?.trim()} />
         </div>
       </RevealMotion>
     </main>

@@ -32,6 +32,6 @@ export interface LetterListRes {
 export interface WriteLetterReq {
   capsuleId: string;
   content: string;
-  objectKeys: string;
+  objectKey: string;
   from: string;
 }
