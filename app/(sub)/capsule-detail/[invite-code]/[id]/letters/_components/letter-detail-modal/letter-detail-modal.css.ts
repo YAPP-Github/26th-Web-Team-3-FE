@@ -1,6 +1,6 @@
 import { themeVars } from "@/shared/styles/base/theme.css";
 import { screen } from "@/shared/styles/tokens/screen";
-import { style } from "@vanilla-extract/css";
+import { keyframes, style } from "@vanilla-extract/css";
 
 export const modalOverlay = style({
   alignItems: "center",
@@ -38,12 +38,27 @@ export const contentWrapper = style({
   flex: 1,
 });
 
+const shimmer = keyframes({
+  "0%": { backgroundPosition: "-100% 0" },
+  "100%": { backgroundPosition: "100% 0" },
+});
+
 export const image = style({
   flexShrink: 0,
   width: "100%",
   height: "auto",
   objectFit: "cover",
   borderRadius: "14px",
+
+  selectors: {
+    '&[data-loaded="false"]': {
+      backgroundColor: themeVars.color.black["90_bg"],
+      backgroundImage: themeVars.color.gradient.darkgray_bg_horizontal,
+      backgroundSize: "200% 100%",
+      animation: `${shimmer} 5s  infinite`,
+    },
+  },
+
   ...screen.md({
     width: "30rem",
     height: "30rem",

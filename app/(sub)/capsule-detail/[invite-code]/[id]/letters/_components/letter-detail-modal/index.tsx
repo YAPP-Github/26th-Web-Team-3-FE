@@ -32,6 +32,10 @@ const LetterDetailModal = ({
             width={300}
             height={300}
             className={styles.image}
+            data-loaded="false"
+            onLoad={(event) => {
+              event.currentTarget.setAttribute("data-loaded", "true");
+            }}
           />
         )}
         <div className={styles.contentWrapper}>
