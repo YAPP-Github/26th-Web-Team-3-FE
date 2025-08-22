@@ -21,6 +21,7 @@ const PopupCancelCreation = ({ isOpen, close }: PopupCancelCreationProps) => {
             router.push(PATH.EXPLORE);
             close();
           }}
+          className={styles.cancelButton}
         >
           떠나기
         </Popup.Button>

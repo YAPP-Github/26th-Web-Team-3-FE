@@ -25,7 +25,7 @@ const PopupWarningLetter = ({
         </div>
       </Popup.Title>
       <Popup.Actions>
-        <Popup.Button onClick={close}>돌아가기</Popup.Button>
+        <Popup.Button onClick={close} className={styles.content}>돌아가기</Popup.Button>
         <Popup.Button className={styles.continueButton} onClick={confirm}>
           계속 쓰기
         </Popup.Button>

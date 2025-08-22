@@ -67,21 +67,6 @@ const WriteModal = ({
       onObjectKeyChange: (value) => setValue("objectKey", value),
     });
 
-  // 모달이 열릴 때마다 폼 초기화
-  useEffect(() => {
-    if (isOpen) {
-      reset({
-        capsuleId: capsuleData.result.id.toString(),
-        content: "",
-        from: "",
-        objectKey: "",
-      });
-      if (uploadedImageUrl) {
-        removeImage();
-      }
-    }
-  }, [isOpen]);
-
   const onSubmit = (data: WriteLetterReq) => {
     if (!data.content?.trim()) {
       alert("편지 내용을 입력해주세요.");
@@ -107,119 +92,142 @@ const WriteModal = ({
 
   const handleCloseWithWarning = () => {
     setIsWarningOpen(true);
+    reset({
+      capsuleId: capsuleData.result.id.toString(),
+      content: "",
+      from: "",
+      objectKey: "",
+    });
+    if (uploadedImageUrl) {
+      removeImage();
+    }
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
-        <div className={styles.header}>
-          <button
-            type="button"
-            className={styles.closeButton}
-            onClick={handleCloseWithWarning}
-          >
-            닫기
-          </button>
-          <button 
-            type="submit" 
-            className={styles.title} 
-            disabled={(isPending || isUploading)}
-          >
-            {(isPending || isUploading) ? <PulseLoader color="#FFFFFF" size={5}/> : '편지담기'}
-          </button>
-        </div>
+    <>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.header}>
+            <button
+              type="button"
+              className={styles.closeButton}
+              onClick={handleCloseWithWarning}
+            >
+              닫기
+            </button>
+            <button 
+              type="submit" 
+              className={styles.title} 
+              disabled={(isPending || isUploading)}
+            >
+              {(isPending || isUploading) ? <PulseLoader color="#FFFFFF" size={5}/> : '편지담기'}
+            </button>
+          </div>
 
-        <div className={styles.content}>
-          <RevealMotion delay={0.3}>
-            <div className={styles.capsuleInfo}>
-              <h3 className={styles.capsuleTitle}>
-                {capsuleData.result.title}
-              </h3>
-              <div className={styles.timeInfo}>
-                <p className={styles.timeCaption}>마감까지</p>
-                <ShakeYMotion>
-                  <div className={styles.chipContainer}>
-                    <Chip>{`${capsuleData.result.remainingTime.days}일`}</Chip>
-                    <Chip>{`${capsuleData.result.remainingTime.hours}시간`}</Chip>
-                    <Chip>{`${capsuleData.result.remainingTime.minutes}분`}</Chip>
-                  </div>
-                </ShakeYMotion>
-              </div>
-            </div>
-          </RevealMotion>
-
-          <RevealMotion delay={0.6}>
-            <div className={styles.textareaContainer}>
-              <div className={styles.textareaDiv}>
-                <textarea
-                  className={styles.textarea}
-                  placeholder="나누고 싶은 생각을 공유해보세요!"
-                  {...contentField}
-                  maxLength={1000}
-                />
-                <span className={styles.charCount}>
-                  {contentField.value?.length || 0}/1000
-                </span>
-              </div>
-              
-              {uploadedImageUrl ? (
-                <div className={styles.imagePreviewContainer}>
-                  <button
-                    type="button"
-                    onClick={removeImage}
-                    className={styles.removeImageButton}
-                  >
-                    <Close />
-                  </button>
-                  <Image
-                    src={uploadedImageUrl}
-                    alt="업로드된 이미지"
-                    width={80}
-                    height={80}
-                    className={styles.imagePreview}
-                  />
-                </div>
-              ) : (
-                <div className={styles.imageAddButtonContainer}>
-                  <button
-                    type="button"
-                    className={styles.imageAddButton}
-                    onClick={handleImageUpload}
-                    disabled={isUploading}
-                    aria-label="이미지 추가"
-                  >
-                    <div className={styles.plusIconWrapper}>
-                      <Plus className={styles.plusIcon} />
+          <div className={styles.content}>
+            <RevealMotion delay={0.3}>
+              <div className={styles.capsuleInfo}>
+                <h3 className={styles.capsuleTitle}>
+                  {capsuleData.result.title}
+                </h3>
+                <div className={styles.timeInfo}>
+                  <p className={styles.timeCaption}>마감까지</p>
+                  <ShakeYMotion>
+                    <div className={styles.chipContainer}>
+                      <Chip>{`${capsuleData.result.remainingTime.days}일`}</Chip>
+                      <Chip>{`${capsuleData.result.remainingTime.hours}시간`}</Chip>
+                      <Chip>{`${capsuleData.result.remainingTime.minutes}분`}</Chip>
                     </div>
-                    <span className={styles.imageCaption}>
-                      {isUploading ? "업로드 중..." : "이미지 추가"}
-                    </span>
-                  </button>
+                  </ShakeYMotion>
                 </div>
-              )}
-            </div>
-          </RevealMotion>
-
-          <RevealMotion delay={0.9}>
-            <div className={styles.inputSection}>
-              <p className={styles.senderTitle}>보내는 사람</p>
-              <div className={styles.senderInputContainer}>
-                <input
-                  id="sender-name"
-                  type="text"
-                  placeholder="꼭 입력하지 않아도 괜찮아요"
-                  className={styles.senderInput}
-                  {...fromField}
-                  maxLength={20}
-                />
-                <span className={styles.senderCharCount}>
-                  {fromField.value?.length || 0}/20
-                </span>
               </div>
-            </div>
-          </RevealMotion>
-        </div>
-      </form>
+            </RevealMotion>
+
+            <RevealMotion delay={0.6}>
+              <div className={styles.textareaContainer}>
+                <div className={styles.textareaDiv}>
+                  <textarea
+                    className={styles.textarea}
+                    placeholder="나누고 싶은 생각을 공유해보세요!"
+                    {...contentField}
+                    maxLength={1000}
+                  />
+                  <span className={styles.charCount}>
+                    {contentField.value?.length || 0}/1000
+                  </span>
+                </div>
+                
+                {uploadedImageUrl ? (
+                  <div className={styles.imagePreviewContainer}>
+                    <button
+                      type="button"
+                      onClick={removeImage}
+                      className={styles.removeImageButton}
+                    >
+                      <Close />
+                    </button>
+                    <Image
+                      src={uploadedImageUrl}
+                      alt="업로드된 이미지"
+                      width={80}
+                      height={80}
+                      className={styles.imagePreview}
+                    />
+                  </div>
+                ) : (
+                  <div className={styles.imageAddButtonContainer}>
+                    <button
+                      type="button"
+                      className={styles.imageAddButton}
+                      onClick={handleImageUpload}
+                      disabled={isUploading}
+                      aria-label="이미지 추가"
+                    >
+                      <div className={styles.plusIconWrapper}>
+                        <Plus className={styles.plusIcon} />
+                      </div>
+                      <span className={styles.imageCaption}>
+                        {isUploading ? "업로드 중..." : "이미지 추가"}
+                      </span>
+                    </button>
+                  </div>
+                )}
+              </div>
+            </RevealMotion>
+
+            <RevealMotion delay={0.9}>
+              <div className={styles.inputSection}>
+                <p className={styles.senderTitle}>보내는 사람</p>
+                <div className={styles.senderInputContainer}>
+                  <input
+                    id="sender-name"
+                    type="text"
+                    placeholder="꼭 입력하지 않아도 괜찮아요"
+                    className={styles.senderInput}
+                    {...fromField}
+                    maxLength={20}
+                  />
+                  <span className={styles.senderCharCount}>
+                    {fromField.value?.length || 0}/20
+                  </span>
+                </div>
+              </div>
+            </RevealMotion>
+          </div>
+        </form>
+        {isConfirmOpen && (
+          <PopupConfirmLetter
+            openDate={formatOpenDateString(capsuleData.result.openAt)}
+            isOpen={isConfirmOpen}
+            close={() => setIsConfirmOpen(false)}
+            onConfirm={() => {
+              const currentData = getValues();
+              handleConfirm(currentData);
+            }}
+          />
+        )}
+      </Modal>
+      
       {isWarningOpen && (
         <PopupWarningLetter
           isOpen={isWarningOpen}
@@ -230,18 +238,7 @@ const WriteModal = ({
           confirm={() => setIsWarningOpen(false)}
         />
       )}
-      {isConfirmOpen && (
-        <PopupConfirmLetter
-          openDate={formatOpenDateString(capsuleData.result.openAt)}
-          isOpen={isConfirmOpen}
-          close={() => setIsConfirmOpen(false)}
-          onConfirm={() => {
-            const currentData = getValues();
-            handleConfirm(currentData);
-          }}
-        />
-      )}
-    </Modal>
+    </>
   );
 };
 

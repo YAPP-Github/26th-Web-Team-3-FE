@@ -5,6 +5,10 @@ export const caption = style({
   marginBottom: "2.8rem",
 });
 
+export const content = style({
+  color: themeVars.color.white[30],
+});
+
 export const putButton = style({
   color: themeVars.color.purple[10],
 });

@@ -28,7 +28,7 @@ const PopupConfirmLetter = ({
       </Popup.Content>
       <Image src={Lettie} alt="apng" width={200} height={200} />
       <Popup.Actions>
-        <Popup.Button onClick={close}>계속 쓰기</Popup.Button>
+        <Popup.Button onClick={close} className={styles.content}>계속 쓰기</Popup.Button>
         <Popup.Button className={styles.putButton} onClick={onConfirm}>
           편지 담기
         </Popup.Button>

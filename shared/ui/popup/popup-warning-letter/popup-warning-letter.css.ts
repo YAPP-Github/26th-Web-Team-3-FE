@@ -9,6 +9,10 @@ export const continueButton = style({
   color: `${themeVars.color.purple[10]} !important`,
 });
 
+export const content = style({
+  color: themeVars.color.white[30],
+});
+
 export const titleWrapper = style({
   display: "flex",
   flexDirection: "column",

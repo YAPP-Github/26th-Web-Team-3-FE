@@ -18,7 +18,7 @@ const PopupLogout = ({ isOpen, close, onLogout }: PopupLogoutProps) => {
         <p>로그아웃 하시겠어요?</p>
       </Popup.Title>
       <Popup.Actions>
-        <Popup.Button onClick={close}>취소</Popup.Button>
+        <Popup.Button onClick={close} className={styles.content}>취소</Popup.Button>
         <Popup.Button
           className={styles.putButton}
           onClick={() => {
