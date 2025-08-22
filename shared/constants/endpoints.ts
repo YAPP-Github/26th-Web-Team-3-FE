@@ -14,7 +14,9 @@ export const ENDPOINTS = {
       type === "all" ? "" : `&type=${type}`
     }`,
   CAPSULE_SEARCH_LISTS: (keyword: string, page = 0, size = 20) =>
-    `api/v1/capsules/search?keyword=${encodeURIComponent(keyword)}&page=${page}&size=${size}`,
+    `api/v1/capsules/search?keyword=${encodeURIComponent(
+      keyword
+    )}&page=${page}&size=${size}`,
 
   LEAVE_CAPSULE: (id: string) => `api/v1/capsules/${id}/leave`,
   LIKE_TOGGLE: (id: string) => `api/v1/capsules/${id}/like`,
@@ -26,7 +28,9 @@ export const ENDPOINTS = {
   ) =>
     `api/v1/capsules/my?page=${page}&size=${size}&sort=${sort}&filter=${filter}`,
 
+  // 유저
   USER_INFO: "api/v1/users/my-info",
+  TOTAL_USER_COUNT: "api/v1/users/total-count",
 
   // 편지
   WRITE_LETTER: "api/v1/letters",

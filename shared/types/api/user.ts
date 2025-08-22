@@ -5,3 +5,9 @@ export interface UserInfo {
     email: string;
   };
 }
+
+export interface TotalUserCountRes {
+  result: {
+    userTotalCount: number;
+  };
+}
