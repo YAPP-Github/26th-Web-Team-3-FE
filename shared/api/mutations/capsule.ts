@@ -38,7 +38,7 @@ export const useLikeToggle = () => {
         queryClient.invalidateQueries({
           queryKey: capsuleQueryKeys.detail(id),
         }),
-        queryClient.invalidateQueries({ queryKey: capsuleQueryKeys.my() }),
+        queryClient.invalidateQueries({ queryKey: ["capsule", "my"] }),
       ]);
     },
   });
@@ -50,8 +50,13 @@ export const useLeaveCapsule = () => {
     mutationFn: (id: string) => {
       return apiClient.delete(ENDPOINTS.LEAVE_CAPSULE(id));
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: capsuleQueryKeys.my() });
+    onSuccess: async (_data, id: string) => {
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ["capsule", "my"] }),
+        queryClient.invalidateQueries({
+          queryKey: capsuleQueryKeys.detail(id),
+        }),
+      ]);
     },
   });
 };
