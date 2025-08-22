@@ -80,6 +80,15 @@ const WriteModal = ({
     writeLetterMutate(data, {
       onSuccess: () => {
         setIsConfirmOpen(false);
+        reset({
+          capsuleId: capsuleData.result.id.toString(),
+          content: "",
+          from: "",
+          objectKey: "",
+        });
+        if (uploadedImageUrl) {
+          removeImage();
+        }
         onClose();
         onSuccess();
       },
