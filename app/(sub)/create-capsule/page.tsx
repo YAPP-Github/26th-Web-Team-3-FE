@@ -109,6 +109,7 @@ const CreateCapsule = () => {
               닫기
             </button>
           )}
+          isHomeButton={false}
         />
       )}
       <div className={styles.container}>
