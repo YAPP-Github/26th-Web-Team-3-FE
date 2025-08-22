@@ -17,7 +17,7 @@ export const useCreateCapsule = () => {
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: capsuleQueryKeys.my() });
+      queryClient.invalidateQueries({ queryKey: ["capsule", "my"] });
     },
   });
 };
