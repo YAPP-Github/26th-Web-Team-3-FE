@@ -23,7 +23,6 @@ const LetterDetailModal = ({
       overlayClassName={styles.modalOverlay}
       contentClassName={styles.modalContent}
       fullScreenOnMobile={false}
-      closeOnOverlayClick={true}
     >
       <section className={styles.container}>
         {imageUrl && (

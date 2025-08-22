@@ -13,6 +13,7 @@ interface ModalProps {
   contentClassName?: string;
   fullScreenOnMobile?: boolean;
   closeOnOverlayClick?: boolean;
+  closeOnEsc?: boolean;
 }
 
 export default function Modal({
@@ -22,17 +23,20 @@ export default function Modal({
   overlayClassName,
   contentClassName,
   fullScreenOnMobile = true,
-  closeOnOverlayClick = false,
+  closeOnOverlayClick = true,
+  closeOnEsc = true,
 }: ModalProps) {
   useEffect(() => {
     const handleEscapeKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && isOpen) {
+      if (event.key === "Escape" && isOpen && closeOnEsc) {
         onClose();
       }
     };
 
     if (isOpen) {
-      document.addEventListener("keydown", handleEscapeKey);
+      if (closeOnEsc) {
+        document.addEventListener("keydown", handleEscapeKey);
+      }
       document.body.style.overflow = "hidden";
     }
 
@@ -40,7 +44,7 @@ export default function Modal({
       document.removeEventListener("keydown", handleEscapeKey);
       document.body.style.overflow = "unset";
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, closeOnEsc]);
 
   if (!isOpen) return null;
 

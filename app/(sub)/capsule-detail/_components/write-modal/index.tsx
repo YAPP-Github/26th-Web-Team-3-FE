@@ -1,20 +1,20 @@
 "use client";
 
+import { useWriteLetter } from "@/shared/api/mutations/letter";
 import Close from "@/shared/assets/icon/close.svg";
 import Plus from "@/shared/assets/icon/plus.svg";
+import type { CapsuleDetailRes } from "@/shared/types/api/capsule";
+import type { WriteLetterReq } from "@/shared/types/api/letter";
 import Chip from "@/shared/ui/chip";
 import RevealMotion from "@/shared/ui/motion/reveal-motion";
 import ShakeYMotion from "@/shared/ui/motion/shakeY-motion";
 import PopupConfirmLetter from "@/shared/ui/popup/popup-confirm-letter";
 import PopupWarningLetter from "@/shared/ui/popup/popup-warning-letter";
-import { PulseLoader } from "react-spinners";
-import { useWriteLetter } from "@/shared/api/mutations/letter";
-import type { CapsuleDetailRes } from "@/shared/types/api/capsule";
-import type { WriteLetterReq } from "@/shared/types/api/letter";
 import { formatOpenDateString } from "@/shared/utils/date";
 import Image from "next/image";
-import { useState, useEffect } from "react";
-import { useForm, useController } from "react-hook-form";
+import { useState } from "react";
+import { useController, useForm } from "react-hook-form";
+import { PulseLoader } from "react-spinners";
 import Modal from "../modal";
 import { useImageUpload } from "./_hooks/use-image-upload";
 import * as styles from "./write-modal.css";
@@ -90,22 +90,26 @@ const WriteModal = ({
     });
   };
 
-  const handleCloseWithWarning = () => {
-    setIsWarningOpen(true);
-    reset({
-      capsuleId: capsuleData.result.id.toString(),
-      content: "",
-      from: "",
-      objectKey: "",
-    });
-    if (uploadedImageUrl) {
-      removeImage();
+  const handleCloseWithWarning = (e: React.MouseEvent) => {
+    e.stopPropagation();
+
+    const hasContent =
+      contentField.value?.trim() || fromField.value?.trim() || uploadedImageUrl;
+
+    if (hasContent) {
+      setIsWarningOpen(true);
+    } else {
+      onClose();
     }
   };
-
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        closeOnEsc={false}
+        closeOnOverlayClick={false}
+      >
         <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.header}>
             <button
@@ -115,12 +119,16 @@ const WriteModal = ({
             >
               닫기
             </button>
-            <button 
-              type="submit" 
-              className={styles.title} 
-              disabled={(isPending || isUploading)}
+            <button
+              type="submit"
+              className={styles.title}
+              disabled={isPending || isUploading}
             >
-              {(isPending || isUploading) ? <PulseLoader color="#FFFFFF" size={5}/> : '편지담기'}
+              {isPending || isUploading ? (
+                <PulseLoader color="#FFFFFF" size={5} />
+              ) : (
+                "편지담기"
+              )}
             </button>
           </div>
 
@@ -156,7 +164,7 @@ const WriteModal = ({
                     {contentField.value?.length || 0}/1000
                   </span>
                 </div>
-                
+
                 {uploadedImageUrl ? (
                   <div className={styles.imagePreviewContainer}>
                     <button
@@ -227,15 +235,29 @@ const WriteModal = ({
           />
         )}
       </Modal>
-      
+
       {isWarningOpen && (
         <PopupWarningLetter
           isOpen={isWarningOpen}
           close={() => {
             setIsWarningOpen(false);
+          }}
+          confirm={() => {
+            setIsWarningOpen(false);
+          }}
+          onGoBack={() => {
+            setIsWarningOpen(false);
+            reset({
+              capsuleId: capsuleData.result.id.toString(),
+              content: "",
+              from: "",
+              objectKey: "",
+            });
+            if (uploadedImageUrl) {
+              removeImage();
+            }
             onClose();
           }}
-          confirm={() => setIsWarningOpen(false)}
         />
       )}
     </>
