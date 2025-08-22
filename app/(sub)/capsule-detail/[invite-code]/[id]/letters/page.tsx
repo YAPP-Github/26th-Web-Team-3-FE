@@ -111,7 +111,14 @@ const CapsuleLettersPage = () => {
 
       <div className={styles.cardContainer}>
         {isStackType ? (
-          <StackLayout letters={letters} imageUrls={imageUrls} />
+          <StackLayout
+            letters={letters}
+            letterCount={totalLetterCount}
+            imageUrls={imageUrls}
+            fetchNextPage={fetchNextPage}
+            hasNextPage={hasNextPage}
+            isFetchingNextPage={isFetchingNextPage}
+          />
         ) : (
           <GridLayout
             letters={letters}

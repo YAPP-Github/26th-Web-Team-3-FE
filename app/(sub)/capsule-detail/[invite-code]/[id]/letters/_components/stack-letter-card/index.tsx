@@ -7,12 +7,15 @@ import * as styles from "./stack-letter-card.css";
 interface LetterCardProps {
   letter: Letter;
   imageUrl?: string | null;
+  disabled?: boolean;
 }
 
-const StackLetterCard = ({ letter, imageUrl }: LetterCardProps) => {
+const StackLetterCard = ({ letter, imageUrl, disabled = false }: LetterCardProps) => {
   const { open } = useOverlay();
 
   const handleClick = () => {
+    if (disabled) return;
+    
     open(({ isOpen, close }) => (
       <LetterDetailModal
         letter={letter}
