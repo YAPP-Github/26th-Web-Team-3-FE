@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postLogin, postLogout } from "./auth.api";
-
+import { userQueryKeys } from "@/shared/api/queries/user";
 export const useSocialLogin = () => {
   return useMutation({
     mutationFn: ({
@@ -19,6 +19,7 @@ export const useLogout = () => {
     mutationFn: postLogout,
     onSuccess: () => {
       queryClient.clear();
+      queryClient.invalidateQueries({ queryKey: userQueryKeys.userInfo() });
     },
   });
 };

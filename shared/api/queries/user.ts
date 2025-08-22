@@ -3,7 +3,7 @@ import { ENDPOINTS } from "@/shared/constants/endpoints";
 import type { UserInfo } from "@/shared/types/api/user";
 import { queryOptions } from "@tanstack/react-query";
 
-const userQueryKeys = {
+export const userQueryKeys = {
   all: () => ["user"],
   userInfo: () => [...userQueryKeys.all(), "userInfo"],
 } as const;
