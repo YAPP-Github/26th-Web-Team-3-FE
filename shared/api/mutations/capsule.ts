@@ -17,7 +17,7 @@ export const useCreateCapsule = () => {
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: capsuleQueryKeys.all() });
+      queryClient.invalidateQueries({ queryKey: capsuleQueryKeys.my() });
     },
   });
 };
@@ -31,9 +31,15 @@ export const useLikeToggle = () => {
       } else {
         await apiClient.put(ENDPOINTS.LIKE_TOGGLE(id));
       }
+      return id;
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: capsuleQueryKeys.all() });
+    onSuccess: async (id: string) => {
+      await Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: capsuleQueryKeys.detail(id),
+        }),
+        queryClient.invalidateQueries({ queryKey: capsuleQueryKeys.my() }),
+      ]);
     },
   });
 };
@@ -45,7 +51,7 @@ export const useLeaveCapsule = () => {
       return apiClient.delete(ENDPOINTS.LEAVE_CAPSULE(id));
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: capsuleQueryKeys.all() });
+      queryClient.invalidateQueries({ queryKey: capsuleQueryKeys.my() });
     },
   });
 };

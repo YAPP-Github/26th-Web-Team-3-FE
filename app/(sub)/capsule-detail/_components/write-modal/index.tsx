@@ -13,7 +13,7 @@ import type { CapsuleDetailRes } from "@/shared/types/api/capsule";
 import type { WriteLetterReq } from "@/shared/types/api/letter";
 import { formatOpenDateString } from "@/shared/utils/date";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useForm, useController } from "react-hook-form";
 import Modal from "../modal";
 import { useImageUpload } from "./_hooks/use-image-upload";
