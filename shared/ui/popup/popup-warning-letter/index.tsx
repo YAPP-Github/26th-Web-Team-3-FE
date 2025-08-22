@@ -6,12 +6,14 @@ interface PopupWarningLetterProps {
   isOpen: boolean;
   close: () => void;
   confirm: () => void;
+  onGoBack?: () => void;
 }
 
 const PopupWarningLetter = ({
   isOpen,
   close,
   confirm,
+  onGoBack,
 }: PopupWarningLetterProps) => {
   return (
     <Popup open={isOpen} close={close}>
@@ -25,8 +27,16 @@ const PopupWarningLetter = ({
         </div>
       </Popup.Title>
       <Popup.Actions>
-        <Popup.Button onClick={close} className={styles.content}>돌아가기</Popup.Button>
-        <Popup.Button className={styles.continueButton} onClick={confirm}>
+        <Popup.Button onClick={onGoBack || close} className={styles.content}>
+          돌아가기
+        </Popup.Button>
+        <Popup.Button
+          className={styles.continueButton}
+          onClick={(e) => {
+            e.stopPropagation();
+            confirm();
+          }}
+        >
           계속 쓰기
         </Popup.Button>
       </Popup.Actions>
