@@ -3,6 +3,9 @@
 import Left from "@/shared/assets/icon/left.svg";
 import Right from "@/shared/assets/icon/right.svg";
 import type { Letter } from "@/shared/types/api/letter";
+import type {
+  InfiniteQueryObserverResult,
+} from "@tanstack/react-query";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import StackLetterCard from "../stack-letter-card";
@@ -25,23 +28,27 @@ interface ImageUrl {
 
 interface StackLayoutProps {
   letters: Letter[];
+  letterCount: number;
   imageUrls: ImageUrl[];
+  fetchNextPage: () => Promise<InfiniteQueryObserverResult<any, Error>>;
+  hasNextPage: boolean;
+  isFetchingNextPage: boolean;
 }
 
-const StackLayout = ({ letters, imageUrls }: StackLayoutProps) => {
+const StackLayout = ({
+  letters,
+  letterCount,
+  imageUrls,
+  fetchNextPage,
+  hasNextPage,
+  isFetchingNextPage,
+}: StackLayoutProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const currentIndexRef = useRef(0);
   const [direction, setDirection] = useState(0);
   const [visibleLetters, setVisibleLetters] = useState<VisibleLetter[]>([]);
   const [isAnimating, setIsAnimating] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-      }
-    };
-  }, []);
 
   useLayoutEffect(() => {
     const maxCards = Math.min(3, letters.length - currentIndex);
@@ -49,6 +56,7 @@ const StackLayout = ({ letters, imageUrls }: StackLayoutProps) => {
 
     for (let i = 0; i < maxCards; i++) {
       const letterIndex = currentIndex + i;
+
       newVisibleLetters.push({
         letter: letters[letterIndex],
         stackIndex: i,
@@ -61,11 +69,38 @@ const StackLayout = ({ letters, imageUrls }: StackLayoutProps) => {
     setVisibleLetters(newVisibleLetters);
   }, [currentIndex, letters]);
 
+  useEffect(() => {
+    currentIndexRef.current = currentIndex;
+  }, [currentIndex]);
+
+  useEffect(() => {
+    if (!hasNextPage || isFetchingNextPage) return;
+
+    const shouldLoadNext =
+      currentIndexRef.current >= 8 && (currentIndexRef.current - 8) % 20 === 0;
+    if (shouldLoadNext) {
+      const timer = setTimeout(() => {
+        fetchNextPage();
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [currentIndex, hasNextPage, isFetchingNextPage, fetchNextPage]);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, []);
+
   const nextLetter = () => {
     if (currentIndex < letters.length - 1 && !isAnimating) {
       setIsAnimating(true);
       setDirection(1);
-      setCurrentIndex((prev) => prev + 1);
+      const nextIndex = currentIndex + 1;
+      setCurrentIndex(nextIndex);
+      currentIndexRef.current = nextIndex;
 
       timerRef.current = setTimeout(() => {
         setDirection(0);
@@ -102,7 +137,7 @@ const StackLayout = ({ letters, imageUrls }: StackLayoutProps) => {
       </button>
 
       <div className={styles.stackContainer}>
-        <AnimatePresence mode="popLayout">
+        <AnimatePresence mode="popLayout" initial={false}>
           {visibleLetters.map(({ letter, key }, index) => {
             const animationProps = createStackAnimations(
               direction,
@@ -123,7 +158,11 @@ const StackLayout = ({ letters, imageUrls }: StackLayoutProps) => {
                   left: 0,
                 }}
               >
-                <StackLetterCard letter={letter} imageUrl={imageUrl} />
+                <StackLetterCard
+                  letter={letter}
+                  imageUrl={imageUrl}
+                  disabled={isAnimating}
+                />
               </motion.div>
             );
           })}
@@ -144,7 +183,7 @@ const StackLayout = ({ letters, imageUrls }: StackLayoutProps) => {
 
       <div className={styles.pagination}>
         <span className={styles.paginationCurrent}>{currentIndex + 1}</span>
-        <span className={styles.paginationTotal}> / {letters.length}</span>
+        <span className={styles.paginationTotal}> / {letterCount}</span>
       </div>
     </div>
   );

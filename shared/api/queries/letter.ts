@@ -1,4 +1,4 @@
-import { queryOptions } from "@tanstack/react-query";
+import { infiniteQueryOptions, queryOptions } from "@tanstack/react-query";
 
 import { ENDPOINTS } from "@/shared/constants/endpoints";
 import type { LetterDetailRes, LetterListRes } from "@/shared/types/api/letter";
@@ -6,20 +6,24 @@ import { apiClient } from "../api-client";
 
 export const letterQueryKeys = {
   all: () => ["letter"],
-  listByCapsule: (capsuleId: string, page?: number, size?: number) => [
+  listByCapsule: (capsuleId: string) => [
     ...letterQueryKeys.all(),
     "list",
     capsuleId,
-    { page, size },
   ],
   detail: (letterId: string) => [...letterQueryKeys.all(), "detail", letterId],
 };
 
 export const letterQueryOptions = {
-  letterList: (capsuleId: string, page = 0, size = 20) =>
-    queryOptions({
-      queryKey: letterQueryKeys.listByCapsule(capsuleId, page, size),
-      queryFn: () => getLetterList(capsuleId, page, size),
+  letterList: (capsuleId: string) =>
+    infiniteQueryOptions({
+      queryKey: letterQueryKeys.listByCapsule(capsuleId),
+      queryFn: ({ pageParam = 0 }) => getLetterList(capsuleId, pageParam, 20),
+      getNextPageParam: (lastPage) => {
+        const { page, totalPages } = lastPage.result;
+        return page < totalPages - 1 ? page + 1 : undefined;
+      },
+      initialPageParam: 0,
       enabled: !!capsuleId,
     }),
 

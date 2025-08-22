@@ -5,9 +5,11 @@ import { letterQueryOptions } from "@/shared/api/queries/letter";
 import Grid from "@/shared/assets/icon/grid.svg";
 import Layers from "@/shared/assets/icon/layers.svg";
 import { useLetterImages } from "@/shared/hooks/use-letter-images";
-import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "@/shared/ui/loading-spinner";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
+import { useIntersectionObserver } from "react-simplikit";
 import EmptySection from "./_components/empty-section";
 import GridLayout from "./_components/grid-layout";
 import OpenCapsuleLoading from "./_components/open-capsule-loading";
@@ -31,33 +33,54 @@ const CapsuleLettersPage = () => {
     }),
   });
 
-  const { data: letterData, isLoading: isLetterLoading } = useQuery(
-    letterQueryOptions.letterList(capsuleId),
+  const {
+    data: letterData,
+    isLoading: isLetterLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery(letterQueryOptions.letterList(capsuleId));
+
+  const footerRef = useIntersectionObserver<HTMLDivElement>(
+    (entry) => {
+      if (entry.isIntersecting && hasNextPage && !isFetchingNextPage) {
+        fetchNextPage();
+      }
+    },
+    { threshold: 0.8 },
   );
-  const letters = letterData?.result?.letters || [];
+
+  const letters =
+    letterData?.pages.flatMap((page) => page.result.letters) || [];
+
+  const totalLetterCount = letterData?.pages[0]?.result.totalElements || 0;
   const { imageUrls, isImageLoading } = useLetterImages(letters);
 
-  const isLoading = isLetterLoading || isImageLoading || isCapsuleLoading;
+  const isInitialLoading =
+    (isLetterLoading && !letterData) ||
+    (isLetterLoading && !letterData) ||
+    (isImageLoading && letters.length === 0) ||
+    isCapsuleLoading;
 
   const handleLoadingComplete = () => {
     setHasShownOpening(true);
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+  if (isInitialLoading) {
+    return <LoadingSpinner loading={true} size={20} />;
   }
 
   if (capsuleData?.isFirstOpen && !hasShownOpening) {
     return (
       <OpenCapsuleLoading
         participantCount={capsuleData?.participantCount || 0}
-        letterCount={letters.length}
+        letterCount={totalLetterCount}
         onComplete={handleLoadingComplete}
       />
     );
   }
 
-  if (letters.length === 0) {
+  if (totalLetterCount === 0) {
     return (
       <div className={styles.gridContainer}>
         <button className={styles.header} onClick={() => router.back()}>
@@ -66,7 +89,7 @@ const CapsuleLettersPage = () => {
         <div className={styles.titleContainer}>
           <h1 className={styles.title}>{capsuleData?.title || "캡슐"}</h1>
           <p className={styles.subtitle}>
-            {capsuleData?.participantCount || 0}명 참여 · {letters.length}통
+            {capsuleData?.participantCount || 0}명 참여 · {totalLetterCount}통
           </p>
         </div>
         <EmptySection />
@@ -82,15 +105,27 @@ const CapsuleLettersPage = () => {
       <div className={styles.titleContainer}>
         <h1 className={styles.title}>{capsuleData?.title || "캡슐"}</h1>
         <p className={styles.subtitle}>
-          {capsuleData?.participantCount || 0}명 참여 · {letters.length}통
+          {capsuleData?.participantCount || 0}명 참여 · {totalLetterCount}통
         </p>
       </div>
 
       <div className={styles.cardContainer}>
         {isStackType ? (
-          <StackLayout letters={letters} imageUrls={imageUrls} />
+          <StackLayout
+            letters={letters}
+            letterCount={totalLetterCount}
+            imageUrls={imageUrls}
+            fetchNextPage={fetchNextPage}
+            hasNextPage={hasNextPage}
+            isFetchingNextPage={isFetchingNextPage}
+          />
         ) : (
-          <GridLayout letters={letters} imageUrls={imageUrls} />
+          <GridLayout
+            letters={letters}
+            imageUrls={imageUrls}
+            footerRef={footerRef}
+            isFetchingNextPage={isFetchingNextPage}
+          />
         )}
       </div>
 

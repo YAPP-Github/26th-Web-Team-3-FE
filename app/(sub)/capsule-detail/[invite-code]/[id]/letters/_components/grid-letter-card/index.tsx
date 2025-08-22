@@ -1,7 +1,7 @@
+import { useOverlay } from "@/shared/hooks/use-overlay";
 import type { Letter } from "@/shared/types/api/letter";
 import HoverMotion from "@/shared/ui/motion/hover-motion";
 import Image from "next/image";
-import { useOverlay } from "@/shared/hooks/use-overlay";
 import LetterDetailModal from "../letter-detail-modal";
 import * as styles from "./grid-letter-card.css";
 
@@ -34,6 +34,10 @@ const GridLetterCard = ({ letter, imageUrl }: LetterCardProps) => {
             className={styles.image}
             src={imageUrl}
             alt="편지 이미지"
+            data-loaded="false"
+            onLoad={(event) => {
+              event.currentTarget.setAttribute("data-loaded", "true");
+            }}
           />
         )}
         <div className={styles.content}>
