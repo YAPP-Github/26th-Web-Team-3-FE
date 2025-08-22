@@ -12,6 +12,7 @@ interface ModalProps {
   overlayClassName?: string;
   contentClassName?: string;
   fullScreenOnMobile?: boolean;
+  closeOnOverlayClick?: boolean;
 }
 
 export default function Modal({
@@ -21,6 +22,7 @@ export default function Modal({
   overlayClassName,
   contentClassName,
   fullScreenOnMobile = true,
+  closeOnOverlayClick = false,
 }: ModalProps) {
   useEffect(() => {
     const handleEscapeKey = (event: KeyboardEvent) => {
@@ -42,6 +44,11 @@ export default function Modal({
 
   if (!isOpen) return null;
 
+  const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (closeOnOverlayClick && event.target === event.currentTarget) {
+      onClose();
+    }
+  };
 
   const contentStyles = fullScreenOnMobile
     ? `${styles.content} ${contentClassName || ""}`
@@ -50,6 +57,7 @@ export default function Modal({
   return createPortal(
     <div
       className={`${styles.overlay} ${overlayClassName || ""}`}
+      onClick={handleOverlayClick}
       onKeyDown={(event) => {
         if (
           (event.key === "Enter" || event.key === " ") &&
