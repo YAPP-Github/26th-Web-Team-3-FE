@@ -7,10 +7,18 @@ import HomeCaptionSection from "./_components/home-caption-section";
 import HomeTitleSection from "./_components/home-title-section";
 
 import FloatingStarsContainer from "@/shared/ui/floating-stars-container";
+import { useQuery } from "@tanstack/react-query";
+import { userQueryOptions } from "@/shared/api/queries/user";
 
 import * as styles from "./home.css";
 
 const Home = () => {
+  const { data } = useQuery(
+    userQueryOptions.totalUserCount()
+  );
+
+  const totalUserCount = data?.result.userTotalCount;
+
   return (
     <div>
       <main>
@@ -26,7 +34,7 @@ const Home = () => {
         />
         <HomeTitleSection />
         <HomeButtonSection />
-        <HomeCaptionSection />
+        <HomeCaptionSection totalUserCount={totalUserCount || 0} />
         <div className={styles.physicsContainer}>
           <Physics
             gravX={0}

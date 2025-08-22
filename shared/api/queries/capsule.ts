@@ -96,10 +96,10 @@ const getCapsuleLists = (
 const getSearchCapsuleLists = (
   keyword: string,
   page?: number,
-  size?: number,
+  size?: number
 ) => {
   return apiClient.get<CapsuleListsRes>(
-    ENDPOINTS.CAPSULE_SEARCH_LISTS(keyword, page, size),
+    ENDPOINTS.CAPSULE_SEARCH_LISTS(keyword, page, size)
   );
 };
 
