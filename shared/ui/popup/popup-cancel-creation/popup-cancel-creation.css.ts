@@ -7,6 +7,10 @@ export const title = style({
   marginBottom: "0.6rem",
 });
 
+export const cancelButton = style({
+  color: themeVars.color.white[30],
+});
+
 export const continueButton = style({
   color: themeVars.color.purple[10],
 });

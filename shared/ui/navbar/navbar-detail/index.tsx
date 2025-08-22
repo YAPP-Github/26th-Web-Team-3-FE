@@ -11,9 +11,10 @@ import * as styles from "./navbar-detail.css";
 interface NavbarDetailProps {
   renderRight?: () => ReactElement;
   className?: string;
+  isHomeButton?: boolean;
 }
 
-const NavbarDetail = ({ renderRight, className }: NavbarDetailProps) => {
+const NavbarDetail = ({ renderRight, className, isHomeButton = true }: NavbarDetailProps) => {
   const router = useRouter();
   const renderRightElement = renderRight ? renderRight() : null;
 
@@ -39,9 +40,11 @@ const NavbarDetail = ({ renderRight, className }: NavbarDetailProps) => {
       >
         <BackIcon />
       </button>
-      <button type="button" onClick={handleHome} className={styles.iconButton}>
-        <HomeIcon />
-      </button>
+        {isHomeButton && (
+          <button type="button" onClick={handleHome} className={styles.iconButton}>
+            <HomeIcon />
+          </button>
+        )}
       </div>
       <div className={cn(styles.rightElement, className)}>
         {renderRightElement}

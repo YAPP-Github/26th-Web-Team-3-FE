@@ -13,6 +13,7 @@ import SettingSection from "./_components/setting-section";
 import UserGreetingSection from "./_components/user-greeting-section";
 import { useOverlay } from "@/shared/hooks/use-overlay";
 import { PATH } from "@/shared/constants/path";
+import { EXTERNAL_LINKS } from "@/shared/constants/links";
 import * as styles from "./page.css";
 
 const Setting = () => {
@@ -42,8 +43,11 @@ const Setting = () => {
       <UserGreetingSection userName={userInfo?.result.nickname || ""} />
       <div className={styles.itemsContainer}>
         <SettingSection category="서비스 정보">
-          <SettingItem>이용약관</SettingItem>
-          <SettingItem>개인정보 취급 방침</SettingItem>
+          {EXTERNAL_LINKS.map((link) => (
+            <SettingItem key={link.label} onClick={() => window.open(link.url, "_blank")}>
+              {link.label}
+            </SettingItem>
+          ))}
         </SettingSection>
         <SettingSection category="고객센터">
           <SettingItem onClick={() =>

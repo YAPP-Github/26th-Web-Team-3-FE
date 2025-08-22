@@ -54,7 +54,6 @@ export const dim = style({
 
 export const button = style({
   width: "100%",
-  color: themeVars.color.white[30],
   borderRadius: "12px",
   selectors: {
     "&:hover": {

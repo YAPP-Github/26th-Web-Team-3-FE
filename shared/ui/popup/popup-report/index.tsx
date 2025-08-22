@@ -12,7 +12,8 @@ interface PopupReportProps {
 
 const PopupReport = ({ isOpen, close }: PopupReportProps) => {
   const [isCopied, setIsCopied] = useState(false);
-  const handleClickCopyButton = () => {
+  const handleClickCopyButton = (e: React.MouseEvent) => {
+    e.stopPropagation();
     navigator.clipboard.writeText("lettie.team@gmail.com");
     setIsCopied(true);
     setTimeout(() => {

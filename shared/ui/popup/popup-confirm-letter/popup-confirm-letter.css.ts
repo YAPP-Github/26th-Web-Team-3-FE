@@ -9,6 +9,10 @@ export const title = style({
   ...themeVars.text.F20,
 });
 
+export const content = style({
+  color: themeVars.color.white[30],
+});
+
 export const putButton = style({
   color: themeVars.color.purple[10],
 });
