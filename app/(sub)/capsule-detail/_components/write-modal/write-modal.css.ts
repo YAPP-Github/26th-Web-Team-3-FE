@@ -175,6 +175,10 @@ export const senderTitle = style({
   marginLeft: "0.6rem",
 });
 
+export const imageInput = style({
+  display: "none",
+});
+
 export const textareaContainer = style({
   position: "relative",
   height: "38.8rem",

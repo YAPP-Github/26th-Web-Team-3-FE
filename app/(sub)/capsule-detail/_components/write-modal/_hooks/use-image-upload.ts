@@ -1,5 +1,5 @@
 import { useFileUpload } from "@/shared/api/mutations/file";
-import { useEffect, useState, useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface useImageUploadProps {
   onObjectKeyChange: (value: string) => void;
@@ -8,6 +8,7 @@ interface useImageUploadProps {
 export const useImageUpload = ({ onObjectKeyChange }: useImageUploadProps) => {
   const fileUploadMutation = useFileUpload();
   const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     return () => {
@@ -17,45 +18,56 @@ export const useImageUpload = ({ onObjectKeyChange }: useImageUploadProps) => {
     };
   }, [uploadedImageUrl]);
 
-  const handleImageUpload = async (): Promise<void> => {
-    const input = document.createElement("input");
-    input.type = "file";
-    input.accept = "image/*";
+  const handleFileChange = useCallback(
+    async (e: Event) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (!file) {
+        return;
+      }
 
-    return new Promise((resolve, reject) => {
-      input.onchange = async (e) => {
-        const file = (e.target as HTMLInputElement).files?.[0];
-        if (!file) {
-          resolve();
-          return;
+      try {
+        const fileName = "LETTER";
+        const extension = file.name.split(".").pop();
+
+        if (!extension) {
+          throw new Error("파일 확장자를 찾을 수 없습니다.");
         }
 
-        try {
-          const fileName = "LETTER";
-          const extension = file.name.split(".").pop();
+        const uploadedObjectKey = await fileUploadMutation.mutateAsync({
+          fileName,
+          extension,
+          file,
+        });
 
-          if (!extension) {
-            throw new Error("파일 확장자를 찾을 수 없습니다.");
-          }
+        const objectUrl = URL.createObjectURL(file);
 
-          const uploadedObjectKey = await fileUploadMutation.mutateAsync({
-            fileName,
-            extension,
-            file,
-          });
+        setUploadedImageUrl(objectUrl);
+        onObjectKeyChange(uploadedObjectKey);
+      } catch (error) {
+        console.error("이미지 업로드 실패 상세:", error);
+        alert(
+          `업로드 실패: ${
+            error instanceof Error ? error.message : "알 수 없는 오류"
+          }`,
+        );
+      }
+    },
+    [fileUploadMutation, onObjectKeyChange],
+  );
 
-          setUploadedImageUrl(URL.createObjectURL(file));
-          onObjectKeyChange(uploadedObjectKey);
-          resolve();
-        } catch (error) {
-          console.error("이미지 업로드 실패:", error);
-          reject(error);
-        }
+  const handleImageUpload = useCallback(() => {
+    inputRef.current?.click();
+  }, []);
+
+  useEffect(() => {
+    const input = inputRef.current;
+    if (input) {
+      input.addEventListener("change", handleFileChange);
+      return () => {
+        input.removeEventListener("change", handleFileChange);
       };
-
-      input.click();
-    });
-  };
+    }
+  }, [handleFileChange]);
 
   const removeImage = useCallback(() => {
     if (uploadedImageUrl) {
@@ -70,5 +82,6 @@ export const useImageUpload = ({ onObjectKeyChange }: useImageUploadProps) => {
     handleImageUpload,
     removeImage,
     isUploading: fileUploadMutation.isPending,
+    inputRef,
   };
 };

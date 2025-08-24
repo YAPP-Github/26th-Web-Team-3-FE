@@ -62,10 +62,15 @@ const WriteModal = ({
     control,
   });
 
-  const { uploadedImageUrl, handleImageUpload, removeImage, isUploading } =
-    useImageUpload({
-      onObjectKeyChange: (value) => setValue("objectKey", value),
-    });
+  const {
+    uploadedImageUrl,
+    handleImageUpload,
+    removeImage,
+    isUploading,
+    inputRef,
+  } = useImageUpload({
+    onObjectKeyChange: (value) => setValue("objectKey", value),
+  });
 
   const onSubmit = (data: WriteLetterReq) => {
     if (!data.content?.trim()) {
@@ -120,6 +125,12 @@ const WriteModal = ({
         closeOnOverlayClick={false}
       >
         <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
+          <input
+            ref={inputRef}
+            type="file"
+            accept="image/*"
+            className={styles.imageInput}
+          />
           <div className={styles.header}>
             <button
               type="button"
