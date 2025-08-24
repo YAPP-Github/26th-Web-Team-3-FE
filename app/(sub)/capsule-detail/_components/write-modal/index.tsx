@@ -48,7 +48,6 @@ const WriteModal = ({
       capsuleId: capsuleData.result.id.toString(),
       content: "",
       from: "",
-      objectKey: "",
     },
   });
 
@@ -82,14 +81,20 @@ const WriteModal = ({
 
   const handleConfirm = (data: WriteLetterReq) => {
     if (isPending) return;
-    writeLetterMutate(data, {
+
+    const submitData = { ...data };
+    if (!submitData.objectKey?.trim()) {
+      delete submitData.objectKey;
+    }
+
+    writeLetterMutate(submitData, {
       onSuccess: () => {
         setIsConfirmOpen(false);
         reset({
           capsuleId: capsuleData.result.id.toString(),
           content: "",
           from: "",
-          objectKey: "",
+          objectKey: undefined,
         });
         if (uploadedImageUrl) {
           removeImage();
@@ -271,7 +276,7 @@ const WriteModal = ({
               capsuleId: capsuleData.result.id.toString(),
               content: "",
               from: "",
-              objectKey: "",
+              objectKey: undefined,
             });
             if (uploadedImageUrl) {
               removeImage();

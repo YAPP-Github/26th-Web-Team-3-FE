@@ -2,7 +2,7 @@ import { useFileUpload } from "@/shared/api/mutations/file";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 interface useImageUploadProps {
-  onObjectKeyChange: (value: string) => void;
+  onObjectKeyChange: (value: string | undefined) => void;
 }
 
 export const useImageUpload = ({ onObjectKeyChange }: useImageUploadProps) => {
@@ -74,7 +74,7 @@ export const useImageUpload = ({ onObjectKeyChange }: useImageUploadProps) => {
       URL.revokeObjectURL(uploadedImageUrl);
     }
     setUploadedImageUrl(null);
-    onObjectKeyChange("");
+    onObjectKeyChange(undefined);
   }, [uploadedImageUrl, onObjectKeyChange]);
 
   return {
