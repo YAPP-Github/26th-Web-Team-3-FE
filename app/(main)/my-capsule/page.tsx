@@ -61,13 +61,14 @@ const MyCapsule = () => {
       <RevealMotion>
         <TitleSection />
       </RevealMotion>
+      <main>
       <SelectTabSection
         onSelect={handleSelect}
         selectedTab={selectedTab}
         handleSort={handleSort}
       />
       <CardContainer capsules={allCapsules} isLoading={isPending} />
-
+      </main>
       <div ref={footerRef} className={styles.footer}>
         {isFetchingNextPage && <LoadingSpinner loading={true} size={20} />}
       </div>

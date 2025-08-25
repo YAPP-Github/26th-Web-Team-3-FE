@@ -32,7 +32,7 @@ const LoginPage = () => {
           <LogoImage />
         </Link>
       </header>
-      <div className={styles.contentsContainer}>
+      <main className={styles.contentsContainer}>
         <h1 className={styles.title}>
           5초 만에 로그인하고 <br />
           모든 기능을 사용해보세요!
@@ -58,7 +58,7 @@ const LoginPage = () => {
             구글 계정으로 계속하기
           </button>
         </div>
-      </div>
+      </main>
     </div>
   );
 };

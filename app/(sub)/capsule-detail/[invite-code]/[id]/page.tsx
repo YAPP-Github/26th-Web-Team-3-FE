@@ -129,6 +129,7 @@ const CapsuleDetailPage = () => {
             joinLettersCount={result.letterCount}
           />
         </RevealMotion>
+        <main>
         <CapsuleImage imageUrl={result.beadVideoUrl} />
         <div className={styles.container}>
           <RevealMotion delay={0.8}>
@@ -138,6 +139,7 @@ const CapsuleDetailPage = () => {
             <OpenInfoSection openAt={formatDateTime(result.openAt)} />
           </RevealMotion>
         </div>
+        </main>
         <ResponsiveFooter capsuleData={data} isLoggedIn={isLoggedIn} />
         {result.status !== "WRITABLE" && <InfoToast status={result.status} />}
     </>

@@ -60,7 +60,7 @@ export default function FloatingStarsContainer(props: FloatingStarsProps) {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} floating-stars`}>
       {stars.map((star) => (
         <motion.div
           key={star.id}

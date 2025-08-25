@@ -41,7 +41,7 @@ const Setting = () => {
   return (
     <div className={styles.settingPage}>
       <UserGreetingSection userName={userInfo?.result.nickname || ""} />
-      <div className={styles.itemsContainer}>
+      <main className={styles.itemsContainer}>
         <SettingSection category="서비스 정보">
           {EXTERNAL_LINKS.map((link) => (
             <SettingItem key={link.label} onClick={() => window.open(link.url, "_blank")}>
@@ -73,7 +73,7 @@ const Setting = () => {
           </SettingItem>
         </SettingSection>
         <p className={styles.warningText}>*회원탈퇴는 '문의하기'를 이용해주세요. </p>
-      </div>
+      </main>
     </div>
   );
 };

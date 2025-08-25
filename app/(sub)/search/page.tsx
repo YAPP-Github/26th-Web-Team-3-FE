@@ -38,9 +38,10 @@ const SearchContent = () => {
 
   return (
     <div>
+      <main>
       <SearchBarSection keyword={keyword} />
       <CardContainer capsules={allCapsules} isLoading={isLoading} keyword={keyword} />
-
+      </main>
       <div ref={footerRef}>
         {isFetchingNextPage && <LoadingSpinner loading={true} size={20} />}
       </div>

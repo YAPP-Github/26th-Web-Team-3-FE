@@ -112,7 +112,7 @@ const CreateCapsule = () => {
           isHomeButton={false}
         />
       )}
-      <div className={styles.container}>
+      <main className={styles.container}>
         <FormProvider {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -134,7 +134,7 @@ const CreateCapsule = () => {
             </Funnel>
           </form>
         </FormProvider>
-      </div>
+      </main>
     </>
   );
 };

@@ -9,7 +9,7 @@ export default function NotFound() {
   const router = useRouter();
   
   return (
-    <div className={styles.container}>
+    <main className={styles.container}>
       <NoneImage width={120} height={65} />
       <p className={styles.title}>페이지를 찾을 수 없습니다.</p>
       <p className={styles.description}>
@@ -21,6 +21,6 @@ export default function NotFound() {
       >
         홈으로 돌아가기
       </button>
-    </div>
+    </main>
   );
 }
