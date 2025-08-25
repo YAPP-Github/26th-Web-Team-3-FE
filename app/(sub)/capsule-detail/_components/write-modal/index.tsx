@@ -36,14 +36,7 @@ const WriteModal = ({
   const [isWarningOpen, setIsWarningOpen] = useState(false);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
-  const {
-    handleSubmit,
-    setValue,
-    getValues,
-    control,
-    reset,
-    formState: { errors },
-  } = useForm<WriteLetterReq>({
+  const { handleSubmit, getValues, control, reset } = useForm<WriteLetterReq>({
     defaultValues: {
       capsuleId: capsuleData.result.id.toString(),
       content: "",
@@ -62,14 +55,13 @@ const WriteModal = ({
   });
 
   const {
-    uploadedImageUrl,
-    handleImageUpload,
+    previewUrl,
+    handleFileChange,
     removeImage,
+    uploadFile,
+    hasFile,
     isUploading,
-    inputRef,
-  } = useImageUpload({
-    onObjectKeyChange: (value) => setValue("objectKey", value),
-  });
+  } = useImageUpload();
 
   const onSubmit = (data: WriteLetterReq) => {
     if (!data.content?.trim()) {
@@ -79,41 +71,55 @@ const WriteModal = ({
     setIsConfirmOpen(true);
   };
 
-  const handleConfirm = (data: WriteLetterReq) => {
-    if (isPending) return;
+  const handleConfirm = async (data: WriteLetterReq) => {
+    if (isPending || isUploading) return;
 
-    const submitData = { ...data };
-    if (!submitData.objectKey?.trim()) {
-      delete submitData.objectKey;
+    try {
+      const submitData = { ...data };
+
+      if (hasFile) {
+        const objectKey = await uploadFile();
+        submitData.objectKey = objectKey;
+      } else {
+        delete submitData.objectKey;
+      }
+
+      writeLetterMutate(submitData, {
+        onSuccess: () => {
+          setIsConfirmOpen(false);
+          reset({
+            capsuleId: capsuleData.result.id.toString(),
+            content: "",
+            from: "",
+            objectKey: undefined,
+          });
+          if (previewUrl) {
+            removeImage();
+          }
+          onClose();
+          onSuccess();
+        },
+        onError: (error) => {
+          setIsConfirmOpen(false);
+          console.error("편지 제출 실패:", error);
+        },
+      });
+    } catch (error) {
+      setIsConfirmOpen(false);
+      console.error("파일 업로드 실패:", error);
+      alert(
+        `업로드 실패: ${
+          error instanceof Error ? error.message : "알 수 없는 오류"
+        }`,
+      );
     }
-
-    writeLetterMutate(submitData, {
-      onSuccess: () => {
-        setIsConfirmOpen(false);
-        reset({
-          capsuleId: capsuleData.result.id.toString(),
-          content: "",
-          from: "",
-          objectKey: undefined,
-        });
-        if (uploadedImageUrl) {
-          removeImage();
-        }
-        onClose();
-        onSuccess();
-      },
-      onError: (error) => {
-        setIsConfirmOpen(false);
-        console.error("편지 제출 실패:", error);
-      },
-    });
   };
 
   const handleCloseWithWarning = (e: React.MouseEvent) => {
     e.stopPropagation();
 
     const hasContent =
-      contentField.value?.trim() || fromField.value?.trim() || uploadedImageUrl;
+      contentField.value?.trim() || fromField.value?.trim() || previewUrl;
 
     if (hasContent) {
       setIsWarningOpen(true);
@@ -121,6 +127,7 @@ const WriteModal = ({
       onClose();
     }
   };
+
   return (
     <>
       <Modal
@@ -130,12 +137,6 @@ const WriteModal = ({
         closeOnOverlayClick={false}
       >
         <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
-          <input
-            ref={inputRef}
-            type="file"
-            accept="image/*"
-            className={styles.imageInput}
-          />
           <div className={styles.header}>
             <button
               type="button"
@@ -190,7 +191,7 @@ const WriteModal = ({
                   </span>
                 </div>
 
-                {uploadedImageUrl ? (
+                {previewUrl ? (
                   <div className={styles.imagePreviewContainer}>
                     <button
                       type="button"
@@ -200,7 +201,7 @@ const WriteModal = ({
                       <Close />
                     </button>
                     <Image
-                      src={uploadedImageUrl}
+                      src={previewUrl}
                       alt="업로드된 이미지"
                       width={80}
                       height={80}
@@ -209,20 +210,21 @@ const WriteModal = ({
                   </div>
                 ) : (
                   <div className={styles.imageAddButtonContainer}>
-                    <button
-                      type="button"
-                      className={styles.imageAddButton}
-                      onClick={handleImageUpload}
-                      disabled={isUploading}
-                      aria-label="이미지 추가"
-                    >
+                    <label className={styles.imageAddButton}>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        disabled={isUploading}
+                        style={{ display: "none" }}
+                      />
                       <div className={styles.plusIconWrapper}>
                         <Plus className={styles.plusIcon} />
                       </div>
                       <span className={styles.imageCaption}>
                         {isUploading ? "업로드 중..." : "이미지 추가"}
                       </span>
-                    </button>
+                    </label>
                   </div>
                 )}
               </div>
@@ -250,6 +252,7 @@ const WriteModal = ({
         </form>
         {isConfirmOpen && (
           <PopupConfirmLetter
+            isLoading={isPending || isUploading}
             openDate={formatOpenDateString(capsuleData.result.openAt)}
             isOpen={isConfirmOpen}
             close={() => setIsConfirmOpen(false)}
@@ -278,7 +281,7 @@ const WriteModal = ({
               from: "",
               objectKey: undefined,
             });
-            if (uploadedImageUrl) {
+            if (previewUrl) {
               removeImage();
             }
             onClose();
