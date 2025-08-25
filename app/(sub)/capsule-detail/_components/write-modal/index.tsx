@@ -127,7 +127,6 @@ const WriteModal = ({
       onClose();
     }
   };
-
   return (
     <>
       <Modal
