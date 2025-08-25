@@ -1,4 +1,5 @@
 import { useFileUpload } from "@/shared/api/mutations/file";
+import type { ChangeEvent } from "react";
 import { useEffect, useState } from "react";
 
 export const useImageUpload = () => {
@@ -14,7 +15,7 @@ export const useImageUpload = () => {
     };
   }, [previewUrl]);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) {
       return;
