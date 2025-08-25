@@ -48,6 +48,7 @@ const Explore = () => {
       <RevealMotion>
         <TitleSection />
       </RevealMotion>
+      <main>
       <SelectTabSection
         handleSort={handleSort}
         onSelect={handleSelect}
@@ -55,7 +56,7 @@ const Explore = () => {
       />
       <AddCapsuleButton />
       <CardContainer capsules={allCapsules} isLoading={isPending} />
-
+      </main>
       <div ref={footerRef}>
         <Footer />
         {isFetchingNextPage && <LoadingSpinner loading={true} size={20} />}
