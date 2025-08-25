@@ -29,33 +29,34 @@ const NavbarMain = () => {
           isMenuOpen ? styles.navHomeStyleOpen : styles.navHomeStyleClose,
         )}
       >
-        <Link href={PATH.HOME}>
+        <Link href={PATH.HOME} tabIndex={0}>
           <Logo />
         </Link>
         <div className={styles.navWrapper}>
           <ul className={styles.navList}>
             <li>
-              <Link href={PATH.EXPLORE} className={styles.buttonStyle}>
+              <Link href={PATH.EXPLORE} className={styles.buttonStyle} tabIndex={0}>
                 탐색
               </Link>
             </li>
             <li>
-              <Link href={PATH.MY_CAPSULE} className={styles.buttonStyle}>
+              <Link href={PATH.MY_CAPSULE} className={styles.buttonStyle} tabIndex={0}>
                 내 캡슐
               </Link>
             </li>
             <li>
-              <Link href={PATH.SETTING} className={styles.buttonStyle}>
+              <Link href={PATH.SETTING} className={styles.buttonStyle} tabIndex={0}>
                 설정
               </Link>
             </li>
           </ul>
-          <Link href={PATH.SEARCH} className={styles.searchButtonStyle}>
+          <Link href={PATH.SEARCH} className={styles.searchButtonStyle} tabIndex={0}>
             <SearchIcon width={"2rem"} height={"2rem"} />
           </Link>
           <HamburgerMenuButton
             isMenuOpen={isMenuOpen}
             onClick={handleMenuClick}
+            tabIndex={0}
           />
         </div>
       </nav>
@@ -72,6 +73,7 @@ const NavbarMain = () => {
             href={PATH.EXPLORE}
             className={styles.menuItem}
             onClick={handleMenuClick}
+            tabIndex={isMenuOpen ? 0 : -1}
           >
             탐색
           </Link>
@@ -81,6 +83,7 @@ const NavbarMain = () => {
             href={PATH.MY_CAPSULE}
             className={styles.menuItem}
             onClick={handleMenuClick}
+            tabIndex={isMenuOpen ? 0 : -1}
           >
             내 캡슐
           </Link>
@@ -90,6 +93,7 @@ const NavbarMain = () => {
             href={PATH.SETTING}
             className={styles.menuItem}
             onClick={handleMenuClick}
+            tabIndex={isMenuOpen ? 0 : -1}
           >
             설정
           </Link>
