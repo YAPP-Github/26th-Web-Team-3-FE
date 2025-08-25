@@ -2,9 +2,11 @@ import Lettie from "@/shared/assets/character/lettie_animate.png";
 import Popup from "@/shared/ui/popup";
 
 import Image from "next/image";
+import { PulseLoader } from "react-spinners";
 import * as styles from "./popup-confirm-letter.css";
 
 interface PopupConfirmLetterProps {
+  isLoading: boolean;
   openDate: string;
   isOpen: boolean;
   close: () => void;
@@ -12,6 +14,7 @@ interface PopupConfirmLetterProps {
 }
 
 const PopupConfirmLetter = ({
+  isLoading,
   openDate,
   isOpen,
   close,
@@ -28,10 +31,18 @@ const PopupConfirmLetter = ({
       </Popup.Content>
       <Image src={Lettie} alt="apng" width={200} height={200} />
       <Popup.Actions>
-        <Popup.Button onClick={close} className={styles.content}>계속 쓰기</Popup.Button>
-        <Popup.Button className={styles.putButton} onClick={onConfirm}>
-          편지 담기
-        </Popup.Button>
+        {isLoading ? (
+          <PulseLoader color="white" size={10} />
+        ) : (
+          <>
+            <Popup.Button onClick={close} className={styles.content}>
+              계속 쓰기
+            </Popup.Button>
+            <Popup.Button className={styles.putButton} onClick={onConfirm}>
+              편지 담기
+            </Popup.Button>
+          </>
+        )}
       </Popup.Actions>
     </Popup>
   );

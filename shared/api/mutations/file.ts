@@ -30,11 +30,5 @@ export const useFileUpload = () => {
 
       return objectKey;
     },
-    onSuccess: (data) => {
-      console.log("File uploaded successfully:", data);
-    },
-    onError: (error) => {
-      console.error("File upload failed:", error);
-    },
   });
 };

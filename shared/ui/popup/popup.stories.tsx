@@ -131,7 +131,11 @@ export const WarningCapsule: Story = {
       }}
       onClick={() => {
         overlay.open(({ isOpen, close }) => (
-          <PopupWarningCapsule isOpen={isOpen} close={close} onConfirm={() => {}} />
+          <PopupWarningCapsule
+            isOpen={isOpen}
+            close={close}
+            onConfirm={() => {}}
+          />
         ));
       }}
     >
@@ -211,6 +215,7 @@ export const ConfirmLetter: Story = {
       onClick={() => {
         overlay.open(({ isOpen, close }) => (
           <PopupConfirmLetter
+            isLoading={false}
             openDate="2025. 06. 25"
             isOpen={isOpen}
             close={close}
