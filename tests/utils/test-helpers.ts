@@ -12,13 +12,13 @@ export class TestHelpers {
   }
 
   static async navigateToExplore(page: Page) {
-    await page.getByRole("button", { name: "타임캡슐 보러가기" }).click();
+    await page.getByRole("link", { name: "타임캡슐 보러가기" }).click();
     await page.waitForURL("**/explore");
     await this.waitForPageLoad(page);
   }
 
   static async navigateToCreateCapsule(page: Page) {
-    await page.getByRole("button", { name: "타임캡슐 만들기" }).click();
+    await page.getByRole("link", { name: "타임캡슐 만들기" }).click();
     await page.waitForURL("**/create-capsule");
     await this.waitForPageLoad(page);
   }
@@ -26,10 +26,10 @@ export class TestHelpers {
   static async checkMainElementsVisible(page: Page) {
     await expect(page.locator("main")).toBeVisible();
     await expect(
-      page.getByRole("button", { name: "타임캡슐 보러가기" })
+      page.getByRole("link", { name: "타임캡슐 보러가기" })
     ).toBeVisible();
     await expect(
-      page.getByRole("button", { name: "타임캡슐 만들기" })
+      page.getByRole("link", { name: "타임캡슐 만들기" })
     ).toBeVisible();
   }
 

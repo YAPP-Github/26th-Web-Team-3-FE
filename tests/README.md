@@ -57,15 +57,7 @@ pnpm test --headed
 - ✅ 플로팅 스타 애니메이션
 - ✅ 반응형 디자인
 
-### 2. 인증 테스트 (`auth.spec.ts`)
-- ✅ 로그인 페이지 표시
-- ✅ OAuth 로그인 플로우
-- ✅ 로그인 콜백 처리
-- ✅ 보호된 라우트 접근 제어
-- ✅ 세션 유지
-- ✅ 로그아웃 기능
-
-### 3. 네비게이션 테스트 (`navigation.spec.ts`)
+### 2. 네비게이션 테스트 (`navigation.spec.ts`)
 - ✅ 페이지 간 이동
 - ✅ 브라우저 뒤로/앞으로 버튼
 - ✅ 직접 URL 접근
@@ -73,7 +65,7 @@ pnpm test --headed
 - ✅ 키보드 네비게이션
 - ✅ 모바일 네비게이션
 
-### 4. 성능 테스트 (`performance.spec.ts`)
+### 3. 성능 테스트 (`performance.spec.ts`)
 - ✅ 페이지 로딩 시간 측정
 - ✅ 이미지 로딩 확인
 - ✅ API 호출 효율성
@@ -82,7 +74,7 @@ pnpm test --headed
 - ✅ 오프라인 모드 처리
 - ✅ 메모리 사용량 최적화
 
-### 5. 종합 테스트 (`comprehensive.spec.ts`)
+### 4. 종합 테스트 (`comprehensive.spec.ts`)
 - ✅ 전체 사용자 여정
 - ✅ 성능 및 로딩 테스트
 - ✅ 에러 처리 및 엣지 케이스

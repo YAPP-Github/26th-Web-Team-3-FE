@@ -18,13 +18,13 @@ test.describe("Navigation", () => {
 
   test("should navigate between main pages", async ({ page }) => {
     // Test navigation to explore page
-    await page.getByRole("button", { name: "타임캡슐 보러가기" }).click();
+    await page.getByRole("link", { name: "타임캡슐 보러가기" }).click();
     await page.waitForURL("**/explore");
     expect(page.url()).toContain("/explore");
 
     // Test navigation to create capsule page
     await page.goto("/");
-    await page.getByRole("button", { name: "타임캡슐 만들기" }).click();
+    await page.getByRole("link", { name: "타임캡슐 만들기" }).click();
     await page.waitForURL("**/create-capsule");
     expect(page.url()).toContain("/create-capsule");
   });
@@ -33,7 +33,7 @@ test.describe("Navigation", () => {
     page,
   }) => {
     // Navigate to explore page
-    await page.getByRole("button", { name: "타임캡슐 보러가기" }).click();
+    await page.getByRole("link", { name: "타임캡슐 보러가기" }).click();
     await page.waitForURL("**/explore");
 
     // Go back to home page
@@ -49,7 +49,7 @@ test.describe("Navigation", () => {
 
   test("should maintain page state during navigation", async ({ page }) => {
     // Navigate to explore page
-    await page.getByRole("button", { name: "타임캡슐 보러가기" }).click();
+    await page.getByRole("link", { name: "타임캡슐 보러가기" }).click();
     await page.waitForURL("**/explore");
 
     // Check if explore page loads properly
@@ -61,7 +61,7 @@ test.describe("Navigation", () => {
     // Check if home page still works properly
     await expect(page.locator("main")).toBeVisible();
     await expect(
-      page.getByRole("button", { name: "타임캡슐 보러가기" })
+      page.getByRole("link", { name: "타임캡슐 보러가기" })
     ).toBeVisible();
   });
 
@@ -127,7 +127,7 @@ test.describe("Navigation", () => {
     await page.setViewportSize({ width: 375, height: 667 });
 
     // Test navigation on mobile
-    await page.getByRole("button", { name: "타임캡슐 보러가기" }).click();
+    await page.getByRole("link", { name: "타임캡슐 보러가기" }).click();
     await page.waitForURL("**/explore");
     expect(page.url()).toContain("/explore");
 

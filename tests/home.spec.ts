@@ -25,10 +25,10 @@ test.describe("Home Page", () => {
 
     // Check if button section is present
     await expect(
-      page.getByRole("button", { name: "타임캡슐 보러가기" })
+      page.getByRole("link", { name: "타임캡슐 보러가기" })
     ).toBeVisible();
     await expect(
-      page.getByRole("button", { name: "타임캡슐 만들기" })
+      page.getByRole("link", { name: "타임캡슐 만들기" })
     ).toBeVisible();
 
     // Check if physics container is present
@@ -38,7 +38,7 @@ test.describe("Home Page", () => {
   test("should navigate to explore page when clicking explore button", async ({
     page,
   }) => {
-    const exploreButton = page.getByRole("button", {
+    const exploreButton = page.getByRole("link", {
       name: "타임캡슐 보러가기",
     });
     await exploreButton.click();
@@ -51,7 +51,7 @@ test.describe("Home Page", () => {
   test("should navigate to create capsule page when clicking create button", async ({
     page,
   }) => {
-    const createButton = page.getByRole("button", { name: "타임캡슐 만들기" });
+    const createButton = page.getByRole("link", { name: "타임캡슐 만들기" });
     await createButton.click();
 
     // Wait for navigation
