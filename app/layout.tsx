@@ -4,10 +4,11 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 import "@/shared/styles/base/global.css";
-import "@/shared/styles/base/reset.css";
 import { globalLayout, rootStyle } from "@/shared/styles/base/global.css";
+import "@/shared/styles/base/reset.css";
 import { themeClass } from "@/shared/styles/base/theme.css";
 import SprinkleContainer from "@/shared/ui/sprinkle-container";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 // TODO: 추후 수정
 export const metadata: Metadata = {
@@ -36,6 +37,7 @@ export default function RootLayout({
           <div className={globalLayout}>{children}</div>
         </Providers>
         <SprinkleContainer />
+        <GoogleAnalytics gaId="G-MBBY7MYYSK" />
       </body>
     </html>
   );
