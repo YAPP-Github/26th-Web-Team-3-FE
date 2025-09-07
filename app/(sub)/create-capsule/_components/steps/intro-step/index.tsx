@@ -31,7 +31,7 @@ const IntroStep = ({ handleNextStep }: Props) => {
   };
 
   return (
-    <main className={styles.container}>
+    <div className={styles.container}>
       <RevealMotion>
         <TitleCaption
           title={
@@ -78,7 +78,7 @@ const IntroStep = ({ handleNextStep }: Props) => {
           <Button variant="primary" text="다음" onClick={handleClickNext} disabled={!titleField.value?.trim()} />
         </div>
       </RevealMotion>
-    </main>
+    </div>
   );
 };
 
