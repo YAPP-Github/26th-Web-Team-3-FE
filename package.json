@@ -34,7 +34,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.61.1",
-    "react-simplikit": "^0.0.40",
+    "react-simplikit": "^0.0.42",
     "react-spinners": "^0.17.0"
   },
   "devDependencies": {
