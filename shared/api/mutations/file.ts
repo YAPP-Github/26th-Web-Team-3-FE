@@ -1,9 +1,14 @@
-import { FileUploadReq } from "@/shared/types/api/file";
-import { useMutation } from "@tanstack/react-query";
+import type { FileUploadReq } from "@/shared/types/api/file";
+import { mutationOptions } from "@tanstack/react-query";
 import { getUploadPresignedUrl } from "../queries/file";
 
-export const useFileUpload = () => {
-  return useMutation({
+export const fileMutationKeys = {
+  upload: () => ["file-upload"],
+};
+
+export const fileMutationOptions = {
+  upload: mutationOptions({
+    mutationKey: fileMutationKeys.upload(),
     mutationFn: async ({
       fileName,
       extension,
@@ -30,5 +35,5 @@ export const useFileUpload = () => {
 
       return objectKey;
     },
-  });
+  }),
 };

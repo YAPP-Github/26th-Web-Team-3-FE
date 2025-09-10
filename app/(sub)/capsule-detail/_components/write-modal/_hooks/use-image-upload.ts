@@ -1,9 +1,10 @@
-import { useFileUpload } from "@/shared/api/mutations/file";
+import { fileMutationOptions } from "@/shared/api/mutations/file";
+import { useMutation } from "@tanstack/react-query";
 import type { ChangeEvent } from "react";
 import { useEffect, useState } from "react";
 
 export const useImageUpload = () => {
-  const fileUploadMutation = useFileUpload();
+  const fileUploadMutation = useMutation(fileMutationOptions.upload);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 

@@ -1,30 +1,28 @@
-import { capsuleQueryKeys } from "@/shared/api/queries/capsule";
 import { ENDPOINTS } from "@/shared/constants/endpoints";
 import type {
   CreateCapsuleReq,
   CreateCapsuleRes,
 } from "@/shared/types/api/capsule";
-import { useMutation } from "@tanstack/react-query";
-import { useQueryClient } from "@tanstack/react-query";
+import { mutationOptions } from "@tanstack/react-query";
 import { apiClient } from "../api-client";
 
-export const useCreateCapsule = () => {
-  const queryClient = useQueryClient();
-  return useMutation({
+export const capsuleMutationKeys = {
+  create: () => ["capsule-create"],
+  like: () => ["capsule-like"],
+  leave: () => ["capsule-leave"],
+};
+
+export const capsuleMutationOptions = {
+  create: mutationOptions({
+    mutationKey: capsuleMutationKeys.create(),
     mutationFn: async (data: CreateCapsuleReq): Promise<CreateCapsuleRes> => {
       return await apiClient.post<CreateCapsuleRes>(ENDPOINTS.CREATE_CAPSULE, {
         json: data,
       });
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["capsule", "my"] });
-    },
-  });
-};
-
-export const useLikeToggle = () => {
-  const queryClient = useQueryClient();
-  return useMutation({
+  }),
+  like: mutationOptions({
+    mutationKey: capsuleMutationKeys.like(),
     mutationFn: async ({ id, isLiked }: { id: string; isLiked: boolean }) => {
       if (isLiked) {
         await apiClient.delete(ENDPOINTS.LIKE_TOGGLE(id));
@@ -33,30 +31,11 @@ export const useLikeToggle = () => {
       }
       return id;
     },
-    onSuccess: async (id: string) => {
-      await Promise.all([
-        queryClient.invalidateQueries({
-          queryKey: capsuleQueryKeys.detail(id),
-        }),
-        queryClient.invalidateQueries({ queryKey: ["capsule", "my"] }),
-      ]);
-    },
-  });
-};
-
-export const useLeaveCapsule = () => {
-  const queryClient = useQueryClient();
-  return useMutation({
+  }),
+  leave: mutationOptions({
+    mutationKey: capsuleMutationKeys.leave(),
     mutationFn: (id: string) => {
       return apiClient.delete(ENDPOINTS.LEAVE_CAPSULE(id));
     },
-    onSuccess: async (_data, id: string) => {
-      await Promise.all([
-        queryClient.invalidateQueries({ queryKey: ["capsule", "my"] }),
-        queryClient.invalidateQueries({
-          queryKey: capsuleQueryKeys.detail(id),
-        }),
-      ]);
-    },
-  });
+  }),
 };
