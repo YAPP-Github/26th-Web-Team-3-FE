@@ -45,9 +45,10 @@ const WriteModal = ({
   );
   const [isWarningOpen, setIsWarningOpen] = useState(false);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
-  const isMutatingPost = useIsMutating({
-    mutationKey: letterMutationKeys.all(),
-  });
+  const isMutatingPost =
+    useIsMutating({
+      mutationKey: letterMutationKeys.all(),
+    }) > 0;
 
   const { handleSubmit, getValues, control, reset } = useForm<WriteLetterReq>({
     defaultValues: {
@@ -85,7 +86,7 @@ const WriteModal = ({
   };
 
   const handleConfirm = async (data: WriteLetterReq) => {
-    if (isMutatingPost > 0) return;
+    if (isMutatingPost) return;
 
     try {
       const submitData = { ...data };
@@ -162,9 +163,9 @@ const WriteModal = ({
             <button
               type="submit"
               className={styles.title}
-              disabled={isMutatingPost > 0}
+              disabled={isMutatingPost}
             >
-              {isMutatingPost > 0 ? (
+              {isMutatingPost ? (
                 <PulseLoader color="#FFFFFF" size={5} />
               ) : (
                 "편지담기"
