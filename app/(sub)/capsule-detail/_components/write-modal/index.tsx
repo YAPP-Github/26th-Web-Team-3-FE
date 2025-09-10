@@ -1,6 +1,7 @@
 "use client";
 
 import { letterMutationOptions } from "@/shared/api/mutations/letter";
+import { letterMutationKeys } from "@/shared/api/mutations/letter";
 import { capsuleQueryKeys } from "@/shared/api/queries/capsule";
 import Close from "@/shared/assets/icon/close.svg";
 import Plus from "@/shared/assets/icon/plus.svg";
@@ -12,8 +13,11 @@ import ShakeYMotion from "@/shared/ui/motion/shakeY-motion";
 import PopupConfirmLetter from "@/shared/ui/popup/popup-confirm-letter";
 import PopupWarningLetter from "@/shared/ui/popup/popup-warning-letter";
 import { formatOpenDateString } from "@/shared/utils/date";
-import { useMutation } from "@tanstack/react-query";
-import { useQueryClient } from "@tanstack/react-query";
+import {
+  useIsMutating,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 import Image from "next/image";
 import { useState } from "react";
 import { useController, useForm } from "react-hook-form";
@@ -36,11 +40,14 @@ const WriteModal = ({
   onSuccess,
 }: WriteModalProps) => {
   const queryClient = useQueryClient();
-  const { mutate: writeLetterMutate, isPending } = useMutation(
+  const { mutate: writeLetterMutate } = useMutation(
     letterMutationOptions.write,
   );
   const [isWarningOpen, setIsWarningOpen] = useState(false);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+  const isMutatingPost = useIsMutating({
+    mutationKey: letterMutationKeys.all(),
+  });
 
   const { handleSubmit, getValues, control, reset } = useForm<WriteLetterReq>({
     defaultValues: {
@@ -78,7 +85,7 @@ const WriteModal = ({
   };
 
   const handleConfirm = async (data: WriteLetterReq) => {
-    if (isPending || isUploading) return;
+    if (isMutatingPost > 0) return;
 
     try {
       const submitData = { ...data };
@@ -155,9 +162,9 @@ const WriteModal = ({
             <button
               type="submit"
               className={styles.title}
-              disabled={isPending || isUploading}
+              disabled={isMutatingPost > 0}
             >
-              {isPending || isUploading ? (
+              {isMutatingPost > 0 ? (
                 <PulseLoader color="#FFFFFF" size={5} />
               ) : (
                 "편지담기"
@@ -259,7 +266,7 @@ const WriteModal = ({
         </form>
         {isConfirmOpen && (
           <PopupConfirmLetter
-            isLoading={isPending || isUploading}
+            isLoading={isMutatingPost}
             openDate={formatOpenDateString(capsuleData.result.openAt)}
             isOpen={isConfirmOpen}
             close={() => setIsConfirmOpen(false)}

@@ -7,9 +7,10 @@ import { mutationOptions } from "@tanstack/react-query";
 import { apiClient } from "../api-client";
 
 export const capsuleMutationKeys = {
-  create: () => ["capsule-create"],
-  like: () => ["capsule-like"],
-  leave: () => ["capsule-leave"],
+  all: () => ["capsule"],
+  create: () => [...capsuleMutationKeys.all(), "create"],
+  like: () => [...capsuleMutationKeys.all(), "like"],
+  leave: () => [...capsuleMutationKeys.all(), "leave"],
 };
 
 export const capsuleMutationOptions = {
