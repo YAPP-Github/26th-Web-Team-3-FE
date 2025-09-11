@@ -38,9 +38,12 @@ const CreateCapsule = () => {
   const [capsuleInfo, setCapsuleInfo] = useState<CapsuleInfo | null>(null);
   const [showLoading, setShowLoading] = useState(false);
   const { open } = useOverlay();
-  const { mutate: createCapsuleMutate, isPending } = useMutation(
-    capsuleMutationOptions.create,
-  );
+  const {
+    mutate: createCapsuleMutate,
+    isPending,
+    isSuccess,
+    isError,
+  } = useMutation(capsuleMutationOptions.create);
 
   const defaultOpenDate = getDate(14);
   const defaultClosedAt = getDate(10);
@@ -85,15 +88,19 @@ const CreateCapsule = () => {
   useEffect(() => {
     if (isPending) {
       setShowLoading(true);
-    } else if (showLoading && !isPending) {
+      return;
+    }
+    if (isSuccess && showLoading) {
       const timer = setTimeout(() => {
         setShowLoading(false);
         setStep("complete");
       }, 2000);
-
       return () => clearTimeout(timer);
     }
-  }, [isPending, showLoading]);
+    if (isError) {
+      setShowLoading(false);
+    }
+  }, [isPending, isSuccess, isError, showLoading]);
 
   if (showLoading) {
     return <CreateCapsuleLoading />;
