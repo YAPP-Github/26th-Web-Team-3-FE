@@ -5,6 +5,8 @@ import { letterQueryOptions } from "@/shared/api/queries/letter";
 import Grid from "@/shared/assets/icon/grid.svg";
 import Layers from "@/shared/assets/icon/layers.svg";
 import { useLetterImages } from "@/shared/hooks/use-letter-images";
+import type { CapsuleDetailRes } from "@/shared/types/api/capsule";
+import type { LetterListRes } from "@/shared/types/api/letter";
 import LoadingSpinner from "@/shared/ui/loading-spinner";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useParams, useRouter } from "next/navigation";
@@ -26,7 +28,7 @@ const CapsuleLettersPage = () => {
 
   const { data: capsuleData, isLoading: isCapsuleLoading } = useQuery({
     ...capsuleQueryOptions.capsuleDetail(capsuleId),
-    select: (data) => ({
+    select: (data: CapsuleDetailRes) => ({
       title: data.result.title,
       participantCount: data.result.participantCount,
       isFirstOpen: data.result.isFirstOpen,
@@ -42,7 +44,7 @@ const CapsuleLettersPage = () => {
   } = useInfiniteQuery(letterQueryOptions.letterList(capsuleId));
 
   const footerRef = useIntersectionObserver<HTMLDivElement>(
-    (entry) => {
+    (entry: IntersectionObserverEntry) => {
       if (entry.isIntersecting && hasNextPage && !isFetchingNextPage) {
         fetchNextPage();
       }
@@ -51,7 +53,8 @@ const CapsuleLettersPage = () => {
   );
 
   const letters =
-    letterData?.pages.flatMap((page) => page.result.letters) || [];
+    letterData?.pages.flatMap((page: LetterListRes) => page.result.letters) ||
+    [];
 
   const totalLetterCount = letterData?.pages[0]?.result.totalElements || 0;
   const { imageUrls, isImageLoading } = useLetterImages(letters);

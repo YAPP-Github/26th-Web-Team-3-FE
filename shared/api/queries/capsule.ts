@@ -46,7 +46,7 @@ export const capsuleQueryOptions = {
       queryKey: capsuleQueryKeys.lists(sort, type),
       queryFn: ({ pageParam = 0 }) =>
         getCapsuleLists(pageParam, 20, sort, type),
-      getNextPageParam: (lastPage) => {
+      getNextPageParam: (lastPage: CapsuleListsRes) => {
         const { pageNumber, totalPages } = lastPage.result;
         return pageNumber < totalPages - 1 ? pageNumber + 1 : undefined;
       },
@@ -58,7 +58,7 @@ export const capsuleQueryOptions = {
       queryKey: capsuleQueryKeys.my(sort, filter),
       queryFn: ({ pageParam = 0 }) =>
         getMyCapsuleList(pageParam, 20, sort, filter),
-      getNextPageParam: (lastPage) => {
+      getNextPageParam: (lastPage: CapsuleListsRes) => {
         const { pageNumber, totalPages } = lastPage.result;
         return pageNumber < totalPages - 1 ? pageNumber + 1 : undefined;
       },
@@ -70,7 +70,7 @@ export const capsuleQueryOptions = {
       queryKey: capsuleQueryKeys.searchList(keyword),
       queryFn: ({ pageParam = 0 }) =>
         getSearchCapsuleLists(keyword, pageParam, 20),
-      getNextPageParam: (lastPage) => {
+      getNextPageParam: (lastPage: CapsuleListsRes) => {
         const { pageNumber, totalPages } = lastPage.result;
         return pageNumber < totalPages - 1 ? pageNumber + 1 : undefined;
       },
@@ -86,20 +86,20 @@ const getCapsuleLists = (
   page?: number,
   size?: number,
   sort?: CapsuleSortType,
-  type?: string
+  type?: string,
 ) => {
   return apiClient.get<CapsuleListsRes>(
-    ENDPOINTS.CAPSULE_LISTS(page, size, sort, type)
+    ENDPOINTS.CAPSULE_LISTS(page, size, sort, type),
   );
 };
 
 const getSearchCapsuleLists = (
   keyword: string,
   page?: number,
-  size?: number
+  size?: number,
 ) => {
   return apiClient.get<CapsuleListsRes>(
-    ENDPOINTS.CAPSULE_SEARCH_LISTS(keyword, page, size)
+    ENDPOINTS.CAPSULE_SEARCH_LISTS(keyword, page, size),
   );
 };
 
@@ -107,9 +107,9 @@ const getMyCapsuleList = (
   page?: number,
   size?: number,
   sort?: CapsuleSortType,
-  filter?: MyCapsuleFilterType
+  filter?: MyCapsuleFilterType,
 ) => {
   return apiClient.get<CapsuleListsRes>(
-    ENDPOINTS.MY_CAPSULE_LIST(page, size, sort, filter)
+    ENDPOINTS.MY_CAPSULE_LIST(page, size, sort, filter),
   );
 };

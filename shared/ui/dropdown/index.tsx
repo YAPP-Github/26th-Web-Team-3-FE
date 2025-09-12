@@ -6,8 +6,8 @@ import {
   type ReactNode,
   createContext,
   useContext,
-  useState,
   useEffect,
+  useState,
 } from "react";
 import { useOutsideClickEffect } from "react-simplikit";
 import * as styles from "./dropdown.css";
@@ -39,25 +39,17 @@ const DropdownRoot = ({ className, children }: DropdownRootProps) => {
   const [open, setOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [wrapperEl, setWrapperEl] = useState<HTMLDivElement | null>(null);
-  const [isAnimating, setIsAnimating] = useState(false);
 
   const handleToggleOpen = () => {
-    // 애니메이션 중일 때는 무시
-    if (isAnimating) return;
-    
     if (open) {
-      setIsAnimating(true);
       setIsClosing(true);
     } else {
-      setIsAnimating(true);
       setOpen(true);
       setIsClosing(false);
     }
   };
 
   const handleClose = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
     setIsClosing(true);
   };
 
@@ -67,14 +59,6 @@ const DropdownRoot = ({ className, children }: DropdownRootProps) => {
       const timer = setTimeout(() => {
         setOpen(false);
         setIsClosing(false);
-        setIsAnimating(false);
-      }, 150);
-
-      return () => clearTimeout(timer);
-    } else if (open) {
-      // 열기 애니메이션 완료 후
-      const timer = setTimeout(() => {
-        setIsAnimating(false);
       }, 150);
 
       return () => clearTimeout(timer);
@@ -140,11 +124,11 @@ const DropdownContent = ({ children, className }: DropdownContentProps) => {
   if (!open && !isClosing) return null;
 
   return (
-    <ul 
+    <ul
       className={cn(
         styles.dropdownContent,
-        isClosing? styles.dropdownContentClosing: '',
-        className
+        isClosing ? styles.dropdownContentClosing : "",
+        className,
       )}
     >
       {children}
