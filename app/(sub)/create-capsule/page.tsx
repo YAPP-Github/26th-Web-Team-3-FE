@@ -1,19 +1,22 @@
 "use client";
-import { useCreateCapsule } from "@/shared/api/mutations/capsule";
-import { Suspense, useState, useEffect } from "react";
 import CreateCapsuleLoading from "@/app/(sub)/create-capsule/_components/create-capsule-loading";
+import { capsuleMutationOptions } from "@/shared/api/mutations/capsule";
 import { useFunnel } from "@/shared/hooks/use-funnel";
+import { useOverlay } from "@/shared/hooks/use-overlay";
 import type { CreateCapsuleReq } from "@/shared/types/api/capsule";
+import type { CreateCapsuleRes } from "@/shared/types/api/capsule";
 import NavbarDetail from "@/shared/ui/navbar/navbar-detail";
 import PopupCancelCreation from "@/shared/ui/popup/popup-cancel-creation";
 import { createISOString, getDate } from "@/shared/utils/date";
+import { useMutation } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
+import { Suspense, useEffect, useState } from "react";
 import { FormProvider, type SubmitHandler, useForm } from "react-hook-form";
 import CompleteStep from "./_components/steps/complete-step";
 import DateStep from "./_components/steps/date-step";
 import IntroStep from "./_components/steps/intro-step";
 import PrivateStep from "./_components/steps/privacy-step";
 import * as styles from "./page.css";
-import { useOverlay } from "@/shared/hooks/use-overlay";
 
 type CreateCapsuleForm = {
   title: string;
@@ -30,12 +33,17 @@ interface CapsuleInfo {
 }
 
 const CreateCapsule = () => {
+  const queryClient = useQueryClient();
   const { Funnel, Step, setStep, step } = useFunnel();
   const [capsuleInfo, setCapsuleInfo] = useState<CapsuleInfo | null>(null);
   const [showLoading, setShowLoading] = useState(false);
   const { open } = useOverlay();
-  
-  const { mutate: createCapsuleMutate, isPending } = useCreateCapsule();
+  const {
+    mutate: createCapsuleMutate,
+    isPending,
+    isSuccess,
+    isError,
+  } = useMutation(capsuleMutationOptions.create);
 
   const defaultOpenDate = getDate(14);
   const defaultClosedAt = getDate(10);
@@ -66,11 +74,12 @@ const CreateCapsule = () => {
     };
 
     createCapsuleMutate(payload, {
-      onSuccess: (res) => {
+      onSuccess: (res: CreateCapsuleRes) => {
         setCapsuleInfo({
           id: res.result.id,
           inviteCode: res.result.inviteCode,
         });
+        queryClient.invalidateQueries({ queryKey: ["capsule", "my"] });
       },
     });
   };
@@ -79,15 +88,19 @@ const CreateCapsule = () => {
   useEffect(() => {
     if (isPending) {
       setShowLoading(true);
-    } else if (showLoading && !isPending) {
+      return;
+    }
+    if (isSuccess && showLoading) {
       const timer = setTimeout(() => {
         setShowLoading(false);
         setStep("complete");
       }, 2000);
-      
       return () => clearTimeout(timer);
     }
-  }, [isPending, showLoading]);
+    if (isError) {
+      setShowLoading(false);
+    }
+  }, [isPending, isSuccess, isError, showLoading]);
 
   if (showLoading) {
     return <CreateCapsuleLoading />;

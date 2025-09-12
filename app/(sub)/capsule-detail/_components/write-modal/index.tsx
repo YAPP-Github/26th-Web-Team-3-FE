@@ -1,6 +1,8 @@
 "use client";
 
-import { useWriteLetter } from "@/shared/api/mutations/letter";
+import { letterMutationOptions } from "@/shared/api/mutations/letter";
+import { letterMutationKeys } from "@/shared/api/mutations/letter";
+import { capsuleQueryKeys } from "@/shared/api/queries/capsule";
 import Close from "@/shared/assets/icon/close.svg";
 import Plus from "@/shared/assets/icon/plus.svg";
 import type { CapsuleDetailRes } from "@/shared/types/api/capsule";
@@ -11,6 +13,11 @@ import ShakeYMotion from "@/shared/ui/motion/shakeY-motion";
 import PopupConfirmLetter from "@/shared/ui/popup/popup-confirm-letter";
 import PopupWarningLetter from "@/shared/ui/popup/popup-warning-letter";
 import { formatOpenDateString } from "@/shared/utils/date";
+import {
+  useIsMutating,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 import Image from "next/image";
 import { useState } from "react";
 import { useController, useForm } from "react-hook-form";
@@ -32,9 +39,16 @@ const WriteModal = ({
   onClose,
   onSuccess,
 }: WriteModalProps) => {
-  const { mutate: writeLetterMutate, isPending } = useWriteLetter();
+  const queryClient = useQueryClient();
+  const { mutate: writeLetterMutate } = useMutation(
+    letterMutationOptions.write,
+  );
   const [isWarningOpen, setIsWarningOpen] = useState(false);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+  const isMutatingPost =
+    useIsMutating({
+      mutationKey: letterMutationKeys.all(),
+    }) > 0;
 
   const { handleSubmit, getValues, control, reset } = useForm<WriteLetterReq>({
     defaultValues: {
@@ -72,7 +86,7 @@ const WriteModal = ({
   };
 
   const handleConfirm = async (data: WriteLetterReq) => {
-    if (isPending || isUploading) return;
+    if (isMutatingPost) return;
 
     try {
       const submitData = { ...data };
@@ -81,11 +95,14 @@ const WriteModal = ({
         const objectKey = await uploadFile();
         submitData.objectKey = objectKey;
       } else {
-        delete submitData.objectKey;
+        submitData.objectKey = undefined;
       }
 
       writeLetterMutate(submitData, {
         onSuccess: () => {
+          queryClient.invalidateQueries({
+            queryKey: capsuleQueryKeys.detail(data.capsuleId),
+          });
           setIsConfirmOpen(false);
           reset({
             capsuleId: capsuleData.result.id.toString(),
@@ -99,14 +116,12 @@ const WriteModal = ({
           onClose();
           onSuccess();
         },
-        onError: (error) => {
+        onError: () => {
           setIsConfirmOpen(false);
-          console.error("편지 제출 실패:", error);
         },
       });
     } catch (error) {
       setIsConfirmOpen(false);
-      console.error("파일 업로드 실패:", error);
       alert(
         `업로드 실패: ${
           error instanceof Error ? error.message : "알 수 없는 오류"
@@ -148,9 +163,9 @@ const WriteModal = ({
             <button
               type="submit"
               className={styles.title}
-              disabled={isPending || isUploading}
+              disabled={isMutatingPost}
             >
-              {isPending || isUploading ? (
+              {isMutatingPost ? (
                 <PulseLoader color="#FFFFFF" size={5} />
               ) : (
                 "편지담기"
@@ -252,7 +267,7 @@ const WriteModal = ({
         </form>
         {isConfirmOpen && (
           <PopupConfirmLetter
-            isLoading={isPending || isUploading}
+            isLoading={isMutatingPost}
             openDate={formatOpenDateString(capsuleData.result.openAt)}
             isOpen={isConfirmOpen}
             close={() => setIsConfirmOpen(false)}
