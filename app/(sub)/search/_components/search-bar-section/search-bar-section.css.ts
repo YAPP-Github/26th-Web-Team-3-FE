@@ -23,6 +23,8 @@ export const searchBar = style({
   backgroundColor: themeVars.color.white[5],
   padding: "1.2rem 1.8rem 1.2rem 4.8rem",
   borderRadius: "12px",
+  zoom: 0,
+  fontSize: "16px",
   selectors: {
     "&::placeholder": {
       color: themeVars.color.white[40],
