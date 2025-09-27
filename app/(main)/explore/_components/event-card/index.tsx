@@ -9,7 +9,6 @@ const EventCard = () => {
         <div className={cn(styles.cardGradientOverlay)} />
         <div className={styles.cardContentWrapper}>
           <div className={styles.cardTopWrapper}>OPEN EVENT</div>
-
           <span className={styles.cardTitle}>
             타임캡슐 만들고
             <br />

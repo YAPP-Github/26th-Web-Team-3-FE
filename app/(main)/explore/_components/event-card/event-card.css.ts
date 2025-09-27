@@ -5,6 +5,7 @@ import { style } from "@vanilla-extract/css";
 
 export const cardBase = style({
   position: "relative",
+  border: "1.5px solid #4d4d4d",
   zIndex: 2,
   width: "100%",
   height: "24.5rem",
@@ -58,6 +59,18 @@ export const cardTopWrapper = style({
   flexDirection: "row",
   gap: "1.4rem",
   alignItems: "center",
+  background: "linear-gradient(90deg, #8CA8FA 0%, #886DF4 100%)",
+  backgroundClip: "text",
+  WebkitBackgroundClip: "text",
+  color: "transparent",
+  fontFamily: "Pretendard",
+  fontSize: "1.4rem",
+  fontStyle: "normal",
+  fontWeight: "800",
+  lineHeight: "140%",
+  ...screen.md({
+    fontSize: "1.6rem",
+  }),
 });
 
 export const cardIcon = style({
