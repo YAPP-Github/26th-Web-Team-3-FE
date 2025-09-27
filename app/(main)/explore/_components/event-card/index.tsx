@@ -2,10 +2,16 @@ import HoverMotion from "@/shared/ui/motion/hover-motion";
 import { cn } from "@/shared/utils/cn";
 import * as styles from "./event-card.css";
 
+const eventLink = "https://www.instagram.com/p/DNpm2HGp8Ow/?img_index=1";
+
 const EventCard = () => {
+  const handleClick = () => {
+    window.open(eventLink, "_blank");
+  };
+
   return (
     <HoverMotion>
-      <div className={styles.cardBase}>
+      <div className={styles.cardBase} onClick={handleClick}>
         <div className={cn(styles.cardGradientOverlay)} />
         <div className={styles.cardContentWrapper}>
           <div className={styles.cardTopWrapper}>OPEN EVENT</div>
