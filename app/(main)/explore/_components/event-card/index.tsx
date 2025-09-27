@@ -5,13 +5,14 @@ import * as styles from "./event-card.css";
 const eventLink = "https://www.instagram.com/p/DNpm2HGp8Ow/?img_index=1";
 
 const EventCard = () => {
-  const handleClick = () => {
-    window.open(eventLink, "_blank");
-  };
-
   return (
     <HoverMotion>
-      <div className={styles.cardBase} onClick={handleClick}>
+      <a
+        className={styles.cardBase}
+        href={eventLink}
+        target="_blank"
+        rel="noreferrer"
+      >
         <div className={cn(styles.cardGradientOverlay)} />
         <div className={styles.cardContentWrapper}>
           <div className={styles.cardTopWrapper}>OPEN EVENT</div>
@@ -29,7 +30,7 @@ const EventCard = () => {
             <img src="/event-chicken.png" alt="이벤트 치킨" />
           </div>
         </div>
-      </div>
+      </a>
     </HoverMotion>
   );
 };
