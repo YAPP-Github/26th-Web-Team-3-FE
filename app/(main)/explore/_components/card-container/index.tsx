@@ -1,6 +1,6 @@
-import Card from "@/shared/ui/card";
 import EmptySection from "@/app/(main)/explore/_components/empty-section";
-
+import EventCard from "@/app/(main)/explore/_components/event-card";
+import Card from "@/shared/ui/card";
 import * as styles from "./card-container.css";
 
 import { CARD_GRADIENTS } from "@/shared/constants/card";
@@ -24,6 +24,7 @@ const CardContainer = ({ capsules, isLoading }: CardContainerProps) => {
 
   return (
     <div className={styles.cardContainer}>
+      <EventCard />
       {capsules.map((capsule, index) => (
         <Card
           key={capsule.id}
