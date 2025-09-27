@@ -24,7 +24,7 @@ const CardContainer = ({ capsules, isLoading }: CardContainerProps) => {
 
   return (
     <div className={styles.cardContainer}>
-      <EventCard></EventCard>
+      <EventCard />
       {capsules.map((capsule, index) => (
         <Card
           key={capsule.id}
