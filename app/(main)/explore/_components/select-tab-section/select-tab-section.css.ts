@@ -23,13 +23,30 @@ export const chipWrapper = style({
 });
 
 export const dropdown = style({
-  position: "absolute",
-  right: "0",
-  top: "100%",
-  transform: "translateY(-180%)",
-  marginRight: "1rem",
-  ...screen.md({
-    top: "100%",
-    transform: "translateY(-90%)",
-  }),
+  position: "relative",
+});
+
+export const dropdownTrigger = style({
+  display: "flex",
+  alignItems: "center",
+  gap: "0.5rem",
+  padding: "1rem 1.5rem",
+  backgroundColor: "rgba(255, 255, 255, 0.05)",
+  border: "none",
+  borderRadius: "8px",
+  color: "rgba(255, 255, 255, 0.85)",
+  fontSize: "1.4rem",
+  fontWeight: "500",
+  cursor: "pointer",
+  selectors: {
+    "&:hover": {
+      backgroundColor: "rgba(255, 255, 255, 0.10)",
+    },
+  },
+});
+
+export const dropdownIcon = style({
+  transform: "rotate(90deg)",
+  width: "1.6rem",
+  height: "1.6rem",
 });
