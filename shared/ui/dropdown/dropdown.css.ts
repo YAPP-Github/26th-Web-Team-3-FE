@@ -1,5 +1,5 @@
 import { themeVars } from "@/shared/styles/base/theme.css";
-import { style, keyframes } from "@vanilla-extract/css";
+import { keyframes, style } from "@vanilla-extract/css";
 
 // 애니메이션 키프레임 정의
 const slideIn = keyframes({
@@ -70,4 +70,9 @@ export const dropdownItem = style({
       backgroundColor: themeVars.color.white[5],
     },
   },
+});
+
+export const selectedItem = style({
+  backgroundColor: themeVars.color.white[15],
+  color: themeVars.color.purple[20],
 });

@@ -142,6 +142,7 @@ interface DropdownItemProps extends ComponentProps<"button"> {
   children?: ReactNode;
   className?: string;
   onClick?: () => void;
+  isSelected?: boolean;
 }
 
 const DropdownItem = ({
@@ -149,6 +150,7 @@ const DropdownItem = ({
   children,
   className,
   onClick,
+  isSelected,
   ...props
 }: DropdownItemProps) => {
   const { handleToggleClose } = useDropdownContext();
@@ -162,7 +164,7 @@ const DropdownItem = ({
           handleToggleClose();
           onClick?.();
         }}
-        className={cn(styles.dropdownItem, className)}
+        className={cn(styles.dropdownItem, isSelected ? styles.selectedItem : undefined, className)}
         role="menuitem"
         aria-label={label}
       >
