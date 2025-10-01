@@ -15,7 +15,7 @@ import Footer from "./_components/footer";
 const Explore = () => {
   const [selectedTab, setSelectedTab] = useState<string>("all");
   const [selectedSort, setSelectedSort] = useState<CapsuleSortType>(
-    CAPSULE_SORT.DEFAULT,
+    CAPSULE_SORT.LATEST,
   );
 
   const footerRef = useIntersectionObserver<HTMLDivElement>(
@@ -52,6 +52,7 @@ const Explore = () => {
         handleSort={handleSort}
         onSelect={handleSelect}
         selectedTab={selectedTab}
+        selectedSort={selectedSort}
       />
       <AddCapsuleButton />
       <CardContainer capsules={allCapsules} isLoading={isPending} />

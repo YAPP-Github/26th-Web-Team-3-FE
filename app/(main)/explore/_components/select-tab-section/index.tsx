@@ -1,4 +1,4 @@
-import LeftIcon from "@/shared/assets/icon/left.svg";
+import Down from "@/shared/assets/icon/down.svg";
 import { CAPSULE_SORT, type CapsuleSortType } from "@/shared/types/api/capsule";
 import Dropdown from "@/shared/ui/dropdown";
 import * as styles from "./select-tab-section.css";
@@ -7,7 +7,7 @@ interface Props {
   onSelect: (value: string) => void;
   selectedTab: string;
   handleSort: (value: CapsuleSortType) => void;
-  selectedSort?: CapsuleSortType; // 현재 선택된 정렬 옵션
+  selectedSort: CapsuleSortType;
 }
 
 const SelectTabSection = ({
@@ -42,9 +42,9 @@ const SelectTabSection = ({
       <Dropdown className={styles.dropdown}>
         <Dropdown.Trigger className={styles.dropdownTrigger}>
           <span>{selectedSortLabel}</span>
-          <LeftIcon className={styles.dropdownIcon} />
+          <Down />
         </Dropdown.Trigger>
-        <Dropdown.Content>
+        <Dropdown.Content className={styles.dropdownContent} align="left">
           {sortOptions.map((option) => (
             <Dropdown.Item
               key={option.value}
@@ -59,9 +59,9 @@ const SelectTabSection = ({
       <Dropdown className={styles.dropdown}>
         <Dropdown.Trigger className={styles.dropdownTrigger}>
           <span>{selectedTabLabel}</span>
-          <LeftIcon className={styles.dropdownIcon} />
+          <Down />
         </Dropdown.Trigger>
-        <Dropdown.Content>
+        <Dropdown.Content className={styles.dropdownContent} align="left">
           {tabOptions.map((option) => (
             <Dropdown.Item
               key={option.value}
