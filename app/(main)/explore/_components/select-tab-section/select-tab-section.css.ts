@@ -13,6 +13,18 @@ export const chipContainer = style({
   width: "100%",
 });
 
+export const leftContainer = style({
+  display: "flex",
+  justifyContent: "flex-end",
+  flex: 1,
+});
+
+export const rightContainer = style({
+  display: "flex",
+  justifyContent: "flex-start",
+  flex: 1,
+});
+
 export const chipWrapper = style({
   display: "flex",
   gap: "0.6rem",
@@ -36,7 +48,7 @@ export const dropdownTrigger = style({
   ...themeVars.text.F15,
   gap: "0.5rem",
   padding: "1rem 1.5rem",
-  width: "13rem",
+  minWidth: "11rem",
   backgroundColor: colorTheme.white[5],
   border: "none",
   borderRadius: "8px",
