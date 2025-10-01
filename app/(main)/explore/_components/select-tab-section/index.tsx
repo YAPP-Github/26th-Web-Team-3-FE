@@ -4,19 +4,19 @@ import Dropdown from "@/shared/ui/dropdown";
 import * as styles from "./select-tab-section.css";
 
 interface Props {
-  onSelect: (value: string) => void;
-  selectedTab: string;
+  handleFilter: (value: string) => void;
+  selectedFilter: string;
   handleSort: (value: CapsuleSortType) => void;
   selectedSort: CapsuleSortType;
 }
 
 const SelectTabSection = ({
-  onSelect,
-  selectedTab,
+  handleFilter,
+  selectedFilter,
   handleSort,
   selectedSort = CAPSULE_SORT.LATEST,
 }: Props) => {
-  const tabOptions = [
+  const filterOptions = [
     { label: "전체", value: "all" },
     { label: "참여가능", value: "WRITABLE" },
     { label: "오픈된 캡슐", value: "OPENED" },
@@ -29,8 +29,8 @@ const SelectTabSection = ({
     { label: "편지 마감 순", value: CAPSULE_SORT.WRITE_DEADLINE },
   ];
 
-  const selectedTabLabel = tabOptions.find(
-    (option) => option.value === selectedTab,
+  const selectedFilterLabel = filterOptions.find(
+    (option) => option.value === selectedFilter,
   )?.label;
 
   const selectedSortLabel = sortOptions.find(
@@ -39,39 +39,43 @@ const SelectTabSection = ({
 
   return (
     <div className={styles.chipContainer}>
-      <Dropdown className={styles.dropdown}>
-        <Dropdown.Trigger className={styles.dropdownTrigger}>
-          <span>{selectedSortLabel}</span>
-          <Down />
-        </Dropdown.Trigger>
-        <Dropdown.Content className={styles.dropdownContent} align="left">
-          {sortOptions.map((option) => (
-            <Dropdown.Item
-              key={option.value}
-              label={option.label}
-              onClick={() => handleSort(option.value)}
-              isSelected={selectedSort === option.value}
-            />
-          ))}
-        </Dropdown.Content>
-      </Dropdown>
+      <div className={styles.leftContainer}>
+        <Dropdown className={styles.dropdown}>
+          <Dropdown.Trigger className={styles.dropdownTrigger}>
+            <span>{selectedSortLabel}</span>
+            <Down />
+          </Dropdown.Trigger>
+          <Dropdown.Content className={styles.dropdownContent} align="left">
+            {sortOptions.map((option) => (
+              <Dropdown.Item
+                key={option.value}
+                label={option.label}
+                onClick={() => handleSort(option.value)}
+                isSelected={selectedSort === option.value}
+              />
+            ))}
+          </Dropdown.Content>
+        </Dropdown>
+      </div>
 
-      <Dropdown className={styles.dropdown}>
-        <Dropdown.Trigger className={styles.dropdownTrigger}>
-          <span>{selectedTabLabel}</span>
-          <Down />
-        </Dropdown.Trigger>
-        <Dropdown.Content className={styles.dropdownContent} align="left">
-          {tabOptions.map((option) => (
-            <Dropdown.Item
-              key={option.value}
-              label={option.label}
-              onClick={() => onSelect(option.value)}
-              isSelected={selectedTab === option.value}
-            />
-          ))}
-        </Dropdown.Content>
-      </Dropdown>
+      <div className={styles.rightContainer}>
+        <Dropdown className={styles.dropdown}>
+          <Dropdown.Trigger className={styles.dropdownTrigger}>
+            <span>{selectedFilterLabel}</span>
+            <Down />
+          </Dropdown.Trigger>
+          <Dropdown.Content className={styles.dropdownContent} align="left">
+            {filterOptions.map((option) => (
+              <Dropdown.Item
+                key={option.value}
+                label={option.label}
+                onClick={() => handleFilter(option.value)}
+                isSelected={selectedFilter === option.value}
+              />
+            ))}
+          </Dropdown.Content>
+        </Dropdown>
+      </div>
     </div>
   );
 };
