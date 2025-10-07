@@ -18,16 +18,16 @@ import TitleSection from "./_components/title-section";
 import * as styles from "./page.css";
 
 const MyCapsule = () => {
-  const [selectedTab, setSelectedTab] = useState<MyCapsuleFilterType>(
+  const [selectedFilter, setSelectedFilter] = useState<MyCapsuleFilterType>(
     MY_CAPSULE_FILTER.ALL,
   );
   const [selectedSort, setSelectedSort] = useState<CapsuleSortType>(
-    CAPSULE_SORT.DEFAULT,
+    CAPSULE_SORT.LATEST,
   );
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending } =
     useInfiniteQuery(
-      capsuleQueryOptions.myCapsuleList(selectedSort, selectedTab),
+      capsuleQueryOptions.myCapsuleList(selectedSort, selectedFilter),
     );
 
   const onIntersect = useCallback(
@@ -45,8 +45,8 @@ const MyCapsule = () => {
     rootMargin: "100px 0px",
   });
 
-  const handleSelect = (value: MyCapsuleFilterType) => {
-    setSelectedTab(value);
+  const handleFilter = (value: MyCapsuleFilterType) => {
+    setSelectedFilter(value);
   };
 
   const handleSort = (value: CapsuleSortType) => {
@@ -62,9 +62,10 @@ const MyCapsule = () => {
         <TitleSection />
       </RevealMotion>
       <SelectTabSection
-        onSelect={handleSelect}
-        selectedTab={selectedTab}
+        handleFilter={handleFilter}
+        selectedFilter={selectedFilter}
         handleSort={handleSort}
+        selectedSort={selectedSort}
       />
       <CardContainer capsules={allCapsules} isLoading={isPending} />
 

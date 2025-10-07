@@ -13,9 +13,9 @@ import CardContainer from "./_components/card-container";
 import Footer from "./_components/footer";
 
 const Explore = () => {
-  const [selectedTab, setSelectedTab] = useState<string>("all");
+  const [selectedFilter, setSelectedFilter] = useState<string>("all");
   const [selectedSort, setSelectedSort] = useState<CapsuleSortType>(
-    CAPSULE_SORT.DEFAULT,
+    CAPSULE_SORT.LATEST,
   );
 
   const footerRef = useIntersectionObserver<HTMLDivElement>(
@@ -29,11 +29,11 @@ const Explore = () => {
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending } =
     useInfiniteQuery(
-      capsuleQueryOptions.capsuleLists(selectedSort, selectedTab),
+      capsuleQueryOptions.capsuleLists(selectedSort, selectedFilter),
     );
 
-  const handleSelect = (value: string) => {
-    setSelectedTab(value);
+  const handleFilter = (value: string) => {
+    setSelectedFilter(value);
   };
 
   const handleSort = (value: CapsuleSortType) => {
@@ -50,8 +50,9 @@ const Explore = () => {
       </RevealMotion>
       <SelectTabSection
         handleSort={handleSort}
-        onSelect={handleSelect}
-        selectedTab={selectedTab}
+        handleFilter={handleFilter}
+        selectedFilter={selectedFilter}
+        selectedSort={selectedSort}
       />
       <AddCapsuleButton />
       <CardContainer capsules={allCapsules} isLoading={isPending} />
