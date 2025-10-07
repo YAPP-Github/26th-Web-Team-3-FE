@@ -1,5 +1,5 @@
 import { themeVars } from "@/shared/styles/base/theme.css";
-import { style, keyframes } from "@vanilla-extract/css";
+import { keyframes, style } from "@vanilla-extract/css";
 
 // 애니메이션 키프레임 정의
 const slideIn = keyframes({
@@ -50,6 +50,12 @@ export const dropdownContent = style({
   transformOrigin: "top right",
 });
 
+export const dropdownContentLeft = style({
+  right: "auto",
+  left: 0,
+  transformOrigin: "top left",
+});
+
 // 닫힐 때 애니메이션을 위한 스타일
 export const dropdownContentClosing = style({
   animation: `${slideOut} 0.15s ease-in`,
@@ -62,6 +68,7 @@ export const dropdownItem = style({
   padding: "1.6rem 2rem",
   whiteSpace: "nowrap",
   alignItems: "center",
+  justifyContent: "space-between",
   ...themeVars.text.F16,
   borderRadius: "8px",
   color: themeVars.color.white[100],
@@ -70,4 +77,17 @@ export const dropdownItem = style({
       backgroundColor: themeVars.color.white[5],
     },
   },
+});
+
+export const itemContent = style({
+  display: "flex",
+  alignItems: "center",
+});
+
+export const selectedItem = style({
+  color: themeVars.color.purple[50],
+});
+
+export const checkIcon = style({
+  color: themeVars.color.purple[50],
 });

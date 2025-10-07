@@ -1,5 +1,6 @@
 "use client";
 
+import CheckIcon from "@/shared/assets/icon/check.svg";
 import { cn } from "@/shared/utils/cn";
 import {
   type ComponentProps,
@@ -116,9 +117,14 @@ const DropdownTrigger = ({
 interface DropdownContentProps {
   children: ReactNode;
   className?: string;
+  align?: "left" | "right";
 }
 
-const DropdownContent = ({ children, className }: DropdownContentProps) => {
+const DropdownContent = ({
+  children,
+  className,
+  align = "right",
+}: DropdownContentProps) => {
   const { open, isClosing } = useDropdownContext();
 
   if (!open && !isClosing) return null;
@@ -142,6 +148,7 @@ interface DropdownItemProps extends ComponentProps<"button"> {
   children?: ReactNode;
   className?: string;
   onClick?: () => void;
+  isSelected?: boolean;
 }
 
 const DropdownItem = ({
@@ -149,6 +156,7 @@ const DropdownItem = ({
   children,
   className,
   onClick,
+  isSelected,
   ...props
 }: DropdownItemProps) => {
   const { handleToggleClose } = useDropdownContext();
@@ -162,12 +170,19 @@ const DropdownItem = ({
           handleToggleClose();
           onClick?.();
         }}
-        className={cn(styles.dropdownItem, className)}
+        className={cn(
+          styles.dropdownItem,
+          isSelected ? styles.selectedItem : undefined,
+          className,
+        )}
         role="menuitem"
         aria-label={label}
       >
-        {children}
-        <p>{label}</p>
+        <div className={styles.itemContent}>
+          {children}
+          <p>{label}</p>
+        </div>
+        {isSelected && <CheckIcon className={styles.checkIcon} />}
       </button>
     </li>
   );

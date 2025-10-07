@@ -22,7 +22,7 @@ const EventCard = () => {
             치킨 받아가요!
           </span>
           <div className={styles.cardDescription}>
-            <span>9/30까지</span>
+            <span>10/30까지</span>
           </div>
         </div>
         <div className={styles.cardIconWrapper}>
