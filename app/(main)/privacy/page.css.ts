@@ -1,18 +1,23 @@
+import { themeVars } from "@/shared/styles/base/theme.css";
+import { screen } from "@/shared/styles/tokens/screen";
 import { style } from "@vanilla-extract/css";
 
 export const privacyPage = style({
-  padding: "20px",
+  padding: "2rem",
   minHeight: "100vh",
-  maxWidth: "800px",
+  maxWidth: "80rem",
   margin: "0 auto",
+
+  ...screen.md({
+    padding: "3.2rem",
+  }),
 });
 
 export const title = style({
-  fontSize: "28px",
-  fontWeight: "bold",
-  marginBottom: "30px",
+  ...themeVars.text.H2,
+  marginBottom: "3rem",
   textAlign: "center",
-  color: "#ffffff",
+  color: themeVars.color.white[100],
 });
 
 export const content = style({
@@ -20,45 +25,29 @@ export const content = style({
 });
 
 export const section = style({
-  marginBottom: "30px",
+  marginBottom: "3rem",
 });
 
 export const sectionTitle = style({
-  fontSize: "20px",
-  fontWeight: "bold",
-  marginBottom: "15px",
-  color: "#ffffff",
-  borderBottom: "2px solid #444",
-  paddingBottom: "8px",
+  ...themeVars.text.H3,
+  marginBottom: "1.5rem",
+  color: themeVars.color.white[100],
+  borderBottom: `1px solid ${themeVars.color.black[70]}`,
+  paddingBottom: "0.8rem",
 });
 
 export const text = style({
-  fontSize: "14px",
+  ...themeVars.text.B2,
   lineHeight: "1.8",
-  color: "#dddddd",
-  marginBottom: "12px",
-});
-
-export const infoBox = style({
-  backgroundColor: "#2a2a2a",
-  padding: "20px",
-  borderRadius: "8px",
-  marginTop: "30px",
-  marginBottom: "30px",
-});
-
-export const list = style({
-  listStyle: "none",
-  padding: 0,
-  margin: "10px 0",
-  color: "#dddddd",
+  color: themeVars.color.white[85],
+  marginBottom: "1.2rem",
 });
 
 export const footer = style({
-  marginTop: "50px",
-  paddingTop: "20px",
-  borderTop: "1px solid #444",
+  marginTop: "5rem",
+  paddingTop: "2rem",
+  borderTop: `1px solid ${themeVars.color.black[70]}`,
   textAlign: "center",
-  color: "#999",
-  fontSize: "12px",
+  ...themeVars.text.F12,
+  color: themeVars.color.white[60],
 });
