@@ -19,7 +19,7 @@ jobs:
     steps:
       # 1. 레포지토리 체크아웃
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # 2. Pnpm 설정
       - name: Setup Pnpm
