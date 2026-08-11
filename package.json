@@ -24,7 +24,7 @@
     "@vanilla-extract/recipes": "^0.5.5",
     "@vanilla-extract/sprinkles": "^1.6.3",
     "clsx": "^2.1.1",
-    "framer": "^2.4.1",
+    "framer": "^3.0.0",
     "ky": "^1.8.1",
     "matter-js": "^0.20.0",
     "motion": "^12.23.3",
